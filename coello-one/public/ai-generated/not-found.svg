@@ -1,0 +1,130 @@
+<svg
+  width="400"
+  height="400"
+  viewBox="0 0 400 400"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-labelledby="notFoundTitle notFoundDesc"
+  role="img"
+>
+  <title id="notFoundTitle">Not Found</title>
+  <desc id="notFoundDesc">
+    A funny, sporty athlete wearing a single-sleeve jersey, looking confused, with NOT FOUND text.
+  </desc>
+
+  <!-- Optional background -->
+  <rect width="400" height="400" fill="transparent" />
+
+  <!-- Head -->
+  <circle cx="200" cy="90" r="30" fill="#FCD7B6" />
+  <!-- Hair / headband -->
+  <path
+    d="M170 80 C180 50 220 50 230 80 Z"
+    fill="#C66E00"
+    opacity="0.8"
+  />
+  <!-- Eyes (one slightly 'confused' higher than the other) -->
+  <circle cx="187" cy="88" r="3" fill="#333" />
+  <circle cx="213" cy="92" r="3" fill="#333" />
+  <!-- Eyebrows for confused look -->
+  <path
+    d="M179 80 L189 85"
+    stroke="#333"
+    stroke-width="2"
+    stroke-linecap="round"
+  />
+  <path
+    d="M211 84 L221 80"
+    stroke="#333"
+    stroke-width="2"
+    stroke-linecap="round"
+  />
+  <!-- Mouth (slight frown) -->
+  <path
+    d="M185 105 Q200 95 215 105"
+    stroke="#333"
+    stroke-width="2"
+    fill="none"
+    stroke-linecap="round"
+  />
+
+  <!-- Torso with single-sleeve shirt (full on left, none on right) -->
+  <path
+    d="
+      M180 120
+      C170 150 170 190 180 210
+      L220 210
+      C230 190 230 150 220 120
+      Z
+    "
+    fill="#f39c12"
+    stroke="#b76e04"
+    stroke-width="2"
+  />
+  <!-- Left sleeve (full) -->
+  <path
+    d="
+      M180 120
+      C160 145 160 170 170 185
+      L180 180
+      Q177 150 180 120
+      Z
+    "
+    fill="#f39c12"
+    stroke="#b76e04"
+    stroke-width="2"
+  />
+  <!-- Right arm is bare -->
+  <path
+    d="
+      M220 130
+      C240 140 240 170 225 180
+    "
+    stroke="#FCD7B6"
+    stroke-width="8"
+    fill="none"
+    stroke-linecap="round"
+  />
+
+  <!-- Athlete's left hand scratching head (confused) -->
+  <path
+    d="
+      M165 185
+      C160 170 150 165 155 150
+    "
+    stroke="#FCD7B6"
+    stroke-width="8"
+    fill="none"
+    stroke-linecap="round"
+  />
+
+  <!-- Legs -->
+  <path
+    d="M190 210 L180 280"
+    stroke="#333"
+    stroke-width="6"
+    stroke-linecap="round"
+  />
+  <path
+    d="M210 210 L220 280"
+    stroke="#333"
+    stroke-width="6"
+    stroke-linecap="round"
+  />
+  <!-- Shoes -->
+  <path d="M172 280 h16 v5 h-20 z" fill="#2C3E50" />
+  <path d="M212 280 h16 v5 h-20 z" fill="#2C3E50" />
+
+  <!-- "NOT FOUND" text -->
+  <text
+    x="50%"
+    y="370"
+    text-anchor="middle"
+    fill="#000000"
+    font-size="24"
+    font-weight="bold"
+    font-family="sans-serif"
+  >
+    NOT FOUND
+  </text>
+</svg>
