@@ -1,0 +1,117 @@
+<svg
+  width="400"
+  height="400"
+  viewBox="0 0 400 400"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-labelledby="csTwoTitle csTwoDesc"
+  role="img"
+>
+  <title id="csTwoTitle">Coming Soon #2</title>
+  <desc id="csTwoDesc">
+    A sporty athlete wearing a single-sleeve jersey, jumping in excitement, with COMING SOON text.
+  </desc>
+
+  <!-- Optional background -->
+  <rect width="400" height="400" fill="transparent" />
+
+  <!-- Head -->
+  <circle cx="200" cy="80" r="30" fill="#FCD7B6" />
+  <!-- Hair/headband -->
+  <path
+    d="M170 70 C180 40 220 40 230 70 Z"
+    fill="#C66E00"
+    opacity="0.8"
+  />
+  <!-- Eyes -->
+  <circle cx="190" cy="80" r="3" fill="#333" />
+  <circle cx="210" cy="80" r="3" fill="#333" />
+  <!-- Big grin -->
+  <path
+    d="M185 95 Q200 110 215 95"
+    stroke="#333"
+    stroke-width="2"
+    fill="none"
+    stroke-linecap="round"
+  />
+
+  <!-- Torso with single-sleeve shirt (long sleeve on right this time) -->
+  <path
+    d="
+      M180 110
+      C170 140 170 180 180 200
+      L220 200
+      C230 180 230 140 220 110
+      Z
+    "
+    fill="#e67e22"
+    stroke="#995215"
+    stroke-width="2"
+  />
+  <!-- Right sleeve (full) -->
+  <path
+    d="
+      M220 110
+      C240 135 240 160 230 175
+      L220 170
+      Q223 140 220 110
+      Z
+    "
+    fill="#e67e22"
+    stroke="#995215"
+    stroke-width="2"
+  />
+  <!-- Left arm is bare -->
+  <path
+    d="
+      M180 120
+      C160 130 160 160 175 175
+    "
+    stroke="#FCD7B6"
+    stroke-width="8"
+    fill="none"
+    stroke-linecap="round"
+  />
+
+  <!-- Right arm (with sleeve) extended up -->
+  <path
+    d="
+      M220 120
+      C230 90 250 100 235 140
+    "
+    stroke="#e67e22"
+    stroke-width="8"
+    fill="none"
+    stroke-linecap="round"
+  />
+
+  <!-- Legs (jumping pose) -->
+  <path
+    d="M195 200 L180 270"
+    stroke="#333"
+    stroke-width="6"
+    stroke-linecap="round"
+  />
+  <path
+    d="M205 200 L220 270"
+    stroke="#333"
+    stroke-width="6"
+    stroke-linecap="round"
+  />
+  <!-- Shoes -->
+  <path d="M172 270 h16 v5 h-20 z" fill="#2c3e50" />
+  <path d="M212 270 h16 v5 h-20 z" fill="#2c3e50" />
+
+  <!-- "COMING SOON" text -->
+  <text
+    x="50%"
+    y="370"
+    text-anchor="middle"
+    fill="#000000"
+    font-size="24"
+    font-weight="bold"
+    font-family="sans-serif"
+  >
+    COMING SOON
+  </text>
+</svg>

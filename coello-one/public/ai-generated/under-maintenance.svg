@@ -1,0 +1,133 @@
+<svg
+  width="400"
+  height="400"
+  viewBox="0 0 400 400"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-labelledby="maintenanceTitle maintenanceDesc"
+  role="img"
+>
+  <title id="maintenanceTitle">Under Maintenance</title>
+  <desc id="maintenanceDesc">
+    A friendly, sporty under-maintenance illustration featuring an athlete with a 
+    single-sleeve jersey, a wrench in hand, ready to fix things.
+  </desc>
+  
+  <!-- Optional background -->
+  <rect width="400" height="400" fill="transparent" />
+
+  <!-- Head -->
+  <circle cx="200" cy="90" r="30" fill="#FCD7B6" />
+  <!-- Simple hair/headband -->
+  <path
+    d="M170 80 C180 50 220 50 230 80 Z"
+    fill="#C66E00"
+    opacity="0.8"
+  />
+  <!-- Simple face details (eyes + subtle smile) -->
+  <circle cx="190" cy="90" r="3" fill="#333" />
+  <circle cx="210" cy="90" r="3" fill="#333" />
+  <path
+    d="M185 105 Q200 115 215 105"
+    stroke="#333"
+    stroke-width="2"
+    fill="none"
+    stroke-linecap="round"
+  />
+  
+  <!-- Body / torso with a single-sleeve shirt -->
+  <!-- Shirt outline -->
+  <path
+    d="
+      M180 120
+      C170 150 170 200 180 220  <!-- left side curve -->
+      L220 220                   <!-- bottom horizontal -->
+      C230 200 230 150 220 120  <!-- right side curve -->
+      Z
+    "
+    fill="#3498DB"
+    stroke="#1F618D"
+    stroke-width="2"
+  />
+  <!-- Left sleeve (full) -->
+  <path
+    d="
+      M180 120
+      C160 145 160 170 170 185
+      L180 180
+      Q177 150 180 120
+      Z
+    "
+    fill="#3498DB"
+    stroke="#1F618D"
+    stroke-width="2"
+  />
+  <!-- Right arm is bare (no sleeve) -->
+  <!-- Right arm (bare) -->
+  <path
+    d="
+      M220 130
+      C240 140 240 180 225 190
+    "
+    stroke="#FCD7B6"
+    stroke-width="8"
+    fill="none"
+    stroke-linecap="round"
+  />
+
+  <!-- Wrench in right hand -->
+  <path
+    d="
+      M224 186 
+      c-3 -3 -6 -3 -9 0
+      l-10 10 
+      c-3 3 -3 6 0 9 
+      l2 2 
+      c3 3 6 3 9 0 
+      l10 -10 
+      c3 -3 3 -6 0 -9
+      z
+    "
+    fill="#999999"
+    stroke="#666666"
+    stroke-width="2"
+  />
+  <circle cx="224" cy="186" r="2" fill="#666666" />
+
+  <!-- Legs -->
+  <path
+    d="M190 220 L180 290"
+    stroke="#333"
+    stroke-width="6"
+    stroke-linecap="round"
+  />
+  <path
+    d="M210 220 L220 290"
+    stroke="#333"
+    stroke-width="6"
+    stroke-linecap="round"
+  />
+
+  <!-- Shoe shapes (simple) -->
+  <path
+    d="M172 290 h16 v5 h-20 z"
+    fill="#2C3E50"
+  />
+  <path
+    d="M212 290 h16 v5 h-20 z"
+    fill="#2C3E50"
+  />
+
+  <!-- "Under Maintenance" text -->
+  <text
+    x="50%"
+    y="370"
+    text-anchor="middle"
+    fill="#000000"
+    font-size="24"
+    font-weight="bold"
+    font-family="sans-serif"
+  >
+    UNDER MAINTENANCE
+  </text>
+</svg>

@@ -1,10 +1,10 @@
 import Image from "next/image";
 import CountdownTimer from "@/app/(other-pages)/coming-soon/countdown-timer";
-import SubscriptionForm from "@/app/shared/subscription-form";
-import ComingSoonImg from "@public/coming-soon.png";
-import ComingSoonTwoImg from "@public/coming-soon-2.png";
+import ComingSoonImg from "@public/ai-generated/coming-soon.svg";
+import ComingSoonTwoImg from "@public/ai-generated/coming-soon-2.svg";
 import Title from "antd/es/typography/Title";
-import { Plus } from "lucide-react";
+import SubscriptionForm from "@/app/components/subscription-form";
+import PlusOutlined from "@ant-design/icons/PlusOutlined";
 
 export default function ComingSoonPage() {
   return (
@@ -51,16 +51,16 @@ export default function ComingSoonPage() {
 function PLusIconPatterns() {
   return (
     <>
-      <Plus className="absolute end-5 top-5 hidden animate-popup text-gray-1000 [--popup-delay:200ms] lg:inline-block" />
-      <Plus className="absolute bottom-5 end-3 hidden animate-popup text-gray-1000 [--popup-delay:200ms] lg:inline-block" />
-      <Plus className="absolute end-[20%] top-5 hidden animate-popup text-gray-1000 [--popup-delay:300ms] lg:inline-block" />
-      <Plus className="absolute end-[7%] top-1/3 hidden rotate-45 animate-popup text-gray-1000 [--popup-delay:100ms] lg:inline-block" />
-      <Plus className="absolute bottom-[10%] end-[10%] hidden rotate-45 animate-popup text-xl text-gray-1000 [--popup-delay:150ms] lg:inline-block" />
-      <Plus className="absolute end-[20%] top-[20%] hidden animate-popup text-gray-1000 [--popup-delay:300ms] lg:inline-block" />
-      <Plus className="absolute end-[40%] top-[20%] hidden animate-popup text-gray-1000 [--popup-delay:400ms] lg:inline-block" />
-      <Plus className="absolute end-[48%] top-10 hidden animate-popup text-[10px] text-gray-1000 [--popup-delay:500ms] lg:inline-block" />
-      <Plus className="absolute end-[40%] top-1/2 hidden rotate-45 animate-popup text-xl text-gray-1000 [--popup-delay:250ms] lg:inline-block" />
-      <Plus className="absolute bottom-10 end-[38%] hidden animate-popup text-gray-1000 [--popup-delay:200ms] lg:inline-block" />
+      <PlusOutlined className="absolute end-5 top-5 hidden animate-popup text-gray-1000 [--popup-delay:200ms] lg:inline-block" />
+      <PlusOutlined className="absolute bottom-5 end-3 hidden animate-popup text-gray-1000 [--popup-delay:200ms] lg:inline-block" />
+      <PlusOutlined className="absolute end-[20%] top-5 hidden animate-popup text-gray-1000 [--popup-delay:300ms] lg:inline-block" />
+      <PlusOutlined className="absolute end-[7%] top-1/3 hidden rotate-45 animate-popup text-gray-1000 [--popup-delay:100ms] lg:inline-block" />
+      <PlusOutlined className="absolute bottom-[10%] end-[10%] hidden rotate-45 animate-popup text-xl text-gray-1000 [--popup-delay:150ms] lg:inline-block" />
+      <PlusOutlined className="absolute end-[20%] top-[20%] hidden animate-popup text-gray-1000 [--popup-delay:300ms] lg:inline-block" />
+      <PlusOutlined className="absolute end-[40%] top-[20%] hidden animate-popup text-gray-1000 [--popup-delay:400ms] lg:inline-block" />
+      <PlusOutlined className="absolute end-[48%] top-10 hidden animate-popup text-[10px] text-gray-1000 [--popup-delay:500ms] lg:inline-block" />
+      <PlusOutlined className="absolute end-[40%] top-1/2 hidden rotate-45 animate-popup text-xl text-gray-1000 [--popup-delay:250ms] lg:inline-block" />
+      <PlusOutlined className="absolute bottom-10 end-[38%] hidden animate-popup text-gray-1000 [--popup-delay:200ms] lg:inline-block" />
     </>
   );
 }

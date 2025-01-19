@@ -1,7 +1,7 @@
 import Image from "next/image";
-import SubscriptionForm from "@/app/shared/subscription-form";
-import MaintananceImg from "@public/maintanance.png";
+import MaintenanceImg from "@public/ai-generated/under-maintenance.svg";
 import { Typography } from "antd";
+import SubscriptionForm from "@/app/components/subscription-form";
 
 export default function MaintenancePage() {
   const { Title, Text } = Typography;
@@ -27,8 +27,8 @@ export default function MaintenancePage() {
         </div>
         <div className="pt-5 lg:pt-0">
           <Image
-            src={MaintananceImg}
-            alt="maintanance"
+            src={MaintenanceImg}
+            alt="under maintenance"
             className="aspect-[768/558] max-w-[320px] dark:invert sm:max-w-sm xl:max-w-[580px] 2xl:max-w-[768px]"
           />
         </div>
