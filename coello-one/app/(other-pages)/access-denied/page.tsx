@@ -1,9 +1,10 @@
-import Image from 'next/image';
-import { Button, Title } from 'rizzui';
-import ForbiddenImg from '@public/403img.svg';
-import ForbiddenTwoImg from '@public/forbidden-two.png';
-import { PiHouseLineBold } from 'react-icons/pi';
-import Link from 'next/link';
+import Image from "next/image";
+import ForbiddenImg from "@public/403img.svg";
+import ForbiddenTwoImg from "@public/forbidden-two.png";
+import Link from "next/link";
+import { House } from "lucide-react";
+import Title from "antd/es/typography/Title";
+import { Button } from "antd";
 
 export default function AccessDeniedPage() {
   return (
@@ -21,10 +22,7 @@ export default function AccessDeniedPage() {
             className="absolute right-10 top-10 aspect-auto max-w-[100px] dark:right-0 dark:top-5 dark:invert"
           />
         </div>
-        <Title
-          as="h1"
-          className="text-2xl font-bold leading-normal text-gray-1000 lg:text-3xl"
-        >
+        <Title className="text-2xl font-bold leading-normal text-gray-1000 lg:text-3xl">
           Access Denied
         </Title>
         <p className="mt-3 text-sm leading-loose text-gray-500 lg:mt-6 lg:text-base lg:leading-loose">
@@ -32,13 +30,12 @@ export default function AccessDeniedPage() {
           <br className="hidden xs:inline-block" />
           Please contact your site administrator to request access.
         </p>
-        <Link href={'/'}>
+        <Link href={"/"}>
           <Button
             size="xl"
             as="span"
-            className="mt-8 h-12 px-4 xl:h-14 xl:px-6"
-          >
-            <PiHouseLineBold className="mr-1.5 text-lg" />
+            className="mt-8 h-12 px-4 xl:h-14 xl:px-6">
+            <House className="mr-1.5 text-lg" />
             Back to home
           </Button>
         </Link>
