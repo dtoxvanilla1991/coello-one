@@ -1,0 +1,126 @@
+<svg
+  width="400"
+  height="400"
+  viewBox="0 0 400 400"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-labelledby="welcomeTwoTitle welcomeTwoDesc"
+  role="img"
+>
+  <title id="welcomeTwoTitle">Welcome - Athlete Thumbs Up</title>
+  <desc id="welcomeTwoDesc">
+    An imaginary athlete in a single-sleeve jersey giving a thumbs up.
+  </desc>
+
+  <!-- Optional background -->
+  <rect width="400" height="400" fill="transparent" />
+
+  <!-- Head -->
+  <circle cx="200" cy="90" r="30" fill="#FCD7B6" />
+  <!-- Hair -->
+  <path
+    d="M170 80 C180 50 220 50 230 80 Z"
+    fill="#C66E00"
+    opacity="0.8"
+  />
+  <!-- Eyes -->
+  <circle cx="190" cy="90" r="3" fill="#333" />
+  <circle cx="210" cy="90" r="3" fill="#333" />
+  <!-- Happy mouth -->
+  <path
+    d="M185 105 Q200 120 215 105"
+    stroke="#333"
+    stroke-width="2"
+    fill="none"
+    stroke-linecap="round"
+  />
+
+  <!-- Torso with single-sleeve jersey (full sleeve on right this time) -->
+  <path
+    d="
+      M180 120
+      C170 150 170 190 180 210
+      L220 210
+      C230 190 230 150 220 120
+      Z
+    "
+    fill="#e67e22"
+    stroke="#995215"
+    stroke-width="2"
+  />
+  <!-- Right sleeve (full) -->
+  <path
+    d="
+      M220 120
+      C240 145 240 170 230 185
+      L220 180
+      Q223 150 220 120
+      Z
+    "
+    fill="#e67e22"
+    stroke="#995215"
+    stroke-width="2"
+  />
+  <!-- Left arm is bare -->
+  <path
+    d="
+      M180 130
+      C160 140 160 170 175 190
+    "
+    stroke="#FCD7B6"
+    stroke-width="8"
+    fill="none"
+    stroke-linecap="round"
+  />
+
+  <!-- Right arm (thumbs up) -->
+  <path
+    d="
+      M225 140
+      C240 125 255 140 240 160
+      L235 150
+      C238 140 230 135 225 140
+      Z
+    "
+    fill="#FCD7B6"
+    stroke="#D49C78"
+    stroke-width="2"
+  />
+
+  <!-- Body lines for thumbs up arm overlap -->
+  <path
+    d="M220 140 L225 140"
+    stroke="#995215"
+    stroke-width="2"
+  />
+
+  <!-- Legs -->
+  <path
+    d="M190 210 L180 280"
+    stroke="#333"
+    stroke-width="6"
+    stroke-linecap="round"
+  />
+  <path
+    d="M210 210 L220 280"
+    stroke="#333"
+    stroke-width="6"
+    stroke-linecap="round"
+  />
+  <!-- Shoes -->
+  <path d="M172 280 h16 v5 h-20 z" fill="#2C3E50" />
+  <path d="M212 280 h16 v5 h-20 z" fill="#2C3E50" />
+
+  <!-- "WELCOME" text -->
+  <text
+    x="50%"
+    y="370"
+    text-anchor="middle"
+    fill="#000000"
+    font-size="24"
+    font-weight="bold"
+    font-family="sans-serif"
+  >
+    WELCOME
+  </text>
+</svg>

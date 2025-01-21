@@ -1,7 +1,7 @@
 import Image from "next/image";
 import MaintenanceImg from "@public/ai-generated/under-maintenance.svg";
 import { Typography } from "antd";
-import SubscriptionForm from "@/app/components/subscription-form";
+import SubscriptionForm from "@components/SubscriptionForm";
 
 export default function MaintenancePage() {
   const { Title, Text } = Typography;

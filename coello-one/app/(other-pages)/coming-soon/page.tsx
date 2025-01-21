@@ -1,17 +1,17 @@
 import Image from "next/image";
-import CountdownTimer from "@/app/(other-pages)/coming-soon/countdown-timer";
 import ComingSoonImg from "@public/ai-generated/coming-soon.svg";
 import ComingSoonTwoImg from "@public/ai-generated/coming-soon-2.svg";
 import Title from "antd/es/typography/Title";
-import SubscriptionForm from "@/app/components/subscription-form";
-import PlusOutlined from "@ant-design/icons/PlusOutlined";
+import { PlusOutlined } from "@ant-design/icons";
+import CountdownTimer from "./countdown-timer";
+import SubscriptionForm from "@components/SubscriptionForm";
 
 export default function ComingSoonPage() {
   return (
     <div className="relative flex grow flex-col-reverse items-center justify-center gap-y-5 px-6 pt-10 lg:flex-row lg:pt-0 xl:px-10">
       <div className="z-10 mx-auto w-full max-w-[1536px] text-center lg:text-start">
         <Title
-          as="h1"
+          level={1}
           className="mb-3 text-2xl font-bold text-gray-1000 md:mb-5 md:text-3xl md:leading-snug xl:text-4xl xl:leading-normal 2xl:text-5xl 2xl:leading-normal">
           Our website is developing. Keep{" "}
           <br className="hidden sm:inline-block" /> patience, we are coming soon
