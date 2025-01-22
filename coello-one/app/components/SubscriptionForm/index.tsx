@@ -10,6 +10,7 @@ import {
   LoadingOutlined,
   MailOutlined,
 } from "@ant-design/icons";
+import { subscribeUser } from "./actions";
 
 const subscribeSchema = z.object({
   email: z
@@ -19,16 +20,6 @@ const subscribeSchema = z.object({
     .refine((email) => !email.endsWith(".con"), "Did you mean .com?")
     .refine((email) => email.includes("@"), "Email must contain @ symbol"),
 });
-
-// to connect to flask backend
-async function subscribeUser(email: string) {
-  "use server";
-  console.log("email submitted", email);
-  // Simulate some server work (e.g., saving to DB, sending confirmation email)
-  await new Promise((resolve) => setTimeout(resolve, 1500));
-
-  return { success: true };
-}
 
 const SubscriptionForm = () => {
   const [serverError, setServerError] = React.useState("");

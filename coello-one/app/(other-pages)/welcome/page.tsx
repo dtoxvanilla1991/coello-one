@@ -3,8 +3,8 @@
 import Image from "next/image";
 import React from "react";
 import { Typography, Button } from "antd";
-import LaptopImg from "@public/welcome.svg";
-import MobileImg from "@public/welcome-2.svg";
+import WelcomeImg from "@public/ai-generated/welcome.svg";
+import WelcomeTwoImg from "@public/ai-generated/welcome-2.svg";
 
 const { Title, Text } = Typography;
 
@@ -19,8 +19,8 @@ export default function WelcomePage() {
                        sm:text-2xl md:mb-5 md:text-3xl md:leading-snug 
                        xl:mb-7 xl:text-4xl xl:leading-normal 
                        2xl:text-[40px] 3xl:text-5xl 3xl:leading-snug">
-            Welcome to Isomorphic <br />
-            Ultimate Dashboard.
+            Welcome to Coello One <br />
+            Ultimate Sportswear.
           </Title>
 
           <Text
@@ -50,12 +50,12 @@ export default function WelcomePage() {
 
         <div className="relative">
           <Image
-            src={LaptopImg}
+            src={WelcomeImg}
             alt="coming-soon"
             className="aspect-[632/630] max-w-[256px] sm:max-w-xs lg:max-w-lg 2xl:max-w-xl 3xl:max-w-[632px]"
           />
           <Image
-            src={MobileImg}
+            src={WelcomeTwoImg}
             alt="coming-soon"
             className="absolute left-0 top-1/2 z-10 aspect-[275/390] max-w-[100px] -translate-y-1/2 lg:max-w-[210px]"
           />

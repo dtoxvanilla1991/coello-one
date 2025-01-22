@@ -6,8 +6,7 @@ import WelcomeImg from "@public/ai-generated/welcome.svg";
 import WelcomeTwoImg from "@public/ai-generated/welcome-2.svg";
 
 const { Title, Text } = Typography;
-console.log("Title:", Title);
-console.log("Text:", Text);
+
 export default function WelcomePage() {
   return (
     <div className="flex grow items-center px-6 xl:px-10">

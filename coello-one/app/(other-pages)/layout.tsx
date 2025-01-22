@@ -26,11 +26,11 @@ export default function OtherPagesLayout({
           }`}>
           <Link href="/">
             <Image
-              src="/images/coelloLogo.png"
+              src="/coelloLogo.png"
               alt="Coello One logo"
               width={120}
               height={40}
-              className="dark:invert"
+              // className="dark:invert"
               priority
             />
           </Link>
