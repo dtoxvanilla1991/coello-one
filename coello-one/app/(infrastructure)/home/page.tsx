@@ -52,7 +52,7 @@ export function Home() {
         -translate-x-0 brings it fully into view.
       */}
       <Sider
-        className={`absolute top-0 left-0 z-50 h-full transition-transform duration-300 ${
+        className={`absolute top-16 left-0 z-50 h-full transition-transform duration-300 ${
           collapsed ? "-translate-x-full" : "translate-x-0"
         }`}
         style={{ background: colorBgContainer }}
