@@ -11,6 +11,7 @@ import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
 } from "@ant-design/icons";
+import Image from "next/image";
 import { createElement, useState } from "react";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -46,29 +47,30 @@ export function Home() {
   return (
     <Layout className="relative">
       {/* 
-        Make the Sider absolutely positioned over the content.
         -transition classes ensure smooth in/out animation.
         -translate-x-full hides it off-screen to the left.
         -translate-x-0 brings it fully into view.
       */}
-      <Sider
-        className={`absolute top-16 left-0 z-50 h-full transition-transform duration-300 ${
-          collapsed ? "-translate-x-full" : "translate-x-0"
-        }`}
-        style={{ background: colorBgContainer }}
-        width={window.innerWidth}
-        collapsible
-        collapsed={collapsed}
-        collapsedWidth={0}
-        trigger={null}
-        onCollapse={(value) => setCollapsed(value)}>
-        <Menu
-          mode="inline"
-          defaultSelectedKeys={["1"]}
-          style={{ height: "100%" }}
-          items={items2}
-        />
-      </Sider>
+      {window && (
+        <Sider
+          className={`absolute top-14 left-0 z-50 h-full transition-transform duration-300 ${
+            collapsed ? "-translate-x-full" : "translate-x-0"
+          }`}
+          style={{ background: colorBgContainer }}
+          width={window.innerWidth}
+          collapsible
+          collapsed={collapsed}
+          collapsedWidth={0}
+          trigger={null}
+          onCollapse={(value) => setCollapsed(value)}>
+          <Menu
+            mode="inline"
+            defaultSelectedKeys={["1"]}
+            style={{ height: "100%" }}
+            items={items2}
+          />
+        </Sider>
+      )}
 
       <Layout className="min-h-screen bg-white w-[390px] mx-auto border border-gray-300">
         {/* HEADER */}
@@ -88,13 +90,27 @@ export function Home() {
           <SearchOutlined className="text-xl" />
         </Header>
 
+        <div className="h-[40em] relative grid items-end">
+          {/* Hero Banner Section (Placeholder) */}
+          <Image
+            src="/athletes/main image.jpg"
+            alt="Coello One banner"
+            sizes="(max-width: 640px) 100vw, 640px"
+            fill
+            priority
+            className="object-cover"
+          />
+          <Content className="z-10 grid grid-cols-1 mb-3 px-4 items-center text-center">
+            <Title className="!text-white !font-extrabold" level={3}>
+              NOW YOU TRULY STAND OUT.
+            </Title>
+            <Button size="large">
+              <Text>Shop Now</Text>
+            </Button>
+          </Content>
+        </div>
         {/* CONTENT */}
         <Content className="px-4 mt-4">
-          {/* Hero Banner Section (Placeholder) */}
-          <div className="w-full h-52 bg-gray-100 mb-4 flex items-center justify-center">
-            <Text className="text-lg font-bold">Hero Banner Here</Text>
-          </div>
-
           {/* Featured Products (Placeholder) */}
           <Title level={4} className="mb-2">
             Featured
@@ -102,8 +118,15 @@ export function Home() {
           <Row gutter={[8, 8]}>
             {Array.from({ length: 4 }, (_, i) => (
               <Col key={i} span={12}>
-                <div className="bg-gray-100 h-36 flex items-center justify-center">
-                  <Text>Product {i + 1}</Text>
+                <div className="bg-gray-100 h-36 flex items-center justify-center relative">
+                  <Image
+                    src={`/athletes/main-secondary-${i + 1}.jpg`}
+                    alt={`Coello One athlete ${i + 1}`}
+                    sizes="(max-width: 640px) 100vw, 640px"
+                    fill
+                    priority
+                    className="object-cover object-top"
+                  />
                 </div>
               </Col>
             ))}
