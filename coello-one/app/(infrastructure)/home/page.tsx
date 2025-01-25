@@ -4,11 +4,12 @@ import { Layout, Typography, Button, Row, Col, Menu, theme } from "antd";
 import type { MenuProps } from "antd";
 import {
   ShoppingCartOutlined,
-  MenuOutlined,
   SearchOutlined,
   UserOutlined,
   LaptopOutlined,
   NotificationOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
 } from "@ant-design/icons";
 import { createElement, useState } from "react";
 
@@ -26,7 +27,6 @@ const items2: MenuProps["items"] = [
     key: `sub${key}`,
     icon: createElement(icon),
     label: `subnav ${key}`,
-
     children: new Array(4).fill(null).map((_, j) => {
       const subKey = index * 4 + j + 1;
       return {
@@ -38,31 +38,47 @@ const items2: MenuProps["items"] = [
 });
 
 export function Home() {
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const [collapsed, setCollapsed] = useState<boolean>(true);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
   return (
-    <Layout>
+    <Layout className="relative">
+      {/* 
+        Make the Sider absolutely positioned over the content.
+        -transition classes ensure smooth in/out animation.
+        -translate-x-full hides it off-screen to the left.
+        -translate-x-0 brings it fully into view.
+      */}
       <Sider
+        className={`absolute top-0 left-0 z-50 h-full transition-transform duration-300 ${
+          collapsed ? "-translate-x-full" : "translate-x-0"
+        }`}
         style={{ background: colorBgContainer }}
-        width={200}
+        width={window.innerWidth}
         collapsible
         collapsed={collapsed}
+        collapsedWidth={0}
+        trigger={null}
         onCollapse={(value) => setCollapsed(value)}>
         <Menu
           mode="inline"
           defaultSelectedKeys={["1"]}
-          defaultOpenKeys={["sub1"]}
           style={{ height: "100%" }}
           items={items2}
         />
       </Sider>
+
       <Layout className="min-h-screen bg-white w-[390px] mx-auto border border-gray-300">
         {/* HEADER */}
         <Header className="bg-white flex items-center px-4 h-14 shadow-sm sticky top-0 z-50">
-          <MenuOutlined className="text-xl mr-4" />
+          <Button
+            type="text"
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={() => setCollapsed(!collapsed)}
+            className="text-base w-16 h-16"
+          />
           <div className="flex-1 text-center">
             <Title level={4} className="!m-0 uppercase tracking-wider">
               Coello One
