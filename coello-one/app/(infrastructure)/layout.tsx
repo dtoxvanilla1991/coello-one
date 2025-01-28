@@ -1,5 +1,6 @@
 import { FooterComponent } from "@/components/Footer";
 import { HeaderComponent } from "@/components/Header";
+import { NavbarSiderComponent } from "@/components/NavbarSider";
 import { Layout } from "antd";
 
 export default function InfrastructureLayout({
@@ -7,10 +8,10 @@ export default function InfrastructureLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  console.log("does this even run?");
   return (
-    <Layout className="relative">
-      <Layout className="min-h-screen bg-white w-[390px] mx-auto border border-gray-300">
+    <Layout className="relative" hasSider={true}>
+      <NavbarSiderComponent />
+      <Layout>
         <HeaderComponent />
         {children}
         <FooterComponent />

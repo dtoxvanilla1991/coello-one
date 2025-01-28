@@ -1,6 +1,6 @@
 "use client";
 
-import { Typography, Button, Row, Col } from "antd";
+import { Typography, Button } from "antd";
 import { Content } from "antd/es/layout/layout";
 import { metaObject } from "config/site.config";
 import Image from "next/image";
@@ -33,42 +33,6 @@ export function MainBanner() {
           </Button>
         </Content>
       </div>
-      {/* CONTENT */}
-      <Content className="px-4 mt-4">
-        {/* Featured Products (Placeholder) */}
-        <Title level={4} className="mb-2">
-          Featured
-        </Title>
-        <Row gutter={[8, 8]}>
-          {Array.from({ length: 4 }, (_, i) => (
-            <Col key={i} span={12}>
-              <div className="bg-gray-100 h-36 flex items-center justify-center relative">
-                <Image
-                  src={`/athletes/main-secondary-${i + 1}.jpg`}
-                  alt={`Coello One athlete ${i + 1}`}
-                  sizes="(max-width: 640px) 100vw, 640px"
-                  fill
-                  priority
-                  className="object-cover object-top"
-                />
-              </div>
-            </Col>
-          ))}
-        </Row>
-
-        {/* Promo Section (Placeholder) */}
-        <div className="mt-4 p-4 bg-gray-50 rounded text-center">
-          <Title level={5} className="mb-1">
-            Limited Time Offer
-          </Title>
-          <Text>Up to 50% off select items</Text>
-          <div className="mt-2">
-            <Button type="primary" size="large">
-              Shop Now
-            </Button>
-          </div>
-        </div>
-      </Content>
     </>
   );
 }

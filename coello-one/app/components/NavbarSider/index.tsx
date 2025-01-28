@@ -34,7 +34,7 @@ const items2: MenuProps["items"] = [
   };
 });
 
-export function SiderComponent() {
+export function NavbarSiderComponent() {
   const [collapsed, setCollapsed] = useState<boolean>(true);
   const {
     token: { colorBgContainer },
@@ -47,32 +47,30 @@ export function SiderComponent() {
         -translate-x-full hides it off-screen to the left.
         -translate-x-0 brings it fully into view.
       */}
-      {window && (
-        <Sider
-          className={`absolute top-14 left-0 z-50 h-full transition-transform duration-300 ${
-            collapsed ? "-translate-x-full" : "translate-x-0"
-          }`}
-          style={{ background: colorBgContainer }}
-          width={window.innerWidth}
-          collapsible
-          collapsed={collapsed}
-          collapsedWidth={0}
-          trigger={null}
-          onCollapse={(value) => setCollapsed(value)}>
-          <Menu
-            mode="inline"
-            defaultSelectedKeys={["1"]}
-            style={{ height: "100%" }}
-            items={items2}
-          />
-        </Sider>
-      )}
+      <Sider
+        className={`absolute top-14 left-0 z-20 h-full transition-transform duration-300 ${
+          collapsed ? "-translate-x-full" : "translate-x-0"
+        }`}
+        style={{ background: colorBgContainer }}
+        width="100%"
+        collapsible
+        collapsed={collapsed}
+        collapsedWidth={0}
+        trigger={null}
+        onCollapse={(value) => setCollapsed(value)}>
+        <Menu
+          mode="inline"
+          defaultSelectedKeys={["1"]}
+          style={{ height: "100%" }}
+          items={items2}
+        />
+      </Sider>
 
       <Button
         type="text"
         icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         onClick={() => setCollapsed(!collapsed)}
-        className="text-base w-16 h-16"
+        className="text-lg absolute top-3 left-2 z-20"
       />
     </>
   );
