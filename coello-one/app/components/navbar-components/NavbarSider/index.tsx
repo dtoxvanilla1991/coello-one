@@ -70,7 +70,7 @@ export function NavbarSiderComponent() {
         type="text"
         icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         onClick={() => setCollapsed(!collapsed)}
-        className="text-lg absolute top-3 left-2 z-20"
+        className="text-lg absolute top-8 left-2 z-20"
       />
     </>
   );
