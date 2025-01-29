@@ -23,8 +23,8 @@ export function Navbar() {
       <ShoppingCartOutlined className={`text-xl mr-4 ${show}`} />
       <SearchOutlined className={`text-xl ${show}`} onClick={showSearch} />
       <NavbarSearch
-        className={`transition-shadow duration-300 ${
-          searchVisible ? "opacity-100" : "opacity-0"
+        className={`transition duration-300 ${
+          searchVisible ? "w-full opacity-100" : "w-0 opacity-0"
         } overflow-hidden motion-reduce:transition-none motion-reduce:hover:transform-none`}
         showSearch={showSearch}
       />

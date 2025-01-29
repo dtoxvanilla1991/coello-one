@@ -36,7 +36,7 @@ export function NavbarSearch({
   };
   return (
     <Search
-      placeholder="input search loading default"
+      placeholder="Let us help you find what you need"
       //   loading
       className={`${className} w-4/5 ml-auto`}
       onSearch={handleSearch}
