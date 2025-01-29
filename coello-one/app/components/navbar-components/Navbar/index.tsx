@@ -24,7 +24,7 @@ export function Navbar() {
       <SearchOutlined className={`text-xl ${show}`} onClick={showSearch} />
       <NavbarSearch
         className={`transition duration-300 ${
-          searchVisible ? "w-full opacity-100 " : "w-0 opacity-0"
+          searchVisible ? "w-11/12 opacity-100 " : "w-0 opacity-0"
         } overflow-hidden motion-reduce:transition-none motion-reduce:hover:transform-none`}
         showSearch={showSearch}
       />

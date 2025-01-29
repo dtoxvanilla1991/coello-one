@@ -19,7 +19,7 @@ export function NavbarSearch({
     <Search
       placeholder="Let us help you find what you need"
       //   loading
-      className={`${className} w-11/12 ml-auto`}
+      className={`ml-auto ${className}`}
       onSearch={handleSearch}
       allowClear
       onBlur={showSearch}
