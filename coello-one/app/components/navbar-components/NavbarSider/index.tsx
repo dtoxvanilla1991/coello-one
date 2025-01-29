@@ -1,41 +1,58 @@
 "use client";
 
-import { Layout, Button, Menu, theme } from "antd";
+import { Layout, Menu, theme } from "antd";
 import type { MenuProps } from "antd";
 import {
   UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
+  DesktopOutlined,
+  FileOutlined,
+  PieChartOutlined,
+  TeamOutlined,
 } from "@ant-design/icons";
-import { createElement, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 const { Sider } = Layout;
 
-const items2: MenuProps["items"] = [
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-].map((icon, index) => {
-  const key = String(index + 1);
+type MenuItem = Required<MenuProps>["items"][number];
 
+function getItem(
+  label: React.ReactNode,
+  key: React.Key,
+  icon?: React.ReactNode,
+  children?: MenuItem[]
+): MenuItem {
   return {
-    key: `sub${key}`,
-    icon: createElement(icon),
-    label: `subnav ${key}`,
-    children: new Array(4).fill(null).map((_, j) => {
-      const subKey = index * 4 + j + 1;
-      return {
-        key: subKey,
-        label: `option${subKey}`,
-      };
-    }),
-  };
-});
+    key,
+    icon,
+    children,
+    label,
+  } as MenuItem;
+}
 
-export function NavbarSiderComponent() {
-  const [collapsed, setCollapsed] = useState<boolean>(true);
+const items: MenuItem[] = [
+  getItem("Option 1", "1", <PieChartOutlined />),
+  getItem("Option 2", "2", <DesktopOutlined />),
+  getItem("User", "sub1", <UserOutlined />, [
+    getItem("Tom", "3"),
+    getItem("Bill", "4"),
+    getItem("Alex", "5"),
+  ]),
+  getItem("Team", "sub2", <TeamOutlined />, [
+    getItem("Team 1", "6"),
+    getItem("Team 2", "8"),
+  ]),
+  getItem("Files", "9", <FileOutlined />),
+];
+
+interface NavbarSiderProps {
+  collapsed: boolean;
+  setCollapsed: Dispatch<SetStateAction<boolean>>;
+}
+
+export function NavbarSiderComponent({
+  collapsed,
+  setCollapsed,
+}: NavbarSiderProps) {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -62,16 +79,9 @@ export function NavbarSiderComponent() {
           mode="inline"
           defaultSelectedKeys={["1"]}
           style={{ height: "100%" }}
-          items={items2}
+          items={items}
         />
       </Sider>
-
-      <Button
-        type="text"
-        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-        onClick={() => setCollapsed(!collapsed)}
-        className="text-lg absolute top-8 left-2 z-20"
-      />
     </>
   );
 }
