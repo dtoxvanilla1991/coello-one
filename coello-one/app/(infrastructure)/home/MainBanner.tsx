@@ -29,7 +29,9 @@ export function MainBanner() {
             NOW YOU TRULY STAND OUT.
           </Title>
           <Button size="large">
-            <Text>Shop Now</Text>
+            <Text className="uppercase text-base" strong>
+              Shop Now
+            </Text>
           </Button>
         </Content>
       </div>

@@ -19,7 +19,7 @@ export function Navbar() {
   const showSearch = () => setSearchVisible(!searchVisible);
   const show = searchVisible ? "hidden" : "block";
   return (
-    <Layout>
+    <Layout hasSider>
       <NavbarSiderComponent collapsed={collapsed} setCollapsed={setCollapsed} />
       <Layout>
         <Header className="bg-white flex items-center px-4 h-14 shadow-sm sticky top-0 z-10">
