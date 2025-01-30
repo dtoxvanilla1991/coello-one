@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import { Navbar } from "@/components/navbar-components/Navbar";
+import { NavbarSiderComponent } from "@/components/navbar-components/NavbarSider";
 import { Layout } from "antd";
 
 export default function InfrastructureLayout({
@@ -8,10 +9,13 @@ export default function InfrastructureLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Layout>
-      <Navbar />
-      {children}
-      <Footer />
+    <Layout hasSider>
+      <NavbarSiderComponent />
+      <Layout>
+        <Navbar />
+        {children}
+        <Footer />
+      </Layout>
     </Layout>
   );
 }

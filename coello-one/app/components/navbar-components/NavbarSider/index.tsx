@@ -9,7 +9,7 @@ import {
   PieChartOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
-import { Dispatch, SetStateAction } from "react";
+import { useSiderCollapsed } from "@/hooks/useSiderCollapsed";
 
 const { Sider } = Layout;
 
@@ -44,15 +44,8 @@ const items: MenuItem[] = [
   getItem("Files", "9", <FileOutlined />),
 ];
 
-interface NavbarSiderProps {
-  collapsed: boolean;
-  setCollapsed: Dispatch<SetStateAction<boolean>>;
-}
-
-export function NavbarSiderComponent({
-  collapsed,
-  setCollapsed,
-}: NavbarSiderProps) {
+export function NavbarSiderComponent() {
+  const { collapsed, setCollapsed } = useSiderCollapsed();
   const {
     token: { colorBgContainer },
   } = theme.useToken();
