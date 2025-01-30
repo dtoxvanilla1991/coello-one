@@ -11,7 +11,6 @@ export function Featured() {
   return (
     <>
       <Content className="px-4 mt-4">
-        {/* Featured Products (Placeholder) */}
         <Title level={4} className="mb-2">
           Featured
         </Title>
