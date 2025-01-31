@@ -10,6 +10,7 @@ import {
   TeamOutlined,
 } from "@ant-design/icons";
 import { useSiderCollapsed } from "@/hooks/useSiderCollapsed";
+import { useRouter, usePathname } from "next/navigation";
 
 const { Sider } = Layout;
 
@@ -30,18 +31,18 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem("Option 1", "1", <PieChartOutlined />),
-  getItem("Option 2", "2", <DesktopOutlined />),
-  getItem("User", "sub1", <UserOutlined />, [
-    getItem("Tom", "3"),
-    getItem("Bill", "4"),
-    getItem("Alex", "5"),
+  getItem("Dashboard", "/", <PieChartOutlined />),
+  getItem("Analytics", "/analytics", <DesktopOutlined />),
+  getItem("User", "/home", <UserOutlined />, [
+    getItem("Tom", "/user/tom"),
+    getItem("Bill", "/user/bill"),
+    getItem("Alex", "/user/alex"),
   ]),
-  getItem("Team", "sub2", <TeamOutlined />, [
-    getItem("Team 1", "6"),
-    getItem("Team 2", "8"),
+  getItem("Team", "/team", <TeamOutlined />, [
+    getItem("Team 1", "/team/team1"),
+    getItem("Team 2", "/team/team2"),
   ]),
-  getItem("Files", "9", <FileOutlined />),
+  getItem("Files", "/files", <FileOutlined />),
 ];
 
 export function NavbarSiderComponent() {
@@ -49,28 +50,33 @@ export function NavbarSiderComponent() {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const router = useRouter();
+  const pathname = usePathname();
+  console.log("pathname", pathname);
 
-  // -transition classes ensure smooth in/out animation.
-  // -translate-x-full hides it off-screen to the left.
-  // -translate-x-0 brings it fully into view.
+  const handleMenuClick: MenuProps["onClick"] = (e) => {
+    router.push(e.key as string);
+  };
 
   return (
     <Sider
-      // className={`absolute top-14 left-0 h-full transition-transform duration-300 z-0 ${
-      //   collapsed ? "translate-x-full" : "translate-x-0"
-      // }`}
+      aria-label="Navigation Sidebar"
+      role="navigation"
+      className={`!absolute top-14 left-0 h-full !transition-transform duration-300 ease-in-out !z-50 ${
+        collapsed ? "!-translate-x-full" : "!translate-x-0"
+      }`}
       style={{ background: colorBgContainer }}
-      width="100%"
+      width={"100%"}
       collapsible
       collapsed={collapsed}
       collapsedWidth={0}
       trigger={null}
       onCollapse={(value) => setCollapsed(value)}>
       <Menu
-        mode="inline"
-        defaultSelectedKeys={["1"]}
-        style={{ height: "100%" }}
+        selectedKeys={[pathname]}
+        style={{ height: "100%", borderRight: 0 }}
         items={items}
+        onClick={handleMenuClick}
       />
     </Sider>
   );
