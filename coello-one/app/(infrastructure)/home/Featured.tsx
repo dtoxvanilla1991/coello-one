@@ -27,7 +27,7 @@ export function Featured() {
                   sizes="(max-width: 640px) 100vw, 640px"
                   fill
                   priority
-                  className="object-cover object-top"
+                  className="object-cover object-top !rounded-none"
                 />
               }></Card>
           ))}
