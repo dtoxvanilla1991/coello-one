@@ -1,6 +1,6 @@
 "use client";
 
-import { Typography, Row, Col } from "antd";
+import { Typography, Col, Flex, Card } from "antd";
 import { Content } from "antd/es/layout/layout";
 import Image from "next/image";
 import { PromoSection } from "./PromoSection";
@@ -14,10 +14,13 @@ export function Featured() {
         <Title level={4} className="mb-2">
           Featured
         </Title>
-        <Row gutter={[8, 8]}>
+        <Flex gap={5} wrap="wrap">
           {Array.from({ length: 4 }, (_, i) => (
-            <Col key={i} span={12}>
-              <div className="bg-gray-100 h-36 flex items-center justify-center relative">
+            <Card
+              key={i}
+              className="size-40 relative"
+              hoverable
+              cover={
                 <Image
                   src={`/athletes/main-secondary-${i + 1}.jpg`}
                   alt={`Coello One athlete ${i + 1}`}
@@ -26,10 +29,9 @@ export function Featured() {
                   priority
                   className="object-cover object-top"
                 />
-              </div>
-            </Col>
+              }></Card>
           ))}
-        </Row>
+        </Flex>
         <PromoSection />
       </Content>
     </>
