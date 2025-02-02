@@ -3,14 +3,13 @@
 import { Typography, Flex, Card } from "antd";
 import { Content } from "antd/es/layout/layout";
 import Image from "next/image";
-import { PromoSection } from "./PromoSection";
 
 const { Title } = Typography;
 
 export function Featured() {
   return (
     <>
-      <Content className="px-4 pt-4 bg-white">
+      <Content className="p-4 pb-8 bg-white">
         <Title level={4} className="mb-2">
           Featured
         </Title>
@@ -32,7 +31,7 @@ export function Featured() {
               }></Card>
           ))}
         </Flex>
-        <PromoSection />
+        {/* <PromoSection /> */}
       </Content>
     </>
   );

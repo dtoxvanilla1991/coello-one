@@ -28,10 +28,8 @@ export function MainBanner() {
             <Title className="!text-white !font-extrabold" level={4}>
               NOW YOU TRULY STAND OUT.
             </Title>
-            <Button size="large" className="px-4">
-              <Text className="uppercase text-base" strong>
-                Shop Now
-              </Text>
+            <Button className="!px-10 uppercase !font-semibold" size="large">
+              Shop Now
             </Button>
           </Col>
         </Col>

@@ -7,11 +7,11 @@ const { Title, Text } = Typography;
 const SalesBlock: React.FC = () => {
   return (
     <Flex
-      className="bg-black p-10 text-center"
+      className="bg-black !p-4 text-center"
       vertical={true}
       justify="center"
       align="center">
-      <Title className="!text-white" level={2}>
+      <Title className="!text-white" level={3}>
         GET AN EXTRA 10% OFF SALE ITEMS
       </Title>
       <Text className="!text-white mb-5 text-base">
