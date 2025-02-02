@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Card, Button, Typography, Divider, Flex } from "antd";
+import { Card, Button, Typography, Divider, Flex, Space } from "antd";
 
 const { Title } = Typography;
 
@@ -13,19 +13,24 @@ const data = [
   // ...existing or additional items...
 ];
 
-const Training: React.FC = () => {
+const PopularSection: React.FC = () => {
   return (
-    <Flex className="!p-4 !pr-0 !pb-8 bg-white" vertical>
-      <Title level={4} className="uppercase mb-4">
-        Our athletes workouts
+    <Flex className="!p-4 !pr-0 !pb-8 bg-black" vertical gap={16}>
+      <Title level={4} className="uppercase !text-white">
+        Popular right now
       </Title>
+      <Space size={16}>
+        <Button className="uppercase">Women</Button>
+        <Button className="uppercase">Men</Button>
+      </Space>
       <Flex
         gap={16}
         className="overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar">
         {data.map((item, index) => (
           <Card
             key={index}
-            className="min-w-72 snap-start"
+            bordered
+            className="min-w-72 snap-start !border-4 !border-white"
             cover={
               <div className="relative h-[400px]">
                 <Image
@@ -51,4 +56,4 @@ const Training: React.FC = () => {
   );
 };
 
-export default Training;
+export default PopularSection;

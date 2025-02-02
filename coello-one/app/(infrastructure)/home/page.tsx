@@ -3,6 +3,7 @@ import { MainBanner } from "./MainBanner";
 import { Featured } from "./Featured";
 import SalesBlock from "./SalesBlock";
 import Training from "./Training";
+import PopularSection from "./PopularSection";
 
 export const metadata = {
   ...metaObject(),
@@ -15,6 +16,7 @@ export default function Home() {
       <Featured />
       <SalesBlock />
       <Training />
+      <PopularSection />
     </>
   );
 }
