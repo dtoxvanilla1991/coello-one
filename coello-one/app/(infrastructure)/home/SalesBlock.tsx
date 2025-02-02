@@ -17,10 +17,12 @@ const SalesBlock: React.FC = () => {
       <Text className="!text-white mb-5 text-base">
         Drop code extra10 and thank us with a tagged photo in the gym
       </Text>
-      <Space direction="vertical">
-        <Button size="large">SHOP WOMEN</Button>
-        <Button size="large" className="w-full">
-          SHOP MEN
+      <Space direction="vertical" className="w-1/2">
+        <Button className="w-full uppercase" size="large">
+          Shop women
+        </Button>
+        <Button className="w-full uppercase" size="large">
+          Shop men
         </Button>
       </Space>
     </Flex>
