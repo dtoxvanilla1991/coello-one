@@ -1,6 +1,6 @@
 "use client";
 
-import { Typography, Col, Flex, Card } from "antd";
+import { Typography, Flex, Card } from "antd";
 import { Content } from "antd/es/layout/layout";
 import Image from "next/image";
 import { PromoSection } from "./PromoSection";
@@ -10,7 +10,7 @@ const { Title } = Typography;
 export function Featured() {
   return (
     <>
-      <Content className="px-4 mt-4">
+      <Content className="px-4 pt-4 bg-white">
         <Title level={4} className="mb-2">
           Featured
         </Title>

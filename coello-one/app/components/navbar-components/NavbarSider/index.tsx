@@ -52,7 +52,6 @@ export function NavbarSiderComponent() {
   } = theme.useToken();
   const router = useRouter();
   const pathname = usePathname();
-  console.log("pathname", pathname);
 
   const handleMenuClick: MenuProps["onClick"] = (e) => {
     router.push(e.key as string);
