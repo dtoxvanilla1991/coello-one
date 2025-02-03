@@ -8,6 +8,7 @@ import {
 } from "@ant-design/icons";
 import { useState } from "react";
 import { useSiderCollapsed } from "@/hooks/useSiderCollapsed";
+import { NavbarSearch } from "../NavbarSearch";
 
 const { Header } = Layout;
 const { Title } = Typography;
@@ -16,7 +17,7 @@ export function Navbar() {
   const [searchVisible, setSearchVisible] = useState<boolean>(false);
   const { collapsed, setCollapsed } = useSiderCollapsed();
   const showSearch = () => setSearchVisible(!searchVisible);
-  const show = searchVisible ? "hidden" : "block";
+  const show = searchVisible ? "!hidden" : "!block";
   return (
     <Header className="!bg-white flex items-center justify-between !px-4">
       <Button
@@ -37,12 +38,7 @@ export function Navbar() {
         <ShoppingCartOutlined className={`text-xl ${show}`} />
         <SearchOutlined className={`text-xl ${show}`} onClick={showSearch} />
       </Space>
-      {/* <NavbarSearch
-            className={`transition duration-300 ${
-              searchVisible ? "w-11/12 opacity-100 " : "w-0 opacity-0"
-            } overflow-hidden motion-reduce:transition-none motion-reduce:hover:transform-none`}
-            showSearch={showSearch}
-          /> */}
+      <NavbarSearch searchVisible={searchVisible} showSearch={showSearch} />
     </Header>
   );
 }
