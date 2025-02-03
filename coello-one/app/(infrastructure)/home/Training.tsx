@@ -16,7 +16,7 @@ const data = [
 const Training: React.FC = () => {
   return (
     <Flex className="!p-4 !pr-0 !pb-8 bg-white" vertical>
-      <Title level={4} className="uppercase mb-4">
+      <Title level={4} className="uppercase !mb-4">
         Our athletes workouts
       </Title>
       <Flex
@@ -30,7 +30,7 @@ const Training: React.FC = () => {
               <div className="relative h-[400px]">
                 <Image
                   alt={item.title}
-                  src={`/athletes/main-secondary-${index + 1}.jpg`}
+                  src={`/athletes/main-secondary-${index + 9}.jpg`}
                   sizes="(max-width: 640px) 100vw, 640px"
                   fill
                   className="object-cover object-top"
@@ -43,7 +43,7 @@ const Training: React.FC = () => {
                 View weekly plan
               </Button>,
             ]}>
-            <Card.Meta title={item.title} />
+            <Card.Meta title={item.title} className="uppercase" />
           </Card>
         ))}
       </Flex>
