@@ -16,12 +16,16 @@ const data = [
 const PopularSection: React.FC = () => {
   return (
     <Flex className="!p-4 !pr-0 !pb-8 bg-black" vertical gap={16}>
-      <Title level={4} className="uppercase !text-white">
+      <Title level={3} className="uppercase !text-white !mb-0">
         Popular right now
       </Title>
       <Space size={16}>
-        <Button className="uppercase">Women</Button>
-        <Button className="uppercase">Men</Button>
+        <Button className="uppercase !px-5" size="large">
+          Women
+        </Button>
+        <Button className="uppercase !px-8" size="large">
+          Men
+        </Button>
       </Space>
       <Flex
         gap={16}
@@ -29,13 +33,13 @@ const PopularSection: React.FC = () => {
         {data.map((item, index) => (
           <Card
             key={index}
-            bordered
-            className="min-w-72 snap-start !border-4 !border-white"
+            className="min-w-72 snap-start"
+            bordered={false}
             cover={
               <div className="relative h-[400px]">
                 <Image
                   alt={item.title}
-                  src={`/athletes/main-secondary-${index + 1}.jpg`}
+                  src={`/athletes/main-secondary-${index + 6}.jpg`}
                   sizes="(max-width: 640px) 100vw, 640px"
                   fill
                   className="object-cover object-top"
