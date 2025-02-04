@@ -7,15 +7,16 @@ import {
   MenuUnfoldOutlined,
 } from "@ant-design/icons";
 import { useState } from "react";
-import { useSiderCollapsed } from "@/hooks/useSiderCollapsed";
 import { NavbarSearch } from "../NavbarSearch";
+import { useAtom } from "jotai";
+import { siderCollapsedAtom } from "@/store/siderStore";
 
 const { Header } = Layout;
 const { Title } = Typography;
 
 export function Navbar() {
   const [searchVisible, setSearchVisible] = useState<boolean>(false);
-  const { collapsed, setCollapsed } = useSiderCollapsed();
+  const [collapsed, setCollapsed] = useAtom(siderCollapsedAtom);
   const showSearch = () => setSearchVisible(!searchVisible);
   const show = searchVisible ? "!hidden" : "!block";
   return (

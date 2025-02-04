@@ -9,8 +9,9 @@ import {
   PieChartOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
-import { useSiderCollapsed } from "@/hooks/useSiderCollapsed";
 import { useRouter, usePathname } from "next/navigation";
+import { siderCollapsedAtom } from "@/store/siderStore";
+import { useAtom } from "jotai";
 
 const { Sider } = Layout;
 
@@ -46,7 +47,7 @@ const items: MenuItem[] = [
 ];
 
 export function NavbarSiderComponent() {
-  const { collapsed, setCollapsed } = useSiderCollapsed();
+    const [collapsed, setCollapsed] = useAtom(siderCollapsedAtom);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
