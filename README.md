@@ -52,7 +52,7 @@ Below are some screenshots illustrating key parts of the application.
 
 App is still in development. Once MVP is completed, more core screenshots will be added and the app will be deployed to Vercel.
 
-### Built With
+# Built With
 
 Frameworks/libraries/languages used:
 
@@ -71,11 +71,11 @@ Frameworks/libraries/languages used:
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Getting Started
+# Getting Started
 
 To get a local copy up and running follow these simple steps after downloading the files from the Github.
 
-### Prerequisites
+# Prerequisites
 
 ## Backend (Flask)
 1. **Install dependencies:**
@@ -91,7 +91,7 @@ To get a local copy up and running follow these simple steps after downloading t
 
 ## Frontend (Next.js)
 
-# Bun
+### Bun
 This project uses Bun package manager. If you do not have it, run this in your terminal using Homebrew to install Bun globally:
 
 ```
@@ -114,7 +114,7 @@ curl -fsSL https://bun.sh/install | bash
 
 3. Open your browser at http://localhost:3000.
 
-### Implemented Features
+# Implemented Features
 
 - Semantic Search
 - SSR for SEO and bundle js size optimizations
@@ -124,7 +124,7 @@ curl -fsSL https://bun.sh/install | bash
 - A11y features (semantic HTML structure, ARIA attributes, ATL tags etc.)
 - Various optimizations (lazy loading, code splitting, tree shaking, etc.)
 
-### Ideas for Future Features
+# Ideas for Future Features
 
 - Add Storybook for more effective building and maintenance of the custom UI components and pages in isolation (since the app mainly uses Ant Design component);
 - CI/CD using Github Actions;
@@ -136,7 +136,7 @@ curl -fsSL https://bun.sh/install | bash
 - Logging & monitoring using FullStory;
 - Crash/Error reports using Sentry;
 
-### Contact
+# Contact
 
 Project Link: [Coello One App](https://github.com/dtoxvanilla1991/coello-one)
 
