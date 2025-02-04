@@ -12,6 +12,7 @@ import {
 import { useRouter, usePathname } from "next/navigation";
 import { siderCollapsedAtom } from "@/store/siderStore";
 import { useAtom } from "jotai";
+import LanguageSelect from "./LanguageSelect";
 
 const { Sider } = Layout;
 
@@ -72,6 +73,7 @@ export function NavbarSiderComponent() {
       collapsedWidth={0}
       trigger={null}
       onCollapse={(value) => setCollapsed(value)}>
+      <LanguageSelect />
       <Menu
         selectedKeys={[pathname]}
         style={{ height: "100%", borderRight: 0 }}
