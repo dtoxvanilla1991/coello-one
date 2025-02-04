@@ -139,7 +139,7 @@ curl -fsSL https://bun.sh/install | bash
 
 ### Contact
 
-Project Link: [StormGuard Weather App](https://github.com/dtoxvanilla1991/coello-one)
+Project Link: [Coello One App](https://github.com/dtoxvanilla1991/coello-one)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
