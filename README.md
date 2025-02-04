@@ -126,12 +126,11 @@ curl -fsSL https://bun.sh/install | bash
 
 ### Ideas for Future Features
 
-- Add Storybook for better component development;
+- Add Storybook for more effective building and maintenance of the custom UI components and pages in isolation (since the app mainly uses Ant Design component);
 - CI/CD using Github Actions;
 - Add unit tests using Jest, including edge cases;
 - Add e2e tests using Cypress and Argos Screenshots;
 - Add more graceful and "smart" error handling, providing the user with more information about the error and the development team with more information about the error;
-- Protect API keys with proxy endpoints, implemented between the OpenWeatherMap API and the app;
 - Move assets to Cloudinary (that hosts with on AWS and optimizes them for all devices) for maximum performance;
 - Using dependency injection for better code scalability & testability;
 - Logging & monitoring using FullStory;
