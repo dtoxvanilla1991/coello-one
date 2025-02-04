@@ -23,16 +23,16 @@ This is a full-stack AI-features integrated and AI-powered application utilizing
    pip install -r requirements.txt
    ```
 2. **Run the Flask server**  
-   python app.py  
+   ```python app.py```
 
 3. The backend runs by default at http://localhost:3500.
 
 ### 2. Frontend (Next.js)
 1. **Install dependencies**  
-   bun install  
+   ```bun install```
 
 2. **Start the Next.js development server**  
-   bun run dev  
+   ```bun run dev```  
 
 3. Open your browser at http://localhost:3000.
 
