@@ -3,6 +3,7 @@
 import { SearchProps } from "antd/es/input/Search";
 import { JSX, useEffect, useRef } from "react";
 import { Input, InputRef } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
 
 interface NavbarSearchProps {
   searchVisible: boolean;
@@ -18,26 +19,25 @@ export function NavbarSearch({
   const handleSearch: SearchProps["onSearch"] = (value, _e, info) =>
     console.log(info?.source, value);
 
-  // useEffect(() => {
-  //   if (searchVisible && searchRef.current) {
-  //     searchRef.current.focus();
-  //   }
-  // }, [searchVisible]);
+  useEffect(() => {
+    if (searchVisible && searchRef.current) {
+      searchRef.current.focus();
+    }
+  }, [searchVisible]);
 
   return (
     <Search
       ref={searchRef}
       placeholder="What are you looking for?"
       //   loading
-      className={`ml-auto transition duration-300 ${
-        searchVisible ? "!w-11/12 block" : "!hidden"
-      } overflow-hidden motion-reduce:transition-none motion-reduce:hover:transform-none`}
+      className={`${searchVisible ? "!w-11/12 block" : "!hidden"}`}
       onSearch={handleSearch}
+      enterButton={<SearchOutlined className="text-xl" />}
       allowClear
-      // onBlur={showSearch}
+      onBlur={showSearch}
       id="navbar-search"
       size="large"
-      // variant="borderless"
+      variant="borderless"
     />
   );
 }
