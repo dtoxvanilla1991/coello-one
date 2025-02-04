@@ -63,7 +63,7 @@ export function NavbarSiderComponent() {
     <Sider
       aria-label="Navigation Sidebar"
       role="navigation"
-      className={`!absolute top-14 left-0 h-full !transition-transform duration-300 ease-in-out !z-50 ${
+      className={`!absolute top-14 left-0 h-full !transition-transform duration-300 ease-in-out !z-50 p-4 ${
         collapsed ? "!-translate-x-full" : "!translate-x-0"
       }`}
       style={{ background: colorBgContainer }}
@@ -76,9 +76,9 @@ export function NavbarSiderComponent() {
       <LanguageSelect />
       <Menu
         selectedKeys={[pathname]}
-        style={{ height: "100%", borderRight: 0 }}
         items={items}
         onClick={handleMenuClick}
+        className="!border-r-0"
       />
     </Sider>
   );
