@@ -1,6 +1,6 @@
 "use client";
 
-import { Layout, Menu, theme } from "antd";
+import { Flex, Layout, Menu, Space, theme, Typography } from "antd";
 import type { MenuProps } from "antd";
 import {
   UserOutlined,
@@ -13,8 +13,10 @@ import { useRouter, usePathname } from "next/navigation";
 import { siderCollapsedAtom } from "@/store/siderStore";
 import { useAtom } from "jotai";
 import LanguageSelect from "./LanguageSelect";
+import { TabsComponent } from "./TabsComponent";
 
 const { Sider } = Layout;
+const { Text } = Typography;
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -48,7 +50,7 @@ const items: MenuItem[] = [
 ];
 
 export function NavbarSiderComponent() {
-    const [collapsed, setCollapsed] = useAtom(siderCollapsedAtom);
+  const [collapsed, setCollapsed] = useAtom(siderCollapsedAtom);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -73,13 +75,21 @@ export function NavbarSiderComponent() {
       collapsedWidth={0}
       trigger={null}
       onCollapse={(value) => setCollapsed(value)}>
-      <LanguageSelect />
-      <Menu
-        selectedKeys={[pathname]}
-        items={items}
-        onClick={handleMenuClick}
-        className="!border-r-0"
-      />
+      <Flex className="w-full" vertical gap={15}>
+        <Space size="large" align="center" className="w-full">
+          <LanguageSelect />
+          <Text className="uppercase" disabled>
+            How can we help you today?
+          </Text>
+        </Space>
+        <TabsComponent />
+        <Menu
+          selectedKeys={[pathname]}
+          items={items}
+          onClick={handleMenuClick}
+          className="!border-r-0 relative"
+        />
+      </Flex>
     </Sider>
   );
 }
