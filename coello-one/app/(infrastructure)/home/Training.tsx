@@ -2,16 +2,11 @@
 
 import React from "react";
 import Image from "next/image";
-import { Card, Button, Typography, Divider, Flex } from "antd";
+import { Card, Button, Typography, Flex } from "antd";
 
 const { Title } = Typography;
 
-const data = [
-  { title: "Lifting" },
-  { title: "Cardio" },
-  { title: "Yoga" },
-  // ...existing or additional items...
-];
+const data = [{ title: "Lifting" }, { title: "Cardio" }, { title: "Yoga" }];
 
 const Training: React.FC = () => {
   return (
@@ -30,7 +25,7 @@ const Training: React.FC = () => {
               <div className="relative h-[400px]">
                 <Image
                   alt={item.title}
-                  src={`/athletes/main-secondary-${index + 9}.jpg`}
+                  src={`/athletes/vertical/main-secondary-${index + 9}.jpg`}
                   sizes="(max-width: 640px) 100vw, 640px"
                   fill
                   className="object-cover object-top"

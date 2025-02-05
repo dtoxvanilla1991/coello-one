@@ -39,7 +39,7 @@ const PopularSection: React.FC = () => {
               <div className="relative h-[400px]">
                 <Image
                   alt={item.title}
-                  src={`/athletes/main-secondary-${index + 6}.jpg`}
+                  src={`/athletes/vertical/main-secondary-${index + 6}.jpg`}
                   sizes="(max-width: 640px) 100vw, 640px"
                   fill
                   className="object-cover object-top"

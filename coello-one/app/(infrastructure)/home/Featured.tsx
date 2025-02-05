@@ -22,7 +22,7 @@ export function Featured() {
               cover={
                 <div className="relative size-40">
                   <Image
-                    src={`/athletes/main-secondary-${i + 1}.jpg`}
+                    src={`/athletes/vertical/main-secondary-${i + 1}.jpg`}
                     alt={`Coello One athlete ${i + 1}`}
                     sizes="(max-width: 640px) 100vw, 640px"
                     fill
