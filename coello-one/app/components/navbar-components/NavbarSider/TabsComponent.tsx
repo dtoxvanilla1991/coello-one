@@ -1,5 +1,67 @@
 import type { TabsProps } from "antd";
 import { Tabs } from "antd";
+import TabsContent from "./TabsContent";
+
+export type DataItem = {
+  modelVariant: string;
+  image: string;
+  description: string;
+};
+
+export type DataModel = Map<string, DataItem[]>;
+
+const data: DataModel = new Map([
+  [
+    "women",
+    [
+      {
+        modelVariant: "Passion",
+        image: "/athletes/horizontal/main-secondary-h-1.jpg",
+        description: "Female athlete wearing Passion model",
+      },
+      {
+        modelVariant: "Power",
+        image: "/athletes/horizontal/main-secondary-h-2.jpg",
+        description: "Female athlete wearing Power model",
+      },
+      {
+        modelVariant: "Pride",
+        image: "/athletes/horizontal/main-secondary-h-3.jpg",
+        description: "Female athlete wearing Pride model",
+      },
+    ],
+  ],
+  [
+    "men",
+    [
+      {
+        modelVariant: "Pride",
+        image: "/athletes/horizontal/main-secondary-h-4.jpg",
+        description: "Male athlete wearing Pride model",
+      },
+      {
+        modelVariant: "Passion",
+        image: "/athletes/horizontal/main-secondary-h-5.jpg",
+        description: "Male athlete wearing Passion model",
+      },
+      {
+        modelVariant: "Power",
+        image: "/athletes/horizontal/main-secondary-h-6.jpg",
+        description: "Male athlete wearing Power model",
+      },
+    ],
+  ],
+  [
+    "accessories",
+    [
+      {
+        modelVariant: "Coello Bands",
+        image: "/accessories/resistance-bands.png",
+        description: "Coello resistance bands",
+      },
+    ],
+  ],
+]);
 
 const onChange = (key: string) => {
   console.log(key);
@@ -7,20 +69,20 @@ const onChange = (key: string) => {
 const items: TabsProps["items"] = [
   {
     key: "1",
-    label: "Tab 1",
-    children: "Content of Tab Pane 1",
+    label: "WOMEN",
+    children: <TabsContent data={data.get("women") ?? []} />,
   },
   {
     key: "2",
-    label: "Tab 2",
-    children: "Content of Tab Pane 2",
+    label: "MEN",
+    children: <TabsContent data={data.get("men") ?? []} />,
   },
   {
     key: "3",
-    label: "Tab 3",
-    children: "Content of Tab Pane 3",
+    label: "ACCESSORIES",
+    children: <TabsContent data={data.get("accessories") ?? []} />,
   },
 ];
 export const TabsComponent: React.FC = () => (
-  <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+  <Tabs defaultActiveKey="1" items={items} onChange={onChange} centered />
 );
