@@ -11,7 +11,7 @@
 
   <p align="center">
     <br />
-    <a href="https://github.com/dtoxvanilla1991/stormguard"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/dtoxvanilla1991/coello-one"><strong>Explore the docs »</strong></a>
   </p> -->
 </div>
 
@@ -58,6 +58,7 @@ Frameworks/libraries/languages used:
 
 - [Next.js v15](https://nextjs.org/)
 - [Next.js' Turbopack for Dev](https://nextjs.org/docs/app/api-reference/turbopack)
+- [Ant Design](https://ant.design/)
 - [Node.js](https://nodejs.org/en/)
 - [Bun](https://bun.sh/)
 - [Flask v3](https://flask.palletsprojects.com/en/stable/)
