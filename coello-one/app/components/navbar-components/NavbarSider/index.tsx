@@ -34,7 +34,7 @@ export function NavbarSiderComponent() {
     <Sider
       aria-label="Navigation Sidebar"
       role="navigation"
-      className={`!absolute top-14 left-0 !transition-transform duration-300 ease-in-out !z-50
+      className={`!absolute top-14 left-0 pt-4 !transition-transform duration-300 ease-in-out !z-50
         w-full
         h-[calc(100vh-56px)]          /* fill viewport below navbar */
         overflow-y-auto              /* making sure user can scroll within sidebar */

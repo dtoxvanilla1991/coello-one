@@ -1,5 +1,6 @@
 import React from "react";
-import { Space, Typography } from "antd";
+import { List, Space, Typography } from "antd";
+import Link from "next/link";
 
 const { Text } = Typography;
 
@@ -12,23 +13,22 @@ const SiderFooter: React.FC = () => {
       <Text strong className="uppercase">
         More
       </Text>
-      <ul className="list-none p-0 text-xs">
-        <li className="py-1">
-          <a href="#" className="text-gray-600 hover:underline">
-            Accessibility Statement
-          </a>
-        </li>
-        <li className="py-1">
-          <a href="#" className="text-gray-600 hover:underline">
-            Help
-          </a>
-        </li>
-        <li className="py-1">
-          <a href="#" className="text-gray-600 hover:underline">
-            Blog
-          </a>
-        </li>
-      </ul>
+      <List
+        dataSource={[
+          { text: "Accessibility Statement", href: "#" },
+          { text: "Help", href: "#" },
+          { text: "Blog", href: "#" },
+        ]}
+        renderItem={(item) => (
+          <List.Item className="!py-1.5">
+            <Link href={item.href} className="text-gray-600 hover:underline">
+              {item.text}
+            </Link>
+          </List.Item>
+        )}
+        split={false}
+        className="!text-xs"
+      />
     </Space>
   );
 };
