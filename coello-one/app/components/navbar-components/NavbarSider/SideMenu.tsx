@@ -1,15 +1,6 @@
 import { Menu } from "antd";
 import type { MenuProps } from "antd";
-import {
-  UserOutlined,
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-  RiseOutlined,
-  GoldOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
+import { RiseOutlined, GoldOutlined, PlusOutlined } from "@ant-design/icons";
 import { useRouter, usePathname } from "next/navigation";
 import { Key, ReactNode } from "react";
 
