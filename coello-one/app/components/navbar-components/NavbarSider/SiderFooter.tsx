@@ -4,6 +4,15 @@ import Link from "next/link";
 
 const { Text } = Typography;
 
+const data: {
+  text: string;
+  href: string;
+}[] = [
+  { text: "Accessibility Statement", href: "#" },
+  { text: "Help", href: "#" },
+  { text: "Blog", href: "#" },
+];
+
 const SiderFooter: React.FC = () => {
   return (
     <Space
@@ -14,11 +23,7 @@ const SiderFooter: React.FC = () => {
         More
       </Text>
       <List
-        dataSource={[
-          { text: "Accessibility Statement", href: "#" },
-          { text: "Help", href: "#" },
-          { text: "Blog", href: "#" },
-        ]}
+        dataSource={data}
         renderItem={(item) => (
           <List.Item className="!py-1.5">
             <Link href={item.href} className="text-gray-600 hover:underline">
