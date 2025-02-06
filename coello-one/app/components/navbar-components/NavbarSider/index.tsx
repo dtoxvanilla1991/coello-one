@@ -1,65 +1,20 @@
 "use client";
 
-import { Flex, Layout, Menu, Space, theme, Typography } from "antd";
-import type { MenuProps } from "antd";
-import {
-  UserOutlined,
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-} from "@ant-design/icons";
-import { useRouter, usePathname } from "next/navigation";
+import { Flex, Layout, Space, theme, Typography } from "antd";
 import { siderCollapsedAtom } from "@/store/siderStore";
 import { useAtom } from "jotai";
 import LanguageSelect from "./LanguageSelect";
 import { TabsComponent } from "./TabsComponent";
+import Menu from "./SideMenu";
 
 const { Sider } = Layout;
 const { Text } = Typography;
-
-type MenuItem = Required<MenuProps>["items"][number];
-
-function getItem(
-  label: React.ReactNode,
-  key: React.Key,
-  icon?: React.ReactNode,
-  children?: MenuItem[]
-): MenuItem {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  } as MenuItem;
-}
-
-const items: MenuItem[] = [
-  getItem("Dashboard", "/", <PieChartOutlined />),
-  getItem("Analytics", "/analytics", <DesktopOutlined />),
-  getItem("User", "/home", <UserOutlined />, [
-    getItem("Tom", "/user/tom"),
-    getItem("Bill", "/user/bill"),
-    getItem("Alex", "/user/alex"),
-  ]),
-  getItem("Team", "/team", <TeamOutlined />, [
-    getItem("Team 1", "/team/team1"),
-    getItem("Team 2", "/team/team2"),
-  ]),
-  getItem("Files", "/files", <FileOutlined />),
-];
 
 export function NavbarSiderComponent() {
   const [collapsed, setCollapsed] = useAtom(siderCollapsedAtom);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const handleMenuClick: MenuProps["onClick"] = (e) => {
-    router.push(e.key as string);
-  };
 
   return (
     <Sider
@@ -83,12 +38,7 @@ export function NavbarSiderComponent() {
           </Text>
         </Space>
         <TabsComponent />
-        <Menu
-          selectedKeys={[pathname]}
-          items={items}
-          onClick={handleMenuClick}
-          className="!border-r-0 relative"
-        />
+        <Menu />
       </Flex>
     </Sider>
   );
