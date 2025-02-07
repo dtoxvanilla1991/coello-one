@@ -32,7 +32,6 @@ export function NavbarSearch({
       //   loading
       className={`${searchVisible ? "!w-11/12 block" : "!hidden"}`}
       onSearch={handleOnSearch}
-      enterButton={<SearchOutlined className="text-xl" />}
       allowClear
       onBlur={handleSearch}
       id="navbar-search"
