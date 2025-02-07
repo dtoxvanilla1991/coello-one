@@ -15,9 +15,14 @@ const { Header } = Layout;
 const { Title } = Typography;
 
 export function Navbar() {
-  const [searchVisible, setSearchVisible] = useState<boolean>(false);
   const [collapsed, setCollapsed] = useAtom(siderCollapsedAtom);
-  const showSearch = () => setSearchVisible(!searchVisible);
+
+  const [searchVisible, setSearchVisible] = useState<boolean>(false);
+  const [showCart, setShowCart] = useState<boolean>(false);
+
+  const handleShowCart = () => setShowCart(!showCart);
+  const handleSearch = () => setSearchVisible(!searchVisible);
+
   const show = searchVisible ? "!hidden" : "!block";
   return (
     <Header className="!bg-white flex items-center justify-between !px-4">
@@ -36,10 +41,13 @@ export function Navbar() {
         </Title>
       </Flex>
       <Space size={"middle"}>
-        <ShoppingCartOutlined className={`text-xl ${show}`} />
-        <SearchOutlined className={`text-xl ${show}`} onClick={showSearch} />
+        <ShoppingCartOutlined
+          className={`text-xl ${show}`}
+          onClick={handleShowCart}
+        />
+        <SearchOutlined className={`text-xl ${show}`} onClick={handleSearch} />
       </Space>
-      <NavbarSearch searchVisible={searchVisible} showSearch={showSearch} />
+      <NavbarSearch searchVisible={searchVisible} handleSearch={handleSearch} />
     </Header>
   );
 }

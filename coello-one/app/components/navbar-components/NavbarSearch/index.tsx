@@ -7,16 +7,16 @@ import { SearchOutlined } from "@ant-design/icons";
 
 interface NavbarSearchProps {
   searchVisible: boolean;
-  showSearch: () => void;
+  handleSearch: () => void;
 }
 const { Search } = Input;
 export function NavbarSearch({
   searchVisible,
-  showSearch,
+  handleSearch,
 }: NavbarSearchProps): JSX.Element {
   const searchRef = useRef<InputRef | null>(null);
 
-  const handleSearch: SearchProps["onSearch"] = (value, _e, info) =>
+  const handleOnSearch: SearchProps["onSearch"] = (value, _e, info) =>
     console.log(info?.source, value);
 
   useEffect(() => {
@@ -31,10 +31,10 @@ export function NavbarSearch({
       placeholder="What are you looking for?"
       //   loading
       className={`${searchVisible ? "!w-11/12 block" : "!hidden"}`}
-      onSearch={handleSearch}
+      onSearch={handleOnSearch}
       enterButton={<SearchOutlined className="text-xl" />}
       allowClear
-      onBlur={showSearch}
+      onBlur={handleSearch}
       id="navbar-search"
       size="large"
       variant="borderless"
