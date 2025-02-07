@@ -1,15 +1,16 @@
 "use client";
 import { Button, Flex, Layout, Space, Typography } from "antd";
 import {
-  ShoppingCartOutlined,
   SearchOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  ShoppingOutlined,
 } from "@ant-design/icons";
 import { useState } from "react";
 import { NavbarSearch } from "../NavbarSearch";
 import { useAtom } from "jotai";
 import { siderCollapsedAtom } from "@/store/siderStore";
+import NavBarBagDrawer from "../NavBarBagDrawer";
 
 const { Header } = Layout;
 const { Title } = Typography;
@@ -18,9 +19,9 @@ export function Navbar() {
   const [collapsed, setCollapsed] = useAtom(siderCollapsedAtom);
 
   const [searchVisible, setSearchVisible] = useState<boolean>(false);
-  const [showCart, setShowCart] = useState<boolean>(false);
+  const [showBag, setShowBag] = useState<boolean>(false);
 
-  const handleShowCart = () => setShowCart(!showCart);
+  const handleShowBag = () => setShowBag(!showBag);
   const handleSearch = () => setSearchVisible(!searchVisible);
 
   const show = searchVisible ? "!hidden" : "!block";
@@ -41,13 +42,14 @@ export function Navbar() {
         </Title>
       </Flex>
       <Space size={"middle"}>
-        <ShoppingCartOutlined
+        <ShoppingOutlined
           className={`text-xl ${show}`}
-          onClick={handleShowCart}
+          onClick={handleShowBag}
         />
         <SearchOutlined className={`text-xl ${show}`} onClick={handleSearch} />
       </Space>
       <NavbarSearch searchVisible={searchVisible} handleSearch={handleSearch} />
+      <NavBarBagDrawer showBag={showBag} handleShowBag={handleShowBag} />
     </Header>
   );
 }

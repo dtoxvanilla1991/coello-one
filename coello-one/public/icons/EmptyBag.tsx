@@ -1,5 +1,3 @@
-import React from "react";
-
 interface EmptyBagIconProps {
   width?: number;
   height?: number;

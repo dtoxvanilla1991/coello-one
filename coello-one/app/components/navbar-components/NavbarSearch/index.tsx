@@ -3,7 +3,6 @@
 import { SearchProps } from "antd/es/input/Search";
 import { JSX, useEffect, useRef } from "react";
 import { Input, InputRef } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
 
 interface NavbarSearchProps {
   searchVisible: boolean;
