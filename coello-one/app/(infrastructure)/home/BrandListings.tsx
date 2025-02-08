@@ -23,10 +23,7 @@ const mensLine: BrandLine = [
 
 const BrandListings: React.FC = () => {
   return (
-    <Space
-      direction="vertical"
-      size="small"
-      className="flex bg-gray-200 w-full p-4">
+    <Space direction="vertical" size="small" className="flex w-full p-4">
       <BrandListing data={womensLine} title="Women's line" />
       <BrandListing data={mensLine} title="Men's line" />
     </Space>
