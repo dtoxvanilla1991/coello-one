@@ -1,34 +1,9 @@
-import { Menu } from "antd";
-import type { MenuProps } from "antd";
-import { useRouter, usePathname } from "next/navigation";
-import { Key, ReactNode } from "react";
-
-type MenuItem = Required<MenuProps>["items"][number];
-
-function createMenuTitle(
-  label: ReactNode,
-  key: Key,
-  children?: MenuItem[]
-): MenuItem {
-  return {
-    key,
-    label,
-    children,
-    className: "uppercase font-medium",
-  } as MenuItem;
-}
-function createMenuOption(
-  label: ReactNode,
-  key: Key,
-  children?: MenuItem[]
-): MenuItem {
-  return {
-    key,
-    label,
-    children,
-    className: "!text-gray-600 capitalize",
-  } as MenuItem;
-}
+import {
+  createMenuOption,
+  createMenuTitle,
+  MenuItem,
+} from "@/components/Menu/helpers";
+import Menu from "@components/Menu";
 
 const items: MenuItem[] = [
   createMenuTitle("Trending", "/trending", [
@@ -63,20 +38,5 @@ const items: MenuItem[] = [
 ];
 
 export default function SideMenu() {
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const handleMenuClick: MenuProps["onClick"] = (e) => {
-    router.push(e.key as string);
-  };
-
-  return (
-    <Menu
-      selectedKeys={[pathname]}
-      items={items}
-      onClick={handleMenuClick}
-      className="!border-r-0"
-      mode="inline"
-    />
-  );
+  return <Menu items={items} />;
 }
