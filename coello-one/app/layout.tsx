@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
-import enUS from "antd/locale/en_US";
 import enGB from "antd/locale/en_GB";
 import esES from "antd/locale/es_ES";
 import { cookies } from "next/headers";
@@ -36,9 +35,6 @@ export default async function RootLayout({
 
   let antdLocale: Locale;
   switch (langCookie) {
-    case "en-US":
-      antdLocale = enUS;
-      break;
     case "es-ES":
       antdLocale = esES;
       break;
@@ -59,10 +55,10 @@ export default async function RootLayout({
               colorPrimary: "#000000",
               borderRadius: 2,
               // responsible for the background color of the active menu item, e.x. Select component
-              controlItemBgActive: "#f5f5f5",
-
-              // Alias Token
-              colorBgContainer: "#ffffff",
+              controlItemBgActive: "#f5f5f5", // sets the active background select options color
+              colorBgBase: "#ffffff", // sets the base background color
+              colorBgContainer: "#ffffff", // sets container backgrounds
+              colorBgLayout: "#ffffff", // sets layout backgrounds
             },
           }}
           locale={antdLocale}>
