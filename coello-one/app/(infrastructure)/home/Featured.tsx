@@ -9,7 +9,7 @@ const { Title } = Typography;
 export function Featured() {
   return (
     <>
-      <Content className="p-4 pb-8 bg-white">
+      <Content className="p-4 pb-8">
         <Title level={4} className="mb-2 uppercase">
           Featured
         </Title>
