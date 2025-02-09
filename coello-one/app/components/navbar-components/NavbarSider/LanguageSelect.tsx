@@ -22,12 +22,11 @@ export default function LanguageSelect() {
 
   return (
     <Select
-      defaultValue="en-GB"
+      defaultValue="en-EN"
       className="w-[4.5em]"
       onChange={handleChange}
       options={[
-        { label: "GB", value: "en-GB" },
-        { label: "US", value: "en-US" },
+        { label: "EN", value: "en-EN" },
         { label: "ES", value: "es-ES" },
       ]}
     />
