@@ -8,6 +8,7 @@ import BrandListings from "./BrandListings";
 import StoryBlock from "./StoryBlock";
 import { Divider } from "antd";
 import BottomMenu from "./BottomMenu";
+import BottomMoreAboutSection from "./BottomMoreAboutSection";
 
 export const metadata = {
   ...metaObject(),
@@ -25,6 +26,7 @@ export default function Home() {
       <Divider className="!m-0 !pb-1 bg-gray-200" />
       <StoryBlock />
       <BottomMenu />
+      <BottomMoreAboutSection />
     </>
   );
 }

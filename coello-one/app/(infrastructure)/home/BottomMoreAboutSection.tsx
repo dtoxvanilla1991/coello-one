@@ -19,19 +19,20 @@ const BottomMoreAboutSection: React.FC = () => {
         {data.map((item, index) => (
           <Card
             key={index}
-            className="min-w-72 snap-start"
+            className="min-w-36 snap-start !bg-gray-200"
+            classNames={{ body: "!p-2" }}
             cover={
-              <div className="relative h-96 bg-black text-center">
-                <Title className="text-white uppercase">COELLO ONE Hub</Title>
-              </div>
+              <Flex
+                className="!flex relative h-24 bg-black"
+                justify="center"
+                align="center">
+                <Title level={5} className="!text-white uppercase">
+                  COELLO ONE Hub
+                </Title>
+              </Flex>
             }
-            hoverable
-            actions={[
-              <Button key={index} className="uppercase">
-                View weekly plan
-              </Button>,
-            ]}>
-            <Card.Meta title={item.title} className="uppercase" />
+            hoverable>
+            <Card.Meta title={item.title} className="uppercase bg-gray-200" />
           </Card>
         ))}
       </Flex>
