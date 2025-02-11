@@ -11,6 +11,7 @@ import { NavbarSearch } from "../NavbarSearch";
 import { useAtom } from "jotai";
 import { siderCollapsedAtom } from "@/store/siderStore";
 import NavBarBagDrawer from "../NavBarBagDrawer";
+import Image from "next/image";
 
 const { Header } = Layout;
 const { Title } = Typography;
@@ -35,18 +36,17 @@ export function Navbar() {
         className="text-lg"
       />
       <Flex className={`${show}`} justify="center" align="center">
-        <Title
-          level={4}
-          className="!m-0 uppercase w-full tracking-wider transition delay-500 duration-300 ease-in-out motion-reduce:transition-none motion-reduce:hover:transform-none">
-          Coello One
-        </Title>
-      </Flex>
-      <Space size={"middle"}>
-        <ShoppingOutlined
-          className={`text-xl ${show}`}
-          onClick={handleShowBag}
+        <Image
+          src="/coelloLogo.png"
+          width={150}
+          height={50}
+          alt="Coello one logo"
+          className="pt-1 ml-2"
         />
-        <SearchOutlined className={`text-xl ${show}`} onClick={handleSearch} />
+      </Flex>
+      <Space size={"middle"} className="text-xl">
+        <ShoppingOutlined className={`${show}`} onClick={handleShowBag} />
+        <SearchOutlined className={`${show}`} onClick={handleSearch} />
       </Space>
       <NavbarSearch searchVisible={searchVisible} handleSearch={handleSearch} />
       <NavBarBagDrawer showBag={showBag} handleShowBag={handleShowBag} />
