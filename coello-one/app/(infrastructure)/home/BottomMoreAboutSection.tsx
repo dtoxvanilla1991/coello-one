@@ -1,11 +1,25 @@
 "use client";
 
-import React from "react";
-import { Card, Button, Typography, Flex } from "antd";
+import React, { FC } from "react";
+import { Card, Typography, Flex } from "antd";
+import { MailOutlined } from "@ant-design/icons";
+import Image from "next/image";
 
 const { Title, Text } = Typography;
 
-const data = [{ title: "Lifting" }, { title: "Cardio" }, { title: "Yoga" }];
+type DataType = {
+  description: string;
+  title?: string;
+  text?: string;
+  icon?: React.ReactNode;
+  image?: string;
+};
+
+const data: DataType[] = [
+  { description: "Blog", title: "Coello One", text: "Hub" },
+  { description: "Email sign up", icon: <MailOutlined className="text-3xl" /> },
+  { description: "Coello Cut Training", image: "/coelloLogo.png" },
+];
 
 const BottomMoreAboutSection: React.FC = () => {
   return (
@@ -19,24 +33,42 @@ const BottomMoreAboutSection: React.FC = () => {
         {data.map((item, index) => (
           <Card
             key={index}
-            className="min-w-36 snap-start !bg-gray-200"
+            className="min-w-44 snap-start !bg-gray-200"
             classNames={{ body: "!p-2" }}
             cover={
               <Flex
-                className="!flex relative h-24 bg-black"
+                className="!flex relative h-28 bg-black !text-white uppercase"
                 justify="center"
-                align="center">
-                <Title level={5} className="!text-white uppercase">
-                  COELLO ONE Hub
-                </Title>
+                align="center"
+                vertical>
+                <CardContent {...item} />
               </Flex>
             }
             hoverable>
-            <Card.Meta title={item.title} className="uppercase bg-gray-200" />
+            <Card.Meta
+              className="uppercase bg-gray-200 text-sm"
+              description={item.description}
+            />
           </Card>
         ))}
       </Flex>
     </Flex>
+  );
+};
+
+const CardContent: FC<DataType> = ({ title, text, icon, image }) => {
+  if (image) {
+    return <Image src={image} alt="Coello One" width={100} height={100} />;
+  } else if (icon) {
+    return icon;
+  }
+  return (
+    <>
+      <Title level={4} className="!text-white !m-0">
+        {title}
+      </Title>
+      <Text className="!text-white font-semibold">{text}</Text>
+    </>
   );
 };
 
