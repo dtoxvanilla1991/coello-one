@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import { FC } from "react";
 import { Card, Typography, Flex } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import Image from "next/image";
