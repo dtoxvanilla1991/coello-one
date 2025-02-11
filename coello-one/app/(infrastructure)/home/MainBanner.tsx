@@ -1,11 +1,11 @@
 "use client";
 
-import { Typography, Button, Grid, Col, Row } from "antd";
+import { Typography, Button, Col, Row } from "antd";
 import { Content } from "antd/es/layout/layout";
 import { metaObject } from "config/site.config";
 import Image from "next/image";
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 export const metadata = {
   ...metaObject(),
