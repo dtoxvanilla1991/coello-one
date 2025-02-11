@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Card, Button, Typography, Divider, Flex, Space } from "antd";
+import { Card, Button, Typography, Flex, Space } from "antd";
 
 const { Title } = Typography;
 
