@@ -9,6 +9,7 @@ import StoryBlock from "./StoryBlock";
 import { Divider } from "antd";
 import BottomMenu from "./BottomMenu";
 import BottomMoreAboutSection from "./BottomMoreAboutSection";
+import LegalLinks from "./LegalLinks";
 
 export const metadata = {
   ...metaObject(),
@@ -27,6 +28,7 @@ export default function Home() {
       <StoryBlock />
       <BottomMenu />
       <BottomMoreAboutSection />
+      <LegalLinks />
     </>
   );
 }

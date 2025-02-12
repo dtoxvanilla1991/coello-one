@@ -12,8 +12,6 @@ const items: MenuItem[] = [
     createMenuOption("FAQ", "/faq"),
     createMenuOption("Delivery Information", "/delivery-information"),
     createMenuOption("Returns Policy", "/returns-policy"),
-    createMenuOption("Privacy Policy", "/privacy-policy"),
-    createMenuOption("Terms & Conditions", "/terms-conditions"),
     createMenuOption("Return An Item", "/return-an-item"),
     createMenuOption("Contact Us", "/contact-us"),
     createMenuOption("Orders International", "/orders-international"),

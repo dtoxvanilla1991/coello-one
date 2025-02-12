@@ -25,7 +25,7 @@ const BottomMoreAboutSection: React.FC = () => {
   return (
     <Flex className="!p-4 !pr-0 !pb-8" vertical>
       <Title level={5} className="uppercase !mb-4">
-        More
+        More about Coello One
       </Title>
       <Flex
         gap={16}
