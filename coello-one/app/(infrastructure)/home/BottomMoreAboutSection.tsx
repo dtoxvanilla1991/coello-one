@@ -16,14 +16,14 @@ type DataType = {
 };
 
 const data: DataType[] = [
-  { description: "Blog", title: "Coello One", text: "Hub" },
+  { description: "Discord", title: "Coello One", text: "Hub" },
   { description: "Email sign up", icon: <MailOutlined className="text-3xl" /> },
   { description: "Coello Cut Training", image: "/coelloOneWhite.svg" },
 ];
 
 const BottomMoreAboutSection: React.FC = () => {
   return (
-    <Flex className="!p-4 !pr-0 !pb-8" vertical>
+    <Flex className="!p-4 !pr-0 !pb-6" vertical>
       <Title level={5} className="uppercase !mb-4">
         More about Coello One
       </Title>
@@ -64,7 +64,7 @@ const CardContent: FC<DataType> = ({ title, text, icon, image }) => {
   }
   return (
     <>
-      <Title level={4} className="!text-white !m-0">
+      <Title level={4} className="!text-white !m-0 font-bold">
         {title}
       </Title>
       <Text className="!text-white font-semibold">{text}</Text>
