@@ -49,7 +49,7 @@ const PopularSection: React.FC = () => {
             hoverable
             actions={[
               <Button key={index} className="uppercase">
-                View weekly plan
+                Browse options
               </Button>,
             ]}>
             <Card.Meta title={item.title} />
