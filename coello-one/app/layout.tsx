@@ -7,6 +7,8 @@ import enGB from "antd/locale/en_GB";
 import esES from "antd/locale/es_ES";
 import { cookies } from "next/headers";
 import { Locale } from "antd/lib/locale";
+import { createCache, extractStyle, StyleProvider } from "@ant-design/cssinjs";
+import Entity from "@ant-design/cssinjs/lib/Cache";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,27 +45,35 @@ export default async function RootLayout({
       antdLocale = enGB;
       break;
   }
+  const cache: Entity = createCache();
+  // Grab style from cache
+  const styleText = extractStyle(cache);
 
   return (
     <html lang={langCookie}>
+      <head>
+        <style dangerouslySetInnerHTML={{ __html: styleText }} />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ConfigProvider
-          theme={{
-            token: {
-              // Seed Token
-              colorPrimary: "#000000",
-              borderRadius: 2,
-              // responsible for the background color of the active menu item, e.x. Select component
-              controlItemBgActive: "#f5f5f5", // sets the active background select options color
-              colorBgBase: "#ffffff", // sets the base background color
-              colorBgContainer: "#ffffff", // sets container backgrounds
-              colorBgLayout: "#ffffff", // sets layout backgrounds
-            },
-          }}
-          locale={antdLocale}>
-          <AntdRegistry>{children}</AntdRegistry>
-        </ConfigProvider>
+        <StyleProvider cache={cache}>
+          <ConfigProvider
+            theme={{
+              token: {
+                // Seed Token
+                colorPrimary: "#000000",
+                borderRadius: 2,
+                // responsible for the background color of the active menu item, e.x. Select component
+                controlItemBgActive: "#f5f5f5", // sets the active background select options color
+                colorBgBase: "#ffffff", // sets the base background color
+                colorBgContainer: "#ffffff", // sets container backgrounds
+                colorBgLayout: "#ffffff", // sets layout backgrounds
+              },
+            }}
+            locale={antdLocale}>
+            <AntdRegistry>{children}</AntdRegistry>
+          </ConfigProvider>
+        </StyleProvider>
       </body>
     </html>
   );
