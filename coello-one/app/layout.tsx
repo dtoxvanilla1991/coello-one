@@ -7,6 +7,7 @@ import enGB from "antd/locale/en_GB";
 import esES from "antd/locale/es_ES";
 import { cookies } from "next/headers";
 import { Locale } from "antd/lib/locale";
+import withTheme from "./theme";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,24 +45,11 @@ export default async function RootLayout({
       break;
   }
 
-  return (
+  return withTheme(
     <html lang={langCookie}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ConfigProvider
-          theme={{
-            token: {
-              // Seed Token
-              colorPrimary: "#000000",
-              borderRadius: 2,
-              // responsible for the background color of the active menu item, e.x. Select component
-              controlItemBgActive: "#f5f5f5", // sets the active background select options color
-              colorBgBase: "#ffffff", // sets the base background color
-              colorBgContainer: "#ffffff", // sets container backgrounds
-              colorBgLayout: "#ffffff", // sets layout backgrounds
-            },
-          }}
-          locale={antdLocale}>
+        <ConfigProvider locale={antdLocale}>
           <AntdRegistry>{children}</AntdRegistry>
         </ConfigProvider>
       </body>
