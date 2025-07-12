@@ -3,7 +3,7 @@
   "npm.packageManager": "bun",
   "typescript.preferences.importModuleSpecifier": "relative",
   "github.copilot.chat.agent.terminal.allowList": {
-    "npm run test": true,
+    "bun run test": true,
     "/^git (status|log)$/": true
   }
 }

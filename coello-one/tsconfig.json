@@ -19,6 +19,7 @@
       }
     ],
     "baseUrl": ".",
+    "types": ["vitest/globals", "node"],
     "paths": {
       "@/*": ["app/*"],
       "@components/*": ["app/components/*"],
