@@ -19,7 +19,7 @@ type Props = {
  * Generate metadata for locale-specific pages, including html lang and hreflang alternates
  */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = params;
+  const { locale } = await params;
   const languages: Record<string, string> = {
     [locale]: `/${locale}`,
     ...(locale === "en-GB" ? { "es-ES": "/es-ES" } : { "en-GB": "/en-GB" }),
@@ -31,8 +31,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function LocaleLayout({ children, params }: Props) {
-  const { locale } = params;
+export default async function LocaleLayout({ children, params }: Props) {
+  const { locale } = await params;
   if (!["en-GB", "es-ES"].includes(locale)) {
     notFound();
   }

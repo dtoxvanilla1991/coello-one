@@ -20,13 +20,14 @@ export function NavbarSiderComponent() {
 
   // Locking main page scroll when sidebar is visible since it's an overlay
   useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
     if (!collapsed) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = originalOverflow;
     }
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = originalOverflow;
     };
   }, [collapsed]);
 
