@@ -1,3 +1,5 @@
 {
-  "cSpell.words": ["Coello"]
+  "cSpell.words": ["Coello"],
+  "npm.packageManager": "bun",
+  "typescript.preferences.importModuleSpecifier": "relative"
 }
