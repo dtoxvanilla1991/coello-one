@@ -64,7 +64,7 @@ Frameworks/libraries/languages used:
 - [Flask v3](https://flask.palletsprojects.com/en/stable/)
 - [Tailwind v4](https://tailwindcss.com/)
 - [Typescript v5](https://www.typescriptlang.org/)
-- [Atomic Jotai](https://jotai.org/);
+- [Atomic Jotai](https://jotai.org/)
 - [React Hook Form](https://react-hook-form.com/)
 - [Zod](https://zod.dev/)
 - [Prettier](https://prettier.io/)
