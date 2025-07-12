@@ -42,6 +42,7 @@ export function Navbar() {
           height={50}
           alt="Coello one logo"
           className="pt-1 ml-2"
+          priority
         />
       </Flex>
       <Space size={"middle"} className="text-xl">

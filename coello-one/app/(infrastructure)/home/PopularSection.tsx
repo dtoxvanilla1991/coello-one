@@ -34,7 +34,7 @@ const PopularSection: React.FC = () => {
           <Card
             key={index}
             className="min-w-72 snap-start"
-            bordered={false}
+            variant="borderless"
             cover={
               <div className="relative h-[400px]">
                 <Image
