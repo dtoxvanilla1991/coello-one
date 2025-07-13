@@ -13,21 +13,25 @@ export function Featured() {
         <Title level={4} className="mb-2 uppercase">
           Featured
         </Title>
-        <Flex gap={5} wrap="wrap">
+        <Flex gap={5} wrap="wrap" justify="space-between">
           {Array.from({ length: 4 }, (_, i) => (
             <Card
               key={i}
-              className="size-40"
+              className="w-[calc(50%-2.5px)] aspect-square"
               hoverable
+              styles={{ body: { padding: 0 } }}
+              classNames={{
+                cover: "h-full",
+              }}
               cover={
-                <div className="relative size-40">
+                <div className="relative w-full h-full">
                   <Image
                     src={`/athletes/vertical/main-secondary-${i + 1}.jpg`}
                     alt={`Coello One athlete ${i + 1}`}
                     sizes="(max-width: 640px) 100vw, 640px"
                     fill
                     priority
-                    className="object-cover object-top !rounded-none relative"
+                    className="object-cover object-top !rounded-none"
                   />
                 </div>
               }
