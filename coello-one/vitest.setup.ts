@@ -1,4 +1,4 @@
-// import '@testing-library/jest-dom'; // removed as jest-dom is no longer installed
+import "@testing-library/jest-dom";
 import { vi } from "vitest";
 
 // Mock next/navigation notFound to throw so tests can catch it

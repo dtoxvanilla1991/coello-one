@@ -9,7 +9,7 @@ export default function InfrastructureLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Layout hasSider>
+    <Layout hasSider data-testid="infrastructure-layout">
       <NavbarSiderComponent />
       <Layout>
         <Navbar />
