@@ -1,14 +1,48 @@
 import "@testing-library/jest-dom";
 import { vi } from "vitest";
+import React from "react";
 
-// Mock next/navigation notFound to throw so tests can catch it
+// Mock next/navigation
 vi.mock("next/navigation", () => ({
-  notFound: () => {
-    throw new Error("notFound");
-  },
+  notFound: vi.fn(() => {
+    const error = new Error("NEXT_HTTP_ERROR_FALLBACK;404");
+    (error as Error & { digest?: string }).digest =
+      "NEXT_HTTP_ERROR_FALLBACK;404";
+    throw error;
+  }),
+  useRouter: vi.fn(() => ({ push: vi.fn() })),
+  usePathname: vi.fn(),
+  useSearchParams: vi.fn(() => ({ get: vi.fn() })),
 }));
-// Mock next/font/google for Vitest: stub font loader functions
+
+// Mock next/font/google
 vi.mock("next/font/google", () => ({
-  Geist: (opts: { variable: string }) => ({ variable: opts.variable }),
-  Geist_Mono: (opts: { variable: string }) => ({ variable: opts.variable }),
+  Geist: (opts: { variable: string }) => ({
+    variable: opts.variable,
+    className: "",
+  }),
+  Geist_Mono: (opts: { variable: string }) => ({
+    variable: opts.variable,
+    className: "",
+  }),
+}));
+
+// Mock UI components
+vi.mock("@/components/navbar-components/Navbar", () => ({
+  Navbar: ({ "data-testid": dataTestId }: { "data-testid": string }) =>
+    React.createElement("div", { "data-testid": dataTestId }, "Navbar"),
+}));
+
+vi.mock("@/components/navbar-components/NavbarSider", () => ({
+  NavbarSiderComponent: ({
+    "data-testid": dataTestId,
+  }: {
+    "data-testid": string;
+  }) =>
+    React.createElement("div", { "data-testid": dataTestId }, "NavbarSider"),
+}));
+
+vi.mock("@/components/Footer", () => ({
+  default: ({ "data-testid": dataTestId }: { "data-testid": string }) =>
+    React.createElement("div", { "data-testid": dataTestId }, "Footer"),
 }));

@@ -10,11 +10,11 @@ export default function InfrastructureLayout({
 }>) {
   return (
     <Layout hasSider data-testid="infrastructure-layout">
-      <NavbarSiderComponent />
+      <NavbarSiderComponent data-testid="navbar-sider-component" />
       <Layout>
-        <Navbar />
+        <Navbar data-testid="navbar-component" />
         {children}
-        <Footer />
+        <Footer data-testid="footer-component" />
       </Layout>
     </Layout>
   );

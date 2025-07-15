@@ -55,7 +55,9 @@ export default async function LocaleLayout({ children, params }: Props) {
             colorBgLayout: "#ffffff",
           },
         }}>
-        <AntdRegistry>{children}</AntdRegistry>
+        <AntdRegistry>
+          <div data-testid="locale-layout-provider">{children}</div>
+        </AntdRegistry>
       </ConfigProvider>
     </ConfigProvider>
   );

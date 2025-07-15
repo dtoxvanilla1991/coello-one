@@ -1,17 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect } from "vitest";
 import InfrastructureLayout from "./layout";
-
-// Mock child components to isolate the layout component in tests
-vi.mock("@/components/navbar-components/Navbar", () => ({
-  Navbar: () => <div data-testid="navbar">Navbar</div>,
-}));
-vi.mock("@/components/navbar-components/NavbarSider", () => ({
-  NavbarSiderComponent: () => <div data-testid="navbar-sider">NavbarSider</div>,
-}));
-vi.mock("@/components/Footer", () => ({
-  default: () => <div data-testid="footer">Footer</div>,
-}));
 
 describe("InfrastructureLayout", () => {
   it("should render its children", () => {
@@ -29,9 +18,9 @@ describe("InfrastructureLayout", () => {
         <div>Child</div>
       </InfrastructureLayout>
     );
-    expect(screen.getByTestId("navbar")).toBeInTheDocument();
-    expect(screen.getByTestId("navbar-sider")).toBeInTheDocument();
-    expect(screen.getByTestId("footer")).toBeInTheDocument();
+    expect(screen.getByTestId("navbar-component")).toBeInTheDocument();
+    expect(screen.getByTestId("navbar-sider-component")).toBeInTheDocument();
+    expect(screen.getByTestId("footer-component")).toBeInTheDocument();
   });
 
   it("should have the 'infrastructure-layout' test id", () => {
