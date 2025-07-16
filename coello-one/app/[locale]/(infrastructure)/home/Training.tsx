@@ -10,8 +10,11 @@ const data = [{ title: "Lifting" }, { title: "Cardio" }, { title: "Yoga" }];
 
 const Training: React.FC = () => {
   return (
-    <Flex className="!p-4 !pr-0 !pb-8" vertical>
-      <Title level={4} className="uppercase !mb-4">
+    <Flex className="!p-4 !pr-0 !pb-8" vertical data-testid="training-section">
+      <Title
+        level={4}
+        className="uppercase !mb-4"
+        data-testid="training-section-title">
         Our athletes workouts
       </Title>
       <Flex
@@ -21,6 +24,7 @@ const Training: React.FC = () => {
           <Card
             key={index}
             className="min-w-72 snap-start"
+            data-testid={`training-section-card-${index}`}
             cover={
               <div className="relative h-[400px]">
                 <Image
@@ -34,7 +38,10 @@ const Training: React.FC = () => {
             }
             hoverable
             actions={[
-              <Button key={index} className="uppercase">
+              <Button
+                key={index}
+                className="uppercase"
+                data-testid={`training-section-card-button-${index}`}>
                 View weekly plan
               </Button>,
             ]}>

@@ -15,15 +15,28 @@ const data = [
 
 const PopularSection: React.FC = () => {
   return (
-    <Flex className="!p-4 !pr-0 !pb-8 bg-black" vertical gap={16}>
-      <Title level={3} className="uppercase !text-white !mb-0">
+    <Flex
+      className="!p-4 !pr-0 !pb-8 bg-black"
+      vertical
+      gap={16}
+      data-testid="popular-section">
+      <Title
+        level={3}
+        className="uppercase !text-white !mb-0"
+        data-testid="popular-section-title">
         Popular right now
       </Title>
       <Space size={16}>
-        <Button className="uppercase !px-5" size="large">
+        <Button
+          className="uppercase !px-5"
+          size="large"
+          data-testid="popular-section-women-button">
           Women
         </Button>
-        <Button className="uppercase !px-8" size="large">
+        <Button
+          className="uppercase !px-8"
+          size="large"
+          data-testid="popular-section-men-button">
           Men
         </Button>
       </Space>
@@ -35,6 +48,7 @@ const PopularSection: React.FC = () => {
             key={index}
             className="min-w-72 snap-start"
             variant="borderless"
+            data-testid={`popular-section-card-${index}`}
             cover={
               <div className="relative h-[400px]">
                 <Image
@@ -48,7 +62,10 @@ const PopularSection: React.FC = () => {
             }
             hoverable
             actions={[
-              <Button key={index} className="uppercase">
+              <Button
+                key={index}
+                className="uppercase"
+                data-testid={`popular-section-card-button-${index}`}>
                 Browse options
               </Button>,
             ]}>

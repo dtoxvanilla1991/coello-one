@@ -13,7 +13,7 @@ export const metadata = {
 
 export function MainBanner() {
   return (
-    <Content>
+    <Content data-testid="main-banner">
       <Row>
         <Col className="h-[44em] grid items-end w-full">
           <Image
@@ -25,10 +25,16 @@ export function MainBanner() {
             className="object-cover w-full"
           />
           <Col className="z-10 mb-3 text-center">
-            <Title className="!text-white !font-extrabold" level={4}>
+            <Title
+              className="!text-white !font-extrabold"
+              level={4}
+              data-testid="main-banner-title">
               NOW YOU TRULY STAND OUT.
             </Title>
-            <Button className="!px-10 uppercase !font-semibold" size="large">
+            <Button
+              className="!px-10 uppercase !font-semibold"
+              size="large"
+              data-testid="main-banner-shop-now-button">
               Shop Now
             </Button>
           </Col>

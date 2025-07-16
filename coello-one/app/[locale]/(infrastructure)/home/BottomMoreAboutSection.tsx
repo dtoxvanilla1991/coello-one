@@ -23,8 +23,14 @@ const data: DataType[] = [
 
 const BottomMoreAboutSection: React.FC = () => {
   return (
-    <Flex className="!p-4 !pr-0 !pb-6" vertical>
-      <Title level={5} className="uppercase !mb-4">
+    <Flex
+      className="!p-4 !pr-0 !pb-6"
+      vertical
+      data-testid="bottom-more-about-section">
+      <Title
+        level={5}
+        className="uppercase !mb-4"
+        data-testid="bottom-more-about-section-title">
         More about Coello One
       </Title>
       <Flex
@@ -35,6 +41,7 @@ const BottomMoreAboutSection: React.FC = () => {
             key={index}
             className="min-w-44 snap-start !bg-gray-200"
             classNames={{ body: "!p-2" }}
+            data-testid={`bottom-more-about-section-card-${index}`}
             cover={
               <Flex
                 className="!flex relative h-28 bg-black !text-white uppercase"

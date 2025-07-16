@@ -8,13 +8,17 @@ export function PromoSection() {
       className="!mt-4 text-center"
       justify="center"
       align="center"
-      vertical>
-      <Title level={5}>Limited Time Offer</Title>
-      <Text>Up to 20% off select items</Text>
+      vertical
+      data-testid="promo-section">
+      <Title level={5} data-testid="promo-section-title">
+        Limited Time Offer
+      </Title>
+      <Text data-testid="promo-section-text">Up to 20% off select items</Text>
       <Button
         className="mt-4 !px-10 uppercase !font-semibold"
         type="primary"
-        size="large">
+        size="large"
+        data-testid="promo-section-button">
         Shop Now
       </Button>
     </Flex>

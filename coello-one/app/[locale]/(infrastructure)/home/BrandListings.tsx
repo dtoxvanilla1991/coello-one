@@ -23,9 +23,21 @@ const mensLine: BrandLine = [
 
 const BrandListings: React.FC = () => {
   return (
-    <Space direction="vertical" size="small" className="flex w-full p-4">
-      <BrandListing data={womensLine} title="Women's line" />
-      <BrandListing data={mensLine} title="Men's line" />
+    <Space
+      direction="vertical"
+      size="small"
+      className="flex w-full p-4"
+      data-testid="brand-listings">
+      <BrandListing
+        data={womensLine}
+        title="Women's line"
+        data-testid="women-s-line-listing"
+      />
+      <BrandListing
+        data={mensLine}
+        title="Men's line"
+        data-testid="men-s-line-listing"
+      />
     </Space>
   );
 };
@@ -35,11 +47,19 @@ export default BrandListings;
 interface BrandListingProps {
   data: BrandLine;
   title: string;
+  "data-testid"?: string;
 }
 
-const BrandListing: React.FC<BrandListingProps> = ({ data, title }) => {
+const BrandListing: React.FC<BrandListingProps> = ({
+  data,
+  title,
+  "data-testid": dataTestId,
+}) => {
   return (
-    <Space.Compact direction="vertical" className="w-full">
+    <Space.Compact
+      direction="vertical"
+      className="w-full"
+      data-testid={dataTestId}>
       <Title level={5} className="uppercase">
         {title}
       </Title>

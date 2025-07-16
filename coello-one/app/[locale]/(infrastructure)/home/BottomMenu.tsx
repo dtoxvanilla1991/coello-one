@@ -31,7 +31,7 @@ const items: MenuItem[] = [
 
 export default function BottomMenu() {
   return (
-    <Row className="px-4 py-2">
+    <Row className="px-4 py-2" data-testid="bottom-menu">
       <Col span={24}>
         <Menu items={items} expandIcon={<PlusOutlined />} />
       </Col>

@@ -9,8 +9,11 @@ const { Title } = Typography;
 export function Featured() {
   return (
     <>
-      <Content className="p-4 pb-8">
-        <Title level={4} className="mb-2 uppercase">
+      <Content className="p-4 pb-8" data-testid="featured-section">
+        <Title
+          level={4}
+          className="mb-2 uppercase"
+          data-testid="featured-section-title">
           Featured
         </Title>
         <Flex gap={5} wrap="wrap" justify="space-between">
@@ -23,6 +26,7 @@ export function Featured() {
               classNames={{
                 cover: "h-full",
               }}
+              data-testid={`featured-section-card-${i}`}
               cover={
                 <div className="relative w-full h-full">
                   <Image
