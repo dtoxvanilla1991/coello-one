@@ -6,7 +6,7 @@ const AccessibilityStatement: React.FC = () => {
   return (
     <div className="text-center p-4">
       <Title level={2} className="uppercase">
-        Coello One's Commitment to accessibility
+        Coello One&apos;s Commitment to accessibility
       </Title>
       <Paragraph>
         We are committed to ensuring that our website is accessible to everyone.
