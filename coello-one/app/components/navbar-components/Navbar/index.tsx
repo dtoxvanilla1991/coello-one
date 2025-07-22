@@ -1,5 +1,5 @@
 "use client";
-import { Button, Flex, Layout, Space, Typography } from "antd";
+import { Button, Flex, Layout, Space } from "antd";
 import {
   SearchOutlined,
   MenuFoldOutlined,
@@ -14,7 +14,6 @@ import NavBarBagDrawer from "../NavBarBagDrawer";
 import Image from "next/image";
 
 const { Header } = Layout;
-const { Title } = Typography;
 
 export function Navbar() {
   const [collapsed, setCollapsed] = useAtom(siderCollapsedAtom);

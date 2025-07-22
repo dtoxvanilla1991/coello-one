@@ -2,7 +2,15 @@
 
 import Countdown from 'react-countdown';
 
-function Render({ days, hours, minutes, seconds, completed }: any) {
+interface RenderProps {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+  completed: boolean;
+}
+
+function Render({ days, hours, minutes, seconds, completed }: RenderProps) {
   if (completed) {
     // Render a completed state
     return <span>Countdown completed</span>;

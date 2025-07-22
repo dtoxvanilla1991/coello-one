@@ -12,10 +12,6 @@ const NavBarBagDrawer: React.FC<NavBarBagDrawerProps> = ({
   showBag,
   handleShowBag,
 }) => {
-  const onClick = () => {
-    console.log("View Bag");
-  };
-
   return (
     <Drawer
       title="YOUR BAG"
@@ -23,7 +19,7 @@ const NavBarBagDrawer: React.FC<NavBarBagDrawerProps> = ({
       closable
       // leaving this until we have products to display
       //   footer={
-      //     <Button onClick={onClick} className="uppercase">
+      //     <Button onClick={() => console.log('View Bag')} className="uppercase">
       //       View Bag
       //     </Button>
       //   }

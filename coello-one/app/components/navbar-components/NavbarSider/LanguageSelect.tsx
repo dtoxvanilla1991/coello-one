@@ -4,7 +4,7 @@ import { useTransition } from "react";
 import { Select } from "antd";
 
 export default function LanguageSelect() {
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
 
   const handleChange = async (value: string) => {
     // call an endpoint that sets the "lang" cookie
