@@ -24,7 +24,7 @@ const TabsContent: React.FC<TabsContentProps> = ({ data }) => {
           <Button
             key={index}
             size="middle"
-            className="uppercase !absolute bottom-4 left-4 !px-8 !font-medium">
+            className="uppercase absolute! bottom-4 left-4 px-8! font-medium!">
             View
           </Button>
         </div>

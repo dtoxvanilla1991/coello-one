@@ -25,14 +25,14 @@ const SiderFooter: React.FC = () => {
       <List
         dataSource={data}
         renderItem={(item) => (
-          <List.Item className="!py-1.5">
+          <List.Item className="py-1.5!">
             <Link href={item.href} className="text-gray-600 hover:underline">
               {item.text}
             </Link>
           </List.Item>
         )}
         split={false}
-        className="!text-xs"
+        className="text-xs!"
       />
     </Space>
   );

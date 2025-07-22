@@ -24,7 +24,7 @@ function createMenuOption(
     key,
     label,
     children,
-    className: "!text-gray-600 capitalize",
+    className: "text-gray-600! capitalize",
   } as MenuItem;
 }
 export { createMenuTitle, createMenuOption };

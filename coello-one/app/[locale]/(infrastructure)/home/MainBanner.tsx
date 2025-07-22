@@ -26,13 +26,13 @@ export function MainBanner() {
           />
           <Col className="z-10 mb-3 text-center">
             <Title
-              className="!text-white !font-extrabold"
+              className="text-white! font-extrabold!"
               level={4}
               data-testid="main-banner-title">
               NOW YOU TRULY STAND OUT.
             </Title>
             <Button
-              className="!px-10 uppercase !font-semibold"
+              className="px-10! uppercase font-semibold!"
               size="large"
               data-testid="main-banner-shop-now-button">
               Shop Now

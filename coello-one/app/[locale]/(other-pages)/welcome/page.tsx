@@ -52,12 +52,12 @@ export default function WelcomePage() {
           <Image
             src={WelcomeImg}
             alt="coming-soon"
-            className="aspect-[632/630] max-w-[256px] sm:max-w-xs lg:max-w-lg 2xl:max-w-xl 3xl:max-w-[632px]"
+            className="aspect-632/630 max-w-[256px] sm:max-w-xs lg:max-w-lg 2xl:max-w-xl 3xl:max-w-[632px]"
           />
           <Image
             src={WelcomeTwoImg}
             alt="coming-soon"
-            className="absolute left-0 top-1/2 z-10 aspect-[275/390] max-w-[100px] -translate-y-1/2 lg:max-w-[210px]"
+            className="absolute left-0 top-1/2 z-10 aspect-275/390 max-w-[100px] -translate-y-1/2 lg:max-w-[210px]"
           />
           <div className="mx-auto h-20 w-32 bg-gray-1000/50 blur-[57px] [transform:rotateX(80deg)]" />
           <div className="absolute bottom-10 left-3 mx-auto h-20 w-32 bg-gray-1000/50 blur-[57px] [transform:rotateX(80deg)] lg:left-7" />

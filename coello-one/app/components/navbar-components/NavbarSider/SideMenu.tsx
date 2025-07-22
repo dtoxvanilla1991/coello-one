@@ -38,5 +38,5 @@ const items: MenuItem[] = [
 ];
 
 export default function SideMenu() {
-  return <Menu items={items} />;
+  return <Menu items={items} expandIcon={<span>+</span>} />;
 }
