@@ -1,6 +1,12 @@
-import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { render, screen, cleanup } from "@testing-library/react";
+import { describe, it, expect, afterEach } from "vitest";
 import RootLayout from "./layout";
+
+// Manually cleaning up the DOM after each test to prevent test pollution
+afterEach(() => {
+  cleanup();
+  document.body.className = "";
+});
 
 describe("RootLayout", () => {
   it("should render its children", () => {
@@ -20,9 +26,8 @@ describe("RootLayout", () => {
         <div />
       </RootLayout>
     );
-    const body = document.body;
-    expect(body.className).toContain("--font-geist-sans");
-    expect(body.className).toContain("--font-geist-mono");
-    expect(body.className).toContain("antialiased");
+    expect(document.body.className).toContain("--font-geist-sans");
+    expect(document.body.className).toContain("--font-geist-mono");
+    expect(document.body.className).toContain("antialiased");
   });
 });
