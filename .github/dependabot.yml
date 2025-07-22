@@ -1,0 +1,36 @@
+# .github/dependabot.yml
+
+version: 2
+updates:
+  # To maintain dependencies for the Next.js app (using Bun)
+  - package-ecosystem: "npm"
+    directory: "/coello-one"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Europe/London"
+    reviewers:
+      - "dtoxvanilla1991"
+
+  # To maintain dependencies for the Flask server
+  - package-ecosystem: "pip"
+    directory: "/flask-server"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Europe/London"
+    reviewers:
+      - "dtoxvanilla1991"
+
+  # To maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Europe/London"
+    reviewers:
+      - "dtoxvanilla1991"
