@@ -23,7 +23,7 @@ We appreciate your efforts to responsibly disclose your findings. We take all re
 To report a security vulnerability, please use one of the following methods:
 
 1.  **(Preferred) GitHub Private Vulnerability Reporting:** Privately report the vulnerability directly through GitHub. This is the most secure and efficient way to reach us.
-    * [**Click here to submit a new private report**](https://github.com/dtoxvanilla1991/coello-one/security/advisories/new)
+    * [**Click here to submit a new private report**](https://github.com/coello-one-org/coello-one/security/advisories/new)
 
 2.  **(Alternative) Email:** If you prefer, you can send your report via email to:
     * **coelloone@gmail.com**
