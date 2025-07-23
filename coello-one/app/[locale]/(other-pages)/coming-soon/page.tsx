@@ -39,7 +39,7 @@ export default function ComingSoonPage() {
         <Image
           src={ComingSoonImg}
           alt="coming-soon"
-          className="aspect-[531/721] max-w-[194px] md:max-w-[256px] lg:max-w-sm xl:max-w-[400px] 3xl:max-w-[531px]"
+          className="aspect-531/721 max-w-[194px] md:max-w-[256px] lg:max-w-sm xl:max-w-[400px] 3xl:max-w-[531px]"
         />
       </div>
 

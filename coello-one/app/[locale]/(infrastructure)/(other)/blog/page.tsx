@@ -3,6 +3,21 @@ import Image from "next/image";
 
 const { Meta } = Card;
 
+const blogs = [
+  {
+    id: 1,
+    title: "First Blog Post",
+    cover: "/ai-generated/coming-soon.svg", // Placeholder image
+    description: "This is the description for the first blog post.",
+  },
+  {
+    id: 2,
+    title: "Second Blog Post",
+    cover: "/ai-generated/coming-soon-2.svg", // Placeholder image
+    description: "This is the description for the second blog post.",
+  },
+];
+
 interface BlogProps {
   blogs: {
     id: number;
@@ -12,9 +27,9 @@ interface BlogProps {
   }[];
 }
 
-const Blog: React.FC<BlogProps> = ({ blogs }) => {
+const BlogList: React.FC<BlogProps> = ({ blogs }) => {
   return (
-    <div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
       {blogs.map((blog) => (
         <Card
           key={blog.id}
@@ -29,4 +44,8 @@ const Blog: React.FC<BlogProps> = ({ blogs }) => {
   );
 };
 
-export default Blog;
+const BlogPage: React.FC = () => {
+  return <BlogList blogs={blogs} />;
+};
+
+export default BlogPage;

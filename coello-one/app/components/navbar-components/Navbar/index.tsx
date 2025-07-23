@@ -24,9 +24,9 @@ export function Navbar() {
   const handleShowBag = () => setShowBag(!showBag);
   const handleSearch = () => setSearchVisible(!searchVisible);
 
-  const show = searchVisible ? "!hidden" : "!block";
+  const show = searchVisible ? "hidden!" : "block!";
   return (
-    <Header className="!bg-white flex items-center justify-between !px-4">
+    <Header className="bg-white! flex items-center justify-between px-4!">
       <Button
         type="text"
         size="large"

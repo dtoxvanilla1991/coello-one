@@ -3,22 +3,16 @@ import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
 import enGB from "antd/locale/en_GB";
 import esES from "antd/locale/es_ES";
-// Removed withTheme wrapper as html/body should be defined only in root layout
 import { notFound } from "next/navigation";
-
-type LocaleParams = {
-  locale: "en-GB" | "es-ES";
-};
-
-type Props = {
-  children: React.ReactNode;
-  params: LocaleParams;
-};
 
 /**
  * Generate metadata for locale-specific pages, including html lang and hreflang alternates
  */
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
   const { locale } = await params;
   const languages: Record<string, string> = {
     [locale]: `/${locale}`,
@@ -31,7 +25,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function LocaleLayout({ children, params }: Props) {
+export default async function LocaleLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
   const { locale } = await params;
   if (!["en-GB", "es-ES"].includes(locale)) {
     notFound();

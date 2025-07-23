@@ -35,7 +35,7 @@ export default function MaintenancePage() {
             alt="under maintenance"
             width={768}
             height={558}
-            // className="aspect-[768/558] max-w-[320px] dark:invert sm:max-w-sm xl:max-w-[580px] 2xl:max-w-[768px]"
+            // className="aspect-768/558 max-w-[320px] dark:invert sm:max-w-sm xl:max-w-[580px] 2xl:max-w-[768px]"
           />
         </div>
       </div>

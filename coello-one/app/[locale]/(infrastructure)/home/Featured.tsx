@@ -35,7 +35,7 @@ export function Featured() {
                     sizes="(max-width: 640px) 100vw, 640px"
                     fill
                     priority
-                    className="object-cover object-top !rounded-none"
+                    className="object-cover object-top rounded-none!"
                   />
                 </div>
               }

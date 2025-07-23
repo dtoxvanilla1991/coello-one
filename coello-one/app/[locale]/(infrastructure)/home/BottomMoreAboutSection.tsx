@@ -24,12 +24,12 @@ const data: DataType[] = [
 const BottomMoreAboutSection: React.FC = () => {
   return (
     <Flex
-      className="!p-4 !pr-0 !pb-6"
+      className="p-4! pr-0! pb-6!"
       vertical
       data-testid="bottom-more-about-section">
       <Title
         level={5}
-        className="uppercase !mb-4"
+        className="uppercase mb-4!"
         data-testid="bottom-more-about-section-title">
         More about Coello One
       </Title>
@@ -39,12 +39,12 @@ const BottomMoreAboutSection: React.FC = () => {
         {data.map((item, index) => (
           <Card
             key={index}
-            className="min-w-44 snap-start !bg-gray-200"
-            classNames={{ body: "!p-2" }}
+            className="min-w-44 snap-start bg-gray-200!"
+            classNames={{ body: "p-2!" }}
             data-testid={`bottom-more-about-section-card-${index}`}
             cover={
               <Flex
-                className="!flex relative h-28 bg-black !text-white uppercase"
+                className="!flex relative h-28 bg-black text-white! uppercase"
                 justify="center"
                 align="center"
                 vertical>
@@ -78,10 +78,10 @@ const CardContent: FC<DataType> = ({ title, text, icon, image }) => {
   }
   return (
     <>
-      <Title level={4} className="!text-white !m-0 font-bold">
+      <Title level={4} className="text-white! m-0! font-bold">
         {title}
       </Title>
-      <Text className="!text-white font-semibold">{text}</Text>
+      <Text className="text-white! font-semibold">{text}</Text>
     </>
   );
 };

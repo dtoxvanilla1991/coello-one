@@ -10,10 +10,10 @@ const data = [{ title: "Lifting" }, { title: "Cardio" }, { title: "Yoga" }];
 
 const Training: React.FC = () => {
   return (
-    <Flex className="!p-4 !pr-0 !pb-8" vertical data-testid="training-section">
+    <Flex className="p-4! pr-0! pb-8!" vertical data-testid="training-section">
       <Title
         level={4}
-        className="uppercase !mb-4"
+        className="uppercase mb-4!"
         data-testid="training-section-title">
         Our athletes workouts
       </Title>

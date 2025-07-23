@@ -48,10 +48,12 @@ const SubscriptionForm = () => {
       } else {
         setServerError("Something went wrong. Please try again.");
       }
-    } catch (error) {
-      setServerError(
-        "Unable to subscribe at the moment. Please try again later."
-      );
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setServerError("Unable to subscribe at the moment. Please try again later." + error.message);
+      } else {
+        setServerError("Unable to subscribe at the moment. Please try again later.");
+      }
     }
   };
 

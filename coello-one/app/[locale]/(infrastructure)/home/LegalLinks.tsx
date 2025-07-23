@@ -25,7 +25,7 @@ export default function LegalLinks() {
           dataSource={data}
           renderItem={(item, index) => (
             <List.Item
-              className="!p-1 w-full"
+              className="p-1! w-full"
               data-testid={`legal-links-item-${index}`}>
               <Link
                 href={item.href}
