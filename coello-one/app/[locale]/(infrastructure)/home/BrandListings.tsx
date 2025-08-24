@@ -67,7 +67,7 @@ const BrandListing: React.FC<BrandListingProps> = ({
         dataSource={data}
         renderItem={(item) => (
           <List.Item className="py-1.5!">
-            <Link href={item.href} className="text-gray-600 hover:underline">
+            <Link href={item.href} className="hover:underline">
               {item.text}
             </Link>
           </List.Item>
