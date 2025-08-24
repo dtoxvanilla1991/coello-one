@@ -13,6 +13,7 @@
     "prebuild": "cross-env NODE_ENV=production ts-node --project ./tsconfig.node.json ./scripts/genAntdCss.tsx"
   },
   "dependencies": {
+    "@ant-design/compatible": "^5.1.4",
     "@ant-design/cssinjs": "^1.24.0",
     "@ant-design/nextjs-registry": "^1.1.0",
     "@hookform/resolvers": "^5.1.1",
