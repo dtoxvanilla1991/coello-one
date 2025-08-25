@@ -1,29 +1,42 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import SalesBlock from "./SalesBlock";
+import { describe, it, expect } from "bun:test";
 
 describe("SalesBlock", () => {
   it("should render the sales block", () => {
-    render(<SalesBlock />);
-    expect(screen.getByTestId("sales-block")).toBeInTheDocument();
+    const { container } = render(<SalesBlock />);
+    expect(container.querySelector('[data-testid="sales-block"]')).toBeTruthy();
   });
 
   it("should render the title", () => {
-    render(<SalesBlock />);
-    expect(screen.getByTestId("sales-block-title")).toHaveTextContent(
-      "GET AN EXTRA 10% OFF SALE ITEMS"
-    );
+    const { container } = render(<SalesBlock />);
+    expect(
+      (
+        container.querySelector(
+          '[data-testid="sales-block-title"]'
+        ) as HTMLElement
+      ).textContent
+    ).toBe("GET AN EXTRA 10% OFF SALE ITEMS");
   });
 
   it("should render the text", () => {
-    render(<SalesBlock />);
-    expect(screen.getByTestId("sales-block-text")).toHaveTextContent(
-      "Drop code extra10 and thank us with a tagged photo in the gym"
-    );
+    const { container } = render(<SalesBlock />);
+    expect(
+      (
+        container.querySelector(
+          '[data-testid="sales-block-text"]'
+        ) as HTMLElement
+      ).textContent
+    ).toBe("Drop code extra10 and thank us with a tagged photo in the gym");
   });
 
   it("should render the women and men buttons", () => {
-    render(<SalesBlock />);
-    expect(screen.getByTestId("sales-block-women-button")).toBeInTheDocument();
-    expect(screen.getByTestId("sales-block-men-button")).toBeInTheDocument();
+    const { container } = render(<SalesBlock />);
+    expect(
+      container.querySelector('[data-testid="sales-block-women-button"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('[data-testid="sales-block-men-button"]')
+    ).toBeTruthy();
   });
 });

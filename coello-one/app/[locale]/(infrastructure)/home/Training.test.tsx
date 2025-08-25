@@ -1,36 +1,49 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import Training from "./Training";
+import { describe, it, expect } from "bun:test";
 
 describe("Training", () => {
   it("should render the training section", () => {
-    render(<Training />);
-    expect(screen.getByTestId("training-section")).toBeInTheDocument();
+    const { container } = render(<Training />);
+    expect(
+      container.querySelector('[data-testid="training-section"]')
+    ).toBeTruthy();
   });
 
   it("should render the title", () => {
-    render(<Training />);
-    expect(screen.getByTestId("training-section-title")).toHaveTextContent(
-      "Our athletes workouts"
-    );
+    const { container } = render(<Training />);
+    expect(
+      (
+        container.querySelector(
+          '[data-testid="training-section-title"]'
+        ) as HTMLElement
+      ).textContent
+    ).toBe("Our athletes workouts");
   });
 
   it("should render 3 cards", () => {
-    render(<Training />);
-    expect(screen.getByTestId("training-section-card-0")).toBeInTheDocument();
-    expect(screen.getByTestId("training-section-card-1")).toBeInTheDocument();
-    expect(screen.getByTestId("training-section-card-2")).toBeInTheDocument();
+    const { container } = render(<Training />);
+    expect(
+      container.querySelector('[data-testid="training-section-card-0"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('[data-testid="training-section-card-1"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('[data-testid="training-section-card-2"]')
+    ).toBeTruthy();
   });
 
   it("should render the card buttons", () => {
-    render(<Training />);
+    const { container } = render(<Training />);
     expect(
-      screen.getByTestId("training-section-card-button-0")
-    ).toBeInTheDocument();
+      container.querySelector('[data-testid="training-section-card-button-0"]')
+    ).toBeTruthy();
     expect(
-      screen.getByTestId("training-section-card-button-1")
-    ).toBeInTheDocument();
+      container.querySelector('[data-testid="training-section-card-button-1"]')
+    ).toBeTruthy();
     expect(
-      screen.getByTestId("training-section-card-button-2")
-    ).toBeInTheDocument();
+      container.querySelector('[data-testid="training-section-card-button-2"]')
+    ).toBeTruthy();
   });
 });

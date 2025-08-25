@@ -15,7 +15,10 @@ import Image from "next/image";
 
 const { Header } = Layout;
 
-export function Navbar() {
+export function Navbar(props: {
+  [key: string]: unknown;
+  "data-testid"?: string;
+}) {
   const [collapsed, setCollapsed] = useAtom(siderCollapsedAtom);
 
   const [searchVisible, setSearchVisible] = useState<boolean>(false);
@@ -26,7 +29,9 @@ export function Navbar() {
 
   const show = searchVisible ? "hidden!" : "block!";
   return (
-    <Header className="bg-white! flex items-center justify-between px-4!">
+    <Header
+      data-testid={props["data-testid"]}
+      className="bg-white! flex items-center justify-between px-4!">
       <Button
         type="text"
         size="large"

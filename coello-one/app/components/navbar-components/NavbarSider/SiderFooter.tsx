@@ -8,7 +8,10 @@ const data: {
   text: string;
   href: string;
 }[] = [
-  { text: "Accessibility Statement", href: "#" },
+  {
+    text: "Accessibility Statement",
+    href: "/en-GB/accessibility",
+  },
   { text: "Help", href: "#" },
   { text: "Blog", href: "#" },
 ];

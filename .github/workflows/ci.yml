@@ -1,27 +1,41 @@
-name: Build and Test
+name: CI
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  build-and-test:
+  test:
+    name: Test (Bun)
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./coello-one # running all commands inside app's folder
+        working-directory: coello-one
     steps:
-      - uses: actions/checkout@v5
-      - name: Use Bun
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
         uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.x
 
       - name: Install dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
 
-      - name: Build
-        run: bun run build
+      - name: Lint
+        run: bun run lint
 
-      - name: Test
-        run: bun run test
+      - name: Run unit tests
+        env:
+          CI: true
+        run: bun test --reporter dot

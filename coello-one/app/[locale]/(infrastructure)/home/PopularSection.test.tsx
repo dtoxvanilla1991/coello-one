@@ -1,46 +1,59 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
+import { describe, it, expect } from "bun:test";
 import PopularSection from "./PopularSection";
 
 describe("PopularSection", () => {
   it("should render the popular section", () => {
-    render(<PopularSection />);
-    expect(screen.getByTestId("popular-section")).toBeInTheDocument();
+    const { container } = render(<PopularSection />);
+    expect(
+      container.querySelector('[data-testid="popular-section"]')
+    ).toBeTruthy();
   });
 
   it("should render the title", () => {
-    render(<PopularSection />);
-    expect(screen.getByTestId("popular-section-title")).toHaveTextContent(
-      "Popular right now"
-    );
+    const { container } = render(<PopularSection />);
+    expect(
+      (
+        container.querySelector(
+          '[data-testid="popular-section-title"]'
+        ) as HTMLElement
+      ).textContent
+    ).toBe("Popular right now");
   });
 
   it("should render the women and men buttons", () => {
-    render(<PopularSection />);
+    const { container } = render(<PopularSection />);
     expect(
-      screen.getByTestId("popular-section-women-button")
-    ).toBeInTheDocument();
+      container.querySelector('[data-testid="popular-section-women-button"]')
+    ).toBeTruthy();
     expect(
-      screen.getByTestId("popular-section-men-button")
-    ).toBeInTheDocument();
+      container.querySelector('[data-testid="popular-section-men-button"]')
+    ).toBeTruthy();
   });
 
   it("should render 3 cards", () => {
-    render(<PopularSection />);
-    expect(screen.getByTestId("popular-section-card-0")).toBeInTheDocument();
-    expect(screen.getByTestId("popular-section-card-1")).toBeInTheDocument();
-    expect(screen.getByTestId("popular-section-card-2")).toBeInTheDocument();
+    const { container } = render(<PopularSection />);
+    expect(
+      container.querySelector('[data-testid="popular-section-card-0"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('[data-testid="popular-section-card-1"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('[data-testid="popular-section-card-2"]')
+    ).toBeTruthy();
   });
 
   it("should render the card buttons", () => {
-    render(<PopularSection />);
+    const { container } = render(<PopularSection />);
     expect(
-      screen.getByTestId("popular-section-card-button-0")
-    ).toBeInTheDocument();
+      container.querySelector('[data-testid="popular-section-card-button-0"]')
+    ).toBeTruthy();
     expect(
-      screen.getByTestId("popular-section-card-button-1")
-    ).toBeInTheDocument();
+      container.querySelector('[data-testid="popular-section-card-button-1"]')
+    ).toBeTruthy();
     expect(
-      screen.getByTestId("popular-section-card-button-2")
-    ).toBeInTheDocument();
+      container.querySelector('[data-testid="popular-section-card-button-2"]')
+    ).toBeTruthy();
   });
 });

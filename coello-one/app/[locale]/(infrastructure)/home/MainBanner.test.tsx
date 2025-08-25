@@ -1,23 +1,28 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
+import { describe, it, expect } from "bun:test";
 import { MainBanner } from "./MainBanner";
 
 describe("MainBanner", () => {
   it("should render the main banner", () => {
-    render(<MainBanner />);
-    expect(screen.getByTestId("main-banner")).toBeInTheDocument();
+    const { container } = render(<MainBanner />);
+    expect(container.querySelector('[data-testid="main-banner"]')).toBeTruthy();
   });
 
   it("should render the title", () => {
-    render(<MainBanner />);
-    expect(screen.getByTestId("main-banner-title")).toHaveTextContent(
-      "NOW YOU TRULY STAND OUT."
-    );
+    const { container } = render(<MainBanner />);
+    expect(
+      (
+        container.querySelector(
+          '[data-testid="main-banner-title"]'
+        ) as HTMLElement
+      ).textContent
+    ).toBe("NOW YOU TRULY STAND OUT.");
   });
 
   it("should render the shop now button", () => {
-    render(<MainBanner />);
+    const { container } = render(<MainBanner />);
     expect(
-      screen.getByTestId("main-banner-shop-now-button")
-    ).toBeInTheDocument();
+      container.querySelector('[data-testid="main-banner-shop-now-button"]')
+    ).toBeTruthy();
   });
 });

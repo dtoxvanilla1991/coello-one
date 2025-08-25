@@ -64,7 +64,9 @@ const data: DataModel = new Map([
 ]);
 
 const onChange = (key: string) => {
-  console.log(key);
+  if (process.env.NODE_ENV !== "production") {
+    console.log(key);
+  }
 };
 const items: TabsProps["items"] = [
   {

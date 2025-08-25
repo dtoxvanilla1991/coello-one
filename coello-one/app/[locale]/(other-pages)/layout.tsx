@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "antd";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 import { usePathname, useRouter } from "next/navigation";
 import { routes } from "config/routes";
 
@@ -36,11 +37,10 @@ export default function OtherPagesLayout({
           </Link>
           {notIn && (
             <Button
-              type="default"
-              size="small"
               className="md:h-10 md:px-4 md:text-base"
+              icon={<ArrowLeftOutlined />}
               onClick={() => back()}>
-              Go to home
+              Home Page
             </Button>
           )}
         </div>

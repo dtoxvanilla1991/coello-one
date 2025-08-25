@@ -19,7 +19,9 @@ const generateAntdCss = () => {
   }
 
   fs.writeFileSync(outputPath, cssText);
-  console.log('Generated Ant Design CSS for SSR');
+  if (process.env.NODE_ENV !== "production") {
+    console.log("Generated Ant Design CSS for SSR");
+  }
 };
 
 generateAntdCss();

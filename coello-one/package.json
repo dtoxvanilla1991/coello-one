@@ -7,15 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest",
-    "test:watch": "vitest --watch",
+    "test": "bun test",
     "predev": "ts-node --project ./tsconfig.node.json ./scripts/genAntdCss.tsx",
     "prebuild": "cross-env NODE_ENV=production ts-node --project ./tsconfig.node.json ./scripts/genAntdCss.tsx"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.24.0",
     "@ant-design/nextjs-registry": "^1.1.0",
-    "@hookform/resolvers": "^5.1.1",
     "antd": "^5.26.6",
     "jotai": "^2.12.5",
     "next": "15.5.0",
@@ -23,26 +21,24 @@
     "react-countdown": "^2.3.6",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.60.0",
-    "ts-node": "^10.9.2",
     "zod": "^4.0.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
+    "@happy-dom/global-registrator": "^18.0.1",
     "@tailwindcss/postcss": "^4.1.11",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@types/node": "^24.1.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "@vitejs/plugin-react": "^5.0.1",
+    "bun-types": "^1.2.21",
     "cross-env": "^10.0.0",
     "eslint": "^9.31.0",
     "eslint-config-next": "^15.4.3",
-    "jsdom": "^26.1.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.11",
-    "tslib": "^2.8.1",
-    "typescript": "^5.8.3",
-    "vitest": "^3.2.4"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }

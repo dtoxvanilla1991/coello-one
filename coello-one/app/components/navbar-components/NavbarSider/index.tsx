@@ -12,7 +12,10 @@ import SiderFooter from "./SiderFooter";
 const { Sider } = Layout;
 const { Text } = Typography;
 
-export function NavbarSiderComponent() {
+export function NavbarSiderComponent(props: {
+  [key: string]: unknown;
+  "data-testid"?: string;
+}) {
   const [collapsed, setCollapsed] = useAtom(siderCollapsedAtom);
   const {
     token: { colorBgContainer },
@@ -33,6 +36,7 @@ export function NavbarSiderComponent() {
 
   return (
     <Sider
+      data-testid={props["data-testid"]}
       aria-label="Navigation Sidebar"
       role="navigation"
       className={`!absolute top-14 left-0 pt-4 transition-transform! duration-300 ease-in-out z-50!
