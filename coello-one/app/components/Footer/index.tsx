@@ -4,10 +4,9 @@ import { Typography } from "antd";
 import { Footer } from "antd/es/layout/layout";
 const { Text } = Typography;
 
-export default function FooterComponent(props: {
-  [key: string]: unknown;
-  "data-testid"?: string;
-}) {
+type FooterProps = { "data-testid"?: string };
+
+export default function FooterComponent(props: FooterProps) {
   return (
     <Footer
       data-testid={props["data-testid"]}

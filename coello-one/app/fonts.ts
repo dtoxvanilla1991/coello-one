@@ -2,18 +2,27 @@
 // that may not have the specific font exports available.
 type FontFn = (opts?: { variable?: string; subsets?: string[] }) => { variable: string; className: string };
 
-let Geist: FontFn;
-let Geist_Mono: FontFn;
+const fallbackGeist: FontFn = (opts) => ({
+  variable: opts?.variable ?? "--font-geist-sans",
+  className: "mocked-font",
+});
+const fallbackGeistMono: FontFn = (opts) => ({
+  variable: opts?.variable ?? "--font-geist-mono",
+  className: "mocked-font",
+});
 
-// Use dynamic import with a fallback to avoid test env issues
-try {
-  // eslint-disable-next-line no-new-func
-  const mod = (await import('next/font/google')) as unknown as { Geist?: FontFn; Geist_Mono?: FontFn };
-  Geist = mod.Geist ?? ((opts) => ({ variable: opts?.variable ?? '--font-geist-sans', className: 'mocked-font' }));
-  Geist_Mono = mod.Geist_Mono ?? ((opts) => ({ variable: opts?.variable ?? '--font-geist-mono', className: 'mocked-font' }));
-} catch {
-  Geist = (opts) => ({ variable: opts?.variable ?? '--font-geist-sans', className: 'mocked-font' });
-  Geist_Mono = (opts) => ({ variable: opts?.variable ?? '--font-geist-mono', className: 'mocked-font' });
-}
+let Geist: FontFn = fallbackGeist;
+let Geist_Mono: FontFn = fallbackGeistMono;
+
+// Dynamically import without top-level await; swap in real implementations when ready.
+void import("next/font/google")
+  .then((mod: unknown) => {
+    const m = mod as { Geist?: FontFn; Geist_Mono?: FontFn };
+    Geist = m.Geist ?? fallbackGeist;
+    Geist_Mono = m.Geist_Mono ?? fallbackGeistMono;
+  })
+  .catch(() => {
+    // Keep fallbacks on error
+  });
 
 export { Geist, Geist_Mono };
