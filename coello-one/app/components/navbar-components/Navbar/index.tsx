@@ -15,10 +15,9 @@ import Image from "next/image";
 
 const { Header } = Layout;
 
-export function Navbar(props: {
-  [key: string]: unknown;
-  "data-testid"?: string;
-}) {
+type NavbarProps = { "data-testid"?: string };
+
+export function Navbar(props: NavbarProps) {
   const [collapsed, setCollapsed] = useAtom(siderCollapsedAtom);
 
   const [searchVisible, setSearchVisible] = useState<boolean>(false);

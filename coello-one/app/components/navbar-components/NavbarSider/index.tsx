@@ -12,10 +12,9 @@ import SiderFooter from "./SiderFooter";
 const { Sider } = Layout;
 const { Text } = Typography;
 
-export function NavbarSiderComponent(props: {
-  [key: string]: unknown;
-  "data-testid"?: string;
-}) {
+type NavbarSiderProps = { "data-testid"?: string };
+
+export function NavbarSiderComponent(props: NavbarSiderProps) {
   const [collapsed, setCollapsed] = useAtom(siderCollapsedAtom);
   const {
     token: { colorBgContainer },
