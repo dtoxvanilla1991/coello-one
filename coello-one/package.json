@@ -12,10 +12,8 @@
     "prebuild": "cross-env NODE_ENV=production ts-node --project ./tsconfig.node.json ./scripts/genAntdCss.tsx"
   },
   "dependencies": {
-    "@ant-design/compatible": "^5.1.4",
     "@ant-design/cssinjs": "^1.24.0",
     "@ant-design/nextjs-registry": "^1.1.0",
-    "@hookform/resolvers": "^5.1.1",
     "antd": "^5.26.6",
     "jotai": "^2.12.5",
     "next": "15.5.0",
@@ -23,7 +21,6 @@
     "react-countdown": "^2.3.6",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.60.0",
-    "ts-node": "^10.9.2",
     "zod": "^4.0.5"
   },
   "devDependencies": {
@@ -41,7 +38,7 @@
     "eslint-config-next": "^15.4.3",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.11",
-    "tslib": "^2.8.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }
 }
