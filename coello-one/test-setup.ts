@@ -16,15 +16,18 @@ afterEach(() => {
 	cleanup();
 });
 
+// Next.js-specific props used by next/image that aren't valid on a plain img element
+const NEXT_IMAGE_PROPS = ['fill', 'priority', 'placeholder', 'blurDataURL', 'loader', 'quality'] as const;
+
 // Globally mock next/image to a plain img to avoid URL parsing and layout issues in tests
 mock.module('next/image', () => ({
 	__esModule: true,
 	default: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
 		// Strip Next-specific props that aren't valid on img
 			const cleaned: Record<string, unknown> = { ...(props as Record<string, unknown>) };
-			for (const k of ['fill','priority','placeholder','blurDataURL','loader','quality']) {
-				if (k in cleaned) delete cleaned[k];
-			}
+			for (const k of NEXT_IMAGE_PROPS) {
+        if (k in cleaned) delete cleaned[k];
+      }
 			const alt = typeof cleaned.alt === 'string' ? (cleaned.alt as string) : '';
 			return React.createElement('img', { ...(cleaned as React.ImgHTMLAttributes<HTMLImageElement>), alt });
 	},
