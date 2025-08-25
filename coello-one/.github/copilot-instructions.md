@@ -1,6 +1,6 @@
-# Coello-One Project Guidelines for AI Agents
+# Coello-One App Guidelines for AI Agents
 
-This document provides essential guidelines for working on the Coello-One project. Following these conventions will ensure consistency and maintainability.
+This document provides essential guidelines for working on the Coello-One app. Following these conventions will ensure consistency and maintainability.
 
 ## Architecture
 
@@ -31,3 +31,6 @@ This document provides essential guidelines for working on the Coello-One projec
 - `app/[locale]/(other-pages)/`: This directory is for standalone pages like "coming soon" or "not found."
 - `public/`: This directory contains static assets, including images. When adding new images, place them in the appropriate subdirectory.
 - `bunfig.toml`: This file configures the Bun runtime, including the test runner.
+- `tsconfig.json`: TypeScript configuration file. Ensure any new TypeScript features or settings are compatible with the existing configuration.
+- `app/types/`: This directory contains TypeScript type definitions used throughout the application. It is preferred to define types in this directory to maintain a clear and organized structure.
+- `app/utils/`: This directory contains utility functions and helpers used throughout the application. It is preferred to define utilities in this directory to promote reusability and maintainability.
