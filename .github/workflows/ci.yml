@@ -13,7 +13,7 @@ jobs:
       run:
         working-directory: ./coello-one # running all commands inside app's folder
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Use Bun
         uses: oven-sh/setup-bun@v2
 
