@@ -1,24 +1,39 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
+import { describe, it, expect } from "bun:test";
 import { Featured } from "./Featured";
 
 describe("Featured", () => {
   it("should render the featured section", () => {
-    render(<Featured />);
-    expect(screen.getByTestId("featured-section")).toBeInTheDocument();
+    const { container } = render(<Featured />);
+    expect(
+      container.querySelector('[data-testid="featured-section"]')
+    ).toBeTruthy();
   });
 
   it("should render the title", () => {
-    render(<Featured />);
-    expect(screen.getByTestId("featured-section-title")).toHaveTextContent(
-      "Featured"
-    );
+    const { container } = render(<Featured />);
+    expect(
+      (
+        container.querySelector(
+          '[data-testid="featured-section-title"]'
+        ) as HTMLElement
+      ).textContent
+    ).toBe("Featured");
   });
 
   it("should render 4 cards", () => {
-    render(<Featured />);
-    expect(screen.getByTestId("featured-section-card-0")).toBeInTheDocument();
-    expect(screen.getByTestId("featured-section-card-1")).toBeInTheDocument();
-    expect(screen.getByTestId("featured-section-card-2")).toBeInTheDocument();
-    expect(screen.getByTestId("featured-section-card-3")).toBeInTheDocument();
+    const { container } = render(<Featured />);
+    expect(
+      container.querySelector('[data-testid="featured-section-card-0"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('[data-testid="featured-section-card-1"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('[data-testid="featured-section-card-2"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('[data-testid="featured-section-card-3"]')
+    ).toBeTruthy();
   });
 });

@@ -19,7 +19,7 @@
       }
     ],
     "baseUrl": ".",
-    "types": ["vitest/globals", "node"],
+    "types": ["node", "bun-types"],
     "paths": {
       "@/*": ["app/*"],
       "@components/*": ["app/components/*"],

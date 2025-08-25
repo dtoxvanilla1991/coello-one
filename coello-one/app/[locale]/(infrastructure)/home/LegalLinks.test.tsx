@@ -1,17 +1,26 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
+import { describe, it, expect } from "bun:test";
 import LegalLinks from "./LegalLinks";
 
 describe("LegalLinks", () => {
   it("should render the legal links", () => {
-    render(<LegalLinks />);
-    expect(screen.getByTestId("legal-links")).toBeInTheDocument();
+    const { container } = render(<LegalLinks />);
+    expect(container.querySelector('[data-testid="legal-links"]')).toBeTruthy();
   });
 
   it("should render 4 links", () => {
-    render(<LegalLinks />);
-    expect(screen.getByTestId("legal-links-item-0")).toBeInTheDocument();
-    expect(screen.getByTestId("legal-links-item-1")).toBeInTheDocument();
-    expect(screen.getByTestId("legal-links-item-2")).toBeInTheDocument();
-    expect(screen.getByTestId("legal-links-item-3")).toBeInTheDocument();
+    const { container } = render(<LegalLinks />);
+    expect(
+      container.querySelector('[data-testid="legal-links-item-0"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('[data-testid="legal-links-item-1"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('[data-testid="legal-links-item-2"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('[data-testid="legal-links-item-3"]')
+    ).toBeTruthy();
   });
 });

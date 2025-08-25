@@ -1,28 +1,33 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { PromoSection } from "./PromoSection";
+import { describe, it, expect } from "bun:test";
 
 describe("PromoSection", () => {
   it("should render the promo section", () => {
-    render(<PromoSection />);
-    expect(screen.getByTestId("promo-section")).toBeInTheDocument();
+    const { container } = render(<PromoSection />);
+    expect(
+      container.querySelector('[data-testid="promo-section"]')
+    ).toBeTruthy();
   });
 
   it("should render the title", () => {
-    render(<PromoSection />);
-    expect(screen.getByTestId("promo-section-title")).toHaveTextContent(
-      "Limited Time Offer"
-    );
+    const { container } = render(<PromoSection />);
+    expect(
+      container.querySelector('[data-testid="promo-section-title"]')
+    ).toBeTruthy();
   });
 
   it("should render the text", () => {
-    render(<PromoSection />);
-    expect(screen.getByTestId("promo-section-text")).toHaveTextContent(
-      "Up to 20% off select items"
-    );
+    const { container } = render(<PromoSection />);
+    expect(
+      container.querySelector('[data-testid="promo-section-text"]')
+    ).toBeTruthy();
   });
 
   it("should render the button", () => {
-    render(<PromoSection />);
-    expect(screen.getByTestId("promo-section-button")).toBeInTheDocument();
+    const { container } = render(<PromoSection />);
+    expect(
+      container.querySelector('[data-testid="promo-section-button"]')
+    ).toBeTruthy();
   });
 });

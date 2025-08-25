@@ -1,31 +1,42 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
+import { describe, it, expect } from "bun:test";
 import BottomMoreAboutSection from "./BottomMoreAboutSection";
 
 describe("BottomMoreAboutSection", () => {
   it("should render the bottom more about section", () => {
-    render(<BottomMoreAboutSection />);
+    const { container } = render(<BottomMoreAboutSection />);
     expect(
-      screen.getByTestId("bottom-more-about-section")
-    ).toBeInTheDocument();
+      container.querySelector('[data-testid="bottom-more-about-section"]')
+    ).toBeTruthy();
   });
 
   it("should render the title", () => {
-    render(<BottomMoreAboutSection />);
+    const { container } = render(<BottomMoreAboutSection />);
     expect(
-      screen.getByTestId("bottom-more-about-section-title")
-    ).toHaveTextContent("More about Coello One");
+      (
+        container.querySelector(
+          '[data-testid="bottom-more-about-section-title"]'
+        ) as HTMLElement
+      ).textContent
+    ).toBe("More about Coello One");
   });
 
   it("should render 3 cards", () => {
-    render(<BottomMoreAboutSection />);
+    const { container } = render(<BottomMoreAboutSection />);
     expect(
-      screen.getByTestId("bottom-more-about-section-card-0")
-    ).toBeInTheDocument();
+      container.querySelector(
+        '[data-testid="bottom-more-about-section-card-0"]'
+      )
+    ).toBeTruthy();
     expect(
-      screen.getByTestId("bottom-more-about-section-card-1")
-    ).toBeInTheDocument();
+      container.querySelector(
+        '[data-testid="bottom-more-about-section-card-1"]'
+      )
+    ).toBeTruthy();
     expect(
-      screen.getByTestId("bottom-more-about-section-card-2")
-    ).toBeInTheDocument();
+      container.querySelector(
+        '[data-testid="bottom-more-about-section-card-2"]'
+      )
+    ).toBeTruthy();
   });
 });

@@ -15,8 +15,11 @@ export function NavbarSearch({
 }: NavbarSearchProps): JSX.Element {
   const searchRef = useRef<InputRef | null>(null);
 
-  const handleOnSearch: SearchProps["onSearch"] = (value, _e, info) =>
-    console.log(info?.source, value);
+  const handleOnSearch: SearchProps["onSearch"] = (value, _e, info) => {
+    if (process.env.NODE_ENV !== "production") {
+      console.log(info?.source, value);
+    }
+  };
 
   useEffect(() => {
     if (searchVisible && searchRef.current) {

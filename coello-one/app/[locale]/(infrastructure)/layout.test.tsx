@@ -1,34 +1,42 @@
-import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { render } from "@testing-library/react";
+import { describe, it, expect } from "bun:test";
 import InfrastructureLayout from "./layout";
 
 describe("InfrastructureLayout", () => {
   it("should render its children", () => {
-    render(
+    const { container } = render(
       <InfrastructureLayout>
         <div data-testid="child">Child Component</div>
       </InfrastructureLayout>
     );
-    expect(screen.getByTestId("child")).toBeInTheDocument();
+    expect(container.querySelector('[data-testid="child"]')).toBeTruthy();
   });
 
   it("should render the Navbar, NavbarSider, and Footer components", () => {
-    render(
+    const { container } = render(
       <InfrastructureLayout>
         <div>Child</div>
       </InfrastructureLayout>
     );
-    expect(screen.getByTestId("navbar-component")).toBeInTheDocument();
-    expect(screen.getByTestId("navbar-sider-component")).toBeInTheDocument();
-    expect(screen.getByTestId("footer-component")).toBeInTheDocument();
+    expect(
+      container.querySelector('[data-testid="navbar-component"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('[data-testid="navbar-sider-component"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('[data-testid="footer-component"]')
+    ).toBeTruthy();
   });
 
   it("should have the 'infrastructure-layout' test id", () => {
-    render(
+    const { container } = render(
       <InfrastructureLayout>
         <div>Child</div>
       </InfrastructureLayout>
     );
-    expect(screen.getByTestId("infrastructure-layout")).toBeInTheDocument();
+    expect(
+      container.querySelector('[data-testid="infrastructure-layout"]')
+    ).toBeTruthy();
   });
 });

@@ -1,5 +1,5 @@
-import { render, screen, cleanup } from "@testing-library/react";
-import { describe, it, expect, afterEach } from "vitest";
+import { render, cleanup } from "@testing-library/react";
+import { describe, it, expect, afterEach } from "bun:test";
 import RootLayout from "./layout";
 
 // Manually cleaning up the DOM after each test to prevent test pollution
@@ -10,24 +10,28 @@ afterEach(() => {
 
 describe("RootLayout", () => {
   it("should render its children", () => {
-    render(
+    const { container } = render(
       <RootLayout>
         <div data-testid="test-child">Hello World</div>
       </RootLayout>
     );
-    const childElement = screen.getByTestId("test-child");
-    expect(childElement).toBeInTheDocument();
-    expect(childElement).toHaveTextContent("Hello World");
+    const childElement = container.querySelector(
+      '[data-testid="test-child"]'
+    ) as HTMLElement;
+    expect(childElement).toBeTruthy();
+    expect(childElement.textContent).toBe("Hello World");
   });
 
   it("should apply the correct font and utility classes to the body element", () => {
-    render(
+    const { container } = render(
       <RootLayout>
         <div />
       </RootLayout>
     );
-    expect(document.body.className).toContain("--font-geist-sans");
-    expect(document.body.className).toContain("--font-geist-mono");
-    expect(document.body.className).toContain("antialiased");
+    const wrapper = container.querySelector('[data-testid="root-layout"]');
+    const className = wrapper?.getAttribute("class") || "";
+    expect(className).toContain("--font-geist-sans");
+    expect(className).toContain("--font-geist-mono");
+    expect(className).toContain("antialiased");
   });
 });

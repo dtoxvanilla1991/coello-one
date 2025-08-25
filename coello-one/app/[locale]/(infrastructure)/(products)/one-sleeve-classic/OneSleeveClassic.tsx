@@ -72,6 +72,7 @@ const OneSleeveClassic: React.FC = () => {
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover rounded-md"
                 priority
+                data-testid="main-image"
               />
             </div>
             <Row gutter={8}>
@@ -80,10 +81,12 @@ const OneSleeveClassic: React.FC = () => {
                   <div
                     className="relative w-full aspect-square cursor-pointer border-2 hover:border-black rounded-md overflow-hidden"
                     style={{
-                      borderColor:
-                        mainImage === img ? "black" : "transparent",
+                      borderColor: mainImage === img ? "black" : "transparent",
                     }}
-                    onClick={() => dispatch({ type: "SET_IMAGE", payload: img })}>
+                    onClick={() =>
+                      dispatch({ type: "SET_IMAGE", payload: img })
+                    }
+                    data-testid={`thumbnail-${index + 1}`}>
                     <Image
                       src={img}
                       alt={`${product.name} thumbnail ${index + 1}`}
@@ -99,22 +102,25 @@ const OneSleeveClassic: React.FC = () => {
         </Col>
         <Col xs={24} md={10}>
           <Space direction="vertical" size="large" className="w-full">
-            <Title level={2} className="uppercase tracking-wider">
+            <Title
+              level={2}
+              className="uppercase tracking-wider"
+              data-testid="product-name">
               {product.name}
             </Title>
-            <Text strong className="text-2xl">
+            <Text strong className="text-2xl" data-testid="product-price">
               {product.price}
             </Text>
 
             <div>
-              <Text strong>
+              <Text strong data-testid="selected-color">
                 COLOR: <span className="font-normal">{selectedColor.name}</span>
               </Text>
               <Radio.Group
                 value={selectedColor.name}
                 onChange={(e) => {
                   const color = product.colors.find(
-                    (c) => c.name === e.target.value,
+                    (c) => c.name === e.target.value
                   );
                   if (color) {
                     dispatch({ type: "SET_COLOR", payload: color });
@@ -126,6 +132,9 @@ const OneSleeveClassic: React.FC = () => {
                     <Radio.Button
                       key={color.name}
                       value={color.name}
+                      data-testid={`color-radio-${color.name}`}
+                      aria-label={`Color ${color.name}`}
+                      aria-checked={selectedColor.name === color.name}
                       style={{
                         backgroundColor: color.color,
                         width: 32,
@@ -161,6 +170,9 @@ const OneSleeveClassic: React.FC = () => {
                     <Radio.Button
                       key={size}
                       value={size}
+                      data-testid={`size-radio-${size}`}
+                      aria-label={`Size ${size}`}
+                      aria-checked={selectedSize === size}
                       className="w-24 text-center">
                       {size}
                     </Radio.Button>

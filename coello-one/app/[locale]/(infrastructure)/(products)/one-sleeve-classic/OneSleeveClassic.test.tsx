@@ -1,55 +1,56 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { vi } from "vitest";
+import { render, fireEvent } from "@testing-library/react";
+import { describe, it, expect } from "bun:test";
 import OneSleeveClassic from "./OneSleeveClassic";
-
-// Mock next/image
-vi.mock("next/image", () => ({
-  __esModule: true,
-  default: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img {...props} alt={props.alt || ""} />;
-  },
-}));
 
 describe("OneSleeveClassic", () => {
   it("renders the product name and price", () => {
-    render(<OneSleeveClassic />);
-    expect(screen.getByText("One Sleeve Classic")).toBeInTheDocument();
-    expect(screen.getByText("$45.00")).toBeInTheDocument();
+    const { container } = render(<OneSleeveClassic />);
+    const name = container.querySelector(
+      '[data-testid="product-name"]'
+    ) as HTMLElement;
+    const price = container.querySelector(
+      '[data-testid="product-price"]'
+    ) as HTMLElement;
+    expect(name?.textContent).toBe("One Sleeve Classic");
+    expect(price?.textContent).toBe("$45.00");
   });
 
   it("changes the main image when a thumbnail is clicked", () => {
-    render(<OneSleeveClassic />);
-    const imageElements = screen.getAllByRole("img");
-    // The first image is the main one, the rest are thumbnails
-    const secondThumbnailWrapper = imageElements[2].parentElement; // The clickable div
-
-    if (secondThumbnailWrapper) {
-      fireEvent.click(secondThumbnailWrapper);
-    }
-
-    const mainImage = screen.getAllByRole("img")[0] as HTMLImageElement;
-    expect(mainImage.src).toContain("main-secondary-2.jpg");
+    const { container } = render(<OneSleeveClassic />);
+    const secondThumbnailWrapper = container.querySelector(
+      '[data-testid="thumbnail-2"]'
+    ) as HTMLElement | null;
+    if (!secondThumbnailWrapper) throw new Error("thumbnail-2 not found");
+    fireEvent.click(secondThumbnailWrapper);
+    const mainImage = container.querySelector(
+      '[data-testid="main-image"]'
+    ) as HTMLImageElement;
+    expect(mainImage.getAttribute("src") || "").toContain(
+      "main-secondary-2.jpg"
+    );
   });
 
   it("updates the selected color when a color radio button is clicked", () => {
-    render(<OneSleeveClassic />);
-    const whiteColorButton = screen.getByDisplayValue("White");
-
+    const { container } = render(<OneSleeveClassic />);
+    const whiteColorButton = container.querySelector(
+      '[data-testid="color-radio-White"]'
+    ) as HTMLElement | null;
+    if (!whiteColorButton) throw new Error("color-radio-White not found");
     fireEvent.click(whiteColorButton);
-
-    expect(screen.getByText(/COLOR: White/)).toBeInTheDocument();
+    expect(
+      (container.querySelector('[data-testid="selected-color"]') as HTMLElement)
+        .textContent
+    ).toMatch(/COLOR: .*White/);
   });
 
   it("updates the selected size when a size radio button is clicked", () => {
-    render(<OneSleeveClassic />);
-    const largeSizeButton = screen.getByRole("radio", { name: "L" });
-
+    const { container } = render(<OneSleeveClassic />);
+    const largeSizeButton = container.querySelector(
+      '[data-testid="size-radio-L"]'
+    ) as HTMLElement | null;
+    if (!largeSizeButton) throw new Error("size-radio-L not found");
     fireEvent.click(largeSizeButton);
-
-    const sizeRadio = screen.getByRole("radio", {
-      name: "L",
-    }) as HTMLInputElement;
-    expect(sizeRadio.checked).toBe(true);
+    // AntD controls the checked state via aria-checked on the button wrapper
+    expect(largeSizeButton.getAttribute("aria-checked")).toBe("true");
   });
 });
