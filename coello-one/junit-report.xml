@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="48" assertions="76" failures="0" skipped="0" time="2.349626">
+  <testsuite name="app/layout.test.tsx" file="app/layout.test.tsx" tests="2" assertions="5" failures="0" skipped="0" time="0" hostname="Yuris-MacBook-Pro.local">
+    <testsuite name="RootLayout" file="app/layout.test.tsx" line="11" tests="2" assertions="5" failures="0" skipped="0" time="0.007" hostname="Yuris-MacBook-Pro.local">
+      <testcase name="should render its children" classname="RootLayout" time="0.007807" file="app/layout.test.tsx" line="12" assertions="2" />
+      <testcase name="should apply the correct font and utility classes to the body element" classname="RootLayout" time="0.000697" file="app/layout.test.tsx" line="25" assertions="3" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="app/[locale]/layout.test.tsx" file="app/[locale]/layout.test.tsx" tests="4" assertions="5" failures="0" skipped="0" time="0" hostname="Yuris-MacBook-Pro.local">
+    <testsuite name="LocaleLayout" file="app/[locale]/layout.test.tsx" line="6" tests="4" assertions="5" failures="0" skipped="0" time="0.019" hostname="Yuris-MacBook-Pro.local">
+      <testcase name="should render children and have correct data-testid" classname="LocaleLayout" time="0.01824" file="app/[locale]/layout.test.tsx" line="7" assertions="2" />
+      <testcase name="should throw notFound for unsupported locale" classname="LocaleLayout" time="0.001756" file="app/[locale]/layout.test.tsx" line="19" assertions="1" />
+      <testcase name="should generate correct metadata for en-GB" classname="LocaleLayout" time="0.000462" file="app/[locale]/layout.test.tsx" line="28" assertions="1" />
+      <testcase name="should generate correct metadata for es-ES" classname="LocaleLayout" time="0.000042" file="app/[locale]/layout.test.tsx" line="42" assertions="1" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="app/[locale]/(infrastructure)/layout.test.tsx" file="app/[locale]/(infrastructure)/layout.test.tsx" tests="3" assertions="5" failures="0" skipped="0" time="0" hostname="Yuris-MacBook-Pro.local">
+    <testsuite name="InfrastructureLayout" file="app/[locale]/(infrastructure)/layout.test.tsx" line="5" tests="3" assertions="5" failures="0" skipped="0" time="0.175" hostname="Yuris-MacBook-Pro.local">
+      <testcase name="should render its children" classname="InfrastructureLayout" time="0.092923" file="app/[locale]/(infrastructure)/layout.test.tsx" line="6" assertions="1" />
+      <testcase name="should render the Navbar, NavbarSider, and Footer components" classname="InfrastructureLayout" time="0.047077" file="app/[locale]/(infrastructure)/layout.test.tsx" line="15" assertions="3" />
+      <testcase name="should have the &apos;infrastructure-layout&apos; test id" classname="InfrastructureLayout" time="0.036843" file="app/[locale]/(infrastructure)/layout.test.tsx" line="32" assertions="1" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="app/[locale]/(infrastructure)/home/BottomMenu.test.tsx" file="app/[locale]/(infrastructure)/home/BottomMenu.test.tsx" tests="1" assertions="1" failures="0" skipped="0" time="0" hostname="Yuris-MacBook-Pro.local">
+    <testsuite name="BottomMenu" file="app/[locale]/(infrastructure)/home/BottomMenu.test.tsx" line="5" tests="1" assertions="1" failures="0" skipped="0" time="0.013" hostname="Yuris-MacBook-Pro.local">
+      <testcase name="should render the bottom menu" classname="BottomMenu" time="0.013998" file="app/[locale]/(infrastructure)/home/BottomMenu.test.tsx" line="6" assertions="1" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="app/[locale]/(infrastructure)/home/PopularSection.test.tsx" file="app/[locale]/(infrastructure)/home/PopularSection.test.tsx" tests="5" assertions="10" failures="0" skipped="0" time="0" hostname="Yuris-MacBook-Pro.local">
+    <testsuite name="PopularSection" file="app/[locale]/(infrastructure)/home/PopularSection.test.tsx" line="5" tests="5" assertions="10" failures="0" skipped="0" time="0.047" hostname="Yuris-MacBook-Pro.local">
+      <testcase name="should render the popular section" classname="PopularSection" time="0.012988" file="app/[locale]/(infrastructure)/home/PopularSection.test.tsx" line="6" assertions="1" />
+      <testcase name="should render the title" classname="PopularSection" time="0.008872" file="app/[locale]/(infrastructure)/home/PopularSection.test.tsx" line="13" assertions="1" />
+      <testcase name="should render the women and men buttons" classname="PopularSection" time="0.008846" file="app/[locale]/(infrastructure)/home/PopularSection.test.tsx" line="24" assertions="2" />
+      <testcase name="should render 3 cards" classname="PopularSection" time="0.009882" file="app/[locale]/(infrastructure)/home/PopularSection.test.tsx" line="34" assertions="3" />
+      <testcase name="should render the card buttons" classname="PopularSection" time="0.010288" file="app/[locale]/(infrastructure)/home/PopularSection.test.tsx" line="47" assertions="3" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="app/[locale]/(infrastructure)/home/Featured.test.tsx" file="app/[locale]/(infrastructure)/home/Featured.test.tsx" tests="3" assertions="6" failures="0" skipped="0" time="0" hostname="Yuris-MacBook-Pro.local">
+    <testsuite name="Featured" file="app/[locale]/(infrastructure)/home/Featured.test.tsx" line="5" tests="3" assertions="6" failures="0" skipped="0" time="0.016" hostname="Yuris-MacBook-Pro.local">
+      <testcase name="should render the featured section" classname="Featured" time="0.007356" file="app/[locale]/(infrastructure)/home/Featured.test.tsx" line="6" assertions="1" />
+      <testcase name="should render the title" classname="Featured" time="0.005298" file="app/[locale]/(infrastructure)/home/Featured.test.tsx" line="13" assertions="1" />
+      <testcase name="should render 4 cards" classname="Featured" time="0.004551" file="app/[locale]/(infrastructure)/home/Featured.test.tsx" line="24" assertions="4" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="app/[locale]/(infrastructure)/home/BrandListings.test.tsx" file="app/[locale]/(infrastructure)/home/BrandListings.test.tsx" tests="3" assertions="3" failures="0" skipped="0" time="0" hostname="Yuris-MacBook-Pro.local">
+    <testsuite name="BrandListings" file="app/[locale]/(infrastructure)/home/BrandListings.test.tsx" line="4" tests="3" assertions="3" failures="0" skipped="0" time="0.017" hostname="Yuris-MacBook-Pro.local">
+      <testcase name="should render the brand listings" classname="BrandListings" time="0.008456" file="app/[locale]/(infrastructure)/home/BrandListings.test.tsx" line="5" assertions="1" />
+      <testcase name="should render the women&apos;s line listing" classname="BrandListings" time="0.005329" file="app/[locale]/(infrastructure)/home/BrandListings.test.tsx" line="12" assertions="1" />
+      <testcase name="should render the men&apos;s line listing" classname="BrandListings" time="0.004601" file="app/[locale]/(infrastructure)/home/BrandListings.test.tsx" line="19" assertions="1" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="app/[locale]/(infrastructure)/home/Training.test.tsx" file="app/[locale]/(infrastructure)/home/Training.test.tsx" tests="4" assertions="8" failures="0" skipped="0" time="0" hostname="Yuris-MacBook-Pro.local">
+    <testsuite name="Training" file="app/[locale]/(infrastructure)/home/Training.test.tsx" line="5" tests="4" assertions="8" failures="0" skipped="0" time="0.031" hostname="Yuris-MacBook-Pro.local">
+      <testcase name="should render the training section" classname="Training" time="0.00988" file="app/[locale]/(infrastructure)/home/Training.test.tsx" line="6" assertions="1" />
+      <testcase name="should render the title" classname="Training" time="0.007598" file="app/[locale]/(infrastructure)/home/Training.test.tsx" line="13" assertions="1" />
+      <testcase name="should render 3 cards" classname="Training" time="0.008374" file="app/[locale]/(infrastructure)/home/Training.test.tsx" line="24" assertions="3" />
+      <testcase name="should render the card buttons" classname="Training" time="0.007819" file="app/[locale]/(infrastructure)/home/Training.test.tsx" line="37" assertions="3" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="app/[locale]/(infrastructure)/home/BottomMoreAboutSection.test.tsx" file="app/[locale]/(infrastructure)/home/BottomMoreAboutSection.test.tsx" tests="3" assertions="5" failures="0" skipped="0" time="0" hostname="Yuris-MacBook-Pro.local">
+    <testsuite name="BottomMoreAboutSection" file="app/[locale]/(infrastructure)/home/BottomMoreAboutSection.test.tsx" line="5" tests="3" assertions="5" failures="0" skipped="0" time="0.014" hostname="Yuris-MacBook-Pro.local">
+      <testcase name="should render the bottom more about section" classname="BottomMoreAboutSection" time="0.006548" file="app/[locale]/(infrastructure)/home/BottomMoreAboutSection.test.tsx" line="6" assertions="1" />
+      <testcase name="should render the title" classname="BottomMoreAboutSection" time="0.004091" file="app/[locale]/(infrastructure)/home/BottomMoreAboutSection.test.tsx" line="13" assertions="1" />
+      <testcase name="should render 3 cards" classname="BottomMoreAboutSection" time="0.004071" file="app/[locale]/(infrastructure)/home/BottomMoreAboutSection.test.tsx" line="24" assertions="3" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="app/[locale]/(infrastructure)/home/SalesBlock.test.tsx" file="app/[locale]/(infrastructure)/home/SalesBlock.test.tsx" tests="4" assertions="5" failures="0" skipped="0" time="0" hostname="Yuris-MacBook-Pro.local">
+    <testsuite name="SalesBlock" file="app/[locale]/(infrastructure)/home/SalesBlock.test.tsx" line="5" tests="4" assertions="5" failures="0" skipped="0" time="0.024" hostname="Yuris-MacBook-Pro.local">
+      <testcase name="should render the sales block" classname="SalesBlock" time="0.008743" file="app/[locale]/(infrastructure)/home/SalesBlock.test.tsx" line="6" assertions="1" />
+      <testcase name="should render the title" classname="SalesBlock" time="0.00598" file="app/[locale]/(infrastructure)/home/SalesBlock.test.tsx" line="11" assertions="1" />
+      <testcase name="should render the text" classname="SalesBlock" time="0.005806" file="app/[locale]/(infrastructure)/home/SalesBlock.test.tsx" line="22" assertions="1" />
+      <testcase name="should render the women and men buttons" classname="SalesBlock" time="0.006124" file="app/[locale]/(infrastructure)/home/SalesBlock.test.tsx" line="33" assertions="2" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="app/[locale]/(infrastructure)/home/PromoSection.test.tsx" file="app/[locale]/(infrastructure)/home/PromoSection.test.tsx" tests="4" assertions="4" failures="0" skipped="0" time="0" hostname="Yuris-MacBook-Pro.local">
+    <testsuite name="PromoSection" file="app/[locale]/(infrastructure)/home/PromoSection.test.tsx" line="5" tests="4" assertions="4" failures="0" skipped="0" time="0.023" hostname="Yuris-MacBook-Pro.local">
+      <testcase name="should render the promo section" classname="PromoSection" time="0.008186" file="app/[locale]/(infrastructure)/home/PromoSection.test.tsx" line="6" assertions="1" />
+      <testcase name="should render the title" classname="PromoSection" time="0.005465" file="app/[locale]/(infrastructure)/home/PromoSection.test.tsx" line="13" assertions="1" />
+      <testcase name="should render the text" classname="PromoSection" time="0.005093" file="app/[locale]/(infrastructure)/home/PromoSection.test.tsx" line="20" assertions="1" />
+      <testcase name="should render the button" classname="PromoSection" time="0.005457" file="app/[locale]/(infrastructure)/home/PromoSection.test.tsx" line="27" assertions="1" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="app/[locale]/(infrastructure)/home/StoryBlock.test.tsx" file="app/[locale]/(infrastructure)/home/StoryBlock.test.tsx" tests="2" assertions="4" failures="0" skipped="0" time="0" hostname="Yuris-MacBook-Pro.local">
+    <testsuite name="StoryBlock" file="app/[locale]/(infrastructure)/home/StoryBlock.test.tsx" line="5" tests="2" assertions="4" failures="0" skipped="0" time="0.007" hostname="Yuris-MacBook-Pro.local">
+      <testcase name="should render the story block" classname="StoryBlock" time="0.005774" file="app/[locale]/(infrastructure)/home/StoryBlock.test.tsx" line="6" assertions="1" />
+      <testcase name="should render 3 listings" classname="StoryBlock" time="0.002497" file="app/[locale]/(infrastructure)/home/StoryBlock.test.tsx" line="11" assertions="3" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="app/[locale]/(infrastructure)/home/LegalLinks.test.tsx" file="app/[locale]/(infrastructure)/home/LegalLinks.test.tsx" tests="2" assertions="5" failures="0" skipped="0" time="0" hostname="Yuris-MacBook-Pro.local">
+    <testsuite name="LegalLinks" file="app/[locale]/(infrastructure)/home/LegalLinks.test.tsx" line="5" tests="2" assertions="5" failures="0" skipped="0" time="0.016" hostname="Yuris-MacBook-Pro.local">
+      <testcase name="should render the legal links" classname="LegalLinks" time="0.009472" file="app/[locale]/(infrastructure)/home/LegalLinks.test.tsx" line="6" assertions="1" />
+      <testcase name="should render 4 links" classname="LegalLinks" time="0.00742" file="app/[locale]/(infrastructure)/home/LegalLinks.test.tsx" line="11" assertions="4" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="app/[locale]/(infrastructure)/home/MainBanner.test.tsx" file="app/[locale]/(infrastructure)/home/MainBanner.test.tsx" tests="3" assertions="3" failures="0" skipped="0" time="0" hostname="Yuris-MacBook-Pro.local">
+    <testsuite name="MainBanner" file="app/[locale]/(infrastructure)/home/MainBanner.test.tsx" line="5" tests="3" assertions="3" failures="0" skipped="0" time="0.035" hostname="Yuris-MacBook-Pro.local">
+      <testcase name="should render the main banner" classname="MainBanner" time="0.012502" file="app/[locale]/(infrastructure)/home/MainBanner.test.tsx" line="6" assertions="1" />
+      <testcase name="should render the title" classname="MainBanner" time="0.011282" file="app/[locale]/(infrastructure)/home/MainBanner.test.tsx" line="11" assertions="1" />
+      <testcase name="should render the shop now button" classname="MainBanner" time="0.012247" file="app/[locale]/(infrastructure)/home/MainBanner.test.tsx" line="22" assertions="1" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="app/[locale]/(infrastructure)/(products)/one-sleeve-classic/page.test.tsx" file="app/[locale]/(infrastructure)/(products)/one-sleeve-classic/page.test.tsx" tests="1" assertions="2" failures="0" skipped="0" time="0" hostname="Yuris-MacBook-Pro.local">
+    <testsuite name="OneSleeveClassicPage" file="app/[locale]/(infrastructure)/(products)/one-sleeve-classic/page.test.tsx" line="5" tests="1" assertions="2" failures="0" skipped="0" time="0.021" hostname="Yuris-MacBook-Pro.local">
+      <testcase name="renders the OneSleeveClassic component" classname="OneSleeveClassicPage" time="0.021317" file="app/[locale]/(infrastructure)/(products)/one-sleeve-classic/page.test.tsx" line="6" assertions="2" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="app/[locale]/(infrastructure)/(products)/one-sleeve-classic/OneSleeveClassic.test.tsx" file="app/[locale]/(infrastructure)/(products)/one-sleeve-classic/OneSleeveClassic.test.tsx" tests="4" assertions="5" failures="0" skipped="0" time="0" hostname="Yuris-MacBook-Pro.local">
+    <testsuite name="OneSleeveClassic" file="app/[locale]/(infrastructure)/(products)/one-sleeve-classic/OneSleeveClassic.test.tsx" line="5" tests="4" assertions="5" failures="0" skipped="0" time="0.086" hostname="Yuris-MacBook-Pro.local">
+      <testcase name="renders the product name and price" classname="OneSleeveClassic" time="0.019732" file="app/[locale]/(infrastructure)/(products)/one-sleeve-classic/OneSleeveClassic.test.tsx" line="6" assertions="2" />
+      <testcase name="changes the main image when a thumbnail is clicked" classname="OneSleeveClassic" time="0.021613" file="app/[locale]/(infrastructure)/(products)/one-sleeve-classic/OneSleeveClassic.test.tsx" line="18" assertions="1" />
+      <testcase name="updates the selected color when a color radio button is clicked" classname="OneSleeveClassic" time="0.025337" file="app/[locale]/(infrastructure)/(products)/one-sleeve-classic/OneSleeveClassic.test.tsx" line="33" assertions="1" />
+      <testcase name="updates the selected size when a size radio button is clicked" classname="OneSleeveClassic" time="0.021219" file="app/[locale]/(infrastructure)/(products)/one-sleeve-classic/OneSleeveClassic.test.tsx" line="46" assertions="1" />
+    </testsuite>
+  </testsuite>
+</testsuites>
