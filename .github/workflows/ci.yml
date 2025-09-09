@@ -41,4 +41,32 @@ jobs:
       - name: Run unit tests
         env:
           CI: true
-        run: bun test --reporter dot
+        run: bun test --reporter junit --reporter-outfile junit-report.xml
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit-report
+          path: coello-one/junit-report.xml
+
+      - name: Test summary
+        if: always()
+        run: |
+          echo "JUnit summary:" 
+          if [ -f junit-report.xml ]; then
+            TOTAL=$(grep -o 'tests="[0-9]\+' junit-report.xml | head -1 | cut -d'"' -f2)
+            FAIL=$(grep -o 'failures="[0-9]\+' junit-report.xml | head -1 | cut -d'"' -f2)
+            SKIP=$(grep -o 'skipped="[0-9]\+' junit-report.xml | head -1 | cut -d'"' -f2 || echo 0)
+            ASSERT=$(grep -o 'assertions="[0-9]\+' junit-report.xml | head -1 | cut -d'"' -f2)
+            echo "  Tests:      $TOTAL"
+            echo "  Failures:   $FAIL"
+            echo "  Skipped:    $SKIP"
+            echo "  Assertions: $ASSERT"
+            if [ "$FAIL" != "0" ]; then
+              exit 1
+            fi
+          else
+            echo "No junit-report.xml found"
+            exit 1
+          fi
