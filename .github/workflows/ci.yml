@@ -54,11 +54,12 @@ jobs:
         if: always()
         run: |
           echo "JUnit summary:" 
-          if [ -f junit-report.xml ]; then
-            TOTAL=$(grep -o 'tests="[0-9]\+' junit-report.xml | head -1 | cut -d'"' -f2)
-            FAIL=$(grep -o 'failures="[0-9]\+' junit-report.xml | head -1 | cut -d'"' -f2)
-            SKIP=$(grep -o 'skipped="[0-9]\+' junit-report.xml | head -1 | cut -d'"' -f2 || echo 0)
-            ASSERT=$(grep -o 'assertions="[0-9]\+' junit-report.xml | head -1 | cut -d'"' -f2)
+          REPORT_PATH="coello-one/junit-report.xml"
+          if [ -f "$REPORT_PATH" ]; then
+            TOTAL=$(grep -o 'tests="[0-9]\+' "$REPORT_PATH" | head -1 | cut -d'"' -f2)
+            FAIL=$(grep -o 'failures="[0-9]\+' "$REPORT_PATH" | head -1 | cut -d'"' -f2)
+            SKIP=$(grep -o 'skipped="[0-9]\+' "$REPORT_PATH" | head -1 | cut -d'"' -f2 || echo 0)
+            ASSERT=$(grep -o 'assertions="[0-9]\+' "$REPORT_PATH" | head -1 | cut -d'"' -f2)
             echo "  Tests:      $TOTAL"
             echo "  Failures:   $FAIL"
             echo "  Skipped:    $SKIP"
@@ -67,6 +68,6 @@ jobs:
               exit 1
             fi
           else
-            echo "No junit-report.xml found"
+            echo "No junit-report.xml found at $REPORT_PATH"
             exit 1
           fi
