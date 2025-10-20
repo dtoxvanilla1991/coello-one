@@ -16,7 +16,7 @@
     "@ant-design/nextjs-registry": "^1.1.0",
     "antd": "^5.26.6",
     "jotai": "^2.12.5",
-    "next": "15.5.4",
+    "next": "15.5.6",
     "react": "^19.1.0",
     "react-countdown": "^2.3.6",
     "react-dom": "^19.1.0",
