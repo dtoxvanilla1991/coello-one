@@ -41,6 +41,9 @@ jobs:
       - name: Prepare reports directory
         run: mkdir -p reports
 
+      - name: Prepare reports directory
+        run: mkdir -p reports
+
       - name: Run unit tests
         env:
           CI: true
