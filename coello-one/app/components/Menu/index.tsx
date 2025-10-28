@@ -3,15 +3,15 @@
 import { Menu } from "antd";
 import type { MenuProps } from "antd";
 import { useRouter, usePathname } from "next/navigation";
-import { MenuItem } from "./helpers";
-import { ReactNode } from "react";
+import type { MenuItem } from "./helpers";
+import type { ReactNode } from "react";
 
 export default function MenuComponent({
   items,
   expandIcon = undefined,
 }: {
   items: MenuItem[];
-  expandIcon: ReactNode;
+  expandIcon?: ReactNode;
 }) {
   const router = useRouter();
   const pathname = usePathname();

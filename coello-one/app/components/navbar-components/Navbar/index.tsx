@@ -23,8 +23,8 @@ export function Navbar(props: NavbarProps) {
   const [searchVisible, setSearchVisible] = useState<boolean>(false);
   const [showBag, setShowBag] = useState<boolean>(false);
 
-  const handleShowBag = () => setShowBag(!showBag);
-  const handleSearch = () => setSearchVisible(!searchVisible);
+  const handleShowBag = () => setShowBag((prev) => !prev);
+  const handleSearch = () => setSearchVisible((prev) => !prev);
 
   const show = searchVisible ? "hidden!" : "block!";
   return (
@@ -35,7 +35,7 @@ export function Navbar(props: NavbarProps) {
         type="text"
         size="large"
         icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-        onClick={() => setCollapsed(!collapsed)}
+        onClick={() => setCollapsed((prev) => !prev)}
         className="text-lg"
       />
       <Flex className={`${show}`} justify="center" align="center">

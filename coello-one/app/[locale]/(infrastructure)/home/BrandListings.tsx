@@ -1,6 +1,7 @@
 "use client";
 
 import { Space, List, Typography } from "antd";
+import type { ListProps } from "antd";
 import Link from "next/link";
 
 const { Title } = Typography;
@@ -44,11 +45,26 @@ const BrandListings: React.FC = () => {
 
 export default BrandListings;
 
-interface BrandListingProps {
+type BrandListingProps = {
   data: BrandLine;
   title: string;
   "data-testid"?: string;
-}
+};
+
+const listProps: Pick<
+  ListProps<BrandLine[number]>,
+  "renderItem" | "split" | "className"
+> = {
+  renderItem: (item) => (
+    <List.Item className="py-1.5!">
+      <Link href={item.href} className="hover:underline">
+        {item.text}
+      </Link>
+    </List.Item>
+  ),
+  split: false,
+  className: "text-xs!",
+};
 
 const BrandListing: React.FC<BrandListingProps> = ({
   data,
@@ -63,18 +79,7 @@ const BrandListing: React.FC<BrandListingProps> = ({
       <Title level={5} className="uppercase">
         {title}
       </Title>
-      <List
-        dataSource={data}
-        renderItem={(item) => (
-          <List.Item className="py-1.5!">
-            <Link href={item.href} className="hover:underline">
-              {item.text}
-            </Link>
-          </List.Item>
-        )}
-        split={false}
-        className="text-xs!"
-      />
+      <List dataSource={data} {...listProps} />
     </Space.Compact>
   );
 };
