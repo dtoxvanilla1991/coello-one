@@ -6,10 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint . --max-warnings=0",
     "test": "bun test",
-    "predev": "ts-node --project ./tsconfig.node.json ./scripts/genAntdCss.tsx",
-    "prebuild": "cross-env NODE_ENV=production ts-node --project ./tsconfig.node.json ./scripts/genAntdCss.tsx"
+    "generate:antd-css": "ts-node --project ./tsconfig.node.json ./scripts/genAntdCss.tsx",
+    "predev": "cross-env NODE_ENV=development bun run generate:antd-css",
+    "prebuild": "cross-env NODE_ENV=production bun run generate:antd-css"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.24.0",

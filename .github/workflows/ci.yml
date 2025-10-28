@@ -48,17 +48,16 @@ jobs:
 
       - name: Upload test report
         if: always()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v4
         with:
           name: junit-report
-          path: coello-one/reports/junit-report.xml
+          path: reports/junit-report.xml
 
       - name: Test summary
         if: always()
-        working-directory: .
         run: |
           echo "JUnit summary:" 
-          REPORT_PATH="coello-one/reports/junit-report.xml"
+          REPORT_PATH="reports/junit-report.xml"
           if [ ! -f "$REPORT_PATH" ]; then
             echo "No junit-report.xml found at $REPORT_PATH"; exit 1; fi
           TOTAL=$(grep -o 'tests="[0-9]\+' "$REPORT_PATH" | head -1 | cut -d'"' -f2)

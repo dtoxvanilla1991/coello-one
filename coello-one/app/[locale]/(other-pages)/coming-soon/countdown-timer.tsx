@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from "react";
 import Countdown from 'react-countdown';
 
 interface RenderProps {
@@ -60,9 +61,11 @@ function Render({ days, hours, minutes, seconds, completed }: RenderProps) {
 }
 
 export default function CountdownTimer() {
+  const [targetDate] = useState(() => Date.now() + 2000000000);
+
   return (
     <div>
-      <Countdown date={Date.now() + 2000000000} renderer={Render} />
+      <Countdown date={targetDate} renderer={Render} />
     </div>
   );
 }
