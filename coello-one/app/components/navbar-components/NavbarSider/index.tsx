@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { Flex, Layout, Space, theme, Typography } from "antd";
+import { Flex, Layout, Space, Typography } from "antd";
 import { siderCollapsedAtom } from "@/store/siderStore";
 import { useAtom } from "jotai";
 import LanguageSelect from "./LanguageSelect";
@@ -12,14 +12,8 @@ import SiderFooter from "./SiderFooter";
 const { Sider } = Layout;
 const { Text } = Typography;
 
-type NavbarSiderProps = { "data-testid"?: string };
-
-export function NavbarSiderComponent(props: NavbarSiderProps) {
+export function NavbarSiderComponent() {
   const [collapsed, setCollapsed] = useAtom(siderCollapsedAtom);
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
-
   // Locking main page scroll when sidebar is visible since it's an overlay
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
@@ -35,15 +29,14 @@ export function NavbarSiderComponent(props: NavbarSiderProps) {
 
   return (
     <Sider
-      data-testid={props["data-testid"]}
       aria-label="Navigation Sidebar"
       role="navigation"
-      className={`!absolute top-14 left-0 pt-4 transition-transform! duration-300 ease-in-out z-50!
+      className={`!absolute top-14 left-0 pt-4 transition-transform! duration-300 ease-in-out z-50! bg-white
         w-full
         h-[calc(100vh-56px)]          /* fill viewport below navbar */
         overflow-y-auto              /* making sure user can scroll within sidebar */
         ${collapsed ? "-translate-x-full!" : "translate-x-0!"}`}
-      style={{ background: colorBgContainer }}
+      theme="light"
       width={"100%"}
       collapsible
       collapsed={collapsed}

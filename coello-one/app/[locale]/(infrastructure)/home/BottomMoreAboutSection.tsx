@@ -66,12 +66,7 @@ const BottomMoreAboutSection: React.FC = () => {
 const CardContent: FC<DataType> = ({ title, text, icon, image }) => {
   if (image) {
     return (
-      <Image
-        src={image}
-        alt="Coello One"
-        fill
-        style={{ objectFit: "contain" }}
-      />
+      <Image src={image} alt="Coello One" fill className="object-contain" />
     );
   } else if (icon) {
     return icon;

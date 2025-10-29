@@ -73,3 +73,7 @@ You must analyze every request I make through the combined lens of these five ex
 3. **Creative & Unique:** Reflect the one-sleeve Coello brand.
 4. **Optimized Conversion:** Smooth the path from browse to purchase.
 5. **Data-Driven:** Ensure major features are measurable.
+
+## 5. Styling Governance
+
+- Favor Tailwind CSS for every styling decision. Only pursue non-Tailwind approaches if a documented limitation prevents Tailwind from achieving the requirement, and capture that exception in code comments plus the project log.

@@ -15,9 +15,7 @@ import Image from "next/image";
 
 const { Header } = Layout;
 
-type NavbarProps = { "data-testid"?: string };
-
-export function Navbar(props: NavbarProps) {
+export function Navbar() {
   const [collapsed, setCollapsed] = useAtom(siderCollapsedAtom);
 
   const [searchVisible, setSearchVisible] = useState<boolean>(false);
@@ -28,9 +26,7 @@ export function Navbar(props: NavbarProps) {
 
   const show = searchVisible ? "hidden!" : "block!";
   return (
-    <Header
-      data-testid={props["data-testid"]}
-      className="bg-white! flex items-center justify-between px-4!">
+    <Header className="bg-white! flex items-center justify-between px-4!">
       <Button
         type="text"
         size="large"
@@ -44,8 +40,7 @@ export function Navbar(props: NavbarProps) {
           width={150}
           height={50}
           alt="Coello one logo"
-          className="pt-1 ml-2"
-          style={{ width: "auto" }}
+          className="ml-2 pt-1 w-auto"
           priority
         />
       </Flex>
