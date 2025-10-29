@@ -2,11 +2,17 @@
 import { GlobalRegistrator } from '@happy-dom/global-registrator';
 import { cleanup } from '@testing-library/react';
 import * as matchers from '@testing-library/jest-dom/matchers';
-import React from 'react';
+import type { AnchorHTMLAttributes, ImgHTMLAttributes, ReactNode } from "react";
 import { expect, afterEach, mock } from 'bun:test';
 
 // Register the DOM environment
 GlobalRegistrator.register();
+
+// Tell React that the test runner wraps updates in act().
+(globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
+
+const ReactModule = await import('react');
+const createElement = ReactModule.createElement;
 
 // Repair Testing Library's screen export now that a DOM exists.
 const domTestingLibrary = await import('@testing-library/dom');
@@ -25,17 +31,22 @@ afterEach(() => {
 const NEXT_IMAGE_PROPS = ['fill', 'priority', 'placeholder', 'blurDataURL', 'loader', 'quality'] as const;
 
 // Globally mock next/image to a plain img to avoid URL parsing and layout issues in tests
-mock.module('next/image', () => ({
-	__esModule: true,
-	default: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
-		// Strip Next-specific props that aren't valid on img
-			const cleaned: Record<string, unknown> = { ...(props as Record<string, unknown>) };
-			for (const k of NEXT_IMAGE_PROPS) {
-        if (k in cleaned) delete cleaned[k];
-      }
-			const alt = typeof cleaned.alt === 'string' ? (cleaned.alt as string) : '';
-			return React.createElement('img', { ...(cleaned as React.ImgHTMLAttributes<HTMLImageElement>), alt });
-	},
+mock.module("next/image", () => ({
+  __esModule: true,
+  default: (props: ImgHTMLAttributes<HTMLImageElement>) => {
+    // Strip Next-specific props that aren't valid on img
+    const cleaned: Record<string, unknown> = {
+      ...(props as Record<string, unknown>),
+    };
+    for (const k of NEXT_IMAGE_PROPS) {
+      if (k in cleaned) delete cleaned[k];
+    }
+    const alt = typeof cleaned.alt === "string" ? (cleaned.alt as string) : "";
+    return createElement("img", {
+      ...(cleaned as ImgHTMLAttributes<HTMLImageElement>),
+      alt,
+    });
+  },
 }));
 
 // Mock next/font/google to avoid importing Next internals during tests
@@ -46,19 +57,31 @@ mock.module('next/font/google', () => ({
 }));
 
 // Mock next/link to a basic anchor element
-mock.module('next/link', () => ({
-	__esModule: true,
-	default: (props: React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: unknown; children?: React.ReactNode }) => {
-		let href = '/';
-		const candidate = props.href as unknown;
-		if (typeof candidate === 'string') {
-			href = candidate;
-		} else if (candidate && typeof (candidate as { pathname?: unknown }).pathname === 'string') {
-			href = (candidate as { pathname?: string }).pathname ?? '/';
-		}
-		// Spread props first, then override href to avoid TS unused vars
-		return React.createElement('a', { ...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>), href }, props.children);
-	},
+mock.module("next/link", () => ({
+  __esModule: true,
+  default: (
+    props: AnchorHTMLAttributes<HTMLAnchorElement> & {
+      href: unknown;
+      children?: ReactNode;
+    }
+  ) => {
+    let href = "/";
+    const candidate = props.href as unknown;
+    if (typeof candidate === "string") {
+      href = candidate;
+    } else if (
+      candidate &&
+      typeof (candidate as { pathname?: unknown }).pathname === "string"
+    ) {
+      href = (candidate as { pathname?: string }).pathname ?? "/";
+    }
+    // Spread props first, then override href to avoid TS unused vars
+    return createElement(
+      "a",
+      { ...(props as AnchorHTMLAttributes<HTMLAnchorElement>), href },
+      props.children
+    );
+  },
 }));
 
 // Mock next/navigation hooks and functions
@@ -87,7 +110,7 @@ mock.module("next/navigation", () => ({
 }));
 
 // Mock AntdRegistry to be a pass-through wrapper in tests
-mock.module('@ant-design/nextjs-registry', () => ({
-	__esModule: true,
-	AntdRegistry: ({ children }: { children: React.ReactNode }) => children,
+mock.module("@ant-design/nextjs-registry", () => ({
+  __esModule: true,
+  AntdRegistry: ({ children }: { children: ReactNode }) => children,
 }));

@@ -3,34 +3,34 @@ import { describe, it, expect } from "bun:test";
 import InfrastructureLayout from "./layout";
 
 describe("InfrastructureLayout", () => {
-  it("should render its children", () => {
+  it("should render its children", async () => {
     render(
       <InfrastructureLayout>
         <div>Child Component</div>
       </InfrastructureLayout>
     );
-    expect(screen.getByText("Child Component")).toBeTruthy();
+    expect(await screen.findByText("Child Component")).toBeTruthy();
   });
 
-  it("should render the Navbar, NavbarSider, and Footer components", () => {
+  it("should render the Navbar, NavbarSider, and Footer components", async () => {
     render(
       <InfrastructureLayout>
         <div>Child</div>
       </InfrastructureLayout>
     );
-    expect(screen.getByRole("banner")).toBeTruthy();
+    expect(await screen.findByRole("banner")).toBeTruthy();
     expect(
-      screen.getByRole("navigation", { name: /navigation sidebar/i })
+      await screen.findByRole("navigation", { name: /navigation sidebar/i })
     ).toBeTruthy();
-    expect(screen.getByRole("contentinfo")).toBeTruthy();
+    expect(await screen.findByRole("contentinfo")).toBeTruthy();
   });
 
-  it("should provide a main content region", () => {
+  it("should provide a main content region", async () => {
     render(
       <InfrastructureLayout>
         <div>Child</div>
       </InfrastructureLayout>
     );
-    expect(screen.getByRole("main")).toBeTruthy();
+    expect(await screen.findByRole("main")).toBeTruthy();
   });
 });
