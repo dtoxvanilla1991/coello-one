@@ -1,39 +1,25 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "bun:test";
 import { Featured } from "./Featured";
 
 describe("Featured", () => {
   it("should render the featured section", () => {
-    const { container } = render(<Featured />);
-    expect(
-      container.querySelector('[data-testid="featured-section"]')
-    ).toBeTruthy();
+    render(<Featured />);
+    expect(screen.getByRole("region", { name: /Featured/i })).toBeTruthy();
   });
 
   it("should render the title", () => {
-    const { container } = render(<Featured />);
-    expect(
-      (
-        container.querySelector(
-          '[data-testid="featured-section-title"]'
-        ) as HTMLElement
-      ).textContent
-    ).toBe("Featured");
+    render(<Featured />);
+    const heading = screen.getByRole("heading", {
+      level: 4,
+      name: /Featured/i,
+    });
+    expect(heading.textContent).toBe("Featured");
   });
 
   it("should render 4 cards", () => {
-    const { container } = render(<Featured />);
-    expect(
-      container.querySelector('[data-testid="featured-section-card-0"]')
-    ).toBeTruthy();
-    expect(
-      container.querySelector('[data-testid="featured-section-card-1"]')
-    ).toBeTruthy();
-    expect(
-      container.querySelector('[data-testid="featured-section-card-2"]')
-    ).toBeTruthy();
-    expect(
-      container.querySelector('[data-testid="featured-section-card-3"]')
-    ).toBeTruthy();
+    render(<Featured />);
+    const cards = screen.getAllByRole("listitem");
+    expect(cards).toHaveLength(4);
   });
 });

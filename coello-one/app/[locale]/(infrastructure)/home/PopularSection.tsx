@@ -16,41 +16,37 @@ const data = [
 const PopularSection: React.FC = () => {
   return (
     <Flex
-      className="p-4! pr-0! pb-8! bg-black"
+      className="bg-black p-4! pr-0! pb-8!"
       vertical
       gap={16}
-      data-testid="popular-section">
+      role="region"
+      aria-labelledby="popular-section-title">
       <Title
         level={3}
-        className="uppercase text-white! mb-0!"
-        data-testid="popular-section-title">
+        className="mb-0! uppercase text-white!"
+        id="popular-section-title">
         Popular right now
       </Title>
       <Space size={16}>
-        <Button
-          className="uppercase px-5!"
-          size="large"
-          data-testid="popular-section-women-button">
+        <Button className="px-5! uppercase" size="large">
           Women
         </Button>
-        <Button
-          className="uppercase px-8!"
-          size="large"
-          data-testid="popular-section-men-button">
+        <Button className="px-8! uppercase" size="large">
           Men
         </Button>
       </Space>
       <Flex
         gap={16}
-        className="overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar">
+        role="list"
+        aria-label="Popular products"
+        className="hide-scrollbar overflow-x-auto snap-x snap-mandatory scroll-smooth">
         {data.map((item, index) => (
           <Card
             key={index}
             className="min-w-72 snap-start"
             variant="borderless"
-            data-testid={`popular-section-card-${index}`}
             cover={
-              <div className="relative h-[400px]">
+              <Flex className="relative h-[400px]">
                 <Image
                   alt={item.title}
                   src={`/athletes/vertical/main-secondary-${index + 6}.jpg`}
@@ -58,14 +54,11 @@ const PopularSection: React.FC = () => {
                   fill
                   className="object-cover object-top"
                 />
-              </div>
+              </Flex>
             }
             hoverable
             actions={[
-              <Button
-                key={index}
-                className="uppercase"
-                data-testid={`popular-section-card-button-${index}`}>
+              <Button key={`${item.title}-cta`} className="uppercase">
                 Browse options
               </Button>,
             ]}>

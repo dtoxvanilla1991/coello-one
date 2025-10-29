@@ -8,29 +8,22 @@ const SalesBlock: React.FC = () => {
   return (
     <Flex
       className="bg-black p-4! text-center"
-      vertical={true}
+      vertical
       justify="center"
       align="center"
-      data-testid="sales-block">
-      <Title className="text-white!" level={3} data-testid="sales-block-title">
+      role="region"
+      aria-labelledby="sales-block-title">
+      <Title className="text-white!" level={3} id="sales-block-title">
         GET AN EXTRA 10% OFF SALE ITEMS
       </Title>
-      <Text
-        className="text-white! mb-5 text-base"
-        data-testid="sales-block-text">
+      <Text className="mb-5 text-base text-white!">
         Drop code extra10 and thank us with a tagged photo in the gym
       </Text>
       <Space direction="vertical" className="w-1/2">
-        <Button
-          className="w-full uppercase"
-          size="large"
-          data-testid="sales-block-women-button">
+        <Button className="w-full uppercase" size="large">
           Shop women
         </Button>
-        <Button
-          className="w-full uppercase"
-          size="large"
-          data-testid="sales-block-men-button">
+        <Button className="w-full uppercase" size="large">
           Shop men
         </Button>
       </Space>

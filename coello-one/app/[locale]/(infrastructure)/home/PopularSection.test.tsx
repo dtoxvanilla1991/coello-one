@@ -1,59 +1,39 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "bun:test";
 import PopularSection from "./PopularSection";
 
 describe("PopularSection", () => {
   it("should render the popular section", () => {
-    const { container } = render(<PopularSection />);
+    render(<PopularSection />);
     expect(
-      container.querySelector('[data-testid="popular-section"]')
+      screen.getByRole("region", { name: /Popular right now/i })
     ).toBeTruthy();
   });
 
   it("should render the title", () => {
-    const { container } = render(<PopularSection />);
-    expect(
-      (
-        container.querySelector(
-          '[data-testid="popular-section-title"]'
-        ) as HTMLElement
-      ).textContent
-    ).toBe("Popular right now");
+    render(<PopularSection />);
+    const heading = screen.getByRole("heading", {
+      level: 3,
+      name: /Popular right now/i,
+    });
+    expect(heading.textContent).toBe("Popular right now");
   });
 
   it("should render the women and men buttons", () => {
-    const { container } = render(<PopularSection />);
-    expect(
-      container.querySelector('[data-testid="popular-section-women-button"]')
-    ).toBeTruthy();
-    expect(
-      container.querySelector('[data-testid="popular-section-men-button"]')
-    ).toBeTruthy();
+    render(<PopularSection />);
+    expect(screen.getByRole("button", { name: /Women/i })).toBeTruthy();
+    expect(screen.getByRole("button", { name: /Men/i })).toBeTruthy();
   });
 
   it("should render 3 cards", () => {
-    const { container } = render(<PopularSection />);
-    expect(
-      container.querySelector('[data-testid="popular-section-card-0"]')
-    ).toBeTruthy();
-    expect(
-      container.querySelector('[data-testid="popular-section-card-1"]')
-    ).toBeTruthy();
-    expect(
-      container.querySelector('[data-testid="popular-section-card-2"]')
-    ).toBeTruthy();
+    render(<PopularSection />);
+    const cards = screen.getAllByRole("listitem");
+    expect(cards).toHaveLength(3);
   });
 
   it("should render the card buttons", () => {
-    const { container } = render(<PopularSection />);
-    expect(
-      container.querySelector('[data-testid="popular-section-card-button-0"]')
-    ).toBeTruthy();
-    expect(
-      container.querySelector('[data-testid="popular-section-card-button-1"]')
-    ).toBeTruthy();
-    expect(
-      container.querySelector('[data-testid="popular-section-card-button-2"]')
-    ).toBeTruthy();
+    render(<PopularSection />);
+    const buttons = screen.getAllByRole("button", { name: /Browse options/i });
+    expect(buttons).toHaveLength(3);
   });
 });

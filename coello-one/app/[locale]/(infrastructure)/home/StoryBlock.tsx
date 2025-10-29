@@ -18,22 +18,20 @@ const StoryBlock: React.FC = () => {
     <Space
       direction="vertical"
       size="small"
-      className="flex bg-gray-200 w-full p-4"
-      data-testid="story-block">
+      className="flex w-full bg-gray-200 p-4"
+      role="list"
+      aria-label="Coello story highlights">
       <BrandListing
         paragraph={brandIdea}
         title="Bold design with active performance"
-        data-testid="story-block-listing-0"
       />
       <BrandListing
         paragraph={activewearAndLifestyle}
         title="Healthier Lifestyle"
-        data-testid="story-block-listing-1"
       />
       <BrandListing
         paragraph={confidenceHub}
         title="Confidence to stand out hub"
-        data-testid="story-block-listing-2"
       />
     </Space>
   );
@@ -44,19 +42,14 @@ export default StoryBlock;
 interface BrandListingProps {
   paragraph: string;
   title: string;
-  "data-testid"?: string;
 }
 
-const BrandListing: React.FC<BrandListingProps> = ({
-  paragraph,
-  title,
-  "data-testid": dataTestId,
-}) => {
+const BrandListing: React.FC<BrandListingProps> = ({ paragraph, title }) => {
   return (
     <Space.Compact
       direction="vertical"
       className="w-full"
-      data-testid={dataTestId}>
+      role="listitem">
       <Title level={5} className="uppercase">
         {title}
       </Title>
