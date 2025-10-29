@@ -16,20 +16,19 @@ const data = [
 
 export default function LegalLinks() {
   return (
-    <Row className="px-4 pb-2" data-testid="legal-links">
+    <Row className="px-4 pb-2" justify="center">
       <Col span={24}>
         <List
           size="small"
           className="flex justify-center"
           split={false}
+          aria-label="Legal policies"
           dataSource={data}
-          renderItem={(item, index) => (
-            <List.Item
-              className="p-1! w-full"
-              data-testid={`legal-links-item-${index}`}>
+          renderItem={(item) => (
+            <List.Item className="w-full p-1!">
               <Link
                 href={item.href}
-                className="text-gray-600 hover:text-gray-200 p- text-xs font-semibold mx-auto">
+                className="mx-auto text-xs font-semibold text-gray-600 hover:text-gray-200">
                 {item.title}
               </Link>
             </List.Item>

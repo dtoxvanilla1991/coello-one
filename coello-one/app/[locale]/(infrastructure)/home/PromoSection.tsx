@@ -9,16 +9,16 @@ export function PromoSection() {
       justify="center"
       align="center"
       vertical
-      data-testid="promo-section">
-      <Title level={5} data-testid="promo-section-title">
+      role="region"
+      aria-labelledby="promo-section-title">
+      <Title id="promo-section-title" level={5}>
         Limited Time Offer
       </Title>
-      <Text data-testid="promo-section-text">Up to 20% off select items</Text>
+      <Text>Up to 20% off select items</Text>
       <Button
         className="mt-4 px-10! uppercase font-semibold!"
         type="primary"
-        size="large"
-        data-testid="promo-section-button">
+        size="large">
         Shop Now
       </Button>
     </Flex>

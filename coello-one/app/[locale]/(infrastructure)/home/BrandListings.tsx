@@ -24,21 +24,9 @@ const mensLine: BrandLine = [
 
 const BrandListings: React.FC = () => {
   return (
-    <Space
-      direction="vertical"
-      size="small"
-      className="flex w-full p-4"
-      data-testid="brand-listings">
-      <BrandListing
-        data={womensLine}
-        title="Women's line"
-        data-testid="women-s-line-listing"
-      />
-      <BrandListing
-        data={mensLine}
-        title="Men's line"
-        data-testid="men-s-line-listing"
-      />
+    <Space direction="vertical" size="small" className="flex w-full p-4">
+      <BrandListing data={womensLine} title="Women's line" />
+      <BrandListing data={mensLine} title="Men's line" />
     </Space>
   );
 };
@@ -48,7 +36,6 @@ export default BrandListings;
 type BrandListingProps = {
   data: BrandLine;
   title: string;
-  "data-testid"?: string;
 };
 
 const listProps: Pick<
@@ -66,20 +53,17 @@ const listProps: Pick<
   className: "text-xs!",
 };
 
-const BrandListing: React.FC<BrandListingProps> = ({
-  data,
-  title,
-  "data-testid": dataTestId,
-}) => {
+const BrandListing: React.FC<BrandListingProps> = ({ data, title }) => {
   return (
-    <Space.Compact
-      direction="vertical"
-      className="w-full"
-      data-testid={dataTestId}>
+    <Space.Compact direction="vertical" className="w-full" role="group">
       <Title level={5} className="uppercase">
         {title}
       </Title>
-      <List dataSource={data} {...listProps} />
+      <List
+        aria-label={`${title} links`}
+        dataSource={data}
+        {...listProps}
+      />
     </Space.Compact>
   );
 };
