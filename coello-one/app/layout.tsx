@@ -14,12 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   // In tests, rendering <html>/<body> inside a div container breaks the DOM in JSDOM/Happy DOM
-  // Provide a test-friendly wrapper that carries the same classes
+  // Provide a test-friendly wrapper that carries the same classes without custom data attributes
   if (process.env.NODE_ENV === "test") {
     return (
-      <div
-        data-testid="root-layout"
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <div className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </div>
     );

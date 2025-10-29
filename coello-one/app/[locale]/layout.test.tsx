@@ -1,19 +1,16 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "bun:test";
 import LocaleLayout, { generateMetadata } from "./layout";
 
 describe("LocaleLayout", () => {
-  it("should render children and have correct data-testid", async () => {
+  it("should render children inside the layout", async () => {
     const ui = await LocaleLayout({
       params: Promise.resolve({ locale: "en-GB" }),
-      children: <div data-testid="child">Child</div>,
+      children: <div>Child</div>,
     });
-    const { container } = render(ui);
-    expect(container.querySelector('[data-testid="child"]')).toBeTruthy();
-    expect(
-      container.querySelector('[data-testid="locale-layout-provider"]')
-    ).toBeTruthy();
+    render(ui);
+    expect(screen.getByText("Child")).toBeTruthy();
   });
 
   it("should throw notFound for unsupported locale", async () => {
