@@ -17,7 +17,10 @@ export function MainBanner() {
   const withLocalePath = useLocalePath();
 
   return (
-    <Content data-testid="main-banner">
+    <Content
+      role="region"
+      aria-labelledby="main-banner-title"
+      className="relative">
       <Row>
         <Col className="h-[44em] grid items-end w-full">
           <Image
@@ -32,14 +35,11 @@ export function MainBanner() {
             <Title
               className="text-white! font-extrabold!"
               level={4}
-              data-testid="main-banner-title">
+              id="main-banner-title">
               NOW YOU TRULY STAND OUT.
             </Title>
             <Link href={withLocalePath("/one-sleeve-classic")}>
-              <Button
-                className="px-10! uppercase font-semibold!"
-                size="large"
-                data-testid="main-banner-shop-now-button">
+              <Button className="px-10! uppercase font-semibold!" size="large">
                 Shop Now
               </Button>
             </Link>

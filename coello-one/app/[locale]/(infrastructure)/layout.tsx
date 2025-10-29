@@ -13,7 +13,9 @@ export default function InfrastructureLayout({
       <NavbarSiderComponent />
       <Layout>
         <Navbar />
-        {children}
+        <main role="main" className="min-h-screen">
+          {children}
+        </main>
         <Footer />
       </Layout>
     </Layout>
