@@ -1,7 +1,7 @@
 "use client";
 
 import { useReducer } from "react";
-import { Button, Radio, Space, Typography, Row, Col } from "antd";
+import { Button, Radio, Space, Typography, Row, Col, Flex } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import Image from "next/image";
 
@@ -57,11 +57,20 @@ const initialState: State = {
 function productReducer(state: State, action: Action): State {
   switch (action.type) {
     case "SET_COLOR":
-      return { ...state, selectedColor: action.payload };
+      return {
+        ...state,
+        selectedColor: action.payload,
+      };
     case "SET_SIZE":
-      return { ...state, selectedSize: action.payload };
+      return {
+        ...state,
+        selectedSize: action.payload,
+      };
     case "SET_IMAGE":
-      return { ...state, mainImage: action.payload };
+      return {
+        ...state,
+        mainImage: action.payload,
+      };
     default:
       return state;
   }
@@ -72,30 +81,39 @@ const OneSleeveClassic: React.FC = () => {
   const { selectedColor, selectedSize, mainImage } = state;
 
   return (
-    <div className="container mx-auto p-4 md:p-8">
+    <Flex className="container mx-auto p-4 md:p-8" vertical>
       <Row gutter={[32, 32]}>
         <Col xs={24} md={14}>
           <Space direction="vertical" className="w-full">
-            <div className="relative w-full aspect-square">
+            <Flex className="relative aspect-square w-full">
               <Image
                 src={mainImage}
                 alt={product.name}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover rounded-md"
+                className="rounded-md object-cover"
                 priority
               />
-            </div>
+            </Flex>
             <Row gutter={8}>
               {product.images.map((img, index) => (
                 <Col span={8} key={index}>
-                  <div
-                    className={`relative w-full aspect-square cursor-pointer border-2 rounded-md overflow-hidden transition-colors hover:border-black ${
+                  <Flex
+                    className={`relative aspect-square w-full cursor-pointer overflow-hidden rounded-md border-2 transition-colors hover:border-black ${
                       mainImage === img ? "border-black" : "border-transparent"
                     }`}
                     onClick={() =>
                       dispatch({ type: "SET_IMAGE", payload: img })
-                    }>
+                    }
+                    role="button"
+                    aria-pressed={mainImage === img}
+                    tabIndex={0}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        dispatch({ type: "SET_IMAGE", payload: img });
+                      }
+                    }}>
                     <Image
                       src={img}
                       alt={`${product.name} thumbnail ${index + 1}`}
@@ -103,7 +121,7 @@ const OneSleeveClassic: React.FC = () => {
                       sizes="33vw"
                       className="object-cover"
                     />
-                  </div>
+                  </Flex>
                 </Col>
               ))}
             </Row>
@@ -118,8 +136,8 @@ const OneSleeveClassic: React.FC = () => {
               {product.price}
             </Text>
 
-            <div className="flex flex-col gap-3">
-              <div className="flex flex-wrap items-center gap-4">
+            <Flex vertical gap={12}>
+              <Flex wrap="wrap" align="center" gap={16}>
                 <Text strong>
                   COLOR:{" "}
                   <span className="font-normal">{selectedColor.name}</span>
@@ -157,10 +175,10 @@ const OneSleeveClassic: React.FC = () => {
                     })}
                   </Space>
                 </Radio.Group>
-              </div>
-            </div>
+              </Flex>
+            </Flex>
 
-            <div className="flex flex-col gap-3">
+            <Flex vertical gap={12}>
               <Text strong>SIZE</Text>
               <Radio.Group
                 value={selectedSize}
@@ -183,19 +201,19 @@ const OneSleeveClassic: React.FC = () => {
                   ))}
                 </Space>
               </Radio.Group>
-            </div>
+            </Flex>
 
             <Button
               type="primary"
               size="large"
               icon={<ShoppingCartOutlined />}
-              className="w-full bg-black hover:bg-gray-800 text-white uppercase">
+              className="w-full bg-black text-white hover:bg-gray-800 uppercase">
               Add to Bag
             </Button>
           </Space>
         </Col>
       </Row>
-    </div>
+    </Flex>
   );
 };
 

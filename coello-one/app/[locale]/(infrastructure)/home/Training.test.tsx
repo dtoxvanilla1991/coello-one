@@ -21,8 +21,9 @@ describe("Training", () => {
 
   it("should render 3 cards", () => {
     render(<Training />);
-    const cards = screen.getAllByRole("listitem");
-    expect(cards).toHaveLength(3);
+    const list = screen.getByRole("list", { name: /Training plans/i });
+    const topLevelCards = list.querySelectorAll(':scope > [role="listitem"]');
+    expect(topLevelCards).toHaveLength(3);
   });
 
   it("should render the card buttons", () => {

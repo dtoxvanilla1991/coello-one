@@ -38,11 +38,11 @@ const BottomMoreAboutSection: React.FC = () => {
           <Card
             key={index}
             role="listitem"
-            className="min-w-44 snap-start bg-gray-200!"
-            classNames={{ body: "p-2!" }}
+            className="min-w-44 snap-start !bg-gray-200"
+            classNames={{ body: "!p-2" }}
             cover={
               <Flex
-                className="!flex relative h-28 bg-black text-white! uppercase"
+                className="!flex relative h-28 bg-black !text-white uppercase"
                 justify="center"
                 align="center"
                 vertical>
@@ -71,10 +71,10 @@ const CardContent: FC<DataType> = ({ title, text, icon, image }) => {
   }
   return (
     <>
-      <Title level={4} className="text-white! m-0! font-bold">
+      <Title level={4} className="!text-white !m-0 font-bold">
         {title}
       </Title>
-      <Text className="text-white! font-semibold">{text}</Text>
+      <Text className="!text-white font-semibold">{text}</Text>
     </>
   );
 };

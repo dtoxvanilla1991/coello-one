@@ -32,12 +32,12 @@ const NavBarBagDrawer: React.FC<NavBarBagDrawerProps> = ({
         styles={{ image: { marginBottom: 0 } }}>
         <Space direction="vertical">
           <Button type="primary" className="w-full">
-            <Text className="uppercase text-white!" strong>
+            <Text className="uppercase !text-white" strong>
               Shop men
             </Text>
           </Button>
           <Button type="primary">
-            <Text className="uppercase text-white!" strong>
+            <Text className="uppercase !text-white" strong>
               Shop women
             </Text>
           </Button>

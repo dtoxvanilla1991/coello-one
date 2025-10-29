@@ -1,6 +1,6 @@
-import React from "react";
 import { List, Space, Typography } from "antd";
 import Link from "next/link";
+import type { FC } from "react";
 
 const { Text } = Typography;
 
@@ -16,7 +16,7 @@ const data: {
   { text: "Blog", href: "#" },
 ];
 
-const SiderFooter: React.FC = () => {
+const SiderFooter: FC = () => {
   return (
     <Space
       direction="vertical"
@@ -28,14 +28,14 @@ const SiderFooter: React.FC = () => {
       <List
         dataSource={data}
         renderItem={(item) => (
-          <List.Item className="py-1.5!">
+          <List.Item className="!py-1.5">
             <Link href={item.href} className="text-gray-600 hover:underline">
               {item.text}
             </Link>
           </List.Item>
         )}
         split={false}
-        className="text-xs!"
+        className="!text-xs"
       />
     </Space>
   );

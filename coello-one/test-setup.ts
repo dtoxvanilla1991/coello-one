@@ -8,6 +8,11 @@ import { expect, afterEach, mock } from 'bun:test';
 // Register the DOM environment
 GlobalRegistrator.register();
 
+// Repair Testing Library's screen export now that a DOM exists.
+const domTestingLibrary = await import('@testing-library/dom');
+const boundScreen = domTestingLibrary.getQueriesForElement(document.body, domTestingLibrary.queries);
+Object.assign(domTestingLibrary.screen, boundScreen);
+
 // Extend Bun's expect with the matchers from jest-dom
 expect.extend(matchers);
 
@@ -57,25 +62,28 @@ mock.module('next/link', () => ({
 }));
 
 // Mock next/navigation hooks and functions
-mock.module('next/navigation', () => ({
-	__esModule: true,
-	useServerInsertedHTML: () => {},
-	useRouter: () => ({
-		push: () => {},
-		replace: () => {},
-		prefetch: () => Promise.resolve(),
-		back: () => {},
-		forward: () => {},
-		refresh: () => {},
-	}),
-	usePathname: () => '/',
-	useSearchParams: () => new URLSearchParams(),
-	notFound: () => {
-		throw new Error('NEXT_HTTP_ERROR_FALLBACK;404');
-	},
-	redirect: () => {
-		throw new Error('NEXT_REDIRECT');
-	},
+mock.module("next/navigation", () => ({
+  __esModule: true,
+  useServerInsertedHTML: () => {},
+  useRouter: () => ({
+    push: () => {},
+    replace: () => {},
+    prefetch: () => Promise.resolve(),
+    back: () => {},
+    forward: () => {},
+    refresh: () => {},
+  }),
+  usePathname: () => "/",
+  useSearchParams: () => new URLSearchParams(),
+  useParams: () => ({}),
+  useSelectedLayoutSegment: () => null,
+  useSelectedLayoutSegments: () => [],
+  notFound: () => {
+    throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
+  },
+  redirect: () => {
+    throw new Error("NEXT_REDIRECT");
+  },
 }));
 
 // Mock AntdRegistry to be a pass-through wrapper in tests

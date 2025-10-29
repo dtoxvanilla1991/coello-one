@@ -77,3 +77,4 @@ You must analyze every request I make through the combined lens of these five ex
 ## 5. Styling Governance
 
 - Favor Tailwind CSS for every styling decision. Only pursue non-Tailwind approaches if a documented limitation prevents Tailwind from achieving the requirement, and capture that exception in code comments plus the project log.
+- Do not add `import React from "react";` to TSX files. Next.js provides React automatically; import only the specific hooks you need (e.g., `useState`) and import types with the `type` modifier (e.g., `import type { FC } from "react";`).

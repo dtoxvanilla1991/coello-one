@@ -13,7 +13,7 @@ describe("BrandListings", () => {
     render(<BrandListings />);
     const womensHeading = screen.getByRole("heading", {
       level: 5,
-      name: /women's line/i,
+      name: /^Women's line$/i,
     });
     const womensList = womensHeading.nextElementSibling as HTMLElement;
     expect(within(womensList).getByText("Women's Passion")).toBeTruthy();
@@ -23,7 +23,7 @@ describe("BrandListings", () => {
     render(<BrandListings />);
     const mensHeading = screen.getByRole("heading", {
       level: 5,
-      name: /men's line/i,
+      name: /^Men's line$/i,
     });
     const mensList = mensHeading.nextElementSibling as HTMLElement;
     expect(within(mensList).getByText("Mens's Passion")).toBeTruthy();

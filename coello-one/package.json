@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
-    "test": "bun test",
+    "test": "bun test --preload ./test-setup.ts",
     "generate:antd-css": "ts-node --project ./tsconfig.node.json ./scripts/genAntdCss.tsx",
     "predev": "cross-env NODE_ENV=development bun run generate:antd-css",
     "prebuild": "cross-env NODE_ENV=production bun run generate:antd-css"

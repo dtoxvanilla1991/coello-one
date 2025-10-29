@@ -21,8 +21,8 @@ describe("PopularSection", () => {
 
   it("should render the women and men buttons", () => {
     render(<PopularSection />);
-    expect(screen.getByRole("button", { name: /Women/i })).toBeTruthy();
-    expect(screen.getByRole("button", { name: /Men/i })).toBeTruthy();
+  expect(screen.getByLabelText(/Show popular women's items/i)).toBeTruthy();
+  expect(screen.getByLabelText(/Show popular men's items/i)).toBeTruthy();
   });
 
   it("should render 3 cards", () => {

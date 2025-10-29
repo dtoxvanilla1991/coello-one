@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
 import { Typography, Button } from "antd";
 import WelcomeImg from "@public/ai-generated/welcome.svg";
 import WelcomeTwoImg from "@public/ai-generated/welcome-2.svg";

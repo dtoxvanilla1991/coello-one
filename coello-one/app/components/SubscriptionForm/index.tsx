@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -22,8 +22,8 @@ const subscribeSchema = z.object({
 });
 
 const SubscriptionForm = () => {
-  const [serverError, setServerError] = React.useState("");
-  const [isSuccess, setIsSuccess] = React.useState(false);
+  const [serverError, setServerError] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const {
     register,

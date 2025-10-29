@@ -5,7 +5,7 @@ import LegalLinks from "./LegalLinks";
 describe("LegalLinks", () => {
   it("should render the legal links", () => {
     render(<LegalLinks />);
-    expect(screen.getByRole("list", { name: /legal policies/i })).toBeTruthy();
+    expect(screen.getByLabelText(/legal policies/i)).toBeTruthy();
   });
 
   it("should render 4 links", () => {

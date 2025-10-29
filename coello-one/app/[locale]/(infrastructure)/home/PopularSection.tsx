@@ -1,8 +1,10 @@
 "use client";
 
-import React from "react";
+import { useCallback } from "react";
+import type { FC } from "react";
 import Image from "next/image";
 import { Card, Button, Typography, Flex, Space } from "antd";
+import { trackEvent } from "@/utils/trackEvent";
 
 const { Title } = Typography;
 
@@ -13,25 +15,43 @@ const data = [
   // ...existing or additional items...
 ];
 
-const PopularSection: React.FC = () => {
+const PopularSection: FC = () => {
+  const handleFilterClick = useCallback((filter: string) => {
+    trackEvent("popular_filter_click", { filter });
+  }, []);
+
+  const handleBrowseClick = useCallback((category: string) => {
+    trackEvent("popular_browse_click", { category });
+  }, []);
+
   return (
     <Flex
-      className="bg-black p-4! pr-0! pb-8!"
+      className="bg-black !p-4 !pr-0 !pb-8"
       vertical
       gap={16}
       role="region"
       aria-labelledby="popular-section-title">
       <Title
         level={3}
-        className="mb-0! uppercase text-white!"
+        className="!mb-0 uppercase !text-white"
         id="popular-section-title">
         Popular right now
       </Title>
       <Space size={16}>
-        <Button className="px-5! uppercase" size="large">
+        <Button
+          className="!px-5 uppercase !bg-transparent !text-white hover:!bg-white/10 hover:!text-white"
+          size="large"
+          data-analytics-id="popular-filter-women"
+          onClick={() => handleFilterClick("Women")}
+          aria-label="Show popular women's items">
           Women
         </Button>
-        <Button className="px-8! uppercase" size="large">
+        <Button
+          className="!px-8 uppercase !bg-transparent !text-white hover:!bg-white/10 hover:!text-white"
+          size="large"
+          data-analytics-id="popular-filter-men"
+          onClick={() => handleFilterClick("Men")}
+          aria-label="Show popular men's items">
           Men
         </Button>
       </Space>
@@ -58,7 +78,11 @@ const PopularSection: React.FC = () => {
             }
             hoverable
             actions={[
-              <Button key={`${item.title}-cta`} className="uppercase">
+              <Button
+                key={`${item.title}-cta`}
+                className="uppercase"
+                data-analytics-id={`popular-browse-${item.title.toLowerCase()}`}
+                onClick={() => handleBrowseClick(item.title)}>
                 Browse options
               </Button>,
             ]}>
