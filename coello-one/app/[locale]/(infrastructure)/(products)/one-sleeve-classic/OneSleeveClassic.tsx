@@ -112,57 +112,60 @@ const OneSleeveClassic: React.FC = () => {
               {product.price}
             </Text>
 
-            <div>
-              <Text strong data-testid="selected-color">
-                COLOR: <span className="font-normal">{selectedColor.name}</span>
-              </Text>
-              <Radio.Group
-                value={selectedColor.name}
-                onChange={(e) => {
-                  const color = product.colors.find(
-                    (c) => c.name === e.target.value
-                  );
-                  if (color) {
-                    dispatch({ type: "SET_COLOR", payload: color });
-                  }
-                }}
-                className="mt-2">
-                <Space>
-                  {product.colors.map((color) => (
-                    <Radio.Button
-                      key={color.name}
-                      value={color.name}
-                      data-testid={`color-radio-${color.name}`}
-                      aria-label={`Color ${color.name}`}
-                      aria-checked={selectedColor.name === color.name}
-                      style={{
-                        backgroundColor: color.color,
-                        width: 32,
-                        height: 32,
-                        borderRadius: "50%",
-                        border:
-                          selectedColor.name === color.name
-                            ? "2px solid #3b82f6"
-                            : "2px solid #d1d5db",
-                        boxShadow:
-                          selectedColor.name === color.name
-                            ? "0 0 0 2px white"
-                            : "none",
-                      }}
-                    />
-                  ))}
-                </Space>
-              </Radio.Group>
+            <div className="flex flex-col gap-3">
+              <div className="flex flex-wrap items-center gap-4">
+                <Text strong data-testid="selected-color">
+                  COLOR:{" "}
+                  <span className="font-normal">{selectedColor.name}</span>
+                </Text>
+                <Radio.Group
+                  value={selectedColor.name}
+                  onChange={(e) => {
+                    const color = product.colors.find(
+                      (c) => c.name === e.target.value
+                    );
+                    if (color) {
+                      dispatch({ type: "SET_COLOR", payload: color });
+                    }
+                  }}
+                  className="flex items-center">
+                  <Space size="middle">
+                    {product.colors.map((color) => (
+                      <Radio.Button
+                        key={color.name}
+                        value={color.name}
+                        data-testid={`color-radio-${color.name}`}
+                        aria-label={`Color ${color.name}`}
+                        aria-checked={selectedColor.name === color.name}
+                        style={{
+                          backgroundColor: color.color,
+                          width: 32,
+                          height: 32,
+                          borderRadius: "50%",
+                          border:
+                            selectedColor.name === color.name
+                              ? "2px solid #3b82f6"
+                              : "2px solid #d1d5db",
+                          boxShadow:
+                            selectedColor.name === color.name
+                              ? "0 0 0 2px white"
+                              : "none",
+                        }}
+                      />
+                    ))}
+                  </Space>
+                </Radio.Group>
+              </div>
             </div>
 
-            <div>
+            <div className="flex flex-col gap-3">
               <Text strong>SIZE</Text>
               <Radio.Group
                 value={selectedSize}
                 onChange={(e) =>
                   dispatch({ type: "SET_SIZE", payload: e.target.value })
                 }
-                className="mt-2 w-full"
+                className="w-full"
                 optionType="button"
                 buttonStyle="solid">
                 <Space>

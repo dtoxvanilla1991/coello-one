@@ -4,6 +4,8 @@ import { Typography, Button, Col, Row } from "antd";
 import { Content } from "antd/es/layout/layout";
 import { metaObject } from "config/site.config";
 import Image from "next/image";
+import Link from "next/link";
+import { useLocalePath } from "@/hooks/useLocalePath";
 
 const { Title } = Typography;
 
@@ -12,6 +14,8 @@ export const metadata = {
 };
 
 export function MainBanner() {
+  const withLocalePath = useLocalePath();
+
   return (
     <Content data-testid="main-banner">
       <Row>
@@ -31,12 +35,14 @@ export function MainBanner() {
               data-testid="main-banner-title">
               NOW YOU TRULY STAND OUT.
             </Title>
-            <Button
-              className="px-10! uppercase font-semibold!"
-              size="large"
-              data-testid="main-banner-shop-now-button">
-              Shop Now
-            </Button>
+            <Link href={withLocalePath("/one-sleeve-classic")}>
+              <Button
+                className="px-10! uppercase font-semibold!"
+                size="large"
+                data-testid="main-banner-shop-now-button">
+                Shop Now
+              </Button>
+            </Link>
           </Col>
         </Col>
       </Row>
