@@ -56,7 +56,7 @@ export default async function LocaleLayout({
         },
       }}>
       <AntdRegistry>
-        <div data-testid="locale-layout-provider">{children}</div>
+        {children}
       </AntdRegistry>
     </ConfigProvider>
   );

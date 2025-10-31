@@ -1,4 +1,4 @@
-import { render, cleanup } from "@testing-library/react";
+import { render, cleanup, screen } from "@testing-library/react";
 import { describe, it, expect, afterEach } from "bun:test";
 import RootLayout from "./layout";
 
@@ -10,14 +10,12 @@ afterEach(() => {
 
 describe("RootLayout", () => {
   it("should render its children", () => {
-    const { container } = render(
+    render(
       <RootLayout>
-        <div data-testid="test-child">Hello World</div>
+        <div>Hello World</div>
       </RootLayout>
     );
-    const childElement = container.querySelector(
-      '[data-testid="test-child"]'
-    ) as HTMLElement;
+    const childElement = screen.getByText("Hello World");
     expect(childElement).toBeTruthy();
     expect(childElement.textContent).toBe("Hello World");
   });
@@ -28,7 +26,7 @@ describe("RootLayout", () => {
         <div />
       </RootLayout>
     );
-    const wrapper = container.querySelector('[data-testid="root-layout"]');
+    const wrapper = container.firstElementChild;
     const className = wrapper?.getAttribute("class") || "";
     expect(className).toContain("--font-geist-sans");
     expect(className).toContain("--font-geist-mono");

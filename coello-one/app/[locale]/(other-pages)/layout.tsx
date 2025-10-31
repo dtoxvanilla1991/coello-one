@@ -31,7 +31,7 @@ export default function OtherPagesLayout({
               alt="Coello One logo"
               width={120}
               height={40}
-              style={{ width: "auto" }}
+              className="w-auto"
               priority
             />
           </Link>

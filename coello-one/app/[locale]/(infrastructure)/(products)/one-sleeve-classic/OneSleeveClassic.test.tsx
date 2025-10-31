@@ -1,56 +1,41 @@
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, screen } from "@testing-library/react";
 import { describe, it, expect } from "bun:test";
 import OneSleeveClassic from "./OneSleeveClassic";
 
 describe("OneSleeveClassic", () => {
   it("renders the product name and price", () => {
-    const { container } = render(<OneSleeveClassic />);
-    const name = container.querySelector(
-      '[data-testid="product-name"]'
-    ) as HTMLElement;
-    const price = container.querySelector(
-      '[data-testid="product-price"]'
-    ) as HTMLElement;
-    expect(name?.textContent).toBe("One Sleeve Classic");
-    expect(price?.textContent).toBe("$45.00");
+    render(<OneSleeveClassic />);
+    expect(
+      screen.getByRole("heading", { level: 2, name: "One Sleeve Classic" })
+    ).toBeTruthy();
+    expect(screen.getByText("$45.00")).toBeTruthy();
   });
 
   it("changes the main image when a thumbnail is clicked", () => {
-    const { container } = render(<OneSleeveClassic />);
-    const secondThumbnailWrapper = container.querySelector(
-      '[data-testid="thumbnail-2"]'
-    ) as HTMLElement | null;
-    if (!secondThumbnailWrapper) throw new Error("thumbnail-2 not found");
-    fireEvent.click(secondThumbnailWrapper);
-    const mainImage = container.querySelector(
-      '[data-testid="main-image"]'
-    ) as HTMLImageElement;
+    render(<OneSleeveClassic />);
+    const secondThumbnail = screen.getByAltText(
+      "One Sleeve Classic thumbnail 2"
+    );
+    fireEvent.click(secondThumbnail);
+    const mainImage = screen.getByAltText("One Sleeve Classic") as HTMLImageElement;
     expect(mainImage.getAttribute("src") || "").toContain(
       "main-secondary-2.jpg"
     );
   });
 
   it("updates the selected color when a color radio button is clicked", () => {
-    const { container } = render(<OneSleeveClassic />);
-    const whiteColorButton = container.querySelector(
-      '[data-testid="color-radio-White"]'
-    ) as HTMLElement | null;
-    if (!whiteColorButton) throw new Error("color-radio-White not found");
-    fireEvent.click(whiteColorButton);
-    expect(
-      (container.querySelector('[data-testid="selected-color"]') as HTMLElement)
-        .textContent
-    ).toMatch(/COLOR: .*White/);
+    render(<OneSleeveClassic />);
+    const grayColorButton = screen.getByRole("radio", {
+      name: "Color Gray",
+    });
+    fireEvent.click(grayColorButton);
+    expect(screen.getByText(/COLOR:/).textContent).toMatch(/Gray/);
   });
 
   it("updates the selected size when a size radio button is clicked", () => {
-    const { container } = render(<OneSleeveClassic />);
-    const largeSizeButton = container.querySelector(
-      '[data-testid="size-radio-L"]'
-    ) as HTMLElement | null;
-    if (!largeSizeButton) throw new Error("size-radio-L not found");
+    render(<OneSleeveClassic />);
+    const largeSizeButton = screen.getByRole("radio", { name: "Size L" });
     fireEvent.click(largeSizeButton);
-    // AntD controls the checked state via aria-checked on the button wrapper
     expect(largeSizeButton.getAttribute("aria-checked")).toBe("true");
   });
 });

@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { Button, Flex } from "antd";
 import { DataItem } from "./TabsComponent";
-import React from "react";
+import type { FC } from "react";
 
 interface TabsContentProps {
   data: DataItem[];
 }
 
-const TabsContent: React.FC<TabsContentProps> = ({ data }) => {
+const TabsContent: FC<TabsContentProps> = ({ data }) => {
   return (
     <Flex
       gap={16}
@@ -24,7 +24,7 @@ const TabsContent: React.FC<TabsContentProps> = ({ data }) => {
           <Button
             key={index}
             size="middle"
-            className="uppercase absolute! bottom-4 left-4 px-8! font-medium!">
+            className="uppercase !absolute bottom-4 left-4 !px-8 !font-medium">
             View
           </Button>
         </div>

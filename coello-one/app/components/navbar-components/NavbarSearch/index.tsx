@@ -32,7 +32,7 @@ export function NavbarSearch({
       ref={searchRef}
       placeholder="What are you looking for?"
       //   loading
-      className={`${searchVisible ? "w-11/12! block" : "hidden!"}`}
+      className={`${searchVisible ? "!w-11/12 block" : "!hidden"}`}
       onSearch={handleOnSearch}
       allowClear
       onBlur={handleSearch}

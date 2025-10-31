@@ -1,42 +1,36 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "bun:test";
 import InfrastructureLayout from "./layout";
 
 describe("InfrastructureLayout", () => {
-  it("should render its children", () => {
-    const { container } = render(
+  it("should render its children", async () => {
+    render(
       <InfrastructureLayout>
-        <div data-testid="child">Child Component</div>
+        <div>Child Component</div>
       </InfrastructureLayout>
     );
-    expect(container.querySelector('[data-testid="child"]')).toBeTruthy();
+    expect(await screen.findByText("Child Component")).toBeTruthy();
   });
 
-  it("should render the Navbar, NavbarSider, and Footer components", () => {
-    const { container } = render(
+  it("should render the Navbar, NavbarSider, and Footer components", async () => {
+    render(
       <InfrastructureLayout>
         <div>Child</div>
       </InfrastructureLayout>
     );
+    expect(await screen.findByRole("banner")).toBeTruthy();
     expect(
-      container.querySelector('[data-testid="navbar-component"]')
+      await screen.findByRole("navigation", { name: /navigation sidebar/i })
     ).toBeTruthy();
-    expect(
-      container.querySelector('[data-testid="navbar-sider-component"]')
-    ).toBeTruthy();
-    expect(
-      container.querySelector('[data-testid="footer-component"]')
-    ).toBeTruthy();
+    expect(await screen.findByRole("contentinfo")).toBeTruthy();
   });
 
-  it("should have the 'infrastructure-layout' test id", () => {
-    const { container } = render(
+  it("should provide a main content region", async () => {
+    render(
       <InfrastructureLayout>
         <div>Child</div>
       </InfrastructureLayout>
     );
-    expect(
-      container.querySelector('[data-testid="infrastructure-layout"]')
-    ).toBeTruthy();
+    expect(await screen.findByRole("main")).toBeTruthy();
   });
 });

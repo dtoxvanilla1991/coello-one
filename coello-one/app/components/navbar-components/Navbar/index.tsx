@@ -15,27 +15,23 @@ import Image from "next/image";
 
 const { Header } = Layout;
 
-type NavbarProps = { "data-testid"?: string };
-
-export function Navbar(props: NavbarProps) {
+export function Navbar() {
   const [collapsed, setCollapsed] = useAtom(siderCollapsedAtom);
 
   const [searchVisible, setSearchVisible] = useState<boolean>(false);
   const [showBag, setShowBag] = useState<boolean>(false);
 
-  const handleShowBag = () => setShowBag(!showBag);
-  const handleSearch = () => setSearchVisible(!searchVisible);
+  const handleShowBag = () => setShowBag((prev) => !prev);
+  const handleSearch = () => setSearchVisible((prev) => !prev);
 
-  const show = searchVisible ? "hidden!" : "block!";
+  const show = searchVisible ? "!hidden" : "!block";
   return (
-    <Header
-      data-testid={props["data-testid"]}
-      className="bg-white! flex items-center justify-between px-4!">
+    <Header className="!bg-white flex items-center justify-between !px-4">
       <Button
         type="text"
         size="large"
         icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-        onClick={() => setCollapsed(!collapsed)}
+        onClick={() => setCollapsed((prev) => !prev)}
         className="text-lg"
       />
       <Flex className={`${show}`} justify="center" align="center">
@@ -44,8 +40,7 @@ export function Navbar(props: NavbarProps) {
           width={150}
           height={50}
           alt="Coello one logo"
-          className="pt-1 ml-2"
-          style={{ width: "auto" }}
+          className="ml-2 pt-1 w-auto"
           priority
         />
       </Flex>

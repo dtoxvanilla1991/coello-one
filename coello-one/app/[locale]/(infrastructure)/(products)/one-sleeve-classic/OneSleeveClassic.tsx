@@ -1,9 +1,11 @@
 "use client";
 
+import "@ant-design/v5-patch-for-react-19";
 import { useReducer } from "react";
-import { Button, Radio, Space, Typography, Row, Col } from "antd";
+import { Button, Radio, Space, Typography, Row, Col, Flex } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import Image from "next/image";
+import { ProductDetailShell } from "@/components/product/ProductDetailShell";
 
 const { Title, Text } = Typography;
 
@@ -11,9 +13,21 @@ const product = {
   name: "One Sleeve Classic",
   price: "$45.00",
   colors: [
-    { name: "Black", color: "#000000" },
-    { name: "White", color: "#FFFFFF" },
-    { name: "Dusty Pink", color: "#D8AFA0" },
+    {
+      name: "Sea Blue",
+      swatchClass: "bg-sky-500",
+      ringClass: "ring-sky-400",
+    },
+    {
+      name: "Gray",
+      swatchClass: "bg-gray-400",
+      ringClass: "ring-gray-400",
+    },
+    {
+      name: "Mild Red",
+      swatchClass: "bg-rose-300",
+      ringClass: "ring-rose-400",
+    },
   ],
   sizes: ["S", "M", "L"],
   images: [
@@ -23,7 +37,7 @@ const product = {
   ],
 };
 
-type Color = { name: string; color: string };
+type Color = { name: string; swatchClass: string; ringClass: string };
 
 interface State {
   selectedColor: Color;
@@ -45,11 +59,20 @@ const initialState: State = {
 function productReducer(state: State, action: Action): State {
   switch (action.type) {
     case "SET_COLOR":
-      return { ...state, selectedColor: action.payload };
+      return {
+        ...state,
+        selectedColor: action.payload,
+      };
     case "SET_SIZE":
-      return { ...state, selectedSize: action.payload };
+      return {
+        ...state,
+        selectedSize: action.payload,
+      };
     case "SET_IMAGE":
-      return { ...state, mainImage: action.payload };
+      return {
+        ...state,
+        mainImage: action.payload,
+      };
     default:
       return state;
   }
@@ -58,35 +81,42 @@ function productReducer(state: State, action: Action): State {
 const OneSleeveClassic: React.FC = () => {
   const [state, dispatch] = useReducer(productReducer, initialState);
   const { selectedColor, selectedSize, mainImage } = state;
+  const productNameSlug = "one-sleeve-classic";
 
   return (
-    <div className="container mx-auto p-4 md:p-8">
+    <ProductDetailShell>
       <Row gutter={[32, 32]}>
         <Col xs={24} md={14}>
           <Space direction="vertical" className="w-full">
-            <div className="relative w-full aspect-square">
+            <Flex className="relative aspect-square w-full">
               <Image
                 src={mainImage}
                 alt={product.name}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover rounded-md"
+                className="rounded-md object-cover"
                 priority
-                data-testid="main-image"
               />
-            </div>
+            </Flex>
             <Row gutter={8}>
               {product.images.map((img, index) => (
                 <Col span={8} key={index}>
-                  <div
-                    className="relative w-full aspect-square cursor-pointer border-2 hover:border-black rounded-md overflow-hidden"
-                    style={{
-                      borderColor: mainImage === img ? "black" : "transparent",
-                    }}
+                  <Flex
+                    className={`relative aspect-square w-full cursor-pointer overflow-hidden rounded-md border-2 transition-colors hover:border-black ${
+                      mainImage === img ? "border-black" : "border-transparent"
+                    }`}
                     onClick={() =>
                       dispatch({ type: "SET_IMAGE", payload: img })
                     }
-                    data-testid={`thumbnail-${index + 1}`}>
+                    role="button"
+                    aria-pressed={mainImage === img}
+                    tabIndex={0}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        dispatch({ type: "SET_IMAGE", payload: img });
+                      }
+                    }}>
                     <Image
                       src={img}
                       alt={`${product.name} thumbnail ${index + 1}`}
@@ -94,75 +124,80 @@ const OneSleeveClassic: React.FC = () => {
                       sizes="33vw"
                       className="object-cover"
                     />
-                  </div>
+                  </Flex>
                 </Col>
               ))}
             </Row>
           </Space>
         </Col>
-        <Col xs={24} md={10}>
-          <Space direction="vertical" size="large" className="w-full">
-            <Title
-              level={2}
-              className="uppercase tracking-wider"
-              data-testid="product-name">
+        <Col xs={24} md={10} className="md:!pl-8">
+          <Space
+            direction="vertical"
+            size="large"
+            className="w-full px-4 pb-10 md:px-8">
+            <Title level={2} className="uppercase tracking-wider">
               {product.name}
             </Title>
-            <Text strong className="text-2xl" data-testid="product-price">
+            <Text strong className="text-2xl">
               {product.price}
             </Text>
 
-            <div>
-              <Text strong data-testid="selected-color">
-                COLOR: <span className="font-normal">{selectedColor.name}</span>
-              </Text>
-              <Radio.Group
-                value={selectedColor.name}
-                onChange={(e) => {
-                  const color = product.colors.find(
-                    (c) => c.name === e.target.value
-                  );
-                  if (color) {
-                    dispatch({ type: "SET_COLOR", payload: color });
-                  }
-                }}
-                className="mt-2">
-                <Space>
-                  {product.colors.map((color) => (
-                    <Radio.Button
-                      key={color.name}
-                      value={color.name}
-                      data-testid={`color-radio-${color.name}`}
-                      aria-label={`Color ${color.name}`}
-                      aria-checked={selectedColor.name === color.name}
-                      style={{
-                        backgroundColor: color.color,
-                        width: 32,
-                        height: 32,
-                        borderRadius: "50%",
-                        border:
-                          selectedColor.name === color.name
-                            ? "2px solid #3b82f6"
-                            : "2px solid #d1d5db",
-                        boxShadow:
-                          selectedColor.name === color.name
-                            ? "0 0 0 2px white"
-                            : "none",
-                      }}
-                    />
-                  ))}
-                </Space>
-              </Radio.Group>
-            </div>
+            <Flex vertical gap={12}>
+              <Flex wrap="wrap" align="center" gap={16}>
+                <Text strong>
+                  COLOR:{" "}
+                  <span className="font-normal">{selectedColor.name}</span>
+                </Text>
+                <Radio.Group
+                  name={`${productNameSlug}-color`}
+                  value={selectedColor.name}
+                  onChange={(e) => {
+                    const color = product.colors.find(
+                      (c) => c.name === e.target.value
+                    );
+                    if (color) {
+                      dispatch({ type: "SET_COLOR", payload: color });
+                    }
+                  }}
+                  className="flex items-center">
+                  <Space size="middle">
+                    {product.colors.map((color) => {
+                      const isSelected = selectedColor.name === color.name;
 
-            <div>
+                      return (
+                        <Radio.Button
+                          key={color.name}
+                          value={color.name}
+                          aria-label={`Color ${color.name}`}
+                          aria-checked={isSelected}
+                          className="!border-0 !bg-transparent !p-0 !shadow-none focus-visible:outline-none focus-visible:ring-0">
+                          <span
+                            aria-hidden="true"
+                            className={`block h-8 w-8 rounded-full border-2 transition-all duration-150 ${
+                              color.swatchClass
+                            } ${
+                              isSelected
+                                ? `border-black ring-2 ring-offset-2 ring-offset-white ${color.ringClass}`
+                                : "border-gray-300 ring-0 ring-transparent ring-offset-0"
+                            }`}
+                          />
+                        </Radio.Button>
+                      );
+                    })}
+                  </Space>
+                </Radio.Group>
+              </Flex>
+            </Flex>
+
+            <Flex vertical gap={12}>
               <Text strong>SIZE</Text>
               <Radio.Group
+                name={`${productNameSlug}-size`}
                 value={selectedSize}
                 onChange={(e) =>
                   dispatch({ type: "SET_SIZE", payload: e.target.value })
                 }
-                className="mt-2 w-full"
+                className="w-full"
                 optionType="button"
                 buttonStyle="solid">
                 <Space>
@@ -170,7 +205,6 @@ const OneSleeveClassic: React.FC = () => {
                     <Radio.Button
                       key={size}
                       value={size}
-                      data-testid={`size-radio-${size}`}
                       aria-label={`Size ${size}`}
                       aria-checked={selectedSize === size}
                       className="w-24 text-center">
@@ -179,19 +213,19 @@ const OneSleeveClassic: React.FC = () => {
                   ))}
                 </Space>
               </Radio.Group>
-            </div>
+            </Flex>
 
             <Button
               type="primary"
               size="large"
               icon={<ShoppingCartOutlined />}
-              className="w-full bg-black hover:bg-gray-800 text-white uppercase">
+              className="w-full bg-black text-white hover:bg-gray-800 uppercase">
               Add to Bag
             </Button>
           </Space>
         </Col>
       </Row>
-    </div>
+    </ProductDetailShell>
   );
 };
 

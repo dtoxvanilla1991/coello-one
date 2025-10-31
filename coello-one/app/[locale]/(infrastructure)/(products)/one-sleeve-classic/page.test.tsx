@@ -1,15 +1,13 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "bun:test";
 import OneSleeveClassicPage from "./page";
 
 describe("OneSleeveClassicPage", () => {
   it("renders the OneSleeveClassic component", () => {
-    const { container } = render(<OneSleeveClassicPage />);
+    render(<OneSleeveClassicPage />);
     expect(
-      container.querySelector('[data-testid="product-name"]')
+      screen.getByRole("heading", { level: 2, name: /One Sleeve Classic/i })
     ).toBeTruthy();
-    expect(
-      container.querySelector('[data-testid="product-price"]')
-    ).toBeTruthy();
+    expect(screen.getByText("$45.00")).toBeTruthy();
   });
 });

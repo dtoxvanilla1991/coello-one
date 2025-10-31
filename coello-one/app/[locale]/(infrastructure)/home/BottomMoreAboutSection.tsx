@@ -23,28 +23,26 @@ const data: DataType[] = [
 
 const BottomMoreAboutSection: React.FC = () => {
   return (
-    <Flex
-      className="p-4! pr-0! pb-6!"
-      vertical
-      data-testid="bottom-more-about-section">
-      <Title
-        level={5}
-        className="uppercase mb-4!"
-        data-testid="bottom-more-about-section-title">
+    <section
+      aria-labelledby="bottom-more-about-title"
+      className="flex flex-col p-4 pr-0 pb-6">
+      <Title id="bottom-more-about-title" level={5} className="mb-4 uppercase">
         More about Coello One
       </Title>
       <Flex
         gap={16}
-        className="overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar">
+        role="list"
+        aria-label="Coello One highlights"
+        className="hide-scrollbar flex overflow-x-auto snap-x snap-mandatory scroll-smooth">
         {data.map((item, index) => (
           <Card
             key={index}
-            className="min-w-44 snap-start bg-gray-200!"
-            classNames={{ body: "p-2!" }}
-            data-testid={`bottom-more-about-section-card-${index}`}
+            role="listitem"
+            className="min-w-44 snap-start !bg-gray-200"
+            classNames={{ body: "!p-2" }}
             cover={
               <Flex
-                className="!flex relative h-28 bg-black text-white! uppercase"
+                className="!flex relative h-28 bg-black !text-white uppercase"
                 justify="center"
                 align="center"
                 vertical>
@@ -59,29 +57,24 @@ const BottomMoreAboutSection: React.FC = () => {
           </Card>
         ))}
       </Flex>
-    </Flex>
+    </section>
   );
 };
 
 const CardContent: FC<DataType> = ({ title, text, icon, image }) => {
   if (image) {
     return (
-      <Image
-        src={image}
-        alt="Coello One"
-        fill
-        style={{ objectFit: "contain" }}
-      />
+      <Image src={image} alt="Coello One" fill className="object-contain" />
     );
   } else if (icon) {
     return icon;
   }
   return (
     <>
-      <Title level={4} className="text-white! m-0! font-bold">
+      <Title level={4} className="!text-white !m-0 font-bold">
         {title}
       </Title>
-      <Text className="text-white! font-semibold">{text}</Text>
+      <Text className="!text-white font-semibold">{text}</Text>
     </>
   );
 };

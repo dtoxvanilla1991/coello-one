@@ -1,8 +1,10 @@
 "use client";
 
-import React from "react";
+import { useCallback } from "react";
+import type { FC } from "react";
 import Image from "next/image";
 import { Card, Button, Typography, Flex, Space } from "antd";
+import { trackEvent } from "@/utils/trackEvent";
 
 const { Title } = Typography;
 
@@ -13,44 +15,58 @@ const data = [
   // ...existing or additional items...
 ];
 
-const PopularSection: React.FC = () => {
+const PopularSection: FC = () => {
+  const handleFilterClick = useCallback((filter: string) => {
+    trackEvent("popular_filter_click", { filter });
+  }, []);
+
+  const handleBrowseClick = useCallback((category: string) => {
+    trackEvent("popular_browse_click", { category });
+  }, []);
+
   return (
     <Flex
-      className="p-4! pr-0! pb-8! bg-black"
+      className="bg-black !p-4 !pr-0 !pb-8"
       vertical
       gap={16}
-      data-testid="popular-section">
+      role="region"
+      aria-labelledby="popular-section-title">
       <Title
         level={3}
-        className="uppercase text-white! mb-0!"
-        data-testid="popular-section-title">
+        className="!mb-0 uppercase !text-white"
+        id="popular-section-title">
         Popular right now
       </Title>
       <Space size={16}>
         <Button
-          className="uppercase px-5!"
+          className="!px-5 uppercase !bg-transparent !text-white hover:!bg-white/10 hover:!text-white"
           size="large"
-          data-testid="popular-section-women-button">
+          data-analytics-id="popular-filter-women"
+          onClick={() => handleFilterClick("Women")}
+          aria-label="Show popular women's items">
           Women
         </Button>
         <Button
-          className="uppercase px-8!"
+          className="!px-8 uppercase !bg-transparent !text-white hover:!bg-white/10 hover:!text-white"
           size="large"
-          data-testid="popular-section-men-button">
+          data-analytics-id="popular-filter-men"
+          onClick={() => handleFilterClick("Men")}
+          aria-label="Show popular men's items">
           Men
         </Button>
       </Space>
       <Flex
         gap={16}
-        className="overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar">
+        role="list"
+        aria-label="Popular products"
+        className="hide-scrollbar overflow-x-auto snap-x snap-mandatory scroll-smooth">
         {data.map((item, index) => (
           <Card
             key={index}
             className="min-w-72 snap-start"
             variant="borderless"
-            data-testid={`popular-section-card-${index}`}
             cover={
-              <div className="relative h-[400px]">
+              <Flex className="relative h-[400px]">
                 <Image
                   alt={item.title}
                   src={`/athletes/vertical/main-secondary-${index + 6}.jpg`}
@@ -58,14 +74,15 @@ const PopularSection: React.FC = () => {
                   fill
                   className="object-cover object-top"
                 />
-              </div>
+              </Flex>
             }
             hoverable
             actions={[
               <Button
-                key={index}
+                key={`${item.title}-cta`}
                 className="uppercase"
-                data-testid={`popular-section-card-button-${index}`}>
+                data-analytics-id={`popular-browse-${item.title.toLowerCase()}`}
+                onClick={() => handleBrowseClick(item.title)}>
                 Browse options
               </Button>,
             ]}>
