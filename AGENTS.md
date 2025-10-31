@@ -23,6 +23,10 @@ Common Commands
 
  - Run tests: `bun run test`
 
+**Shared Layout Standard**
+
+- Product detail pages must wrap their content with `ProductDetailShell` to ensure consistent max-width and responsive padding across the catalog. Document any deviations in Serena.
+
 **Agent: `flask-server` (Flask Backend) ⚙️**
 
 This agent manages the Flask API server located in the `flask-server/` directory.

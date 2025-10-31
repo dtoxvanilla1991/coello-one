@@ -1,9 +1,11 @@
 "use client";
 
+import "@ant-design/v5-patch-for-react-19";
 import { useReducer } from "react";
 import { Button, Radio, Space, Typography, Row, Col, Flex } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import Image from "next/image";
+import { ProductDetailShell } from "@/components/product/ProductDetailShell";
 
 const { Title, Text } = Typography;
 
@@ -79,9 +81,10 @@ function productReducer(state: State, action: Action): State {
 const OneSleeveClassic: React.FC = () => {
   const [state, dispatch] = useReducer(productReducer, initialState);
   const { selectedColor, selectedSize, mainImage } = state;
+  const productNameSlug = "one-sleeve-classic";
 
   return (
-    <Flex className="container mx-auto p-4 md:p-8" vertical>
+    <ProductDetailShell>
       <Row gutter={[32, 32]}>
         <Col xs={24} md={14}>
           <Space direction="vertical" className="w-full">
@@ -127,8 +130,11 @@ const OneSleeveClassic: React.FC = () => {
             </Row>
           </Space>
         </Col>
-        <Col xs={24} md={10}>
-          <Space direction="vertical" size="large" className="w-full">
+        <Col xs={24} md={10} className="md:!pl-8">
+          <Space
+            direction="vertical"
+            size="large"
+            className="w-full px-4 pb-10 md:px-8">
             <Title level={2} className="uppercase tracking-wider">
               {product.name}
             </Title>
@@ -143,6 +149,7 @@ const OneSleeveClassic: React.FC = () => {
                   <span className="font-normal">{selectedColor.name}</span>
                 </Text>
                 <Radio.Group
+                  name={`${productNameSlug}-color`}
                   value={selectedColor.name}
                   onChange={(e) => {
                     const color = product.colors.find(
@@ -163,14 +170,18 @@ const OneSleeveClassic: React.FC = () => {
                           value={color.name}
                           aria-label={`Color ${color.name}`}
                           aria-checked={isSelected}
-                          className={`!h-8 !w-8 !rounded-full !border-2 !p-0 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black ${
-                            color.swatchClass
-                          } ${
-                            isSelected
-                              ? `!border-black ring-2 ring-offset-2 ring-offset-white ${color.ringClass}`
-                              : "!border-gray-300 ring-0 ring-transparent ring-offset-0"
-                          }`}
-                        />
+                          className="!border-0 !bg-transparent !p-0 !shadow-none focus-visible:outline-none focus-visible:ring-0">
+                          <span
+                            aria-hidden="true"
+                            className={`block h-8 w-8 rounded-full border-2 transition-all duration-150 ${
+                              color.swatchClass
+                            } ${
+                              isSelected
+                                ? `border-black ring-2 ring-offset-2 ring-offset-white ${color.ringClass}`
+                                : "border-gray-300 ring-0 ring-transparent ring-offset-0"
+                            }`}
+                          />
+                        </Radio.Button>
                       );
                     })}
                   </Space>
@@ -181,6 +192,7 @@ const OneSleeveClassic: React.FC = () => {
             <Flex vertical gap={12}>
               <Text strong>SIZE</Text>
               <Radio.Group
+                name={`${productNameSlug}-size`}
                 value={selectedSize}
                 onChange={(e) =>
                   dispatch({ type: "SET_SIZE", payload: e.target.value })
@@ -213,7 +225,7 @@ const OneSleeveClassic: React.FC = () => {
           </Space>
         </Col>
       </Row>
-    </Flex>
+    </ProductDetailShell>
   );
 };
 
