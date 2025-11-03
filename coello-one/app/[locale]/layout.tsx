@@ -4,6 +4,7 @@ import { ConfigProvider } from "antd";
 import enGB from "antd/locale/en_GB";
 import esES from "antd/locale/es_ES";
 import { notFound } from "next/navigation";
+import { AntdCompatibilityGate } from "@/components/providers/AntdCompatibilityGate";
 
 /**
  * Generate metadata for locale-specific pages, including html lang and hreflang alternates
@@ -55,9 +56,9 @@ export default async function LocaleLayout({
           colorLink: "#000000",
         },
       }}>
-      <AntdRegistry>
-        {children}
-      </AntdRegistry>
+      <AntdCompatibilityGate>
+        <AntdRegistry>{children}</AntdRegistry>
+      </AntdCompatibilityGate>
     </ConfigProvider>
   );
 }
