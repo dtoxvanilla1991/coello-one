@@ -4,6 +4,11 @@ import { cleanup } from '@testing-library/react';
 import * as matchers from '@testing-library/jest-dom/matchers';
 import type { AnchorHTMLAttributes, ImgHTMLAttributes, ReactNode } from "react";
 import { expect, afterEach, mock } from 'bun:test';
+import {
+  getNavigationState,
+  resetNavigationMocks,
+  routerMocks,
+} from "./test-utils/navigation";
 
 // Register the DOM environment
 GlobalRegistrator.register();
@@ -24,11 +29,19 @@ expect.extend(matchers);
 
 // Ensure the DOM is cleaned up between tests to avoid cross-test pollution
 afterEach(() => {
-	cleanup();
+  cleanup();
+  resetNavigationMocks();
 });
 
 // Next.js-specific props used by next/image that aren't valid on a plain img element
-const NEXT_IMAGE_PROPS = ['fill', 'priority', 'placeholder', 'blurDataURL', 'loader', 'quality'] as const;
+const NEXT_IMAGE_PROPS = [
+  "fill",
+  "priority",
+  "placeholder",
+  "blurDataURL",
+  "loader",
+  "quality",
+] as const;
 
 // Globally mock next/image to a plain img to avoid URL parsing and layout issues in tests
 mock.module("next/image", () => ({
@@ -50,10 +63,16 @@ mock.module("next/image", () => ({
 }));
 
 // Mock next/font/google to avoid importing Next internals during tests
-mock.module('next/font/google', () => ({
-	__esModule: true,
-	Geist: (opts?: { variable?: string; subsets?: string[] }) => ({ variable: opts?.variable ?? '--font-geist-sans', className: 'mocked-font' }),
-	Geist_Mono: (opts?: { variable?: string; subsets?: string[] }) => ({ variable: opts?.variable ?? '--font-geist-mono', className: 'mocked-font' }),
+mock.module("next/font/google", () => ({
+  __esModule: true,
+  Geist: (opts?: { variable?: string; subsets?: string[] }) => ({
+    variable: opts?.variable ?? "--font-geist-sans",
+    className: "mocked-font",
+  }),
+  Geist_Mono: (opts?: { variable?: string; subsets?: string[] }) => ({
+    variable: opts?.variable ?? "--font-geist-mono",
+    className: "mocked-font",
+  }),
 }));
 
 // Mock next/link to a basic anchor element
@@ -84,21 +103,14 @@ mock.module("next/link", () => ({
   },
 }));
 
-// Mock next/navigation hooks and functions
+// Mock next/navigation hooks and functions using shared router state
 mock.module("next/navigation", () => ({
   __esModule: true,
   useServerInsertedHTML: () => {},
-  useRouter: () => ({
-    push: () => {},
-    replace: () => {},
-    prefetch: () => Promise.resolve(),
-    back: () => {},
-    forward: () => {},
-    refresh: () => {},
-  }),
-  usePathname: () => "/",
-  useSearchParams: () => new URLSearchParams(),
-  useParams: () => ({}),
+  useRouter: () => routerMocks,
+  usePathname: () => getNavigationState().pathname,
+  useSearchParams: () => new URLSearchParams(getNavigationState().searchParams),
+  useParams: () => ({ ...getNavigationState().params }),
   useSelectedLayoutSegment: () => null,
   useSelectedLayoutSegments: () => [],
   notFound: () => {

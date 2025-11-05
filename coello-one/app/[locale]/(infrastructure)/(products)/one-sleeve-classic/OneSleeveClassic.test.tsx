@@ -1,25 +1,17 @@
 import { render, fireEvent, screen, waitFor } from "@testing-library/react";
-import { beforeEach, describe, it, expect, mock } from "bun:test";
+import { beforeEach, describe, it, expect } from "bun:test";
+import { resetNavigationMocks, setNavigationState } from "@test-utils/navigation";
 import OneSleeveClassic from "./OneSleeveClassic";
-
-const replaceMock = mock<(path: string, options?: { scroll?: boolean }) => void>(() => {});
-const prefetchMock = mock<(path: string) => Promise<void>>(() => Promise.resolve());
-
-mock.module("next/navigation", () => ({
-  __esModule: true,
-  useRouter: () => ({
-    replace: replaceMock,
-    prefetch: prefetchMock,
-    push: () => {},
-  }),
-  usePathname: () => "/en-GB/products/one-sleeve-classic",
-  useSearchParams: () => new URLSearchParams(),
-}));
 
 describe("OneSleeveClassic", () => {
   beforeEach(() => {
-    replaceMock.mockReset();
-    prefetchMock.mockReset();
+    resetNavigationMocks();
+    setNavigationState({
+      locale: "en-GB",
+      pathname: "/en-GB/products/one-sleeve-classic",
+      params: { locale: "en-GB" },
+      searchParams: new URLSearchParams(),
+    });
   });
 
   it("renders the product name and price", () => {

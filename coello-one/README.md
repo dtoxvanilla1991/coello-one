@@ -8,7 +8,10 @@
 
 ## Product Principles
 
-- Golden rule: every flow ships mobile-first. Validate the smallest breakpoint before enhancing tablet or desktop states.
+- **Golden rule:** Always design, implement, and test mobile-first. Validate the smallest breakpoint before scaling layouts to tablet and desktop.
+
+## Testing Guidelines
+- **Shared test utilities:** Always review `test-setup.ts` before creating or updating any tests to reuse existing mocks and prevent duplication.
 
 ## Development Setup
 ```bash

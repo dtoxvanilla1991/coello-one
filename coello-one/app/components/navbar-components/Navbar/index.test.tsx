@@ -1,27 +1,20 @@
-import { beforeEach, describe, expect, it, mock } from "bun:test";
+import { beforeEach, describe, expect, it } from "bun:test";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider, createStore } from "jotai";
 import { cartItemsAtom } from "@/store/cartStore";
 import type { CartItem } from "@/store/cartStore";
-
-const pushMock = mock<(path: string) => void>(() => {});
-const prefetchMock = mock<(path: string) => Promise<void>>(() => Promise.resolve());
-
-mock.module("next/navigation", () => ({
-  __esModule: true,
-  useRouter: () => ({
-    push: pushMock,
-    prefetch: prefetchMock,
-  }),
-  useParams: () => ({ locale: "en-GB" }),
-}));
+import {
+  resetNavigationMocks,
+  routerMocks,
+  setNavigationState,
+} from "@test-utils/navigation";
 
 const { Navbar } = await import("./index");
 
 describe("Navbar", () => {
   beforeEach(() => {
-    pushMock.mockReset();
-    prefetchMock.mockReset();
+    resetNavigationMocks();
+    setNavigationState({ locale: "en-GB" });
   });
 
   const renderNavbar = (cartQuantity = 0) => {
@@ -63,6 +56,6 @@ describe("Navbar", () => {
 
     fireEvent.click(screen.getByRole("button", { name: /view bag/i }));
 
-    expect(pushMock).toHaveBeenCalledWith("/en-GB/bag");
+    expect(routerMocks.push).toHaveBeenCalledWith("/en-GB/bag");
   });
 });

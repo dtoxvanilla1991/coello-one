@@ -3,17 +3,9 @@ import { fireEvent, render, screen, within } from "@testing-library/react";
 import { Provider, createStore } from "jotai";
 import type { CartItem } from "@/store/cartStore";
 import { cartItemsAtom } from "@/store/cartStore";
+import { resetNavigationMocks, routerMocks, setNavigationState } from "@test-utils/navigation";
 
-const pushMock = mock<(path: string) => void>(() => {});
 const trackEventMock = mock<(event: string, payload?: unknown) => void>(() => {});
-
-mock.module("next/navigation", () => ({
-  __esModule: true,
-  useRouter: () => ({
-    push: pushMock,
-  }),
-  useParams: () => ({ locale: "en-GB" }),
-}));
 
 mock.module("@/utils/trackEvent", () => ({
   trackEvent: trackEventMock,
@@ -34,7 +26,11 @@ const renderWithCart = (items: CartItem[] = []) => {
 
 describe("BagContent", () => {
   beforeEach(() => {
-    pushMock.mockReset();
+    resetNavigationMocks();
+    setNavigationState({
+      locale: "en-GB",
+      params: { locale: "en-GB" },
+    });
     trackEventMock.mockReset();
   });
 
@@ -85,7 +81,7 @@ describe("BagContent", () => {
 
     fireEvent.click(screen.getByRole("button", { name: /continue shopping/i }));
 
-    expect(pushMock).toHaveBeenCalledWith("/en-GB/home");
+    expect(routerMocks.push).toHaveBeenCalledWith("/en-GB/home");
   });
 
   it("tracks checkout attempts with the aggregated totals", () => {

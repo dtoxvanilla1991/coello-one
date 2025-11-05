@@ -1,23 +1,12 @@
 import { beforeEach, describe, expect, it, mock } from "bun:test";
 import { fireEvent, render, screen } from "@testing-library/react";
-
-const pushMock = mock<(path: string) => void>(() => {});
-const prefetchMock = mock<(path: string) => Promise<void>>(() => Promise.resolve());
-
-mock.module("next/navigation", () => ({
-  __esModule: true,
-  useRouter: () => ({
-    push: pushMock,
-    prefetch: prefetchMock,
-  }),
-}));
+import { resetNavigationMocks, routerMocks } from "@test-utils/navigation";
 
 const { NavbarSearch } = await import("./index");
 
 describe("NavbarSearch", () => {
   beforeEach(() => {
-    pushMock.mockReset();
-    prefetchMock.mockReset();
+    resetNavigationMocks();
   });
 
   it("routes to the search results page with the trimmed query", () => {
@@ -33,7 +22,7 @@ describe("NavbarSearch", () => {
     const searchButton = screen.getByRole("button", { name: /search/i });
     fireEvent.click(searchButton);
 
-    expect(pushMock).toHaveBeenCalledWith("/en-GB/search?query=gray%20sleeve");
+  expect(routerMocks.push).toHaveBeenCalledWith("/en-GB/search?query=gray%20sleeve");
     expect(handleClose.mock.calls.length).toBeGreaterThan(0);
   });
 
@@ -50,7 +39,7 @@ describe("NavbarSearch", () => {
     const searchButton = screen.getByRole("button", { name: /search/i });
     fireEvent.click(searchButton);
 
-    expect(pushMock).toHaveBeenCalledWith("/es-ES/search");
+  expect(routerMocks.push).toHaveBeenCalledWith("/es-ES/search");
     expect(handleClose.mock.calls.length).toBeGreaterThan(0);
   });
 
