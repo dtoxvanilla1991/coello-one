@@ -28,18 +28,11 @@
       "bun-types"
     ],
     "paths": {
-      "@/*": [
-        "app/*"
-      ],
-      "@components/*": [
-        "app/components/*"
-      ],
-      "@public/*": [
-        "public/*"
-      ],
-      "@utils/*": [
-        "utils/*"
-      ]
+      "@/*": ["app/*"],
+      "@components/*": ["app/components/*"],
+      "@config/*": ["config/*"],
+      "@public/*": ["public/*"],
+      "@utils/*": ["utils/*"]
     }
   },
   "include": [

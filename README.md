@@ -70,6 +70,10 @@ Frameworks/libraries/languages used:
 - [Prettier](https://prettier.io/)
 - [Eslint v9](https://eslint.org/)
 
+## Delivery Principles
+
+- **Golden rule:** Always design, implement, and test mobile-first. Validate the smallest breakpoint before scaling layouts to tablet and desktop.
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Getting Started

@@ -1,44 +1,94 @@
 "use client";
 
-import { SearchProps } from "antd/es/input/Search";
-import { JSX, useEffect, useRef } from "react";
-import { Input, InputRef } from "antd";
+import { useEffect, useRef } from "react";
+import { Button, Input, InputRef } from "antd";
+import type { SearchProps } from "antd/es/input/Search";
+import type { KeyboardEvent } from "react";
+import { useRouter } from "next/navigation";
+import { buildLocaleRoute } from "@config/routes";
+import { SearchOutlined } from "@ant-design/icons";
 
 interface NavbarSearchProps {
   searchVisible: boolean;
-  handleSearch: () => void;
+  onClose: () => void;
+  locale: string;
 }
+
 const { Search } = Input;
+
 export function NavbarSearch({
   searchVisible,
-  handleSearch,
-}: NavbarSearchProps): JSX.Element {
+  onClose,
+  locale,
+}: NavbarSearchProps) {
   const searchRef = useRef<InputRef | null>(null);
+  const router = useRouter();
+  const baseRoute = buildLocaleRoute(locale, "search");
 
-  const handleOnSearch: SearchProps["onSearch"] = (value, _e, info) => {
-    if (process.env.NODE_ENV !== "production") {
-      console.log(info?.source, value);
+  useEffect(() => {
+    if (!searchVisible) {
+      return;
+    }
+
+    searchRef.current?.focus({ cursor: "all" });
+  }, [searchVisible]);
+
+  useEffect(() => {
+    Promise.resolve(router.prefetch(baseRoute)).catch(() => undefined);
+  }, [router, baseRoute]);
+
+  const handleOnSearch: SearchProps["onSearch"] = (rawValue) => {
+    const trimmedValue = rawValue.trim();
+    const destination =
+      trimmedValue.length > 0
+        ? `${baseRoute}?query=${encodeURIComponent(trimmedValue)}`
+        : baseRoute;
+
+    router.push(destination);
+    searchRef.current?.blur();
+    onClose();
+  };
+
+  const handleBlur = () => {
+    if (searchVisible) {
+      onClose();
     }
   };
 
-  useEffect(() => {
-    if (searchVisible && searchRef.current) {
-      searchRef.current.focus();
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Escape") {
+      onClose();
     }
-  }, [searchVisible]);
+  };
 
   return (
     <Search
       ref={searchRef}
-      placeholder="What are you looking for?"
-      //   loading
-      className={`${searchVisible ? "!w-11/12 block" : "!hidden"}`}
+      placeholder="Search Coello"
+      className={`${
+        searchVisible ? "!block" : "!hidden"
+      } mx-auto w-11/12 max-w-xl !rounded-full !shadow-none`}
+      classNames={{
+        input:
+          "!bg-transparent !shadow-none !border-0 focus:!border-0 focus:!ring-0",
+        suffix: "!text-black",
+      }}
       onSearch={handleOnSearch}
       allowClear
-      onBlur={handleSearch}
+      onBlur={handleBlur}
+      onKeyDown={handleKeyDown}
       id="navbar-search"
       size="large"
+      enterButton={
+        <Button
+          type="text"
+          icon={<SearchOutlined className="text-xl" />}
+          className="!h-full !rounded-full !bg-transparent"
+          aria-label="Submit search"
+        />
+      }
       variant="borderless"
+      aria-label="Search catalog"
     />
   );
 }

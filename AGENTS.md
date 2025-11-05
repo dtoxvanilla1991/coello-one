@@ -16,6 +16,7 @@ To work with this application, you must first change into its directory:
 
 Serena Workflow
 - Default to Serena MCP for every task—no manual prompting from the user required. Use Serena tools to plan, edit, and document work unless an exception is explicitly called out.
+- Golden rule: mobile-first by default. Ship the smallest breakpoint first, validate it, then expand to tablet/desktop.
 
 Common Commands
  - Install dependencies: `bun install`

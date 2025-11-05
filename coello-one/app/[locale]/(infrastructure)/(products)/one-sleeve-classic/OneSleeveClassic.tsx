@@ -327,8 +327,21 @@ const OneSleeveClassic: React.FC = () => {
     const mainContainer = mainImageRef.current;
     const sourceImage = mainContainer?.querySelector("img");
 
+    const priceValue =
+      Number.parseFloat(product.price.replace(/[^0-9.]/g, "")) || 0;
+
+    const cartItem = {
+      id: `${productNameSlug}-${selectedGender}-${selectedColor.name}-${selectedSize}`,
+      name: product.name,
+      image: mainImage,
+      price: priceValue,
+      size: selectedSize,
+      color: selectedColor.name,
+      fit: selectedGender,
+    } as const;
+
     if (!bagButton || !mainContainer || !sourceImage) {
-      incrementCart();
+      incrementCart(cartItem);
       return;
     }
 
@@ -351,7 +364,7 @@ const OneSleeveClassic: React.FC = () => {
 
     const finish = () => {
       clone.remove();
-      incrementCart();
+      incrementCart(cartItem);
     };
 
     if (typeof clone.animate !== "function") {
@@ -376,10 +389,14 @@ const OneSleeveClassic: React.FC = () => {
       }
     );
 
-    animation.finished
-      .catch(() => undefined)
-      .finally(finish);
-  }, [incrementCart]);
+    animation.finished.catch(() => undefined).finally(finish);
+  }, [
+    incrementCart,
+    mainImage,
+    selectedColor.name,
+    selectedGender,
+    selectedSize,
+  ]);
 
   const genderControl = (
     <Radio.Group
@@ -388,16 +405,15 @@ const OneSleeveClassic: React.FC = () => {
       onChange={(event) => handleGenderChange(event.target.value as Gender)}
       optionType="button"
       buttonStyle="solid"
-      className="w-full"
-    >
+      className="w-full">
       <Space>
-        <Radio.Button value="male" className="min-w-[96px]">
+        <Radio.Button value="male" className="min-w-24">
           <Space size={8} align="center">
             <ManOutlined />
             <span>Male</span>
           </Space>
         </Radio.Button>
-        <Radio.Button value="female" className="min-w-[96px]">
+        <Radio.Button value="female" className="min-w-24">
           <Space size={8} align="center">
             <WomanOutlined />
             <span>Female</span>
@@ -559,8 +575,7 @@ const OneSleeveClassic: React.FC = () => {
               size="small"
               icon={<InfoCircleOutlined />}
               onClick={handleOpenSizeGuide}
-              className="!p-0 w-fit"
-            >
+              className="!p-0 w-fit">
               Size Guide
             </Button>
 
@@ -583,10 +598,7 @@ const OneSleeveClassic: React.FC = () => {
         centered={!isMobile}
         width={isMobile ? "100%" : 560}
         className={isMobile ? "!max-w-full" : undefined}
-        title={`${
-          selectedGender === "male" ? "Men's" : "Women's"
-        } Size Guide`}
-      >
+        title={`${selectedGender === "male" ? "Men's" : "Women's"} Size Guide`}>
         <Table
           columns={sizeGuideColumns}
           dataSource={currentVariant.sizeGuide}

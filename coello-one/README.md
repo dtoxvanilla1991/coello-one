@@ -6,6 +6,10 @@
 - **Package Manager**: Bun
 - **Backend**: Flask (Python)
 
+## Product Principles
+
+- Golden rule: every flow ships mobile-first. Validate the smallest breakpoint before enhancing tablet or desktop states.
+
 ## Development Setup
 ```bash
 # Install dependencies
