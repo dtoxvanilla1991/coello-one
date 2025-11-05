@@ -122,7 +122,7 @@ export function BagContent() {
             <Card
               key={item.id}
               variant="borderless"
-              className="!rounded-2xl border !border-gray-200 px-4 py-4 shadow-sm">
+              className="rounded-2xl! border border-gray-200! px-4 py-4 shadow-sm">
               <Flex gap={16} align="start" className="flex-wrap">
                 <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-xl">
                   <Image
@@ -138,7 +138,7 @@ export function BagContent() {
                   justify="space-between"
                   className="min-w-[180px] flex-1">
                   <div>
-                    <Title level={4} className="!m-0 !text-lg">
+                    <Title level={4} className="m-0! text-lg!">
                       {item.name}
                     </Title>
                     <Text className="text-gray-500">
@@ -187,7 +187,7 @@ export function BagContent() {
         <Card
           title="Order summary"
           variant="borderless"
-          className="w-full !rounded-2xl border !border-gray-200 lg:max-w-sm"
+          className="w-full rounded-2xl! border border-gray-200! lg:max-w-sm"
           classNames={{
             header: "uppercase tracking-wide",
             body: "space-y-4",
