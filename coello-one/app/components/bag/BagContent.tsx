@@ -81,9 +81,9 @@ export function BagContent() {
       <Flex
         vertical
         gap={24}
-        className="w-full px-4 py-12 text-center"
+        className="w-full min-h-[70vh] px-4 py-12 text-center"
         align="center"
-      >
+        justify="center">
         <Title level={2} className="uppercase tracking-wide">
           Your bag is empty
         </Title>
