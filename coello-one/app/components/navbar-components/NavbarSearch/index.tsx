@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Button, Input, InputRef } from "antd";
-import type { SearchProps } from "antd/es/input/Search";
+import { Button, Input, InputRef, Space } from "antd";
 import type { KeyboardEvent } from "react";
 import { useRouter } from "next/navigation";
 import { buildLocaleRoute } from "@config/routes";
@@ -13,8 +12,6 @@ interface NavbarSearchProps {
   onClose: () => void;
   locale: string;
 }
-
-const { Search } = Input;
 
 export function NavbarSearch({
   searchVisible,
@@ -37,7 +34,7 @@ export function NavbarSearch({
     Promise.resolve(router.prefetch(baseRoute)).catch(() => undefined);
   }, [router, baseRoute]);
 
-  const handleOnSearch: SearchProps["onSearch"] = (rawValue) => {
+  const handleOnSearch = (rawValue: string) => {
     const trimmedValue = rawValue.trim();
     const destination =
       trimmedValue.length > 0
@@ -56,39 +53,48 @@ export function NavbarSearch({
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleOnSearch(event.currentTarget.value);
+      return;
+    }
+
     if (event.key === "Escape") {
       onClose();
     }
   };
 
+  const handleButtonClick = () => {
+    const value = searchRef.current?.input?.value ?? "";
+
+    handleOnSearch(value);
+  };
+
   return (
-    <Search
-      ref={searchRef}
-      placeholder="Search Coello"
+    <Space.Compact
       className={`${
-        searchVisible ? "!block" : "!hidden"
-      } mx-auto w-11/12 max-w-xl !rounded-full !shadow-none`}
-      classNames={{
-        input:
-          "!bg-transparent !shadow-none !border-0 focus:!border-0 focus:!ring-0",
-        suffix: "!text-black",
-      }}
-      onSearch={handleOnSearch}
-      allowClear
-      onBlur={handleBlur}
-      onKeyDown={handleKeyDown}
-      id="navbar-search"
+        searchVisible ? "flex!" : "hidden!"
+      } mx-auto w-11/12 max-w-xl overflow-hidden rounded-full! shadow-none!`}
       size="large"
-      enterButton={
-        <Button
-          type="text"
-          icon={<SearchOutlined className="text-xl" />}
-          className="!h-full !rounded-full !bg-transparent"
-          aria-label="Submit search"
-        />
-      }
-      variant="borderless"
       aria-label="Search catalog"
-    />
+      role="search">
+      <Input
+        ref={searchRef}
+        placeholder="Search Coello"
+        className="bg-transparent! shadow-none! border-0! focus:border-0! focus:ring-0!"
+        allowClear
+        onBlur={handleBlur}
+        onKeyDown={handleKeyDown}
+        id="navbar-search"
+        variant="borderless"
+      />
+      <Button
+        type="text"
+        icon={<SearchOutlined className="text-xl" />}
+        className="h-full! rounded-full! bg-transparent!"
+        aria-label="Submit search"
+        onMouseDown={(event) => event.preventDefault()}
+        onClick={handleButtonClick}
+      />
+    </Space.Compact>
   );
 }
