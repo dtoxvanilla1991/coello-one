@@ -92,7 +92,23 @@ mock.module("next/link", () => ({
       candidate &&
       typeof (candidate as { pathname?: unknown }).pathname === "string"
     ) {
-      href = (candidate as { pathname?: string }).pathname ?? "/";
+      const { pathname, query } = candidate as {
+        pathname?: string;
+        query?: Record<string, unknown>;
+      };
+      const basePath = pathname ?? "/";
+      if (query && Object.keys(query).length > 0) {
+        const params = new URLSearchParams();
+        Object.entries(query).forEach(([key, value]) => {
+          if (typeof value === "string") {
+            params.append(key, value);
+          }
+        });
+        const search = params.toString();
+        href = search ? `${basePath}?${search}` : basePath;
+      } else {
+        href = basePath;
+      }
     }
     // Spread props first, then override href to avoid TS unused vars
     return createElement(

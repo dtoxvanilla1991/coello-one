@@ -59,8 +59,8 @@ export function Navbar() {
         <Badge
           count={cartCount}
           size="small"
-          offset={[-2, 4]}
-          className="flex items-center">
+          offset={[-6, 4]}
+          className={`flex items-center ${visibilityClass}`}>
           <Button
             id="navbar-bag-button"
             type="text"

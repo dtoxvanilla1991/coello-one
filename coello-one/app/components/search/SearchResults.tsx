@@ -93,11 +93,14 @@ export const searchCatalog: SearchCatalogItem[] = [
 ];
 
 interface SearchResultsProps {
-  locale: string;
+  locale?: string;
   query?: string;
 }
 
-export function SearchResults({ locale, query = "" }: SearchResultsProps) {
+export function SearchResults({
+  locale = "en-GB",
+  query = "",
+}: SearchResultsProps) {
   const trimmedQuery = query.trim();
   const normalizedQuery = trimmedQuery.toLowerCase();
 
@@ -131,7 +134,10 @@ export function SearchResults({ locale, query = "" }: SearchResultsProps) {
         <Title level={3} className="uppercase tracking-wide">
           No matches found
         </Title>
-        <Empty description={emptyDescription} styles={{ image: { marginBottom: 12 } }} />
+        <Empty
+          description={emptyDescription}
+          styles={{ image: { marginBottom: 12 } }}
+        />
         <Text className="text-gray-500">
           Try searching for a fit, color, or product name instead.
         </Text>
@@ -156,16 +162,17 @@ export function SearchResults({ locale, query = "" }: SearchResultsProps) {
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {results.map((item) => {
-            const basePath = `/${locale}/(infrastructure)/(products)/${item.slug}`;
-            const searchParams = new URLSearchParams(item.query).toString();
-            const href = searchParams ? `${basePath}?${searchParams}` : basePath;
+            const productPath = `/${locale}/${item.slug}`;
+            const href = Object.keys(item.query).length
+              ? { pathname: productPath, query: item.query }
+              : productPath;
 
             return (
               <Card
                 key={item.id}
                 hoverable
                 variant="borderless"
-                className="!rounded-3xl border !border-gray-200 p-0 shadow-sm transition-shadow duration-200 hover:shadow-md"
+                className="rounded-3xl! border border-gray-200! p-0 shadow-sm transition-shadow duration-200 hover:shadow-md"
                 cover={
                   <div className="relative h-64 overflow-hidden rounded-t-3xl">
                     <Image
@@ -181,7 +188,7 @@ export function SearchResults({ locale, query = "" }: SearchResultsProps) {
                   direction="vertical"
                   size={12}
                   className="w-full px-4 pb-4 pt-2">
-                  <Title level={4} className="!m-0 !text-lg">
+                  <Title level={4} className="m-0! text-lg!">
                     {item.name}
                   </Title>
                   <Text className="text-gray-500">{item.genderLabel}</Text>

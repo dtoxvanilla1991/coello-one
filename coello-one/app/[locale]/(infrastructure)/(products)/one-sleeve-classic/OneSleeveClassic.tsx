@@ -359,6 +359,7 @@ const OneSleeveClassic: React.FC = () => {
       zIndex: "1000",
       borderRadius: "12px",
       pointerEvents: "none",
+      transformOrigin: "center",
     });
 
     document.body.appendChild(clone);
@@ -373,13 +374,19 @@ const OneSleeveClassic: React.FC = () => {
       return;
     }
 
+    const imageCenterX = imageRect.left + imageRect.width / 2;
+    const imageCenterY = imageRect.top + imageRect.height / 2;
+    const bagCenterX = bagRect.left + bagRect.width / 2;
+    const bagCenterY = bagRect.top + bagRect.height / 2;
+
+    const translateX = bagCenterX - imageCenterX;
+    const translateY = bagCenterY - imageCenterY;
+
     const animation = clone.animate(
       [
-        { transform: "translate(0, 0) scale(1)", opacity: 1 },
+        { transform: "translate3d(0, 0, 0) scale(1)", opacity: 1 },
         {
-          transform: `translate(${bagRect.left - imageRect.left}px, ${
-            bagRect.top - imageRect.top
-          }px) scale(0.25)`,
+          transform: `translate3d(${translateX}px, ${translateY}px, 0) scale(0.25)`,
           opacity: 0.4,
         },
       ],
