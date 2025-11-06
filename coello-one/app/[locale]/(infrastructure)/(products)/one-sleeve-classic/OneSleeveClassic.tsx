@@ -76,7 +76,7 @@ const product: {
     male: {
       colors: [
         {
-          name: "Gray",
+          name: "Gray Lint",
           swatchClass: "bg-gray-400",
           ringClass: "ring-gray-400",
         },
@@ -487,7 +487,7 @@ const OneSleeveClassic: React.FC = () => {
             </Row>
           </Space>
         </Col>
-        <Col xs={24} md={10} className="md:!pl-8">
+        <Col xs={24} md={10} className="md:pl-8!">
           <Space
             direction="vertical"
             size="large"
@@ -510,7 +510,9 @@ const OneSleeveClassic: React.FC = () => {
               <Flex wrap="wrap" align="center" gap={16}>
                 <Text strong>
                   COLOR:{" "}
-                  <span className="font-normal">{selectedColor.name}</span>
+                  <span className="font-normal inline-block min-w-[7ch]">
+                    {selectedColor.name}
+                  </span>
                 </Text>
                 <Radio.Group
                   name={`${productNameSlug}-color`}
@@ -527,14 +529,14 @@ const OneSleeveClassic: React.FC = () => {
                           value={color.name}
                           aria-label={`Color ${color.name}`}
                           aria-checked={isSelected}
-                          className="!border-0 !bg-transparent !p-0 !shadow-none focus-visible:outline-none focus-visible:ring-0">
+                          className="border-0! bg-transparent! p-0! shadow-none! focus-visible:outline-none focus-visible:ring-0">
                           <span
                             aria-hidden="true"
                             className={`block h-8 w-8 rounded-full border-2 transition-all duration-150 ${
                               color.swatchClass
                             } ${
                               isSelected
-                                ? `border-black ring-2 ring-offset-2 ring-offset-white ${color.ringClass}`
+                                ? `border-white ring-2 ring-offset-1 ring-offset-white ${color.ringClass}`
                                 : "border-gray-300 ring-0 ring-transparent ring-offset-0"
                             }`}
                           />
@@ -575,7 +577,7 @@ const OneSleeveClassic: React.FC = () => {
               size="small"
               icon={<InfoCircleOutlined />}
               onClick={handleOpenSizeGuide}
-              className="!p-0 w-fit">
+              className="p-0! w-fit">
               Size Guide
             </Button>
 
@@ -597,7 +599,7 @@ const OneSleeveClassic: React.FC = () => {
         footer={null}
         centered={!isMobile}
         width={isMobile ? "100%" : 560}
-        className={isMobile ? "!max-w-full" : undefined}
+        className={isMobile ? "max-w-full!" : undefined}
         title={`${selectedGender === "male" ? "Men's" : "Women's"} Size Guide`}>
         <Table
           columns={sizeGuideColumns}

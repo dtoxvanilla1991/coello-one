@@ -8,9 +8,15 @@ const config = [
   ...tailwindPlugin.configs["flat/recommended"],
 
   {
+    settings: {
+      tailwindcss: {
+        config: false, // Tailwind CSS v4 tooling not yet supported by the plugin; skip config resolution to avoid noise
+      },
+    },
     rules: {
-      "tailwindcss/no-trailing-exclamation": "error", // Bans old v3 syntax (e.g., `class!`)
-      "tailwindcss/no-contradicting-classname": "error", // Good rule to have
+      "tailwindcss/no-contradicting-classname": "error", // Keep core clash detection
+      "tailwindcss/no-custom-classname": "off", // Allow design system utility classes defined outside Tailwind
+      "tailwindcss/classnames-order": "off", // Disable order rule until Tailwind v4 plugin support lands
     },
   },
 ];
