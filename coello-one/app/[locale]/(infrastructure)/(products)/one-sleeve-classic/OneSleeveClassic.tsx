@@ -25,6 +25,7 @@ import {
   ManOutlined,
   WomanOutlined,
   InfoCircleOutlined,
+  CloseOutlined,
 } from "@ant-design/icons";
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -600,6 +601,7 @@ const OneSleeveClassic: React.FC = () => {
         centered={!isMobile}
         width={isMobile ? "100%" : 560}
         className={isMobile ? "max-w-full!" : undefined}
+        closeIcon={<CloseOutlined className="me-10 text-lg" />}
         title={`${selectedGender === "male" ? "Men's" : "Women's"} Size Guide`}>
         <Table
           columns={sizeGuideColumns}
