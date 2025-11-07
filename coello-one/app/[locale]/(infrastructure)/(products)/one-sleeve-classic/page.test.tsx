@@ -19,6 +19,6 @@ describe("OneSleeveClassicPage", () => {
     expect(
       screen.getByRole("heading", { level: 2, name: /One Sleeve Classic/i })
     ).toBeTruthy();
-    expect(screen.getByText("$45.00")).toBeTruthy();
+  expect(screen.getByText("£45.00")).toBeTruthy();
   });
 });

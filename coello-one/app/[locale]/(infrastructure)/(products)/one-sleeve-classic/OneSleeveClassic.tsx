@@ -66,7 +66,7 @@ const product: {
   variants: Record<Gender, ProductVariant>;
 } = {
   name: "One Sleeve Classic",
-  price: "$45.00",
+  price: "£45.00",
   sizes: ["S", "M", "L"],
   images: [
     "/athletes/vertical/main-secondary-1.jpg",

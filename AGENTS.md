@@ -89,4 +89,4 @@ You must analyze every request I make through the combined lens of these five ex
 
 - Favor Tailwind CSS for every styling decision. Only pursue non-Tailwind approaches if a documented limitation prevents Tailwind from achieving the requirement, and capture that exception in code comments plus the project log.
 - Do not add `import React from "react";` to TSX files. Next.js provides React automatically; import only the specific hooks you need (e.g., `useState`) and import types with the `type` modifier (e.g., `import type { FC } from "react";`).
-- Build UI with Ant Design or Next.js components rather than raw HTML tags. If a requirement forces a native element, leave a succinct comment explaining the exception and document it in Serena.
+- Build UI exclusively with Ant Design or Next.js components—native HTML tags are banned. If an unavoidable platform limitation requires a native element, pause, document the rationale in Serena, and seek approval before implementation.

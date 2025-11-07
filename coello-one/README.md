@@ -32,6 +32,7 @@ bun dev
 
 ### UX & Styling Standards
 - Favor Ant Design components and Tailwind utilities; note any exceptions inline and in Serena.
+- Do not render native HTML tags directly; compose layouts from Ant Design primitives (e.g. `Flex`, `Space`, `Typography`). Log any unavoidable exceptions in Serena before implementation.
 - Keep the primary header background white and maintain sticky visibility where required (see `app/components/navbar-components/Navbar`).
 - Wrap catalog detail pages with `ProductDetailShell` to inherit responsive paddings and max-width constraints.
 - Use Tailwind’s canonical important syntax (`utility!`) for overrides; if linting disagrees, coordinate the rule update rather than toggling back to legacy prefixes.

@@ -29,9 +29,9 @@ import { trackEvent } from "@/utils/trackEvent";
 
 const { Title, Text } = Typography;
 
-const formatPrice = new Intl.NumberFormat("en-US", {
+const formatPrice = new Intl.NumberFormat("en-GB", {
   style: "currency",
-  currency: "USD",
+  currency: "GBP",
 });
 
 export function BagContent() {

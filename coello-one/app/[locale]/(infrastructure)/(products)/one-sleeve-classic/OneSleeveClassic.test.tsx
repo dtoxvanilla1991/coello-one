@@ -19,7 +19,7 @@ describe("OneSleeveClassic", () => {
     expect(
       screen.getByRole("heading", { level: 2, name: "One Sleeve Classic" })
     ).toBeTruthy();
-    expect(screen.getByText("$45.00")).toBeTruthy();
+  expect(screen.getByText("£45.00")).toBeTruthy();
   });
 
   it("hydrates defaults from configuration", () => {

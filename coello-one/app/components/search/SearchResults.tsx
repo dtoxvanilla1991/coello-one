@@ -7,9 +7,9 @@ import Image from "next/image";
 
 const { Title, Text } = Typography;
 
-const priceFormatter = new Intl.NumberFormat("en-US", {
+const priceFormatter = new Intl.NumberFormat("en-GB", {
   style: "currency",
-  currency: "USD",
+  currency: "GBP",
 });
 
 type SearchCatalogItem = {
