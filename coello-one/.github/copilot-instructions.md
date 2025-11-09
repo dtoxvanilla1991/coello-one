@@ -9,6 +9,7 @@ This document provides essential guidelines for working on the Coello-One app. F
 - **Styling**: We use a combination of Ant Design for UI components and Tailwind CSS for custom styling and layout.
   - Ant Design's theme is configured globally in `app/[locale]/layout.tsx`. When adding new components, ensure they adhere to the established theme.
   - Use Tailwind CSS utility classes for layout, spacing, and custom component styling.
+  - Keep primary component files under roughly 300 lines. Extract child components and move static data, option arrays, and type/interface definitions into colocated `constants.ts` / `types.ts` modules to preserve readability.
 
 ## Developer Workflow
 

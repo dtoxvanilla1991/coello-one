@@ -37,8 +37,14 @@ describe("BagContent", () => {
   it("shows an empty state when the cart has no items", () => {
     renderWithCart();
 
-  expect(screen.getByText(/your bag is empty/i)).toBeTruthy();
-  expect(screen.getByRole("button", { name: /continue shopping/i })).toBeTruthy();
+    const bagHeadings = screen.getAllByRole("heading", { name: /your bag/i });
+    expect(bagHeadings.length).toBeGreaterThan(0);
+    expect(screen.getByText(/your bag is empty/i)).toBeTruthy();
+    expect(
+      screen.getByRole("button", { name: /continue shopping/i })
+    ).toBeTruthy();
+    expect(screen.queryByRole("progressbar")).toBeNull();
+    expect(screen.queryByText(/free express shipping/i)).toBeNull();
   });
 
   it("renders order details with correct totals for active items", () => {
@@ -67,13 +73,16 @@ describe("BagContent", () => {
 
     renderWithCart(items);
 
-    const summary = screen.getByText(/order summary/i).closest("section") ?? screen.getByText(/order summary/i).parentElement;
-    expect(summary).toBeTruthy();
-    const summaryRegion = summary ? within(summary) : screen;
+    const summaryLabel = screen.getByText(/order summary/i);
+    const summaryCard = summaryLabel.closest(".ant-card");
+    expect(summaryCard).toBeTruthy();
+    const summaryRegion = summaryCard
+      ? within(summaryCard as HTMLElement)
+      : screen;
 
-  expect(summaryRegion.getByText("$135.00")).toBeTruthy();
-  expect(summaryRegion.getByText("$8.50")).toBeTruthy();
-  expect(summaryRegion.getByText("$143.50")).toBeTruthy();
+    expect(summaryRegion.getByText("£135.00")).toBeTruthy();
+    expect(summaryRegion.getByText("£8.50")).toBeTruthy();
+    expect(summaryRegion.getByText("£143.50")).toBeTruthy();
   });
 
   it("navigates back to the locale home when Continue shopping is pressed", () => {
@@ -100,7 +109,7 @@ describe("BagContent", () => {
 
     renderWithCart(items);
 
-    fireEvent.click(screen.getByRole("button", { name: /checkout/i }));
+    fireEvent.click(screen.getByRole("button", { name: /checkout securely/i }));
 
     expect(trackEventMock).toHaveBeenCalledTimes(1);
     const [, payload] = trackEventMock.mock.calls[0];
@@ -111,5 +120,6 @@ describe("BagContent", () => {
       total: 98.5,
       itemCount: 2,
     });
+    expect(routerMocks.push).toHaveBeenCalledWith("/en-GB/checkout");
   });
 });

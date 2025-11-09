@@ -2,6 +2,7 @@ export const routes = {
   root: "/",
   home: "/home",
   bag: "/bag",
+  checkout: "/checkout",
   search: "/search",
   accessDenied: "/access-denied",
   comingSoon: "/coming-soon",
