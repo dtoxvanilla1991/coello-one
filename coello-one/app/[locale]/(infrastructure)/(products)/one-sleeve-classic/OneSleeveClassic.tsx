@@ -33,97 +33,22 @@ import type { ColumnsType } from "antd/es/table";
 import { useSetAtom } from "jotai";
 import { ProductDetailShell } from "@/components/product/ProductDetailShell";
 import { incrementCartAtom } from "@/store/cartStore";
+import type { Color, Gender, SizeGuideRow } from "./types";
+import {
+  DEFAULT_COLOR_NAME,
+  DEFAULT_GENDER,
+  DEFAULT_SIZE,
+  PRODUCT_DATA,
+  PRODUCT_NAME_SLUG,
+} from "./constants";
 
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
 
-type Gender = "male" | "female";
-
-type Color = { name: string; swatchClass: string; ringClass: string };
-
-type SizeGuideRow = {
-  key: string;
-  size: string;
-  chest: string;
-  waist: string;
-  hips: string;
-};
-
-interface ProductVariant {
-  colors: Color[];
-  sizeGuide: SizeGuideRow[];
-}
-
-const defaultGender: Gender = "male";
-const defaultColorName = "Gray";
-const defaultSize = "M";
-
-const product: {
-  name: string;
-  price: string;
-  sizes: string[];
-  images: string[];
-  variants: Record<Gender, ProductVariant>;
-} = {
-  name: "One Sleeve Classic",
-  price: "£45.00",
-  sizes: ["S", "M", "L"],
-  images: [
-    "/athletes/vertical/main-secondary-1.jpg",
-    "/athletes/vertical/main-secondary-2.jpg",
-    "/athletes/vertical/main-secondary-3.jpg",
-  ],
-  variants: {
-    male: {
-      colors: [
-        {
-          name: "Gray Lint",
-          swatchClass: "bg-gray-400",
-          ringClass: "ring-gray-400",
-        },
-        {
-          name: "Sea Blue",
-          swatchClass: "bg-sky-500",
-          ringClass: "ring-sky-400",
-        },
-        {
-          name: "Mild Red",
-          swatchClass: "bg-rose-300",
-          ringClass: "ring-rose-400",
-        },
-      ],
-      sizeGuide: [
-        { key: "S", size: "S", chest: "94", waist: "76", hips: "92" },
-        { key: "M", size: "M", chest: "100", waist: "82", hips: "98" },
-        { key: "L", size: "L", chest: "106", waist: "88", hips: "104" },
-      ],
-    },
-    female: {
-      colors: [
-        {
-          name: "Gray",
-          swatchClass: "bg-gray-400",
-          ringClass: "ring-gray-400",
-        },
-        {
-          name: "Sea Blue",
-          swatchClass: "bg-sky-500",
-          ringClass: "ring-sky-400",
-        },
-        {
-          name: "Mild Red",
-          swatchClass: "bg-rose-300",
-          ringClass: "ring-rose-400",
-        },
-      ],
-      sizeGuide: [
-        { key: "S", size: "S", chest: "84", waist: "66", hips: "90" },
-        { key: "M", size: "M", chest: "90", waist: "72", hips: "96" },
-        { key: "L", size: "L", chest: "96", waist: "78", hips: "102" },
-      ],
-    },
-  },
-};
+const product = PRODUCT_DATA;
+const defaultGender = DEFAULT_GENDER;
+const defaultColorName = DEFAULT_COLOR_NAME;
+const defaultSize = DEFAULT_SIZE;
 
 interface State {
   selectedGender: Gender;
@@ -188,7 +113,7 @@ function productReducer(state: State, action: Action): State {
 const OneSleeveClassic: React.FC = () => {
   const [state, dispatch] = useReducer(productReducer, initialState);
   const { selectedGender, selectedColor, selectedSize, mainImage } = state;
-  const productNameSlug = "one-sleeve-classic";
+  const productNameSlug = PRODUCT_NAME_SLUG;
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -404,6 +329,7 @@ const OneSleeveClassic: React.FC = () => {
     selectedColor.name,
     selectedGender,
     selectedSize,
+    productNameSlug,
   ]);
 
   const genderControl = (
