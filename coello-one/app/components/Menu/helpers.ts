@@ -3,11 +3,7 @@ import type { ReactNode, Key } from "react";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
-function createMenuTitle(
-  label: ReactNode,
-  key: Key,
-  children?: MenuItem[]
-): MenuItem {
+function createMenuTitle(label: ReactNode, key: Key, children?: MenuItem[]): MenuItem {
   return {
     key,
     label,
@@ -15,11 +11,7 @@ function createMenuTitle(
     className: "uppercase font-medium",
   } as MenuItem;
 }
-function createMenuOption(
-  label: ReactNode,
-  key: Key,
-  children?: MenuItem[]
-): MenuItem {
+function createMenuOption(label: ReactNode, key: Key, children?: MenuItem[]): MenuItem {
   return {
     key,
     label,

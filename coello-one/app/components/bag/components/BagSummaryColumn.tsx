@@ -12,17 +12,12 @@ type BagSummaryColumnProps = {
   onCheckout: () => void;
 };
 
-export function BagSummaryColumn({
-  subtotal,
-  shipping,
-  total,
-  onCheckout,
-}: BagSummaryColumnProps) {
+export function BagSummaryColumn({ subtotal, shipping, total, onCheckout }: BagSummaryColumnProps) {
   return (
     <Flex vertical gap={16} className="w-full lg:max-w-sm">
       <Card className="rounded-2xl! border border-gray-200!">
         <Flex vertical gap={12}>
-          <Title level={4} className="m-0! uppercase tracking-wide">
+          <Title level={4} className="m-0! tracking-wide uppercase">
             Discount code
           </Title>
           <Space.Compact className="w-full">
@@ -31,9 +26,7 @@ export function BagSummaryColumn({
               Apply
             </Button>
           </Space.Compact>
-          <Text className="text-xs text-gray-500">
-            Gift card codes can be applied at checkout.
-          </Text>
+          <Text className="text-xs text-gray-500">Gift card codes can be applied at checkout.</Text>
         </Flex>
       </Card>
 
@@ -42,7 +35,8 @@ export function BagSummaryColumn({
         className="rounded-2xl! border border-gray-200!"
         classNames={{
           header: "uppercase tracking-wide text-sm!",
-        }}>
+        }}
+      >
         <Flex vertical gap={12} className="text-sm">
           <Flex justify="space-between">
             <Text className="text-gray-500">Subtotal</Text>
@@ -66,8 +60,9 @@ export function BagSummaryColumn({
             type="primary"
             size="large"
             block
-            className="mt-2 rounded-full! py-5 text-base! uppercase tracking-wide!"
-            onClick={onCheckout}>
+            className="mt-2 rounded-full! py-5 text-base! tracking-wide! uppercase"
+            onClick={onCheckout}
+          >
             Checkout securely
           </Button>
         </Flex>

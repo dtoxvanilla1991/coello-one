@@ -7,7 +7,7 @@ describe("InfrastructureLayout", () => {
     render(
       <InfrastructureLayout>
         <div>Child Component</div>
-      </InfrastructureLayout>
+      </InfrastructureLayout>,
     );
     expect(await screen.findByText("Child Component")).toBeTruthy();
   });
@@ -16,12 +16,10 @@ describe("InfrastructureLayout", () => {
     render(
       <InfrastructureLayout>
         <div>Child</div>
-      </InfrastructureLayout>
+      </InfrastructureLayout>,
     );
     expect(await screen.findByRole("banner")).toBeTruthy();
-    expect(
-      await screen.findByRole("navigation", { name: /navigation sidebar/i })
-    ).toBeTruthy();
+    expect(await screen.findByRole("navigation", { name: /navigation sidebar/i })).toBeTruthy();
     expect(await screen.findByRole("contentinfo")).toBeTruthy();
   });
 
@@ -29,7 +27,7 @@ describe("InfrastructureLayout", () => {
     render(
       <InfrastructureLayout>
         <div>Child</div>
-      </InfrastructureLayout>
+      </InfrastructureLayout>,
     );
     expect(await screen.findByRole("main")).toBeTruthy();
   });

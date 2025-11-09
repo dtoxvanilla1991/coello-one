@@ -5,11 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Input, Button, Alert, Spin, Typography } from "antd";
-import {
-  ExclamationCircleOutlined,
-  LoadingOutlined,
-  MailOutlined,
-} from "@ant-design/icons";
+import { ExclamationCircleOutlined, LoadingOutlined, MailOutlined } from "@ant-design/icons";
 import { subscribeUser } from "./actions";
 
 const subscribeSchema = z.object({
@@ -50,7 +46,9 @@ const SubscriptionForm = () => {
       }
     } catch (error: unknown) {
       if (error instanceof Error) {
-        setServerError("Unable to subscribe at the moment. Please try again later." + error.message);
+        setServerError(
+          "Unable to subscribe at the moment. Please try again later." + error.message,
+        );
       } else {
         setServerError("Unable to subscribe at the moment. Please try again later.");
       }
@@ -65,9 +63,8 @@ const SubscriptionForm = () => {
           message="Subscription Activated!"
           description={
             <>
-              Thank you for subscribing! Please check your email for a
-              confirmation link. We&rsquo;re excited to keep you updated with
-              our latest news.
+              Thank you for subscribing! Please check your email for a confirmation link.
+              We&rsquo;re excited to keep you updated with our latest news.
             </>
           }
           type="success"
@@ -102,9 +99,7 @@ const SubscriptionForm = () => {
             status={errors.email ? "error" : ""}
             suffix={
               isSubmitting ? (
-                <Spin
-                  indicator={<LoadingOutlined className="text-base" spin />}
-                />
+                <Spin indicator={<LoadingOutlined className="text-base" spin />} />
               ) : undefined
             }
           />
@@ -131,7 +126,8 @@ const SubscriptionForm = () => {
           htmlType="submit"
           block
           disabled={isSubmitting}
-          loading={isSubmitting}>
+          loading={isSubmitting}
+        >
           {isSubmitting ? "Subscribing..." : "Subscribe"}
         </Button>
       </form>

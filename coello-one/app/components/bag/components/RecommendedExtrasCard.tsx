@@ -20,7 +20,8 @@ export function RecommendedExtrasCard({ items, onAddExtra }: RecommendedExtrasCa
       className="rounded-2xl! border border-gray-200!"
       classNames={{
         header: "uppercase tracking-wide text-sm!",
-      }}>
+      }}
+    >
       <Flex vertical gap={16}>
         <Text className="text-sm text-gray-500">
           Add one or more of these items to get free delivery.
@@ -33,12 +34,14 @@ export function RecommendedExtrasCard({ items, onAddExtra }: RecommendedExtrasCa
               <Card
                 key={extra.id}
                 className="rounded-xl! border border-gray-200!"
-                styles={{ body: { padding: 12 } }}>
+                styles={{ body: { padding: 12 } }}
+              >
                 <Flex align="center" gap={12}>
                   <Flex
                     align="center"
                     justify="center"
-                    className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg">
+                    className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg"
+                  >
                     <Image
                       src={extra.image}
                       alt={`${extra.name} preview`}
@@ -63,7 +66,8 @@ export function RecommendedExtrasCard({ items, onAddExtra }: RecommendedExtrasCa
                       type="default"
                       shape="round"
                       onClick={() => onAddExtra(extra)}
-                      disabled={isInCart}>
+                      disabled={isInCart}
+                    >
                       {isInCart ? "Added" : "Add"}
                     </Button>
                   </Flex>

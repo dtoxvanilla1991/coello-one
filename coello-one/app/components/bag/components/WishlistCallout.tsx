@@ -13,7 +13,7 @@ export function WishlistCallout() {
           <HeartFilled className="text-3xl text-black" />
         </Flex>
         <Flex vertical align="center" gap={12} className="text-center">
-          <Title level={3} className="m-0! uppercase tracking-wide">
+          <Title level={3} className="m-0! tracking-wide uppercase">
             Save to wishlist
           </Title>
           <Text className="max-w-xs text-gray-500">

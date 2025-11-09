@@ -30,7 +30,7 @@ export function dispatchAnalytics(detail: AnalyticsDetail): void {
         source: "coello-analytics",
         ...detail,
       },
-      "*"
+      "*",
     );
   }
 }

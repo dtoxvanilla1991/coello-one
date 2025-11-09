@@ -5,9 +5,7 @@ import { describe, it, expect } from "bun:test";
 describe("SalesBlock", () => {
   it("should render the sales block", () => {
     render(<SalesBlock />);
-    expect(
-      screen.getByRole("region", { name: /GET AN EXTRA 10% OFF SALE ITEMS/i })
-    ).toBeTruthy();
+    expect(screen.getByRole("region", { name: /GET AN EXTRA 10% OFF SALE ITEMS/i })).toBeTruthy();
   });
 
   it("should render the title", () => {
@@ -22,9 +20,7 @@ describe("SalesBlock", () => {
   it("should render the text", () => {
     render(<SalesBlock />);
     expect(
-      screen.getByText(
-        /Drop code extra10 and thank us with a tagged photo in the gym/i
-      )
+      screen.getByText(/Drop code extra10 and thank us with a tagged photo in the gym/i),
     ).toBeTruthy();
   });
 

@@ -55,7 +55,8 @@ export default async function LocaleLayout({
           colorBgLayout: "#ffffff", // sets layout backgrounds
           colorLink: "#000000",
         },
-      }}>
+      }}
+    >
       <AntdCompatibilityGate>
         <AntdRegistry>{children}</AntdRegistry>
       </AntdCompatibilityGate>

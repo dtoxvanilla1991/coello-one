@@ -34,7 +34,7 @@ export function Navbar() {
   const visibilityClass = searchVisible ? "!hidden" : "!block";
 
   return (
-    <Header className="!bg-white flex items-center justify-between !px-4 sticky top-0 z-50 shadow-sm">
+    <Header className="sticky top-0 z-50 flex items-center justify-between !bg-white !px-4 shadow-sm">
       <Button
         type="text"
         size="large"
@@ -44,7 +44,7 @@ export function Navbar() {
         aria-label="Toggle navigation menu"
       />
       <Flex className={visibilityClass} justify="center" align="center">
-        <Link href={homeHref} className="ml-2 pt-1 block">
+        <Link href={homeHref} className="ml-2 block pt-1">
           <Image
             src="/coelloLogo.png"
             width={150}
@@ -60,7 +60,8 @@ export function Navbar() {
           count={cartCount}
           size="small"
           offset={[-6, 4]}
-          className={`flex items-center ${visibilityClass}`}>
+          className={`flex items-center ${visibilityClass}`}
+        >
           <Button
             id="navbar-bag-button"
             type="text"
@@ -80,11 +81,7 @@ export function Navbar() {
           aria-label="Open search"
         />
       </Space>
-      <NavbarSearch
-        searchVisible={searchVisible}
-        onClose={toggleSearch}
-        locale={locale}
-      />
+      <NavbarSearch searchVisible={searchVisible} onClose={toggleSearch} locale={locale} />
     </Header>
   );
 }

@@ -18,33 +18,28 @@ export function MainBanner() {
   const withLocalePath = useLocalePath();
 
   return (
-    <Content
-      role="region"
-      aria-labelledby="main-banner-title"
-      className="relative">
+    <Content role="region" aria-labelledby="main-banner-title" className="relative">
       <Row>
-        <Col className="h-[44em] grid items-end w-full">
+        <Col className="grid h-[44em] w-full items-end">
           <Image
             src="/athletes/main image.jpg"
             alt="Coello One banner"
             sizes="(max-width: 640px) 100vw, 640px"
             fill
             priority
-            className="object-cover w-full"
+            className="w-full object-cover"
           />
           <Col className="z-10 mb-3 text-center">
-            <Title
-              className="!text-white !font-extrabold"
-              level={4}
-              id="main-banner-title">
+            <Title className="!font-extrabold !text-white" level={4} id="main-banner-title">
               NOW YOU TRULY STAND OUT.
             </Title>
             <Link href={withLocalePath("/one-sleeve-classic")}>
               <Button
-                className="!px-10 uppercase !font-semibold"
+                className="!px-10 !font-semibold uppercase"
                 size="large"
                 data-analytics-id="main-banner-shop-now"
-                onClick={() => trackEvent("main_banner_shop_now_click")}>
+                onClick={() => trackEvent("main_banner_shop_now_click")}
+              >
                 Shop Now
               </Button>
             </Link>

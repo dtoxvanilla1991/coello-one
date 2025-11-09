@@ -22,7 +22,7 @@ export function BagItemsSection({
   onContinueShopping,
 }: BagItemsSectionProps) {
   return (
-    <Flex vertical gap={16} className="flex-1 min-w-0">
+    <Flex vertical gap={16} className="min-w-0 flex-1">
       {items.map((item) => (
         <BagItemCard
           key={item.id}

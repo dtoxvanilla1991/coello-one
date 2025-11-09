@@ -23,9 +23,7 @@ const data: DataType[] = [
 
 const BottomMoreAboutSection: React.FC = () => {
   return (
-    <section
-      aria-labelledby="bottom-more-about-title"
-      className="flex flex-col p-4 pr-0 pb-6">
+    <section aria-labelledby="bottom-more-about-title" className="flex flex-col p-4 pr-0 pb-6">
       <Title id="bottom-more-about-title" level={5} className="mb-4 uppercase">
         More about Coello One
       </Title>
@@ -33,7 +31,8 @@ const BottomMoreAboutSection: React.FC = () => {
         gap={16}
         role="list"
         aria-label="Coello One highlights"
-        className="hide-scrollbar flex overflow-x-auto snap-x snap-mandatory scroll-smooth">
+        className="hide-scrollbar flex snap-x snap-mandatory overflow-x-auto scroll-smooth"
+      >
         {data.map((item, index) => (
           <Card
             key={index}
@@ -42,18 +41,17 @@ const BottomMoreAboutSection: React.FC = () => {
             classNames={{ body: "!p-2" }}
             cover={
               <Flex
-                className="!flex relative h-28 bg-black !text-white uppercase"
+                className="relative !flex h-28 bg-black !text-white uppercase"
                 justify="center"
                 align="center"
-                vertical>
+                vertical
+              >
                 <CardContent {...item} />
               </Flex>
             }
-            hoverable>
-            <Card.Meta
-              className="uppercase bg-gray-200 text-sm"
-              description={item.description}
-            />
+            hoverable
+          >
+            <Card.Meta className="bg-gray-200 text-sm uppercase" description={item.description} />
           </Card>
         ))}
       </Flex>
@@ -63,18 +61,16 @@ const BottomMoreAboutSection: React.FC = () => {
 
 const CardContent: FC<DataType> = ({ title, text, icon, image }) => {
   if (image) {
-    return (
-      <Image src={image} alt="Coello One" fill className="object-contain" />
-    );
+    return <Image src={image} alt="Coello One" fill className="object-contain" />;
   } else if (icon) {
     return icon;
   }
   return (
     <>
-      <Title level={4} className="!text-white !m-0 font-bold">
+      <Title level={4} className="!m-0 font-bold !text-white">
         {title}
       </Title>
-      <Text className="!text-white font-semibold">{text}</Text>
+      <Text className="font-semibold !text-white">{text}</Text>
     </>
   );
 };

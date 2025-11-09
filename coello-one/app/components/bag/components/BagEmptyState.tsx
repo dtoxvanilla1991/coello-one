@@ -13,7 +13,7 @@ export function BagEmptyState({ onContinueShopping }: BagEmptyStateProps) {
   return (
     <Card className="rounded-2xl! border border-gray-200!">
       <Flex vertical align="center" gap={24} className="w-full py-12 text-center">
-        <Title level={3} className="m-0! uppercase tracking-wide">
+        <Title level={3} className="m-0! tracking-wide uppercase">
           Your bag is empty
         </Title>
         <Empty

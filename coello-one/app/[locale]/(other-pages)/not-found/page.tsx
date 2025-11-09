@@ -17,18 +17,18 @@ export default function NotFoundPage() {
         <Image
           src={NotFoundImg}
           alt="not found"
-          className="mx-auto mb-8 aspect-360/326 max-w-[256px] xs:max-w-[370px] lg:mb-12 2xl:mb-16"
+          className="xs:max-w-[370px] mx-auto mb-8 aspect-360/326 max-w-[256px] lg:mb-12 2xl:mb-16"
         />
 
         <Title
           level={1}
-          className="text-[22px] font-bold leading-normal text-gray-1000 lg:text-3xl">
+          className="text-gray-1000 text-[22px] leading-normal font-bold lg:text-3xl"
+        >
           Sorry, the page not found
         </Title>
 
         <Text className="mt-3 text-sm leading-loose text-gray-500 lg:mt-6 lg:text-base lg:leading-loose">
-          We have been spending long hours in order to launch our new website.
-          Join our
+          We have been spending long hours in order to launch our new website. Join our
           <br className="hidden sm:inline-block" />
           mailing list or follow us on Facebook for the latest update.
         </Text>
@@ -37,7 +37,8 @@ export default function NotFoundPage() {
           type="primary"
           size="large"
           className="mt-8 h-12 px-4 xl:h-14 xl:px-6"
-          onClick={() => push("/")}>
+          onClick={() => push("/")}
+        >
           <HomeOutlined className="mr-1.5 text-lg" />
           Back to home
         </Button>

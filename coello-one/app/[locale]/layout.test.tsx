@@ -18,7 +18,7 @@ describe("LocaleLayout", () => {
       LocaleLayout({
         params: Promise.resolve({ locale: "fr-FR" as "en-GB" | "es-ES" }),
         children: <div />,
-      })
+      }),
     ).rejects.toThrow("NEXT_HTTP_ERROR_FALLBACK;404");
   });
 

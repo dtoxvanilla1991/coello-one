@@ -13,7 +13,7 @@ describe("RootLayout", () => {
     render(
       <RootLayout>
         <div>Hello World</div>
-      </RootLayout>
+      </RootLayout>,
     );
     const childElement = screen.getByText("Hello World");
     expect(childElement).toBeTruthy();
@@ -24,7 +24,7 @@ describe("RootLayout", () => {
     const { container } = render(
       <RootLayout>
         <div />
-      </RootLayout>
+      </RootLayout>,
     );
     const wrapper = container.firstElementChild;
     const className = wrapper?.getAttribute("class") || "";

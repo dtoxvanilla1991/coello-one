@@ -24,7 +24,7 @@ export default function Home() {
       <Training />
       <PopularSection />
       <BrandListings />
-  <Divider className="!m-0 !pb-1 bg-gray-200" />
+      <Divider className="!m-0 bg-gray-200 !pb-1" />
       <StoryBlock />
       <BottomMenu />
       <BottomMoreAboutSection />

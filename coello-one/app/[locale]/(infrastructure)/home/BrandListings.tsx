@@ -38,10 +38,7 @@ type BrandListingProps = {
   title: string;
 };
 
-const listProps: Pick<
-  ListProps<BrandLine[number]>,
-  "renderItem" | "split" | "className"
-> = {
+const listProps: Pick<ListProps<BrandLine[number]>, "renderItem" | "split" | "className"> = {
   renderItem: (item) => (
     <List.Item className="!py-1.5">
       <Link href={item.href} className="hover:underline">
@@ -59,11 +56,7 @@ const BrandListing: React.FC<BrandListingProps> = ({ data, title }) => {
       <Title level={5} className="uppercase">
         {title}
       </Title>
-      <List
-        aria-label={`${title} links`}
-        dataSource={data}
-        {...listProps}
-      />
+      <List aria-label={`${title} links`} dataSource={data} {...listProps} />
     </Space.Compact>
   );
 };

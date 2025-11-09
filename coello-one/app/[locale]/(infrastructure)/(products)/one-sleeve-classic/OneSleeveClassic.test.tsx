@@ -16,10 +16,8 @@ describe("OneSleeveClassic", () => {
 
   it("renders the product name and price", () => {
     render(<OneSleeveClassic />);
-    expect(
-      screen.getByRole("heading", { level: 2, name: "One Sleeve Classic" })
-    ).toBeTruthy();
-  expect(screen.getByText("£45.00")).toBeTruthy();
+    expect(screen.getByRole("heading", { level: 2, name: "One Sleeve Classic" })).toBeTruthy();
+    expect(screen.getByText("£45.00")).toBeTruthy();
   });
 
   it("hydrates defaults from configuration", () => {
@@ -31,16 +29,10 @@ describe("OneSleeveClassic", () => {
 
   it("changes the main image when a thumbnail is clicked", () => {
     render(<OneSleeveClassic />);
-    const secondThumbnail = screen.getByAltText(
-      "One Sleeve Classic thumbnail 2"
-    );
+    const secondThumbnail = screen.getByAltText("One Sleeve Classic thumbnail 2");
     fireEvent.click(secondThumbnail);
-    const mainImage = screen.getByAltText(
-      "One Sleeve Classic"
-    ) as HTMLImageElement;
-    expect(mainImage.getAttribute("src") || "").toContain(
-      "main-secondary-2.jpg"
-    );
+    const mainImage = screen.getByAltText("One Sleeve Classic") as HTMLImageElement;
+    expect(mainImage.getAttribute("src") || "").toContain("main-secondary-2.jpg");
   });
 
   it("updates the selected color when a color radio button is clicked", () => {

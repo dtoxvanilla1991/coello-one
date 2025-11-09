@@ -35,15 +35,7 @@ export const searchCatalog: SearchCatalogItem[] = [
     image: "/athletes/vertical/main-secondary-1.jpg",
     slug: "one-sleeve-classic",
     query: { gender: "male" },
-    tags: [
-      "men",
-      "male",
-      "classic",
-      "one sleeve",
-      "performance",
-      "gray",
-      "sea blue",
-    ],
+    tags: ["men", "male", "classic", "one sleeve", "performance", "gray", "sea blue"],
     colorHighlights: "Gray · Sea Blue · Mild Red",
   },
   {
@@ -67,15 +59,7 @@ export const searchCatalog: SearchCatalogItem[] = [
     image: "/athletes/vertical/main-secondary-2.jpg",
     slug: "one-sleeve-classic",
     query: { gender: "female" },
-    tags: [
-      "women",
-      "female",
-      "classic",
-      "one sleeve",
-      "training",
-      "gray",
-      "sea blue",
-    ],
+    tags: ["women", "female", "classic", "one sleeve", "training", "gray", "sea blue"],
     colorHighlights: "Gray · Sea Blue · Mild Red",
   },
   {
@@ -97,10 +81,7 @@ interface SearchResultsProps {
   query?: string;
 }
 
-export function SearchResults({
-  locale = "en-GB",
-  query = "",
-}: SearchResultsProps) {
+export function SearchResults({ locale = "en-GB", query = "" }: SearchResultsProps) {
   const trimmedQuery = query.trim();
   const normalizedQuery = trimmedQuery.toLowerCase();
 
@@ -110,16 +91,10 @@ export function SearchResults({
     }
 
     return searchCatalog.filter((item) =>
-      [
-        item.name,
-        item.description,
-        item.genderLabel,
-        item.colorHighlights,
-        ...item.tags,
-      ]
+      [item.name, item.description, item.genderLabel, item.colorHighlights, ...item.tags]
         .join(" ")
         .toLowerCase()
-        .includes(normalizedQuery)
+        .includes(normalizedQuery),
     );
   }, [normalizedQuery]);
 
@@ -131,13 +106,10 @@ export function SearchResults({
 
     return (
       <Flex vertical align="center" gap={16} className="px-4 py-24 text-center">
-        <Title level={3} className="uppercase tracking-wide">
+        <Title level={3} className="tracking-wide uppercase">
           No matches found
         </Title>
-        <Empty
-          description={emptyDescription}
-          styles={{ image: { marginBottom: 12 } }}
-        />
+        <Empty description={emptyDescription} styles={{ image: { marginBottom: 12 } }} />
         <Text className="text-gray-500">
           Try searching for a fit, color, or product name instead.
         </Text>
@@ -155,7 +127,7 @@ export function SearchResults({
     <section className="px-4 py-8 md:px-8">
       <Space direction="vertical" size={24} className="w-full">
         <div>
-          <Title level={2} className="uppercase tracking-wide">
+          <Title level={2} className="tracking-wide uppercase">
             Search results
           </Title>
           <Text className="text-gray-500">{summaryText}</Text>
@@ -183,24 +155,19 @@ export function SearchResults({
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                   </div>
-                }>
-                <Space
-                  direction="vertical"
-                  size={12}
-                  className="w-full px-4 pb-4 pt-2">
+                }
+              >
+                <Space direction="vertical" size={12} className="w-full px-4 pt-2 pb-4">
                   <Title level={4} className="m-0! text-lg!">
                     {item.name}
                   </Title>
                   <Text className="text-gray-500">{item.genderLabel}</Text>
-                  <Text className="text-sm text-gray-500">
-                    {item.colorHighlights}
-                  </Text>
-                  <Text className="font-semibold">
-                    {priceFormatter.format(item.price)}
-                  </Text>
+                  <Text className="text-sm text-gray-500">{item.colorHighlights}</Text>
+                  <Text className="font-semibold">{priceFormatter.format(item.price)}</Text>
                   <Link
                     href={href}
-                    className="font-semibold uppercase text-primary-500 transition-colors hover:text-primary-600">
+                    className="text-primary-500 hover:text-primary-600 font-semibold uppercase transition-colors"
+                  >
                     View product
                   </Link>
                 </Space>

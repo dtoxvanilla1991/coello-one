@@ -11,20 +11,17 @@ export const EXPRESS_METHODS: ExpressMethodOption[] = [
   {
     key: "shop",
     label: "shop",
-    className:
-      "rounded-full! bg-[#6c4cf4]! border-[#6c4cf4]! text-white! shadow-sm",
+    className: "rounded-full! bg-[#6c4cf4]! border-[#6c4cf4]! text-white! shadow-sm",
   },
   {
     key: "paypal",
     label: "PayPal",
-    className:
-      "rounded-full! bg-[#ffc439]! border-[#ffc439]! text-black! shadow-sm",
+    className: "rounded-full! bg-[#ffc439]! border-[#ffc439]! text-black! shadow-sm",
   },
   {
     key: "gpay",
     label: "G Pay",
-    className:
-      "rounded-full! bg-black! border-black! text-white! shadow-sm",
+    className: "rounded-full! bg-black! border-black! text-white! shadow-sm",
   },
 ];
 

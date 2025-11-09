@@ -1,14 +1,10 @@
 // test-setup.ts
-import { GlobalRegistrator } from '@happy-dom/global-registrator';
-import { cleanup } from '@testing-library/react';
-import * as matchers from '@testing-library/jest-dom/matchers';
+import { GlobalRegistrator } from "@happy-dom/global-registrator";
+import { cleanup } from "@testing-library/react";
+import * as matchers from "@testing-library/jest-dom/matchers";
 import type { AnchorHTMLAttributes, ImgHTMLAttributes, ReactNode } from "react";
-import { expect, afterEach, mock } from 'bun:test';
-import {
-  getNavigationState,
-  resetNavigationMocks,
-  routerMocks,
-} from "./test-utils/navigation";
+import { expect, afterEach, mock } from "bun:test";
+import { getNavigationState, resetNavigationMocks, routerMocks } from "./test-utils/navigation";
 
 // Register the DOM environment
 GlobalRegistrator.register();
@@ -16,12 +12,15 @@ GlobalRegistrator.register();
 // Tell React that the test runner wraps updates in act().
 (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
-const ReactModule = await import('react');
+const ReactModule = await import("react");
 const createElement = ReactModule.createElement;
 
 // Repair Testing Library's screen export now that a DOM exists.
-const domTestingLibrary = await import('@testing-library/dom');
-const boundScreen = domTestingLibrary.getQueriesForElement(document.body, domTestingLibrary.queries);
+const domTestingLibrary = await import("@testing-library/dom");
+const boundScreen = domTestingLibrary.getQueriesForElement(
+  document.body,
+  domTestingLibrary.queries,
+);
 Object.assign(domTestingLibrary.screen, boundScreen);
 
 // Extend Bun's expect with the matchers from jest-dom
@@ -82,16 +81,13 @@ mock.module("next/link", () => ({
     props: AnchorHTMLAttributes<HTMLAnchorElement> & {
       href: unknown;
       children?: ReactNode;
-    }
+    },
   ) => {
     let href = "/";
     const candidate = props.href as unknown;
     if (typeof candidate === "string") {
       href = candidate;
-    } else if (
-      candidate &&
-      typeof (candidate as { pathname?: unknown }).pathname === "string"
-    ) {
+    } else if (candidate && typeof (candidate as { pathname?: unknown }).pathname === "string") {
       const { pathname, query } = candidate as {
         pathname?: string;
         query?: Record<string, unknown>;
@@ -114,7 +110,7 @@ mock.module("next/link", () => ({
     return createElement(
       "a",
       { ...(props as AnchorHTMLAttributes<HTMLAnchorElement>), href },
-      props.children
+      props.children,
     );
   },
 }));

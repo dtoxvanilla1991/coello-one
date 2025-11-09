@@ -5,8 +5,6 @@ import BottomMenu from "./BottomMenu";
 describe("BottomMenu", () => {
   it("should render the bottom menu", async () => {
     render(<BottomMenu />);
-    expect(
-      await screen.findByRole("navigation", { name: /Footer quick links/i })
-    ).toBeTruthy();
+    expect(await screen.findByRole("navigation", { name: /Footer quick links/i })).toBeTruthy();
   });
 });

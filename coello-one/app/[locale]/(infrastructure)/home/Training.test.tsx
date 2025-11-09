@@ -5,9 +5,7 @@ import { describe, it, expect } from "bun:test";
 describe("Training", () => {
   it("should render the training section", () => {
     render(<Training />);
-    expect(
-      screen.getByRole("region", { name: /Our athletes workouts/i })
-    ).toBeTruthy();
+    expect(screen.getByRole("region", { name: /Our athletes workouts/i })).toBeTruthy();
   });
 
   it("should render the title", () => {

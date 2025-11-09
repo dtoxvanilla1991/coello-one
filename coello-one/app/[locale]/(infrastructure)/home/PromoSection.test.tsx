@@ -5,16 +5,12 @@ import { describe, it, expect } from "bun:test";
 describe("PromoSection", () => {
   it("should render the promo section", () => {
     render(<PromoSection />);
-    expect(
-      screen.getByRole("region", { name: /Limited Time Offer/i })
-    ).toBeTruthy();
+    expect(screen.getByRole("region", { name: /Limited Time Offer/i })).toBeTruthy();
   });
 
   it("should render the title", () => {
     render(<PromoSection />);
-    expect(
-      screen.getByRole("heading", { level: 5, name: /Limited Time Offer/i })
-    ).toBeTruthy();
+    expect(screen.getByRole("heading", { level: 5, name: /Limited Time Offer/i })).toBeTruthy();
   });
 
   it("should render the text", () => {

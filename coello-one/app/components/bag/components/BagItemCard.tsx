@@ -20,12 +20,14 @@ export function BagItemCard({ item, onQuantityChange, onRemove }: BagItemCardPro
     <Card
       key={item.id}
       variant="borderless"
-      className="rounded-2xl! border border-gray-200! px-4 py-4 shadow-sm">
+      className="rounded-2xl! border border-gray-200! px-4 py-4 shadow-sm"
+    >
       <Flex gap={16} wrap align="start">
         <Flex
           align="center"
           justify="center"
-          className="relative h-28 w-28 shrink-0 overflow-hidden rounded-xl">
+          className="relative h-28 w-28 shrink-0 overflow-hidden rounded-xl"
+        >
           <Image
             src={item.image}
             alt={`${item.name} preview`}
@@ -40,9 +42,7 @@ export function BagItemCard({ item, onQuantityChange, onRemove }: BagItemCardPro
               <Title level={4} className="m-0! text-lg!">
                 {item.name}
               </Title>
-              <Tag className="rounded-full! bg-black! px-3 py-1 text-white!">
-                Core favorite
-              </Tag>
+              <Tag className="rounded-full! bg-black! px-3 py-1 text-white!">Core favorite</Tag>
             </Space>
             <Text className="text-sm text-gray-500">
               {`${item.fit === "male" ? "Men's" : "Women's"} fit / ${item.color} / Size ${item.size}`}
@@ -50,7 +50,7 @@ export function BagItemCard({ item, onQuantityChange, onRemove }: BagItemCardPro
           </Flex>
           <Flex justify="space-between" align="center" wrap className="gap-3">
             <Space align="center" size={6}>
-              <Text className="text-xs uppercase text-gray-500">Qty</Text>
+              <Text className="text-xs text-gray-500 uppercase">Qty</Text>
               <InputNumber
                 min={1}
                 value={item.quantity}

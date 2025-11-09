@@ -28,7 +28,8 @@ export default function LegalLinks() {
             <List.Item className="w-full !p-1">
               <Link
                 href={item.href}
-                className="mx-auto text-xs font-semibold text-gray-600 hover:text-gray-200">
+                className="mx-auto text-xs font-semibold text-gray-600 hover:text-gray-200"
+              >
                 {item.title}
               </Link>
             </List.Item>

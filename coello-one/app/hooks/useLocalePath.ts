@@ -8,7 +8,8 @@ import { useParams } from "next/navigation";
  */
 export function useLocalePath() {
   const params = useParams<{ locale?: string }>();
-  const locale = typeof params?.locale === "string" && params.locale.length > 0 ? params.locale : "en-GB";
+  const locale =
+    typeof params?.locale === "string" && params.locale.length > 0 ? params.locale : "en-GB";
 
   return (path: string) => {
     const trimmed = path.startsWith("/") ? path.slice(1) : path;

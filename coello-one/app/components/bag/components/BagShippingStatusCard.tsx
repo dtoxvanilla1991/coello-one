@@ -1,10 +1,7 @@
 "use client";
 
 import { Card, Flex, Progress, Tooltip, Typography } from "antd";
-import {
-  CheckCircleFilled,
-  InfoCircleOutlined,
-} from "@ant-design/icons";
+import { CheckCircleFilled, InfoCircleOutlined } from "@ant-design/icons";
 
 const { Text } = Typography;
 
@@ -30,7 +27,8 @@ export function BagShippingStatusCard({
   return (
     <Card
       className="rounded-2xl! border border-emerald-200! bg-emerald-50!"
-      styles={{ body: { padding: 20 } }}>
+      styles={{ body: { padding: 20 } }}
+    >
       <Flex vertical gap={12}>
         <Flex align="center" gap={8} wrap>
           <Tooltip title={shippingTooltip}>{icon}</Tooltip>

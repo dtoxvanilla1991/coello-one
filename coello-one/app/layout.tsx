@@ -8,27 +8,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   // In tests, rendering <html>/<body> inside a div container breaks the DOM in JSDOM/Happy DOM
   // Provide a test-friendly wrapper that carries the same classes without custom data attributes
   if (process.env.NODE_ENV === "test") {
     return (
-      <div className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
-      </div>
+      <div className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</div>
     );
   }
 
   return (
     <html>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
-      </body>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
     </html>
   );
 }

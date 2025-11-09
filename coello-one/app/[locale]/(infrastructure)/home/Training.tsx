@@ -15,7 +15,8 @@ const Training: FC = () => {
       className="!p-4 !pr-0 !pb-8"
       vertical
       role="region"
-      aria-labelledby="training-section-title">
+      aria-labelledby="training-section-title"
+    >
       <Title level={4} className="!mb-4 uppercase" id="training-section-title">
         Our athletes workouts
       </Title>
@@ -23,7 +24,8 @@ const Training: FC = () => {
         gap={16}
         role="list"
         aria-label="Training plans"
-        className="hide-scrollbar overflow-x-auto snap-x snap-mandatory scroll-smooth">
+        className="hide-scrollbar snap-x snap-mandatory overflow-x-auto scroll-smooth"
+      >
         {data.map((item, index) => (
           <Card
             key={index}
@@ -46,12 +48,12 @@ const Training: FC = () => {
                 key={`${item.title}-cta`}
                 className="uppercase hover:!bg-black hover:!text-white"
                 data-analytics-id={`training-plan-${item.title.toLowerCase()}`}
-                onClick={() =>
-                  trackEvent("training_plan_click", { plan: item.title })
-                }>
+                onClick={() => trackEvent("training_plan_click", { plan: item.title })}
+              >
                 View weekly plan
               </Button>,
-            ]}>
+            ]}
+          >
             <Card.Meta title={item.title} className="uppercase" />
           </Card>
         ))}

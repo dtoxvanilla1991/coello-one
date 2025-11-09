@@ -1,25 +1,7 @@
 "use client";
 
-import {
-  useReducer,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  useCallback,
-} from "react";
-import {
-  Button,
-  Radio,
-  Space,
-  Typography,
-  Row,
-  Col,
-  Flex,
-  Modal,
-  Table,
-  Grid,
-} from "antd";
+import { useReducer, useEffect, useMemo, useRef, useState, useCallback } from "react";
+import { Button, Radio, Space, Typography, Row, Col, Flex, Modal, Table, Grid } from "antd";
 import {
   ShoppingCartOutlined,
   ManOutlined,
@@ -148,7 +130,7 @@ const OneSleeveClassic: React.FC = () => {
         align: "center",
       },
     ],
-    []
+    [],
   );
 
   useEffect(() => {
@@ -165,18 +147,12 @@ const OneSleeveClassic: React.FC = () => {
 
     const colorParam = (searchParams?.get("color") ?? "").toLowerCase();
     const colorFromQuery =
-      variantFromQuery.colors.find(
-        (color) => color.name.toLowerCase() === colorParam
-      ) ??
-      variantFromQuery.colors.find(
-        (color) => color.name === defaultColorName
-      ) ??
+      variantFromQuery.colors.find((color) => color.name.toLowerCase() === colorParam) ??
+      variantFromQuery.colors.find((color) => color.name === defaultColorName) ??
       variantFromQuery.colors[0];
 
     const sizeParam = (searchParams?.get("size") ?? "").toUpperCase();
-    const sizeFromQuery = product.sizes.includes(sizeParam)
-      ? sizeParam
-      : defaultSize;
+    const sizeFromQuery = product.sizes.includes(sizeParam) ? sizeParam : defaultSize;
 
     dispatch({
       type: "HYDRATE",
@@ -219,14 +195,7 @@ const OneSleeveClassic: React.FC = () => {
     router.replace(queryString ? `${pathname}?${queryString}` : pathname, {
       scroll: false,
     });
-  }, [
-    selectedGender,
-    selectedColor.name,
-    selectedSize,
-    searchParams,
-    router,
-    pathname,
-  ]);
+  }, [selectedGender, selectedColor.name, selectedSize, searchParams, router, pathname]);
 
   const handleGenderChange = useCallback(
     (gender: Gender) => {
@@ -245,7 +214,7 @@ const OneSleeveClassic: React.FC = () => {
         },
       });
     },
-    [selectedColor.name]
+    [selectedColor.name],
   );
 
   const handleAddToBag = useCallback(() => {
@@ -253,8 +222,7 @@ const OneSleeveClassic: React.FC = () => {
     const mainContainer = mainImageRef.current;
     const sourceImage = mainContainer?.querySelector("img");
 
-    const priceValue =
-      Number.parseFloat(product.price.replace(/[^0-9.]/g, "")) || 0;
+    const priceValue = Number.parseFloat(product.price.replace(/[^0-9.]/g, "")) || 0;
 
     const cartItem = {
       id: `${productNameSlug}-${selectedGender}-${selectedColor.name}-${selectedSize}`,
@@ -319,18 +287,11 @@ const OneSleeveClassic: React.FC = () => {
         duration: 600,
         easing: "cubic-bezier(0.33, 1, 0.68, 1)",
         fill: "forwards",
-      }
+      },
     );
 
     animation.finished.catch(() => undefined).finally(finish);
-  }, [
-    incrementCart,
-    mainImage,
-    selectedColor.name,
-    selectedGender,
-    selectedSize,
-    productNameSlug,
-  ]);
+  }, [incrementCart, mainImage, selectedColor.name, selectedGender, selectedSize, productNameSlug]);
 
   const genderControl = (
     <Radio.Group
@@ -339,7 +300,8 @@ const OneSleeveClassic: React.FC = () => {
       onChange={(event) => handleGenderChange(event.target.value as Gender)}
       optionType="button"
       buttonStyle="solid"
-      className="w-full">
+      className="w-full"
+    >
       <Space>
         <Radio.Button value="male" className="min-w-24">
           <Space size={8} align="center">
@@ -358,9 +320,7 @@ const OneSleeveClassic: React.FC = () => {
   );
 
   const handleColorChange = (value: string) => {
-    const nextColor = currentVariant.colors.find(
-      (color) => color.name === value
-    );
+    const nextColor = currentVariant.colors.find((color) => color.name === value);
     if (nextColor) {
       dispatch({ type: "SET_COLOR", payload: nextColor });
       dispatch({ type: "SET_IMAGE", payload: product.images[0] });
@@ -396,9 +356,7 @@ const OneSleeveClassic: React.FC = () => {
                     className={`relative aspect-square w-full cursor-pointer overflow-hidden rounded-md border-2 transition-colors hover:border-black ${
                       mainImage === img ? "border-black" : "border-transparent"
                     }`}
-                    onClick={() =>
-                      dispatch({ type: "SET_IMAGE", payload: img })
-                    }
+                    onClick={() => dispatch({ type: "SET_IMAGE", payload: img })}
                     role="button"
                     aria-pressed={mainImage === img}
                     tabIndex={0}
@@ -407,7 +365,8 @@ const OneSleeveClassic: React.FC = () => {
                         event.preventDefault();
                         dispatch({ type: "SET_IMAGE", payload: img });
                       }
-                    }}>
+                    }}
+                  >
                     <Image
                       src={img}
                       alt={`${product.name} thumbnail ${index + 1}`}
@@ -422,11 +381,8 @@ const OneSleeveClassic: React.FC = () => {
           </Space>
         </Col>
         <Col xs={24} md={10} className="md:pl-8!">
-          <Space
-            direction="vertical"
-            size="large"
-            className="w-full px-4 pb-10 md:px-8">
-            <Title level={2} className="uppercase tracking-wider">
+          <Space direction="vertical" size="large" className="w-full px-4 pb-10 md:px-8">
+            <Title level={2} className="tracking-wider uppercase">
               {product.name}
             </Title>
             <Text strong className="text-2xl">
@@ -434,7 +390,7 @@ const OneSleeveClassic: React.FC = () => {
             </Text>
 
             <Flex vertical gap={12}>
-              <Text strong className="uppercase text-xs text-gray-500">
+              <Text strong className="text-xs text-gray-500 uppercase">
                 Fit
               </Text>
               {genderControl}
@@ -444,15 +400,14 @@ const OneSleeveClassic: React.FC = () => {
               <Flex wrap="wrap" align="center" gap={16}>
                 <Text strong>
                   COLOR:{" "}
-                  <span className="font-normal inline-block min-w-[7ch]">
-                    {selectedColor.name}
-                  </span>
+                  <span className="inline-block min-w-[7ch] font-normal">{selectedColor.name}</span>
                 </Text>
                 <Radio.Group
                   name={`${productNameSlug}-color`}
                   value={selectedColor.name}
                   onChange={(event) => handleColorChange(event.target.value)}
-                  className="flex items-center">
+                  className="flex items-center"
+                >
                   <Space size="middle">
                     {currentVariant.colors.map((color) => {
                       const isSelected = selectedColor.name === color.name;
@@ -463,7 +418,8 @@ const OneSleeveClassic: React.FC = () => {
                           value={color.name}
                           aria-label={`Color ${color.name}`}
                           aria-checked={isSelected}
-                          className="border-0! bg-transparent! p-0! shadow-none! focus-visible:outline-none focus-visible:ring-0">
+                          className="border-0! bg-transparent! p-0! shadow-none! focus-visible:ring-0 focus-visible:outline-none"
+                        >
                           <span
                             aria-hidden="true"
                             className={`block h-8 w-8 rounded-full border-2 transition-all duration-150 ${
@@ -490,7 +446,8 @@ const OneSleeveClassic: React.FC = () => {
                 onChange={(event) => handleSizeChange(event.target.value)}
                 className="w-full"
                 optionType="button"
-                buttonStyle="solid">
+                buttonStyle="solid"
+              >
                 <Space>
                   {product.sizes.map((size) => (
                     <Radio.Button
@@ -498,7 +455,8 @@ const OneSleeveClassic: React.FC = () => {
                       value={size}
                       aria-label={`Size ${size}`}
                       aria-checked={selectedSize === size}
-                      className="w-24 text-center">
+                      className="w-24 text-center"
+                    >
                       {size}
                     </Radio.Button>
                   ))}
@@ -511,7 +469,8 @@ const OneSleeveClassic: React.FC = () => {
               size="small"
               icon={<InfoCircleOutlined />}
               onClick={handleOpenSizeGuide}
-              className="p-0! w-fit">
+              className="w-fit p-0!"
+            >
               Size Guide
             </Button>
 
@@ -519,8 +478,9 @@ const OneSleeveClassic: React.FC = () => {
               type="primary"
               size="large"
               icon={<ShoppingCartOutlined />}
-              className="w-full bg-black text-white hover:bg-gray-800 uppercase"
-              onClick={handleAddToBag}>
+              className="w-full bg-black text-white uppercase hover:bg-gray-800"
+              onClick={handleAddToBag}
+            >
               Add to Bag
             </Button>
           </Space>
@@ -535,7 +495,8 @@ const OneSleeveClassic: React.FC = () => {
         width={isMobile ? "100%" : 560}
         className={isMobile ? "max-w-full!" : undefined}
         closeIcon={<CloseOutlined className="me-10 text-lg" />}
-        title={`${selectedGender === "male" ? "Men's" : "Women's"} Size Guide`}>
+        title={`${selectedGender === "male" ? "Men's" : "Women's"} Size Guide`}
+      >
         <Table
           columns={sizeGuideColumns}
           dataSource={currentVariant.sizeGuide}

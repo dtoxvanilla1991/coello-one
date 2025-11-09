@@ -9,11 +9,7 @@ import { routes } from "config/routes";
 
 const ignoreBackButtonRoutes = [routes.accessDenied, routes.notFound];
 
-export default function OtherPagesLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function OtherPagesLayout({ children }: { children: React.ReactNode }) {
   const { back } = useRouter();
   const pathName = usePathname();
   const notIn = !ignoreBackButtonRoutes.includes(pathName);
@@ -24,7 +20,8 @@ export default function OtherPagesLayout({
         <div
           className={`mx-auto flex max-w-[1520px] items-center ${
             notIn ? "justify-between" : "justify-center"
-          }`}>
+          }`}
+        >
           <Link href="/">
             <Image
               src="/coelloLogo.png"
@@ -39,7 +36,8 @@ export default function OtherPagesLayout({
             <Button
               className="md:h-10 md:px-4 md:text-base"
               icon={<ArrowLeftOutlined />}
-              onClick={() => back()}>
+              onClick={() => back()}
+            >
               Home Page
             </Button>
           )}

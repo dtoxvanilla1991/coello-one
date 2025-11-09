@@ -40,19 +40,14 @@ export function BagContent() {
   const homeRoute = buildLocaleRoute(locale, "home");
   const checkoutRoute = buildLocaleRoute(locale, "checkout");
 
-  const itemCount = useMemo(
-    () => items.reduce((count, item) => count + item.quantity, 0),
-    [items]
-  );
+  const itemCount = useMemo(() => items.reduce((count, item) => count + item.quantity, 0), [items]);
 
   const [viewMode, setViewMode] = useState<ViewMode>("bag");
 
   const hasItems = items.length > 0;
 
   const shippingPercent =
-    subtotal === 0
-      ? 0
-      : Math.min(100, Math.round((subtotal / FREE_SHIPPING_THRESHOLD) * 100));
+    subtotal === 0 ? 0 : Math.min(100, Math.round((subtotal / FREE_SHIPPING_THRESHOLD) * 100));
 
   const remainingForShipping = Math.max(FREE_SHIPPING_THRESHOLD - subtotal, 0);
 
@@ -60,9 +55,7 @@ export function BagContent() {
 
   const shippingCopy = qualifiesForFreeShipping
     ? "You have qualified for Free Express Shipping"
-    : `Add ${formatPrice.format(
-        remainingForShipping
-      )} more for Free Express Shipping`;
+    : `Add ${formatPrice.format(remainingForShipping)} more for Free Express Shipping`;
 
   const shippingTooltip = qualifiesForFreeShipping
     ? "Enjoy free express shipping on this order."
@@ -119,12 +112,8 @@ export function BagContent() {
   };
 
   return (
-    <Flex vertical gap={24} className="w-full px-4 pb-24 pt-8 md:px-8">
-      <BagHeader
-        viewMode={viewMode}
-        itemCount={itemCount}
-        onViewModeChange={setViewMode}
-      />
+    <Flex vertical gap={24} className="w-full px-4 pt-8 pb-24 md:px-8">
+      <BagHeader viewMode={viewMode} itemCount={itemCount} onViewModeChange={setViewMode} />
       {viewMode === "bag" ? (
         <Flex vertical gap={24} className="w-full">
           {hasItems ? (
@@ -136,12 +125,7 @@ export function BagContent() {
                 shippingTooltip={shippingTooltip}
               />
               <BagReservationAlert />
-              <Flex
-                vertical
-                gap={24}
-                className="lg:flex-row"
-                align="start"
-                wrap>
+              <Flex vertical gap={24} className="lg:flex-row" align="start" wrap>
                 <BagItemsSection
                   items={items}
                   onQuantityChange={handleQuantityChange}

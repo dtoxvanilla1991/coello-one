@@ -1,8 +1,4 @@
-import {
-  createMenuOption,
-  createMenuTitle,
-  MenuItem,
-} from "@/components/Menu/helpers";
+import { createMenuOption, createMenuTitle, MenuItem } from "@/components/Menu/helpers";
 import Menu from "@components/Menu";
 
 const items: MenuItem[] = [

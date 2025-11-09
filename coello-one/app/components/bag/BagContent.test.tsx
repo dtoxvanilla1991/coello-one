@@ -20,7 +20,7 @@ const renderWithCart = (items: CartItem[] = []) => {
   return render(
     <Provider store={store}>
       <BagContent />
-    </Provider>
+    </Provider>,
   );
 };
 
@@ -40,9 +40,7 @@ describe("BagContent", () => {
     const bagHeadings = screen.getAllByRole("heading", { name: /your bag/i });
     expect(bagHeadings.length).toBeGreaterThan(0);
     expect(screen.getByText(/your bag is empty/i)).toBeTruthy();
-    expect(
-      screen.getByRole("button", { name: /continue shopping/i })
-    ).toBeTruthy();
+    expect(screen.getByRole("button", { name: /continue shopping/i })).toBeTruthy();
     expect(screen.queryByRole("progressbar")).toBeNull();
     expect(screen.queryByText(/free express shipping/i)).toBeNull();
   });
@@ -76,9 +74,7 @@ describe("BagContent", () => {
     const summaryLabel = screen.getByText(/order summary/i);
     const summaryCard = summaryLabel.closest(".ant-card");
     expect(summaryCard).toBeTruthy();
-    const summaryRegion = summaryCard
-      ? within(summaryCard as HTMLElement)
-      : screen;
+    const summaryRegion = summaryCard ? within(summaryCard as HTMLElement) : screen;
 
     expect(summaryRegion.getByText("£135.00")).toBeTruthy();
     expect(summaryRegion.getByText("£8.50")).toBeTruthy();

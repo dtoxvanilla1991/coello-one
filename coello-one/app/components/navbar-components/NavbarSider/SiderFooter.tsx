@@ -18,10 +18,7 @@ const data: {
 
 const SiderFooter: FC = () => {
   return (
-    <Space
-      direction="vertical"
-      size="small"
-      className="flex bg-gray-200 w-full p-4">
+    <Space direction="vertical" size="small" className="flex w-full bg-gray-200 p-4">
       <Text strong className="uppercase">
         More
       </Text>

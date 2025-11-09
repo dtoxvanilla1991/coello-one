@@ -20,7 +20,7 @@ const renderCheckout = (items: CartItem[] = []) => {
   return render(
     <Provider store={store}>
       <CheckoutContent />
-    </Provider>
+    </Provider>,
   );
 };
 
@@ -37,9 +37,7 @@ describe("CheckoutContent", () => {
   it("disables submission when the bag is empty", () => {
     renderCheckout();
 
-    expect(
-      screen.getByText(/add at least one item to complete your order/i)
-    ).toBeTruthy();
+    expect(screen.getByText(/add at least one item to complete your order/i)).toBeTruthy();
     const submitButton = screen.getByRole("button", {
       name: /place order securely/i,
     });
@@ -125,7 +123,6 @@ describe("CheckoutContent", () => {
         fireEvent.submit(form);
       }
     });
-
 
     fireEvent.click(screen.getByRole("button", { name: /back to bag/i }));
 

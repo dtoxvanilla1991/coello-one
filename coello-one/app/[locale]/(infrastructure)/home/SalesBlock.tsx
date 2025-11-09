@@ -13,7 +13,8 @@ const SalesBlock: FC = () => {
       justify="center"
       align="center"
       role="region"
-      aria-labelledby="sales-block-title">
+      aria-labelledby="sales-block-title"
+    >
       <Title className="!text-white" level={3} id="sales-block-title">
         GET AN EXTRA 10% OFF SALE ITEMS
       </Title>
@@ -25,18 +26,16 @@ const SalesBlock: FC = () => {
           className="w-full uppercase hover:!bg-white hover:!text-black"
           size="large"
           data-analytics-id="sales-block-shop-women"
-          onClick={() =>
-            trackEvent("sales_block_cta_click", { audience: "women" })
-          }>
+          onClick={() => trackEvent("sales_block_cta_click", { audience: "women" })}
+        >
           Shop women
         </Button>
         <Button
           className="w-full uppercase hover:!bg-white hover:!text-black"
           size="large"
           data-analytics-id="sales-block-shop-men"
-          onClick={() =>
-            trackEvent("sales_block_cta_click", { audience: "men" })
-          }>
+          onClick={() => trackEvent("sales_block_cta_click", { audience: "men" })}
+        >
           Shop men
         </Button>
       </Space>

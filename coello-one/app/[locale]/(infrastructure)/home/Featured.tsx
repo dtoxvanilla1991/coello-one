@@ -8,10 +8,7 @@ const { Title } = Typography;
 
 export function Featured() {
   return (
-    <Content
-      className="p-4 pb-8"
-      role="region"
-      aria-labelledby="featured-section-title">
+    <Content className="p-4 pb-8" role="region" aria-labelledby="featured-section-title">
       <Title level={4} className="mb-2 uppercase" id="featured-section-title">
         Featured
       </Title>

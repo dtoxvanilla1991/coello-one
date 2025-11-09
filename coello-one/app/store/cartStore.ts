@@ -20,14 +20,11 @@ const initialCartItems: CartItem[] = [];
 export const cartItemsAtom = atom<CartItem[]>(initialCartItems);
 
 export const cartCountAtom = atom((get) =>
-  get(cartItemsAtom).reduce((count, item) => count + item.quantity, 0)
+  get(cartItemsAtom).reduce((count, item) => count + item.quantity, 0),
 );
 
 export const cartSubtotalAtom = atom((get) =>
-  get(cartItemsAtom).reduce(
-    (subtotal, item) => subtotal + item.price * item.quantity,
-    0
-  )
+  get(cartItemsAtom).reduce((subtotal, item) => subtotal + item.price * item.quantity, 0),
 );
 
 export const FLAT_SHIPPING_RATE = 8.5;
@@ -43,9 +40,7 @@ export const cartShippingAtom = atom((get) => {
   return subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : FLAT_SHIPPING_RATE;
 });
 
-export const cartTotalAtom = atom(
-  (get) => get(cartSubtotalAtom) + get(cartShippingAtom)
-);
+export const cartTotalAtom = atom((get) => get(cartSubtotalAtom) + get(cartShippingAtom));
 
 export const addCartItemAtom = atom(null, (get, set, item: CartItemInput) => {
   const quantity = item.quantity ?? 1;
@@ -55,14 +50,12 @@ export const addCartItemAtom = atom(null, (get, set, item: CartItemInput) => {
       current.id === item.id &&
       current.size === item.size &&
       current.color === item.color &&
-      current.fit === item.fit
+      current.fit === item.fit,
   );
 
   if (existingIndex !== -1) {
     const updated = items.map((current, index) =>
-      index === existingIndex
-        ? { ...current, quantity: current.quantity + quantity }
-        : current
+      index === existingIndex ? { ...current, quantity: current.quantity + quantity } : current,
     );
 
     set(cartItemsAtom, updated);
@@ -79,7 +72,7 @@ export const addCartItemAtom = atom(null, (get, set, item: CartItemInput) => {
 });
 
 export const incrementCartAtom = atom(null, (get, set, item: CartItemInput) =>
-  set(addCartItemAtom, item)
+  set(addCartItemAtom, item),
 );
 
 export const updateCartItemQuantityAtom = atom(
@@ -91,11 +84,11 @@ export const updateCartItemQuantityAtom = atom(
     }
 
     const items = get(cartItemsAtom).map((current) =>
-      current.id === id ? { ...current, quantity } : current
+      current.id === id ? { ...current, quantity } : current,
     );
 
     set(cartItemsAtom, items);
-  }
+  },
 );
 
 export const removeCartItemAtom = atom(null, (get, set, id: string) => {

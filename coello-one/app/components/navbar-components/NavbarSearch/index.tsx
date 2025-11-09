@@ -13,11 +13,7 @@ interface NavbarSearchProps {
   locale: string;
 }
 
-export function NavbarSearch({
-  searchVisible,
-  onClose,
-  locale,
-}: NavbarSearchProps) {
+export function NavbarSearch({ searchVisible, onClose, locale }: NavbarSearchProps) {
   const searchRef = useRef<InputRef | null>(null);
   const router = useRouter();
   const baseRoute = buildLocaleRoute(locale, "search");
@@ -76,11 +72,12 @@ export function NavbarSearch({
       } mx-auto w-11/12 max-w-xl overflow-hidden rounded-full! shadow-none!`}
       size="large"
       aria-label="Search catalog"
-      role="search">
+      role="search"
+    >
       <Input
         ref={searchRef}
         placeholder="Search Coello"
-        className="bg-transparent! shadow-none! border-0! focus:border-0! focus:ring-0!"
+        className="border-0! bg-transparent! shadow-none! focus:border-0! focus:ring-0!"
         allowClear
         onBlur={handleBlur}
         onKeyDown={handleKeyDown}

@@ -21,7 +21,8 @@ const EmptyBagIcon: React.FC<EmptyBagIconProps> = ({
       viewBox="0 0 64 64"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      {...props}>
+      {...props}
+    >
       {/* Bag body */}
       <path
         d="M16 24H48L56 56H8L16 24Z"

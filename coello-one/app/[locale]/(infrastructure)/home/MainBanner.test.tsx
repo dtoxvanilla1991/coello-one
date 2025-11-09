@@ -5,9 +5,7 @@ import { MainBanner } from "./MainBanner";
 describe("MainBanner", () => {
   it("should render the main banner", () => {
     render(<MainBanner />);
-    expect(
-      screen.getByRole("region", { name: /NOW YOU TRULY STAND OUT\./i })
-    ).toBeTruthy();
+    expect(screen.getByRole("region", { name: /NOW YOU TRULY STAND OUT\./i })).toBeTruthy();
   });
 
   it("should render the title", () => {
@@ -16,7 +14,7 @@ describe("MainBanner", () => {
       screen.getByRole("heading", {
         level: 4,
         name: /NOW YOU TRULY STAND OUT\./i,
-      }).textContent
+      }).textContent,
     ).toBe("NOW YOU TRULY STAND OUT.");
   });
 

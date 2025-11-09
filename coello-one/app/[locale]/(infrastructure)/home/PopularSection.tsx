@@ -30,28 +30,28 @@ const PopularSection: FC = () => {
       vertical
       gap={16}
       role="region"
-      aria-labelledby="popular-section-title">
-      <Title
-        level={3}
-        className="!mb-0 uppercase !text-white"
-        id="popular-section-title">
+      aria-labelledby="popular-section-title"
+    >
+      <Title level={3} className="!mb-0 !text-white uppercase" id="popular-section-title">
         Popular right now
       </Title>
       <Space size={16}>
         <Button
-          className="!px-5 uppercase !bg-transparent !text-white hover:!bg-white/10 hover:!text-white"
+          className="!bg-transparent !px-5 !text-white uppercase hover:!bg-white/10 hover:!text-white"
           size="large"
           data-analytics-id="popular-filter-women"
           onClick={() => handleFilterClick("Women")}
-          aria-label="Show popular women's items">
+          aria-label="Show popular women's items"
+        >
           Women
         </Button>
         <Button
-          className="!px-8 uppercase !bg-transparent !text-white hover:!bg-white/10 hover:!text-white"
+          className="!bg-transparent !px-8 !text-white uppercase hover:!bg-white/10 hover:!text-white"
           size="large"
           data-analytics-id="popular-filter-men"
           onClick={() => handleFilterClick("Men")}
-          aria-label="Show popular men's items">
+          aria-label="Show popular men's items"
+        >
           Men
         </Button>
       </Space>
@@ -59,7 +59,8 @@ const PopularSection: FC = () => {
         gap={16}
         role="list"
         aria-label="Popular products"
-        className="hide-scrollbar overflow-x-auto snap-x snap-mandatory scroll-smooth">
+        className="hide-scrollbar snap-x snap-mandatory overflow-x-auto scroll-smooth"
+      >
         {data.map((item, index) => (
           <Card
             key={index}
@@ -82,10 +83,12 @@ const PopularSection: FC = () => {
                 key={`${item.title}-cta`}
                 className="uppercase"
                 data-analytics-id={`popular-browse-${item.title.toLowerCase()}`}
-                onClick={() => handleBrowseClick(item.title)}>
+                onClick={() => handleBrowseClick(item.title)}
+              >
                 Browse options
               </Button>,
-            ]}>
+            ]}
+          >
             <Card.Meta title={item.title} />
           </Card>
         ))}

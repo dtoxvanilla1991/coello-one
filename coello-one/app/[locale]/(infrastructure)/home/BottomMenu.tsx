@@ -1,8 +1,4 @@
-import {
-  createMenuOption,
-  createMenuTitle,
-  MenuItem,
-} from "@/components/Menu/helpers";
+import { createMenuOption, createMenuTitle, MenuItem } from "@/components/Menu/helpers";
 import Menu from "@components/Menu";
 import { PlusOutlined } from "@ant-design/icons";
 import { Col, Row } from "antd";
@@ -31,10 +27,7 @@ const items: MenuItem[] = [
 
 export default function BottomMenu() {
   return (
-    <Row
-      className="px-4 py-2"
-      role="navigation"
-      aria-label="Footer quick links">
+    <Row className="px-4 py-2" role="navigation" aria-label="Footer quick links">
       <Col span={24}>
         <Menu items={items} expandIcon={<PlusOutlined />} />
       </Col>

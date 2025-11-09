@@ -5,9 +5,7 @@ import { describe, it, expect } from "bun:test";
 describe("StoryBlock", () => {
   it("should render the story block", () => {
     render(<StoryBlock />);
-    expect(
-      screen.getByRole("list", { name: /Coello story highlights/i })
-    ).toBeTruthy();
+    expect(screen.getByRole("list", { name: /Coello story highlights/i })).toBeTruthy();
   });
 
   it("should render 3 listings", () => {

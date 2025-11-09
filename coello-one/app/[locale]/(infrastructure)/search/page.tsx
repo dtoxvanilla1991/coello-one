@@ -12,7 +12,5 @@ export const metadata: Metadata = {
 };
 
 export default function SearchPage({ params, searchParams }: SearchPageProps) {
-  return (
-    <SearchResults locale={params.locale} query={searchParams?.query ?? ""} />
-  );
+  return <SearchResults locale={params.locale} query={searchParams?.query ?? ""} />;
 }

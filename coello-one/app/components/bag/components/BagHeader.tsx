@@ -3,12 +3,7 @@
 import { useMemo } from "react";
 import type { SegmentedValue } from "antd/es/segmented";
 import { Flex, Segmented, Typography } from "antd";
-import {
-  HeartFilled,
-  HeartOutlined,
-  ShoppingFilled,
-  ShoppingOutlined,
-} from "@ant-design/icons";
+import { HeartFilled, HeartOutlined, ShoppingFilled, ShoppingOutlined } from "@ant-design/icons";
 import type { ViewMode } from "../types";
 
 const { Title, Text } = Typography;
@@ -19,11 +14,7 @@ type BagHeaderProps = {
   onViewModeChange: (mode: ViewMode) => void;
 };
 
-export function BagHeader({
-  viewMode,
-  itemCount,
-  onViewModeChange,
-}: BagHeaderProps) {
+export function BagHeader({ viewMode, itemCount, onViewModeChange }: BagHeaderProps) {
   const options = useMemo(
     () => [
       {
@@ -53,14 +44,12 @@ export function BagHeader({
         value: "wishlist" as const,
       },
     ],
-    [viewMode, itemCount]
+    [viewMode, itemCount],
   );
 
   return (
     <Flex vertical gap={16} className="w-full">
-      <Title
-        level={2}
-        className="mb-0! mt-8 text-center uppercase tracking-wide">
+      <Title level={2} className="mt-8 mb-0! text-center tracking-wide uppercase">
         {viewMode === "bag" ? "Your bag" : "Wishlist"}
       </Title>
       <Segmented
@@ -68,9 +57,7 @@ export function BagHeader({
         size="large"
         value={viewMode}
         options={options}
-        onChange={(value: SegmentedValue) =>
-          onViewModeChange(value as ViewMode)
-        }
+        onChange={(value: SegmentedValue) => onViewModeChange(value as ViewMode)}
         className="bg-gray-100! [&_.ant-segmented-item-label]:flex [&_.ant-segmented-item-label]:h-full [&_.ant-segmented-item-label]:items-center [&_.ant-segmented-item-label]:justify-center"
       />
     </Flex>
