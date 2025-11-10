@@ -70,7 +70,6 @@ Frameworks/libraries/languages used:
 - [Prettier](https://prettier.io/)
 - [Eslint v9](https://eslint.org/)
 
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Getting Started
@@ -80,41 +79,54 @@ To get a local copy up and running follow these simple steps after downloading t
 ## Prerequisites
 
 ### Backend (Flask)
+
 1. **Install dependencies:**
    ```bash
    python -m venv venv
    source venv/bin/activate        # On macOS/Linux
    pip install -r requirements.txt
    ```
-2. **Run the Flask server**  
-   ```python app.py```
+
+_Optional:_ install formatting tooling with `pip install -r requirements-dev.txt` to enable local Black runs.
+
+2. **Run the Flask server** — `python app.py`
 
 3. The backend runs by default at http://localhost:3500.
 
 ### Frontend (Next.js)
 
 #### Bun
+
 This project uses Bun package manager. If you do not have it, run this in your terminal using Homebrew to install Bun globally:
 
-```
+```bash
 brew tap oven-sh/bun
 brew install bun
 ```
-OR using an official script:
-```
+
+Or using an official script:
+
+```bash
 curl -fsSL https://bun.sh/install | bash
 ```
 
-1. **Install dependencies**  
-   ```bun install```
+1. **Install dependencies**
+   `bun install`
 
-2. **Start the Next.js development server**  
-     - 🔥 `bun start` - run development server
-     - 🔧 `bun run dev` - run development server
-     - 🔧 `bun run build` - build web app for production
- 
+2. **Start the Next.js development server**
+   - 🔥 `bun start` - run development server
+   - 🔧 `bun run dev` - run development server
+   - 🔧 `bun run build` - build web app for production
 
 3. Open your browser at http://localhost:3000.
+
+### Repository Tooling
+
+- Run `make setup` after cloning to install git hooks, frontend dependencies, and backend tooling in one step.
+- Manual setup alternative: `bun install` (root hooks), `cd coello-one && bun install`, and `cd flask-server && python -m pip install -r requirements.txt -r requirements-dev.txt`.
+- Prettier checks live behind `cd coello-one && bun run format`; use `format:fix` to write changes.
+- Backend formatting uses Black: `cd flask-server && make format-check` (or `make format`).
+- CI enforces both checks (`bun run format` and `python -m black --check .`) to prevent drift across services.
 
 ## Implemented Features
 
@@ -147,3 +159,6 @@ Project Link: [Coello One App](https://github.com/dtoxvanilla1991/coello-one)
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/yuri-avdijevski
 
+```
+
+```

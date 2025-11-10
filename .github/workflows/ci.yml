@@ -38,6 +38,9 @@ jobs:
       - name: Lint
         run: bun run lint
 
+      - name: Prettier check
+        run: bun run format
+
       - name: Prepare reports directory
         run: mkdir -p reports
 
@@ -83,3 +86,25 @@ jobs:
           if [ "$FAIL" != "0" ]; then
             exit 1
           fi
+
+  backend-format:
+    name: Format (Flask)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dev tooling
+        working-directory: flask-server
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Black check
+        working-directory: flask-server
+        run: python -m black --check .

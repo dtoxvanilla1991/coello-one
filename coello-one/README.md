@@ -25,6 +25,13 @@ bun install
 bun dev
 ```
 
+### Formatting & Hooks
+
+- Prefer `make setup` at the repo root to install hooks, frontend dependencies, and backend tooling in one command.
+- `bun run format` (inside `coello-one/`) verifies Prettier with Tailwind sorting; `bun run format:fix` applies updates.
+- Flask formatting lives in `flask-server/`; run `make format-check` (or `make format`) after installing dev tooling with `pip install -r requirements-dev.txt`.
+- Root hooks format staged frontend files with Prettier and staged Python with Black.
+
 ## AI Operations Handbook
 
 ### Core Engagement Rules

@@ -1,2 +1,9 @@
 # AI tooling files
 .serena/
+
+# repository dependencies
+node_modules/
+bun.lockb
+
+# macOS artifacts
+.DS_Store
