@@ -1,15 +1,50 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "bun:test";
-import PopularSection from "./PopularSection";
+import PopularSectionClient from "./PopularSectionClient";
+import type { ProductCacheMetadata, ProductSummary } from "@/types/products";
+
+const sampleProducts: ProductSummary[] = [
+  {
+    id: 1,
+    name: "Coello One Classic Tee",
+    price: 48,
+    gender: "Women",
+    category: "popular",
+    imageUrl: "/athletes/vertical/main-secondary-6.jpg",
+  },
+  {
+    id: 2,
+    name: "Coello One Training Tee",
+    price: 52,
+    gender: "Men",
+    category: "popular",
+    imageUrl: "/athletes/vertical/main-secondary-7.jpg",
+  },
+  {
+    id: 3,
+    name: "Coello One Performance Tee",
+    price: 55,
+    gender: "Women",
+    category: "popular",
+    imageUrl: "/athletes/vertical/main-secondary-8.jpg",
+  },
+];
+
+const hydratedCache: ProductCacheMetadata = {
+  source: "network",
+  updatedAt: Date.now(),
+  stale: false,
+  hit: false,
+};
 
 describe("PopularSection", () => {
   it("should render the popular section", () => {
-    render(<PopularSection />);
+    render(<PopularSectionClient products={sampleProducts} cache={hydratedCache} />);
     expect(screen.getByRole("region", { name: /Popular right now/i })).toBeTruthy();
   });
 
   it("should render the title", () => {
-    render(<PopularSection />);
+    render(<PopularSectionClient products={sampleProducts} cache={hydratedCache} />);
     const heading = screen.getByRole("heading", {
       level: 3,
       name: /Popular right now/i,
@@ -18,19 +53,20 @@ describe("PopularSection", () => {
   });
 
   it("should render the women and men buttons", () => {
-    render(<PopularSection />);
-    expect(screen.getByLabelText(/Show popular women's items/i)).toBeTruthy();
-    expect(screen.getByLabelText(/Show popular men's items/i)).toBeTruthy();
+    render(<PopularSectionClient products={sampleProducts} cache={hydratedCache} />);
+    expect(screen.getByLabelText(/Show all popular items/i)).toBeTruthy();
+    expect(screen.getByLabelText(/Show popular women items/i)).toBeTruthy();
+    expect(screen.getByLabelText(/Show popular men items/i)).toBeTruthy();
   });
 
   it("should render 3 cards", () => {
-    render(<PopularSection />);
-    const cards = screen.getAllByRole("listitem");
+    render(<PopularSectionClient products={sampleProducts} cache={hydratedCache} />);
+    const cards = screen.getAllByTestId("popular-card");
     expect(cards).toHaveLength(3);
   });
 
   it("should render the card buttons", () => {
-    render(<PopularSection />);
+    render(<PopularSectionClient products={sampleProducts} cache={hydratedCache} />);
     const buttons = screen.getAllByRole("button", { name: /Browse options/i });
     expect(buttons).toHaveLength(3);
   });

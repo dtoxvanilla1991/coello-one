@@ -25,6 +25,8 @@
       "@components/*": ["app/components/*"],
       "@config/*": ["config/*"],
       "@public/*": ["public/*"],
+      "@services/*": ["services/*"],
+      "@types/*": ["app/types/*"],
       "@utils/*": ["utils/*"],
       "@test-utils/*": ["test-utils/*"]
     }
