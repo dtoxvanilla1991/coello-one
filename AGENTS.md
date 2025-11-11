@@ -8,6 +8,7 @@ This repository is a monorepo containing two separate applications: a **_Next.js
 - Run `make setup` after cloning to install Husky hooks, frontend dependencies, and backend dev tooling in one pass.
 - Hooks auto-format staged Next.js files with Prettier and Flask modules with Black. Install backend dev tooling via `pip install -r flask-server/requirements-dev.txt` if you prefer manual setup.
 - Frontend formatting: `cd coello-one && bun run format` (or `format:fix`). Backend formatting: `cd flask-server && make format-check` (or `make format`).
+- When building Next.js API routes, route handlers, or other server-side functions, prefer Bun's `Bun.file`/`Bun.write` APIs over Node's `fs` module for file IO.
 
 **Agent: coello-one (Next.js Frontend)** 🎨
 

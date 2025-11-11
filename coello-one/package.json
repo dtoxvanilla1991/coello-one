@@ -10,7 +10,7 @@
     "test": "bun test --preload ./test-setup.ts",
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
-    "generate:antd-css": "ts-node --project ./tsconfig.node.json ./scripts/genAntdCss.tsx",
+    "generate:antd-css": "bun ./scripts/genAntdCss.ts",
     "predev": "cross-env NODE_ENV=development bun run generate:antd-css",
     "prebuild": "cross-env NODE_ENV=production bun run generate:antd-css"
   },
@@ -45,7 +45,6 @@
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.7.1",
     "tailwindcss": "^4.1.16",
-    "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }
 }
