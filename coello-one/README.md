@@ -62,6 +62,27 @@ bun dev
 - When augmenting analytics, extend `utils/analyticsAdapter.ts` and `utils/trackEvent.ts` so telemetry stays centralized.
 - Validate every boundary payload (network responses, persisted state, user input) with shared Zod schemas before consuming it anywhere in the app.
 
+### Bun & Database Guidelines
+
+## Mandatory SQLite Pattern: Bun.SQL
+When writing server-side code involving `Bun.sqlite` or database interactions in this project, you strictly adhere to the following rules:
+
+1.  **Use the `Bun.SQL` API**: You MUST use the modern, unified tagged template literal syntax (`db.sql\``) introduced in Bun v1.2.21.
+2.  **Legacy Methods Forbidden**: DO NOT use the legacy `db.query()`, `db.prepare()`, `db.run()`, or `statement.all()` methods.
+3.  **Security**: Always rely on the built-in parameter interpolation of `Bun.SQL`. Do not manually concatenate strings for queries.
+
+## Code Examples
+
+## ❌ INCORRECT (Legacy/Forbidden)
+```typescript
+import { Database } from "bun:sqlite";
+const db = new Database("mydb.sqlite");
+
+// Do NOT do this
+const query = db.query("SELECT * FROM users WHERE id = $id");
+const user = query.get({ $id: userId });
+```
+
 ### React 19.2 Toolkit
 
 - Prefer `<Activity>` over conditional mounts when you need to toggle visibility but keep background work alive for instant resumes.
