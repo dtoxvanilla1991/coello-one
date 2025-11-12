@@ -108,7 +108,12 @@ export default function PopularSectionClient({ products, cache }: PopularSection
           </Button>
         ))}
       </Space>
-      <Flex gap={16} role="list" aria-label="Popular products" className="hide-scrollbar snap-x snap-mandatory overflow-x-auto scroll-smooth">
+      <Flex
+        gap={16}
+        role="list"
+        aria-label="Popular products"
+        className="hide-scrollbar snap-x snap-mandatory overflow-x-auto scroll-smooth"
+      >
         {filteredProducts.length === 0 ? (
           <Empty
             className="min-w-full text-white!"
@@ -120,7 +125,8 @@ export default function PopularSectionClient({ products, cache }: PopularSection
               key={`${product.id}-${activeCollection?.key ?? 'all'}-${index}`}
               className="min-w-72 snap-start"
               variant="borderless"
-              data-testid="popular-card"
+              role="article"
+              aria-label={`Popular product ${product.name}`}
               hoverable
               cover={
                 <Flex className="relative h-[400px]">

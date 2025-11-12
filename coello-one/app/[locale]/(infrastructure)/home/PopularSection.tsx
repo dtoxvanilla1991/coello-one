@@ -1,6 +1,6 @@
-import PopularSectionClient from "./PopularSectionClient";
 import { fetchProducts } from "@services/productsService";
 import type { ProductCacheMetadata } from "@/types/products";
+import PopularSectionClient from "./PopularSectionClient";
 
 function createFallbackMetadata(error?: unknown): ProductCacheMetadata {
   return {

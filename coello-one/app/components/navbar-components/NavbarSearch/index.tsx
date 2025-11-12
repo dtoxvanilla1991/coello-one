@@ -79,6 +79,7 @@ export function NavbarSearch({ searchVisible, onClose, locale }: NavbarSearchPro
         placeholder="Search Coello"
         className="border-0! bg-transparent! shadow-none! focus:border-0! focus:ring-0!"
         allowClear
+        type="search"
         onBlur={handleBlur}
         onKeyDown={handleKeyDown}
         id="navbar-search"

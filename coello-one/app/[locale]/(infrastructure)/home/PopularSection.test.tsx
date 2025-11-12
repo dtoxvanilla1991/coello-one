@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { describe, it, expect } from "bun:test";
 import PopularSectionClient from "./PopularSectionClient";
 import type { ProductCacheMetadata, ProductSummary } from "@/types/products";
@@ -61,7 +61,8 @@ describe("PopularSection", () => {
 
   it("should render 3 cards", () => {
     render(<PopularSectionClient products={sampleProducts} cache={hydratedCache} />);
-    const cards = screen.getAllByTestId("popular-card");
+    const list = screen.getByRole("list", { name: /Popular products/i });
+    const cards = within(list).getAllByRole("article", { name: /Popular product/i });
     expect(cards).toHaveLength(3);
   });
 

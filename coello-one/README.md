@@ -60,6 +60,13 @@ bun dev
 
 - Use the Jotai atoms in `store/` (`cartStore`, `siderStore`) instead of creating ad-hoc state containers.
 - When augmenting analytics, extend `utils/analyticsAdapter.ts` and `utils/trackEvent.ts` so telemetry stays centralized.
+- Validate every boundary payload (network responses, persisted state, user input) with shared Zod schemas before consuming it anywhere in the app.
+
+### React 19.2 Toolkit
+
+- Prefer `<Activity>` over conditional mounts when you need to toggle visibility but keep background work alive for instant resumes.
+- Split side-effect callbacks out of `useEffect` using `useEffectEvent` so dependency arrays stay accurate and reconnections don’t thrash.
+- Reach for the new cache-aware server APIs—`cacheSignal`, `prerender`, and `resume`—whenever you need deduped data fetching, pre-render persistence, or resumable streaming.
 
 ### Testing & Quality Gates
 

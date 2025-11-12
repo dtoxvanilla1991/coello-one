@@ -9,6 +9,8 @@ This repository is a monorepo containing two separate applications: a **_Next.js
 - Hooks auto-format staged Next.js files with Prettier and Flask modules with Black. Install backend dev tooling via `pip install -r flask-server/requirements-dev.txt` if you prefer manual setup.
 - Frontend formatting: `cd coello-one && bun run format` (or `format:fix`). Backend formatting: `cd flask-server && make format-check` (or `make format`).
 - When building Next.js API routes, route handlers, or other server-side functions, prefer Bun's `Bun.file`/`Bun.write` APIs over Node's `fs` module for file IO.
+- Treat Zod as the non-negotiable runtime guardrail—every boundary payload (network, storage, form submission) must pass through a schema.
+- Build with React 19.2 patterns by default: `<Activity>` for visibility control, `useEffectEvent` for side-effect callbacks, and cache-aware server APIs (`cacheSignal`, `prerender`, `resume`) whenever they fit the flow.
 
 **Agent: coello-one (Next.js Frontend)** 🎨
 
@@ -29,6 +31,8 @@ Serena Workflow
 - Golden rule: mobile-first by default. Ship the smallest breakpoint first, validate it, then expand to tablet/desktop.
 - Follow the testing and navigation guidance documented in `coello-one/README.md` (see the AI Operations Handbook section) before touching specs.
 - Keep individual component files under ~300 lines. When they grow larger, extract child components and relocate static data, option lists, and type/interface/enum declarations into adjacent modules (for example `constants.ts`, `types.ts`) to stay decoupled.
+- Enforce the React 19.2 toolkit across features: favor Activity-based pre-rendering over conditional mounts, split effect event handlers with `useEffectEvent`, and wire cache-boundary work to the resume/prerender APIs when building data-heavy flows.
+- Prefer semantic queries in tests—reserve `data-testid` for cases where accessible roles, labels, or text are unavailable, and capture any exception in Serena.
 
 Common Commands
 

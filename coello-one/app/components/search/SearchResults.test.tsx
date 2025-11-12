@@ -12,8 +12,8 @@ describe("SearchResults", () => {
 
     ctaButtons.forEach((link) => {
       const href = link.getAttribute("href");
-      expect(href).toBeTruthy();
-      expect(href).toMatch(/\/en-GB\/\(infrastructure\)\/\(products\)\/one-sleeve-classic/);
+        expect(href).toBeTruthy();
+        expect(href).toMatch(/^\/en-GB\/one-sleeve-classic/);
     });
 
     const targetUrls = ctaButtons
