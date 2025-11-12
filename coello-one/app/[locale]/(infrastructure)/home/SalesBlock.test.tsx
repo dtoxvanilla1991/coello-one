@@ -60,7 +60,9 @@ describe("SalesBlock", () => {
     fireEvent.click(screen.getByRole("button", { name: /Shop women/i }));
 
     expect(trackEventMock).toHaveBeenCalledWith("sales_block_cta_click", { audience: "women" });
-    expect(routerMocks.push).toHaveBeenCalledWith("/es-ES/products?gender=female&size=M&color=red");
+    expect(routerMocks.push).toHaveBeenCalledWith(
+      "/es-ES/one-sleeve-classic?gender=female&size=M&color=mild+red",
+    );
   });
 
   it("navigates men CTA with locale-prefixed query", () => {
@@ -70,6 +72,8 @@ describe("SalesBlock", () => {
     fireEvent.click(screen.getByRole("button", { name: /Shop men/i }));
 
     expect(trackEventMock).toHaveBeenCalledWith("sales_block_cta_click", { audience: "men" });
-    expect(routerMocks.push).toHaveBeenCalledWith("/fr-FR/products?gender=male&size=M&color=blue");
+    expect(routerMocks.push).toHaveBeenCalledWith(
+      "/fr-FR/one-sleeve-classic?gender=male&size=M&color=sea+blue",
+    );
   });
 });

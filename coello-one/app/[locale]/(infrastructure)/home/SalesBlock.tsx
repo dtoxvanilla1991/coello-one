@@ -13,14 +13,22 @@ const SalesBlock: FC = () => {
 
   const handleWomenClick = () => {
     trackEvent("sales_block_cta_click", { audience: "women" });
-    const searchParams = new URLSearchParams({ gender: "female", size: "M", color: "red" });
-    router.push(localePath(`/products?${searchParams.toString()}`));
+    const searchParams = new URLSearchParams({
+      gender: "female",
+      size: "M",
+      color: "mild red",
+    });
+    router.push(localePath(`/one-sleeve-classic?${searchParams.toString()}`));
   };
 
   const handleMenClick = () => {
     trackEvent("sales_block_cta_click", { audience: "men" });
-    const searchParams = new URLSearchParams({ gender: "male", size: "M", color: "blue" });
-    router.push(localePath(`/products?${searchParams.toString()}`));
+    const searchParams = new URLSearchParams({
+      gender: "male",
+      size: "M",
+      color: "sea blue",
+    });
+    router.push(localePath(`/one-sleeve-classic?${searchParams.toString()}`));
   };
 
   return (
