@@ -8,7 +8,7 @@ const { Title, Text } = Typography;
 const SalesBlock: FC = () => {
   return (
     <Flex
-      className="bg-black !p-4 text-center"
+      className="bg-black p-4! text-center"
       vertical
       justify="center"
       align="center"
@@ -16,14 +16,14 @@ const SalesBlock: FC = () => {
       aria-labelledby="sales-block-title"
     >
       <Title className="!text-white" level={3} id="sales-block-title">
-        GET AN EXTRA 10% OFF SALE ITEMS
+        GET AN EXTRA 10% OFF WHEN BAGGING 2 ITEMS
       </Title>
-      <Text className="mb-5 text-base !text-white">
+      <Text className="mb-5 text-base text-white!">
         Drop code extra10 and thank us with a tagged photo in the gym
       </Text>
       <Space direction="vertical" className="w-1/2">
         <Button
-          className="w-full uppercase hover:!bg-white hover:!text-black"
+          className="w-full uppercase hover:bg-white! hover:text-black!"
           size="large"
           data-analytics-id="sales-block-shop-women"
           onClick={() => trackEvent("sales_block_cta_click", { audience: "women" })}
@@ -31,7 +31,7 @@ const SalesBlock: FC = () => {
           Shop women
         </Button>
         <Button
-          className="w-full uppercase hover:!bg-white hover:!text-black"
+          className="w-full uppercase hover:bg-white! hover:text-black!"
           size="large"
           data-analytics-id="sales-block-shop-men"
           onClick={() => trackEvent("sales_block_cta_click", { audience: "men" })}

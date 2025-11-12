@@ -123,9 +123,13 @@ curl -fsSL https://bun.sh/install | bash
 ### Repository Tooling
 
 - Run `make setup` after cloning to install git hooks, frontend dependencies, and backend tooling in one step.
-- Manual setup alternative: `bun install` (root hooks), `cd coello-one && bun install`, and `cd flask-server && python -m pip install -r requirements.txt -r requirements-dev.txt`.
+- Manual setup alternative: `bun install` (root hooks), `cd coello-one && bun install`, and `cd flask-server && make install` (uses pip-tools to compile cached lockfiles before installation).
 - Prettier checks live behind `cd coello-one && bun run format`; use `format:fix` to write changes.
 - Backend formatting uses Black: `cd flask-server && make format-check` (or `make format`).
+- Backend env status helper: `make backend-status` (shows git ignored state for the managed `.venv`).
+- Backend dependency guard: `make backend-ci` (runs pip-compile dry-runs to ensure cached lockfiles are current).
+- Backend dependency upgrade: `make backend-upgrade` (rebuilds lockfiles with `pip-compile --upgrade`).
+- Backend linting: `make backend-lint` (runs Ruff checks; `make backend-lint-fix` applies autofixes).
 - CI enforces both checks (`bun run format` and `python -m black --check .`) to prevent drift across services.
 
 ## Implemented Features

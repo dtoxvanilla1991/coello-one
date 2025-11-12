@@ -1,5 +1,12 @@
 {
-  "cSpell.words": ["Coello"],
+  "cSpell.words": [
+    "Coello",
+    "lockfiles",
+    "piptools",
+    "venv",
+    "VENV",
+    "Virtualenv"
+  ],
   "npm.packageManager": "bun",
   "typescript.preferences.importModuleSpecifier": "relative",
   "eslint.useFlatConfig": true

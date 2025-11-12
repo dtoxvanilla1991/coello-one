@@ -12,9 +12,9 @@ describe("SalesBlock", () => {
     render(<SalesBlock />);
     const heading = screen.getByRole("heading", {
       level: 3,
-      name: /GET AN EXTRA 10% OFF SALE ITEMS/i,
+      name: /GET AN EXTRA 10% OFF WHEN BAGGING 2 ITEMS/i,
     });
-    expect(heading.textContent).toBe("GET AN EXTRA 10% OFF SALE ITEMS");
+    expect(heading.textContent).toBe("GET AN EXTRA 10% OFF WHEN BAGGING 2 ITEMS");
   });
 
   it("should render the text", () => {

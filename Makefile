@@ -3,7 +3,7 @@
 PYTHON ?= python3
 BACKEND_VENV ?= .venv
 
-.PHONY: setup hooks frontend backend backend-dev backend-clean
+.PHONY: setup hooks frontend backend backend-dev backend-clean backend-status backend-ci backend-upgrade backend-lint backend-lint-fix
 
 setup:
 	$(MAKE) hooks
@@ -45,3 +45,19 @@ backend-dev:
 backend-clean:
 	rm -rf $(BACKEND_VENV)
 	@echo "[ok] Removed backend virtual environment at $(BACKEND_VENV)"
+
+backend-status:
+	@git status --short --ignored $(BACKEND_VENV)
+
+backend-ci:
+	@$(MAKE) -C flask-server ci-check PYTHON=$(PYTHON) VENV=../$(BACKEND_VENV)
+
+backend-upgrade:
+	@$(MAKE) -C flask-server upgrade PYTHON=$(PYTHON) VENV=../$(BACKEND_VENV)
+	@echo "[ok] Flask dependencies upgraded"
+
+backend-lint:
+	@$(MAKE) -C flask-server lint PYTHON=$(PYTHON) VENV=../$(BACKEND_VENV)
+
+backend-lint-fix:
+	@$(MAKE) -C flask-server lint-fix PYTHON=$(PYTHON) VENV=../$(BACKEND_VENV)
