@@ -87,8 +87,8 @@ jobs:
             exit 1
           fi
 
-  backend-format:
-    name: Format (Flask)
+  backend-static:
+    name: Backend Static Checks (Flask)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -99,12 +99,14 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dev tooling
-        working-directory: flask-server
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements-dev.txt
+      - name: Install backend toolchain
+        run: make backend
+
+      - name: Dependency lock validation
+        run: make backend-ci
+
+      - name: Ruff lint
+        run: make backend-lint
 
       - name: Black check
-        working-directory: flask-server
-        run: python -m black --check .
+        run: make -C flask-server format-check

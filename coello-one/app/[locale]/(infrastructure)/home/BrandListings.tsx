@@ -14,12 +14,12 @@ type BrandLine = {
 const womensLine: BrandLine = [
   { text: "Women's Passion", href: "#" },
   { text: "Women's Power", href: "#" },
-  { text: "Women's Pride", href: "#" },
+  { text: "Women's Fire", href: "#" },
 ];
 const mensLine: BrandLine = [
   { text: "Mens's Passion", href: "#" },
   { text: "Mens's Power", href: "#" },
-  { text: "Mens's Pride", href: "#" },
+  { text: "Mens's Fire", href: "#" },
 ];
 
 const BrandListings: React.FC = () => {
