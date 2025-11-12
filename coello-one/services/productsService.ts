@@ -1,6 +1,6 @@
 'use server';
 
-import { Database } from 'bun:sqlite';
+import { SQL, sql } from "bun";
 import {
   flaskProductListSchema,
   type FlaskProductList,
@@ -10,7 +10,7 @@ import {
 } from '@/types/products';
 import { trackEvent } from '@/utils/trackEvent';
 
-const CACHE_DB_PATH = Bun.env.PRODUCT_CACHE_DB_PATH ?? 'product-cache.sqlite';
+const CACHE_DB_PATH = Bun.env.PRODUCT_CACHE_DB_PATH ?? ":memory:";
 const CACHE_TTL_MS = Number(Bun.env.PRODUCT_CACHE_TTL_MS ?? 5 * 60 * 1000);
 const PRODUCT_CACHE_DEBUG = Bun.env.PRODUCT_CACHE_DEBUG === 'true';
 const FLASK_API_BASE_URL = Bun.env.FLASK_API_BASE_URL ?? 'http://localhost:3500';
@@ -35,53 +35,76 @@ interface FetchProductsOptions {
   category?: string;
 }
 
-const database = new Database(CACHE_DB_PATH, { create: true, strict: true });
+const cacheDb = (() => {
+  const normalizedPath = CACHE_DB_PATH.trim();
+  const isUri = normalizedPath.startsWith("sqlite://") || normalizedPath.startsWith("file://");
 
-database.run(
-  `CREATE TABLE IF NOT EXISTS ${CACHE_TABLE} (
-    cache_key TEXT PRIMARY KEY,
-    payload TEXT NOT NULL,
-    updated_at INTEGER NOT NULL
-  )`
-);
+  if (normalizedPath === ":memory:" || isUri) {
+    return new SQL(normalizedPath);
+  }
 
-database.run(`CREATE INDEX IF NOT EXISTS idx_product_cache_updated_at ON ${CACHE_TABLE} (updated_at DESC)`);
+  return new SQL({
+    adapter: "sqlite",
+    filename: normalizedPath,
+    create: true,
+    readwrite: true,
+    strict: true,
+  });
+})();
 
-const selectStatement = database.prepare<CacheRow, [string]>(
-  `SELECT cache_key, payload, updated_at FROM ${CACHE_TABLE} WHERE cache_key = ?1 LIMIT 1`
-);
+const cacheSetupPromise = (async () => {
+  try {
+    await cacheDb`PRAGMA strict = ON`;
 
-const upsertStatement = database.prepare(
-  `INSERT INTO ${CACHE_TABLE} (cache_key, payload, updated_at)
-   VALUES (?1, ?2, ?3)
-   ON CONFLICT(cache_key)
-   DO UPDATE SET payload = excluded.payload, updated_at = excluded.updated_at`
-);
+    await cacheDb`
+      CREATE TABLE IF NOT EXISTS ${sql(CACHE_TABLE)} (
+        cache_key TEXT PRIMARY KEY,
+        payload TEXT NOT NULL,
+        updated_at INTEGER NOT NULL
+      )
+    `;
+
+    await cacheDb`
+      CREATE INDEX IF NOT EXISTS idx_product_cache_updated_at
+      ON ${sql(CACHE_TABLE)} (updated_at DESC)
+    `;
+  } catch (error) {
+    debugLog("cache_setup_error", { error });
+  }
+})();
 
 function buildCacheKey(options?: FetchProductsOptions): string {
-  const category = options?.category ? options.category.toLowerCase() : 'all';
+  const category = options?.category ? options.category.toLowerCase() : "all";
   return `products:${category}`;
 }
 
-function readCache(cacheKey: string): CacheRow | null {
+async function readCache(cacheKey: string): Promise<CacheRow | null> {
+  await cacheSetupPromise;
   try {
-    const result = selectStatement.get(cacheKey);
+    const [result] = await cacheDb`
+      SELECT cache_key, payload, updated_at
+      FROM ${sql(CACHE_TABLE)}
+      WHERE cache_key = ${cacheKey}
+      LIMIT 1
+    `;
+
     if (!result) {
       return null;
     }
 
     return result as CacheRow;
   } catch (error) {
-    debugLog('cache_read_error', { cacheKey, error });
+    debugLog("cache_read_error", { cacheKey, error });
     return null;
   }
 }
 
-function writeCache(cacheKey: string, payload: ProductSummary[]): void {
+async function writeCache(cacheKey: string, payload: ProductSummary[]): Promise<void> {
+  await cacheSetupPromise;
   const parsedPayload = productSummaryListSchema.safeParse(payload);
 
   if (!parsedPayload.success) {
-    debugLog('cache_write_validation_error', { cacheKey, issues: parsedPayload.error.issues });
+    debugLog("cache_write_validation_error", { cacheKey, issues: parsedPayload.error.issues });
     return;
   }
 
@@ -89,9 +112,14 @@ function writeCache(cacheKey: string, payload: ProductSummary[]): void {
   const updatedAt = Date.now();
 
   try {
-    upsertStatement.run(cacheKey, serializedPayload, updatedAt);
+    await cacheDb`
+      INSERT INTO ${sql(CACHE_TABLE)} (cache_key, payload, updated_at)
+      VALUES (${cacheKey}, ${serializedPayload}, ${updatedAt})
+      ON CONFLICT(cache_key)
+      DO UPDATE SET payload = excluded.payload, updated_at = excluded.updated_at
+    `;
   } catch (error) {
-    debugLog('cache_write_error', { cacheKey, error });
+    debugLog("cache_write_error", { cacheKey, error });
   }
 }
 
@@ -109,22 +137,22 @@ function parseCachePayload(cacheRow: CacheRow | null): ProductSummary[] | null {
     const parsedPayload = productSummaryListSchema.safeParse(rawPayload);
 
     if (!parsedPayload.success) {
-      debugLog('cache_validation_error', { cacheRow, issues: parsedPayload.error.issues });
+      debugLog("cache_validation_error", { cacheRow, issues: parsedPayload.error.issues });
       return null;
     }
 
     return parsedPayload.data;
   } catch (error) {
-    debugLog('cache_parse_error', { cacheRow, error });
+    debugLog("cache_parse_error", { cacheRow, error });
     return null;
   }
 }
 
 function normalizeProducts(products: FlaskProductList, category?: string): ProductSummary[] {
-  const categoryLabel = category ?? 'all';
+  const categoryLabel = category ?? "all";
 
   return products.map((product, index) => {
-    const gender = index % 2 === 0 ? 'Women' : 'Men';
+    const gender = index % 2 === 0 ? "Women" : "Men";
     const imageIndex = (index % 8) + 1;
 
     return {
@@ -142,35 +170,35 @@ function fallbackProducts(): ProductSummary[] {
   const fallback = [
     {
       id: 9001,
-      name: 'Coello One Classic Tee',
+      name: "Coello One Classic Tee",
       price: 48,
-      category: 'fallback',
-      gender: 'Women',
-      imageUrl: '/athletes/vertical/main-secondary-6.jpg',
+      category: "fallback",
+      gender: "Women",
+      imageUrl: "/athletes/vertical/main-secondary-6.jpg",
     },
     {
       id: 9002,
-      name: 'Coello One Training Tee',
+      name: "Coello One Training Tee",
       price: 52,
-      category: 'fallback',
-      gender: 'Men',
-      imageUrl: '/athletes/vertical/main-secondary-7.jpg',
+      category: "fallback",
+      gender: "Men",
+      imageUrl: "/athletes/vertical/main-secondary-7.jpg",
     },
     {
       id: 9003,
-      name: 'Coello One Performance Tee',
+      name: "Coello One Performance Tee",
       price: 55,
-      category: 'fallback',
-      gender: 'Women',
-      imageUrl: '/athletes/vertical/main-secondary-8.jpg',
+      category: "fallback",
+      gender: "Women",
+      imageUrl: "/athletes/vertical/main-secondary-8.jpg",
     },
   ];
 
   const parsedFallback = productSummaryListSchema.safeParse(fallback);
 
   if (!parsedFallback.success) {
-    debugLog('fallback_validation_error', { issues: parsedFallback.error.issues });
-    throw new Error('Fallback products failed validation');
+    debugLog("fallback_validation_error", { issues: parsedFallback.error.issues });
+    throw new Error("Fallback products failed validation");
   }
 
   return parsedFallback.data;
@@ -185,10 +213,10 @@ function debugLog(event: string, context: Record<string, unknown>): void {
 }
 
 function emitCacheAnalytics(
-  event: 'product_cache_hit' | 'product_cache_miss' | 'product_cache_fallback',
+  event: "product_cache_hit" | "product_cache_miss" | "product_cache_fallback",
   payload: Record<string, unknown>,
 ): void {
-  if (Bun.env.NODE_ENV === 'test') {
+  if (Bun.env.NODE_ENV === "test") {
     return;
   }
 
@@ -204,9 +232,9 @@ export async function fetchProducts(
   internalOptions: FetchProductsInternalOptions = {},
 ): Promise<ProductServiceResult> {
   const { skipAnalytics = false } = internalOptions;
-  const category = options.category ?? 'all';
+  const category = options.category ?? "all";
   const cacheKey = buildCacheKey(options);
-  const cacheRow = readCache(cacheKey);
+  const cacheRow = await readCache(cacheKey);
   const cachedProducts = parseCachePayload(cacheRow);
   const isCacheHit = Boolean(cacheRow && cachedProducts);
   const cacheExpired = cacheRow ? isExpired(cacheRow.updated_at) : true;
@@ -216,7 +244,7 @@ export async function fetchProducts(
   } as const;
 
   if (isCacheHit && !cacheExpired) {
-    debugLog('cache_hit', { cacheKey });
+    debugLog("cache_hit", { cacheKey });
 
     cacheHitCount += 1;
     const analyticsPayload = {
@@ -227,13 +255,13 @@ export async function fetchProducts(
       fallbackCount: cacheFallbackCount,
     };
     if (!skipAnalytics) {
-      emitCacheAnalytics('product_cache_hit', analyticsPayload);
+      emitCacheAnalytics("product_cache_hit", analyticsPayload);
     }
 
     return {
       products: cachedProducts ?? [],
       cache: {
-        source: 'cache',
+        source: "cache",
         updatedAt: cacheRow!.updated_at,
         stale: false,
         hit: true,
@@ -242,19 +270,19 @@ export async function fetchProducts(
     };
   }
 
-  const requestUrl = new URL('/api/products', FLASK_API_BASE_URL);
+  const requestUrl = new URL("/api/products", FLASK_API_BASE_URL);
 
   if (options.category) {
-    requestUrl.searchParams.set('category', options.category);
+    requestUrl.searchParams.set("category", options.category);
   }
 
   try {
     const response = await fetch(requestUrl.toString(), {
-      method: 'GET',
+      method: "GET",
       headers: {
-        Accept: 'application/json',
+        Accept: "application/json",
       },
-      cache: 'no-store',
+      cache: "no-store",
     });
 
     if (!response.ok) {
@@ -266,9 +294,9 @@ export async function fetchProducts(
     const normalized = normalizeProducts(networkProducts, options.category);
     const validProducts = productSummaryListSchema.parse(normalized);
 
-    writeCache(cacheKey, validProducts);
+    await writeCache(cacheKey, validProducts);
 
-    debugLog('network_fetch', { cacheKey, count: validProducts.length });
+    debugLog("network_fetch", { cacheKey, count: validProducts.length });
 
     cacheMissCount += 1;
     const analyticsPayload = {
@@ -279,13 +307,13 @@ export async function fetchProducts(
       fallbackCount: cacheFallbackCount,
     };
     if (!skipAnalytics) {
-      emitCacheAnalytics('product_cache_miss', analyticsPayload);
+      emitCacheAnalytics("product_cache_miss", analyticsPayload);
     }
 
     return {
       products: validProducts,
       cache: {
-        source: 'network',
+        source: "network",
         updatedAt: Date.now(),
         stale: false,
         hit: isCacheHit,
@@ -293,7 +321,7 @@ export async function fetchProducts(
       },
     };
   } catch (error) {
-    debugLog('network_error', { cacheKey, error });
+    debugLog("network_error", { cacheKey, error });
 
     if (isCacheHit && cachedProducts) {
       cacheHitCount += 1;
@@ -303,20 +331,20 @@ export async function fetchProducts(
         hitCount: cacheHitCount,
         missCount: cacheMissCount,
         fallbackCount: cacheFallbackCount,
-        errorMessage: error instanceof Error ? error.message : 'Unknown error',
+        errorMessage: error instanceof Error ? error.message : "Unknown error",
       };
       if (!skipAnalytics) {
-        emitCacheAnalytics('product_cache_hit', analyticsPayload);
+        emitCacheAnalytics("product_cache_hit", analyticsPayload);
       }
 
       return {
         products: cachedProducts,
         cache: {
-          source: 'cache',
+          source: "cache",
           updatedAt: cacheRow!.updated_at,
           stale: true,
           hit: true,
-          errorMessage: error instanceof Error ? error.message : 'Unknown error',
+          errorMessage: error instanceof Error ? error.message : "Unknown error",
           debug: analyticsPayload,
         },
       };
@@ -331,20 +359,20 @@ export async function fetchProducts(
       hitCount: cacheHitCount,
       missCount: cacheMissCount,
       fallbackCount: cacheFallbackCount,
-      errorMessage: error instanceof Error ? error.message : 'Unknown error',
+      errorMessage: error instanceof Error ? error.message : "Unknown error",
     };
     if (!skipAnalytics) {
-      emitCacheAnalytics('product_cache_fallback', analyticsPayload);
+      emitCacheAnalytics("product_cache_fallback", analyticsPayload);
     }
 
     return {
       products: fallback,
       cache: {
-        source: 'fallback',
+        source: "fallback",
         updatedAt: Date.now(),
         stale: true,
         hit: false,
-        errorMessage: error instanceof Error ? error.message : 'Unknown error',
+        errorMessage: error instanceof Error ? error.message : "Unknown error",
         debug: analyticsPayload,
       },
     };

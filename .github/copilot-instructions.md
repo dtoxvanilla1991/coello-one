@@ -9,5 +9,6 @@ Please treat `coello-one/README.md` as the authoritative playbook for AI collabo
 - Reuse shared mocks (`test-setup.ts`, `@test-utils/navigation`) instead of redefining them in tests.
 - Run `make setup` at the repository root to enable Husky/lint-staged hooks, install frontend deps, and pull in Flask tooling. Hooks format staged frontend files with Prettier and staged Flask modules with Black; ensure `pip install -r flask-server/requirements-dev.txt` is run if you perform manual setup.
 - For any Next.js API routes, route handlers, or server-side functions, rely on Bun's `Bun.file`/`Bun.write` primitives instead of Node's `fs` module for file IO.
+- Follow the Bun-native primitives guidance outlined in `coello-one/README.md` (Bun.SQL, Bun.YAML, Bun.secrets).
 - Validate every runtime payload with Zod schemas—no unchecked external or boundary data.
 - Adopt React 19.2 conventions: reach for `<Activity>` instead of ad-hoc conditional mounting, prefer `useEffectEvent` to isolate side-effect callbacks, and use new cache-aware server APIs (`cacheSignal`, `prerender`/`resume`) where applicable.

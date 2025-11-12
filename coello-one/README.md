@@ -62,26 +62,51 @@ bun dev
 - When augmenting analytics, extend `utils/analyticsAdapter.ts` and `utils/trackEvent.ts` so telemetry stays centralized.
 - Validate every boundary payload (network responses, persisted state, user input) with shared Zod schemas before consuming it anywhere in the app.
 
-### Bun & Database Guidelines
+### Bun Runtime Guidelines (Bun v1.2.21)
 
-## Mandatory SQLite Pattern: Bun.SQL
-When writing server-side code involving `Bun.sqlite` or database interactions in this project, you strictly adhere to the following rules:
+#### Bun.SQL (Mandatory)
+When writing server-side code involving SQLite or any SQL database, you must:
 
-1.  **Use the `Bun.SQL` API**: You MUST use the modern, unified tagged template literal syntax (`db.sql\``) introduced in Bun v1.2.21.
-2.  **Legacy Methods Forbidden**: DO NOT use the legacy `db.query()`, `db.prepare()`, `db.run()`, or `statement.all()` methods.
-3.  **Security**: Always rely on the built-in parameter interpolation of `Bun.SQL`. Do not manually concatenate strings for queries.
+1. **Use the `Bun.SQL` API** – rely on the unified tagged template literal syntax introduced in Bun v1.2.21.
+2. **Avoid legacy `bun:sqlite` APIs** – `db.query()`, `db.prepare()`, `db.run()`, and `statement.all()` are banned in this codebase.
+3. **Let Bun handle parameterization** – never build SQL strings manually; use tagged literals for automatic escaping.
 
-## Code Examples
-
-## ❌ INCORRECT (Legacy/Forbidden)
 ```typescript
+// ✅ Correct
+import { SQL } from "bun";
+
+const db = new SQL(":memory:");
+const [{ total }] = await db`
+  SELECT COUNT(*) AS total
+  FROM products
+  WHERE category = ${category}
+`;
+```
+
+```typescript
+// ❌ Incorrect
 import { Database } from "bun:sqlite";
 const db = new Database("mydb.sqlite");
-
-// Do NOT do this
 const query = db.query("SELECT * FROM users WHERE id = $id");
 const user = query.get({ $id: userId });
 ```
+
+#### Built-in YAML Support
+- Prefer Bun’s native YAML integrations (`import config from "./config.yaml";` or `Bun.YAML.parse`) instead of third-party parsers like `js-yaml`.
+- Keep YAML-Backed config co-located with TypeScript types and ensure schemas validate the parsed payload before use.
+
+#### Secrets & Credentials
+- Use `Bun.secrets` to read/write sensitive values during local tooling or CLI tasks. This routes through Keychain (macOS), libsecret (Linux), or Windows Credential Manager, keeping secrets off disk.
+- Document any non-Bun credential storage (e.g., cloud secret managers) in Serena and justify the exception.
+
+#### Tooling & Supply Chain
+- Run `bun audit --audit-level=high` before shipping meaningful dependency changes; the Bun 1.2.21 audit filters help surface critical issues fast.
+- Security scanners can now hook directly into `bun install`. If you add one (e.g., Socket’s scanner), record the config in Serena and update CI accordingly.
+- Prefer `bun install --lockfile-only` in CI-generated environments that only need an updated `bun.lock` without downloading tarballs.
+
+#### Operational Notes
+- `postMessage`/`structuredClone` improvements in Bun 1.2.21 make worker-based data passing far cheaper—lean on workers for heavy transforms when needed.
+- Keep Bun pinned to ≥1.2.21 (see `.github/workflows/ci.yml`) to guarantee access to these runtime guarantees.
 
 ### React 19.2 Toolkit
 

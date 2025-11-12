@@ -1,8 +1,9 @@
 # Convenience tasks for the monorepo
 
 PYTHON ?= python3
+BACKEND_VENV ?= .venv
 
-.PHONY: setup hooks frontend backend
+.PHONY: setup hooks frontend backend backend-dev backend-clean
 
 setup:
 	$(MAKE) hooks
@@ -35,18 +36,12 @@ frontend:
 	@echo "[ok] Frontend dependencies installed"
 
 backend:
-	@if ! command -v $(PYTHON) >/dev/null 2>&1; then \
-		echo "[error] Python executable '$(PYTHON)' not found. Install Python 3.11+ or run 'make PYTHON=python3 backend'."; \
-		exit 1; \
-	fi
-	@cd flask-server && $(PYTHON) -m pip install -r requirements.txt || { \
-		echo "[error] Failed to install backend requirements via $(PYTHON)."; \
-		echo "        Try running: cd flask-server && $(PYTHON) -m pip install -r requirements.txt"; \
-		exit 1; \
-	}
-	@cd flask-server && $(PYTHON) -m pip install -r requirements-dev.txt || { \
-		echo "[error] Failed to install backend dev requirements via $(PYTHON)."; \
-		echo "        Try running: cd flask-server && $(PYTHON) -m pip install -r requirements-dev.txt"; \
-		exit 1; \
-	}
-	@echo "[ok] Flask dependencies installed"
+	@$(MAKE) -C flask-server install PYTHON=$(PYTHON) VENV=../$(BACKEND_VENV)
+	@echo "[ok] Flask dependencies installed into $(BACKEND_VENV)"
+
+backend-dev:
+	@$(MAKE) -C flask-server dev PYTHON=$(PYTHON) VENV=../$(BACKEND_VENV)
+
+backend-clean:
+	rm -rf $(BACKEND_VENV)
+	@echo "[ok] Removed backend virtual environment at $(BACKEND_VENV)"

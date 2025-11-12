@@ -11,6 +11,7 @@ This repository is a monorepo containing two separate applications: a **_Next.js
 - When building Next.js API routes, route handlers, or other server-side functions, prefer Bun's `Bun.file`/`Bun.write` APIs over Node's `fs` module for file IO.
 - Treat Zod as the non-negotiable runtime guardrail—every boundary payload (network, storage, form submission) must pass through a schema.
 - Build with React 19.2 patterns by default: `<Activity>` for visibility control, `useEffectEvent` for side-effect callbacks, and cache-aware server APIs (`cacheSignal`, `prerender`, `resume`) whenever they fit the flow.
+	- See the "Bun & Database Guidelines" section of `coello-one/README.md` for the complete Bun-native primitives policy (Bun.SQL, Bun.YAML, Bun.secrets).
 
 **Agent: coello-one (Next.js Frontend)** 🎨
 
