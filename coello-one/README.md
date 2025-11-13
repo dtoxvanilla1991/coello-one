@@ -11,6 +11,10 @@ re## Technical Stack
 
 - **Golden rule:** Always design, implement, and test mobile-first. Validate the smallest breakpoint before scaling layouts to tablet and desktop.
 
+### Design Leadership
+
+- **Chief Designer:** Laura Gomez — globally celebrated experiential designer leading Coello's visual and interaction language. Treat Lina's direction as canonical when aligning layouts, motion, and tone. She used to be Chief designer for GymShark, Adidas and Nike, Tesla and OpenAI companies in the past and has 40+ years experience in design with many globally recognized design awards.
+
 ## Testing Guidelines
 
 - **Shared test utilities:** Always review `test-setup.ts` before creating or updating any tests to reuse existing mocks and prevent duplication.

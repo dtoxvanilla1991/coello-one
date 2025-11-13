@@ -4,6 +4,7 @@ import type { FC } from "react";
 import Image from "next/image";
 import { Card, Button, Typography, Flex } from "antd";
 import { trackEvent } from "@/utils/trackEvent";
+import ComingSoonOverlay from "@/components/common/ComingSoonOverlay";
 
 const { Title } = Typography;
 
@@ -17,7 +18,7 @@ const Training: FC = () => {
       role="region"
       aria-labelledby="training-section-title"
     >
-  <Title level={4} className="mb-4! uppercase" id="training-section-title">
+      <Title level={4} className="mb-4! uppercase" id="training-section-title">
         Our athletes workouts
       </Title>
       <Flex
@@ -29,7 +30,7 @@ const Training: FC = () => {
         {data.map((item, index) => (
           <Card
             key={index}
-            className="min-w-72 snap-start"
+            className="min-w-72 snap-start opacity-60"
             role="listitem"
             cover={
               <Flex className="relative h-[400px]">
@@ -40,15 +41,16 @@ const Training: FC = () => {
                   fill
                   className="object-cover object-top"
                 />
+                <ComingSoonOverlay />
               </Flex>
             }
-            hoverable
             actions={[
               <Button
                 key={`${item.title}-cta`}
-                className="uppercase hover:bg-black! hover:text-white!"
+                className="uppercase"
                 data-analytics-id={`training-plan-${item.title.toLowerCase()}`}
                 onClick={() => trackEvent("training_plan_click", { plan: item.title })}
+                disabled
               >
                 View weekly plan
               </Button>,
