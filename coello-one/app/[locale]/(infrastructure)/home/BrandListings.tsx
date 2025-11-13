@@ -40,14 +40,14 @@ type BrandListingProps = {
 
 const listProps: Pick<ListProps<BrandLine[number]>, "renderItem" | "split" | "className"> = {
   renderItem: (item) => (
-    <List.Item className="!py-1.5">
+  <List.Item className="py-1.5!">
       <Link href={item.href} className="hover:underline">
         {item.text}
       </Link>
     </List.Item>
   ),
   split: false,
-  className: "!text-xs",
+  className: "text-xs!",
 };
 
 const BrandListing: React.FC<BrandListingProps> = ({ data, title }) => {

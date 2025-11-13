@@ -25,7 +25,7 @@ export default function MenuComponent({
       selectedKeys={[pathname]}
       items={items}
       onClick={handleMenuClick}
-      className="!border-r-0 !px-0"
+  className="border-r-0! px-0!"
       mode="inline"
       inlineIndent={0}
       expandIcon={expandIcon}

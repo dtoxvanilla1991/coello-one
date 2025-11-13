@@ -22,7 +22,7 @@ const TabsContent: FC<TabsContentProps> = ({ data }) => {
           <Button
             key={index}
             size="middle"
-            className="!absolute bottom-4 left-4 !px-8 !font-medium uppercase"
+            className="absolute! bottom-4 left-4 px-8! font-medium! uppercase"
           >
             View
           </Button>

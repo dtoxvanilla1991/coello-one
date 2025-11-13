@@ -30,12 +30,12 @@ export function MainBanner() {
             className="w-full object-cover"
           />
           <Col className="z-10 mb-3 text-center">
-            <Title className="!font-extrabold !text-white" level={4} id="main-banner-title">
+            <Title className="font-extrabold! text-white!" level={4} id="main-banner-title">
               NOW YOU TRULY STAND OUT.
             </Title>
             <Link href={withLocalePath("/one-sleeve-classic")}>
               <Button
-                className="!px-10 !font-semibold uppercase"
+                className="px-10! font-semibold! uppercase"
                 size="large"
                 data-analytics-id="main-banner-shop-now"
                 onClick={() => trackEvent("main_banner_shop_now_click")}

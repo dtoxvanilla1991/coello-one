@@ -31,10 +31,10 @@ export function Navbar() {
   const toggleSearch = () => setSearchVisible((prev) => !prev);
   const navigateToBag = () => router.push(buildLocaleRoute(locale, "bag"));
 
-  const visibilityClass = searchVisible ? "!hidden" : "!block";
+  const visibilityClass = searchVisible ? "hidden!" : "block!";
 
   return (
-    <Header className="sticky top-0 z-50 flex items-center justify-between !bg-white !px-4 shadow-sm">
+    <Header className="sticky top-0 z-50 flex items-center justify-between bg-white! px-4! shadow-sm">
       <Button
         type="text"
         size="large"

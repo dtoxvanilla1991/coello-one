@@ -12,12 +12,12 @@ const data = [{ title: "Lifting" }, { title: "Cardio" }, { title: "Yoga" }];
 const Training: FC = () => {
   return (
     <Flex
-      className="!p-4 !pr-0 !pb-8"
+      className="p-4! pr-0! pb-8!"
       vertical
       role="region"
       aria-labelledby="training-section-title"
     >
-      <Title level={4} className="!mb-4 uppercase" id="training-section-title">
+  <Title level={4} className="mb-4! uppercase" id="training-section-title">
         Our athletes workouts
       </Title>
       <Flex
@@ -46,7 +46,7 @@ const Training: FC = () => {
             actions={[
               <Button
                 key={`${item.title}-cta`}
-                className="uppercase hover:!bg-black hover:!text-white"
+                className="uppercase hover:bg-black! hover:text-white!"
                 data-analytics-id={`training-plan-${item.title.toLowerCase()}`}
                 onClick={() => trackEvent("training_plan_click", { plan: item.title })}
               >

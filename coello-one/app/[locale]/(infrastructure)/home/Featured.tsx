@@ -31,7 +31,7 @@ export function Featured() {
                   sizes="(max-width: 640px) 100vw, 640px"
                   fill
                   priority
-                  className="!rounded-none object-cover object-top"
+                  className="rounded-none! object-cover object-top"
                 />
               </Flex>
             }

@@ -31,12 +31,12 @@ const NavBarBagDrawer: React.FC<NavBarBagDrawerProps> = ({ showBag, handleShowBa
       >
         <Space direction="vertical">
           <Button type="primary" className="w-full">
-            <Text className="!text-white uppercase" strong>
+            <Text className="text-white! uppercase" strong>
               Shop men
             </Text>
           </Button>
           <Button type="primary">
-            <Text className="!text-white uppercase" strong>
+            <Text className="text-white! uppercase" strong>
               Shop women
             </Text>
           </Button>

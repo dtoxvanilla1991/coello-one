@@ -31,7 +31,7 @@ export function NavbarSiderComponent() {
     <Sider
       aria-label="Navigation Sidebar"
       role="navigation"
-      className={`/* fill viewport below navbar */ /* making sure user can scroll within sidebar */ !absolute top-14 left-0 !z-50 h-[calc(100vh-56px)] w-full overflow-y-auto bg-white !pt-4 !transition-transform duration-300 ease-in-out ${collapsed ? "!-translate-x-full" : "!translate-x-0"}`}
+  className={`/* fill viewport below navbar */ /* making sure user can scroll within sidebar */ absolute! top-14 left-0 z-50! h-[calc(100vh-56px)] w-full overflow-y-auto bg-white pt-4! transition-transform! duration-300 ease-in-out ${collapsed ? "-translate-x-full!" : "translate-x-0!"}`}
       theme="light"
       width={"100%"}
       collapsible
@@ -40,7 +40,7 @@ export function NavbarSiderComponent() {
       trigger={null}
       onCollapse={(value) => setCollapsed(value)}
     >
-      <Flex className="w-full !px-4 !pb-16" vertical gap={15}>
+  <Flex className="w-full px-4! pb-16!" vertical gap={15}>
         <Space size="large" align="center" className="w-full">
           <LanguageSelect />
           <Text className="uppercase" disabled>

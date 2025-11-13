@@ -6,7 +6,7 @@ const { Title, Text } = Typography;
 export function PromoSection() {
   return (
     <Flex
-      className="!mt-4 text-center"
+      className="mt-4! text-center"
       justify="center"
       align="center"
       vertical
@@ -18,7 +18,7 @@ export function PromoSection() {
       </Title>
       <Text>Up to 20% off select items</Text>
       <Button
-        className="mt-4 !px-10 !font-semibold uppercase hover:!bg-black hover:!text-white"
+        className="mt-4 px-10! font-semibold! uppercase hover:bg-black! hover:text-white!"
         type="primary"
         size="large"
         data-analytics-id="promo-section-shop-now"
