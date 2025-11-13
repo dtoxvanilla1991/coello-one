@@ -1,49 +1,32 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Training from "./Training";
 import { describe, it, expect } from "bun:test";
 
 describe("Training", () => {
   it("should render the training section", () => {
-    const { container } = render(<Training />);
-    expect(
-      container.querySelector('[data-testid="training-section"]')
-    ).toBeTruthy();
+    render(<Training />);
+    expect(screen.getByRole("region", { name: /Our athletes workouts/i })).toBeTruthy();
   });
 
   it("should render the title", () => {
-    const { container } = render(<Training />);
-    expect(
-      (
-        container.querySelector(
-          '[data-testid="training-section-title"]'
-        ) as HTMLElement
-      ).textContent
-    ).toBe("Our athletes workouts");
+    render(<Training />);
+    const heading = screen.getByRole("heading", {
+      level: 4,
+      name: /Our athletes workouts/i,
+    });
+    expect(heading.textContent).toBe("Our athletes workouts");
   });
 
   it("should render 3 cards", () => {
-    const { container } = render(<Training />);
-    expect(
-      container.querySelector('[data-testid="training-section-card-0"]')
-    ).toBeTruthy();
-    expect(
-      container.querySelector('[data-testid="training-section-card-1"]')
-    ).toBeTruthy();
-    expect(
-      container.querySelector('[data-testid="training-section-card-2"]')
-    ).toBeTruthy();
+    render(<Training />);
+    const list = screen.getByRole("list", { name: /Training plans/i });
+    const topLevelCards = list.querySelectorAll(':scope > [role="listitem"]');
+    expect(topLevelCards).toHaveLength(3);
   });
 
   it("should render the card buttons", () => {
-    const { container } = render(<Training />);
-    expect(
-      container.querySelector('[data-testid="training-section-card-button-0"]')
-    ).toBeTruthy();
-    expect(
-      container.querySelector('[data-testid="training-section-card-button-1"]')
-    ).toBeTruthy();
-    expect(
-      container.querySelector('[data-testid="training-section-card-button-2"]')
-    ).toBeTruthy();
+    render(<Training />);
+    const buttons = screen.getAllByRole("button", { name: /View weekly plan/i });
+    expect(buttons).toHaveLength(3);
   });
 });

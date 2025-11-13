@@ -1,8 +1,4 @@
-import {
-  createMenuOption,
-  createMenuTitle,
-  MenuItem,
-} from "@/components/Menu/helpers";
+import { createMenuOption, createMenuTitle, MenuItem } from "@/components/Menu/helpers";
 import Menu from "@components/Menu";
 
 const items: MenuItem[] = [
@@ -12,7 +8,7 @@ const items: MenuItem[] = [
   createMenuTitle("Products", "/products", [
     createMenuOption("Passion model", "/products/passion-model"),
     createMenuOption("Power model", "/products/power-model"),
-    createMenuOption("Pride model", "/products/pride-model"),
+    createMenuOption("Fire model", "/products/fire-model"),
   ]),
   // this idea needs to be properly developed
   //   createMenuTitle("Coello One Hub", "/hub", <UserOutlined />, [

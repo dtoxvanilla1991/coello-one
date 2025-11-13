@@ -1,6 +1,9 @@
 // Wrapper for Next.js fonts with a safe fallback for test/runtime environments
 // that may not have the specific font exports available.
-type FontFn = (opts?: { variable?: string; subsets?: string[] }) => { variable: string; className: string };
+type FontFn = (opts?: { variable?: string; subsets?: string[] }) => {
+  variable: string;
+  className: string;
+};
 
 const fallbackGeist: FontFn = (opts) => ({
   variable: opts?.variable ?? "--font-geist-sans",

@@ -1,32 +1,38 @@
 "use client";
 
-import React from "react";
+import type { FC } from "react";
 import Image from "next/image";
 import { Card, Button, Typography, Flex } from "antd";
+import { trackEvent } from "@/utils/trackEvent";
 
 const { Title } = Typography;
 
 const data = [{ title: "Lifting" }, { title: "Cardio" }, { title: "Yoga" }];
 
-const Training: React.FC = () => {
+const Training: FC = () => {
   return (
-    <Flex className="p-4! pr-0! pb-8!" vertical data-testid="training-section">
-      <Title
-        level={4}
-        className="uppercase mb-4!"
-        data-testid="training-section-title">
+    <Flex
+      className="!p-4 !pr-0 !pb-8"
+      vertical
+      role="region"
+      aria-labelledby="training-section-title"
+    >
+      <Title level={4} className="!mb-4 uppercase" id="training-section-title">
         Our athletes workouts
       </Title>
       <Flex
         gap={16}
-        className="overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar">
+        role="list"
+        aria-label="Training plans"
+        className="hide-scrollbar snap-x snap-mandatory overflow-x-auto scroll-smooth"
+      >
         {data.map((item, index) => (
           <Card
             key={index}
             className="min-w-72 snap-start"
-            data-testid={`training-section-card-${index}`}
+            role="listitem"
             cover={
-              <div className="relative h-[400px]">
+              <Flex className="relative h-[400px]">
                 <Image
                   alt={item.title}
                   src={`/athletes/vertical/main-secondary-${index + 9}.jpg`}
@@ -34,17 +40,20 @@ const Training: React.FC = () => {
                   fill
                   className="object-cover object-top"
                 />
-              </div>
+              </Flex>
             }
             hoverable
             actions={[
               <Button
-                key={index}
-                className="uppercase"
-                data-testid={`training-section-card-button-${index}`}>
+                key={`${item.title}-cta`}
+                className="uppercase hover:!bg-black hover:!text-white"
+                data-analytics-id={`training-plan-${item.title.toLowerCase()}`}
+                onClick={() => trackEvent("training_plan_click", { plan: item.title })}
+              >
                 View weekly plan
               </Button>,
-            ]}>
+            ]}
+          >
             <Card.Meta title={item.title} className="uppercase" />
           </Card>
         ))}

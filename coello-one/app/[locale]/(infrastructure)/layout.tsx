@@ -9,12 +9,14 @@ export default function InfrastructureLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Layout hasSider data-testid="infrastructure-layout">
-      <NavbarSiderComponent data-testid="navbar-sider-component" />
+    <Layout hasSider>
+      <NavbarSiderComponent />
       <Layout>
-        <Navbar data-testid="navbar-component" />
-        {children}
-        <Footer data-testid="footer-component" />
+        <Navbar />
+        <main role="main" className="min-h-screen">
+          {children}
+        </main>
+        <Footer />
       </Layout>
     </Layout>
   );

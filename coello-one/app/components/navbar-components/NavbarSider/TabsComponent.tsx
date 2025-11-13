@@ -25,9 +25,9 @@ const data: DataModel = new Map([
         description: "Female athlete wearing Power model",
       },
       {
-        modelVariant: "Pride",
+        modelVariant: "Fire",
         image: "/athletes/horizontal/main-secondary-h-3.jpg",
-        description: "Female athlete wearing Pride model",
+        description: "Female athlete wearing Fire model",
       },
     ],
   ],
@@ -35,9 +35,9 @@ const data: DataModel = new Map([
     "men",
     [
       {
-        modelVariant: "Pride",
+        modelVariant: "Fire",
         image: "/athletes/horizontal/main-secondary-h-4.jpg",
-        description: "Male athlete wearing Pride model",
+        description: "Male athlete wearing Fire model",
       },
       {
         modelVariant: "Passion",

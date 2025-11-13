@@ -1,2 +1,19 @@
 # AI tooling files
 .serena/
+
+# repository dependencies
+node_modules/
+bun.lockb
+
+# python backend artifacts
+.venv/
+flask-server/.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+pip-wheel-metadata/
+.cache/
+
+# macOS artifacts
+.DS_Store

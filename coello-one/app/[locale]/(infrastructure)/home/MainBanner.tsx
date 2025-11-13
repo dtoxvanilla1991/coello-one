@@ -4,6 +4,9 @@ import { Typography, Button, Col, Row } from "antd";
 import { Content } from "antd/es/layout/layout";
 import { metaObject } from "config/site.config";
 import Image from "next/image";
+import Link from "next/link";
+import { useLocalePath } from "@/hooks/useLocalePath";
+import { trackEvent } from "@/utils/trackEvent";
 
 const { Title } = Typography;
 
@@ -12,31 +15,34 @@ export const metadata = {
 };
 
 export function MainBanner() {
+  const withLocalePath = useLocalePath();
+
   return (
-    <Content data-testid="main-banner">
+    <Content role="region" aria-labelledby="main-banner-title" className="relative">
       <Row>
-        <Col className="h-[44em] grid items-end w-full">
+        <Col className="grid h-[44em] w-full items-end">
           <Image
             src="/athletes/main image.jpg"
             alt="Coello One banner"
             sizes="(max-width: 640px) 100vw, 640px"
             fill
             priority
-            className="object-cover w-full"
+            className="w-full object-cover"
           />
           <Col className="z-10 mb-3 text-center">
-            <Title
-              className="text-white! font-extrabold!"
-              level={4}
-              data-testid="main-banner-title">
+            <Title className="!font-extrabold !text-white" level={4} id="main-banner-title">
               NOW YOU TRULY STAND OUT.
             </Title>
-            <Button
-              className="px-10! uppercase font-semibold!"
-              size="large"
-              data-testid="main-banner-shop-now-button">
-              Shop Now
-            </Button>
+            <Link href={withLocalePath("/one-sleeve-classic")}>
+              <Button
+                className="!px-10 !font-semibold uppercase"
+                size="large"
+                data-analytics-id="main-banner-shop-now"
+                onClick={() => trackEvent("main_banner_shop_now_click")}
+              >
+                Shop Now
+              </Button>
+            </Link>
           </Col>
         </Col>
       </Row>

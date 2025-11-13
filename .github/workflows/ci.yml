@@ -38,6 +38,9 @@ jobs:
       - name: Lint
         run: bun run lint
 
+      - name: Prettier check
+        run: bun run format
+
       - name: Prepare reports directory
         run: mkdir -p reports
 
@@ -83,3 +86,27 @@ jobs:
           if [ "$FAIL" != "0" ]; then
             exit 1
           fi
+
+  backend-static:
+    name: Backend Static Checks (Flask)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install backend toolchain
+        run: make backend
+
+      - name: Dependency lock validation
+        run: make backend-ci
+
+      - name: Ruff lint
+        run: make backend-lint
+
+      - name: Black check
+        run: make -C flask-server format-check

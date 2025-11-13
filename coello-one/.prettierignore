@@ -1,0 +1,16 @@
+# Build outputs
+.next
+out
+dist
+reports
+
+# Dependencies
+node_modules/
+bun.lock
+bun.lockb
+
+# Backend service
+flask-server/
+
+# Generated assets
+public/antd.min.css

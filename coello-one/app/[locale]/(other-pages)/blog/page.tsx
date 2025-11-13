@@ -29,14 +29,13 @@ interface BlogProps {
 
 const BlogList: React.FC<BlogProps> = ({ blogs }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+    <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
       {blogs.map((blog) => (
         <Card
           key={blog.id}
-          cover={
-            <Image src={blog.cover} alt={blog.title} width={300} height={200} />
-          }
-          actions={[<Button key="view">VIEW BLOG</Button>]}>
+          cover={<Image src={blog.cover} alt={blog.title} width={300} height={200} />}
+          actions={[<Button key="view">VIEW BLOG</Button>]}
+        >
           <Meta title={blog.title} description={blog.description} />
         </Card>
       ))}
