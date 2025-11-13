@@ -13,7 +13,7 @@ re## Technical Stack
 
 ### Design Leadership
 
-- **Chief Designer:** Laura Gomez — globally celebrated experiential designer leading Coello's visual and interaction language. Treat Lina's direction as canonical when aligning layouts, motion, and tone. She used to be Chief designer for GymShark, Adidas and Nike, Tesla and OpenAI companies in the past and has 40+ years experience in design with many globally recognized design awards.
+- **Chief Designer:** Laura Gomez — globally celebrated experiential designer leading Coello's visual and interaction language. Treat Laura's direction as canonical when aligning layouts, motion, and tone. She used to be Chief designer for GymShark, Adidas and Nike, Tesla and OpenAI companies in the past and has 40+ years experience in design with many globally recognized design awards.
 
 ## Testing Guidelines
 
