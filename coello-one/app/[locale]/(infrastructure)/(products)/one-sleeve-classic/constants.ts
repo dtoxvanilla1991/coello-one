@@ -18,7 +18,7 @@ export const PRODUCT_DATA: ProductData = {
     male: {
       colors: [
         {
-          name: "Gray Lint",
+          name: "Stone Gray",
           swatchClass: "bg-gray-400",
           ringClass: "ring-gray-400",
         },
@@ -42,7 +42,7 @@ export const PRODUCT_DATA: ProductData = {
     female: {
       colors: [
         {
-          name: "Gray",
+          name: "Stone Gray",
           swatchClass: "bg-gray-400",
           ringClass: "ring-gray-400",
         },
