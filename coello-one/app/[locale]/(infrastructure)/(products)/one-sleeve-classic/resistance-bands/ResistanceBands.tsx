@@ -22,19 +22,19 @@ const STRENGTH_LEVELS = [
   {
     key: "light",
     badge: "Light • Peach",
-    resistance: "5–10 kg (10–20 lb)",
+    resistance: "5-10 kg (10-20 lb)",
     focus: "Mobility, warm-ups, and controlled activation.",
   },
   {
     key: "medium",
     badge: "Medium • Coral",
-    resistance: "10–20 kg (20–45 lb)",
+    resistance: "10-20 kg (20-45 lb)",
     focus: "Strength building, compound reinforcement, tempo work.",
   },
   {
     key: "heavy",
     badge: "Heavy • Merlot",
-    resistance: "20–35 kg (45–75 lb)",
+    resistance: "20-35 kg (45-75 lb)",
     focus: "Power training, athletic conditioning, maximal stability.",
   },
 ] as const;
@@ -78,7 +78,7 @@ export default function ResistanceBands() {
       <Row gutter={[32, 32]}>
         <Col xs={24} md={12}>
           <Card
-            bordered={false}
+            variant="borderless"
             className="bg-gray-950!"
             cover={
               <Flex className="relative aspect-square w-full">
@@ -97,11 +97,13 @@ export default function ResistanceBands() {
         <Col xs={24} md={12}>
           <Space direction="vertical" size={24} className="w-full px-4 md:px-0">
             <Space direction="vertical" size={8}>
-              <Title level={2} className="uppercase tracking-wide">
+              <Title level={2} className="tracking-wide uppercase">
                 {RESISTANCE_BANDS_NAME}
               </Title>
               <Text className="text-lg text-gray-400 uppercase">Unisex • Fuel your session</Text>
-              <Text strong className="text-2xl">{formattedPrice}</Text>
+              <Text strong className="text-2xl">
+                {formattedPrice}
+              </Text>
             </Space>
 
             <Paragraph className="text-base text-gray-200">
@@ -109,7 +111,7 @@ export default function ResistanceBands() {
               palette and ships in a breathable pouch for post-session ventilation.
             </Paragraph>
 
-            <Card bordered className="bg-gray-950!">
+            <Card variant="borderless" className="bg-gray-950!">
               <Space direction="vertical" size={16} className="w-full">
                 <Text strong className="text-xs text-gray-400 uppercase">
                   Strength guide
@@ -134,7 +136,7 @@ export default function ResistanceBands() {
               </Space>
             </Card>
 
-            <Card bordered className="bg-gray-950!">
+            <Card variant="borderless" className="bg-gray-950!">
               <Space direction="vertical" size={12} className="w-full">
                 <Text strong className="text-xs text-gray-400 uppercase">
                   What&apos;s in the bag

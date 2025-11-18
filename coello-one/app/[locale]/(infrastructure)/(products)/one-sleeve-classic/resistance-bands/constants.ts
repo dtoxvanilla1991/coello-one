@@ -5,7 +5,7 @@ export const RESISTANCE_BANDS_NAME = "Coello Resistance Bands" as const;
 export const RESISTANCE_BANDS_PRICE_GBP = 20;
 export const RESISTANCE_BANDS_IMAGE = "/accessories/resistance-bands.png" as const;
 export const RESISTANCE_BANDS_DEFAULT_SIZE = "One Size" as const;
-export const RESISTANCE_BANDS_DEFAULT_COLOR = "Carbon" as const;
+export const RESISTANCE_BANDS_DEFAULT_COLOR = "Trio (green, purple, blue)" as const;
 
 export const RESISTANCE_BANDS_SUMMARY: ProductSummary = {
   id: 6301,
