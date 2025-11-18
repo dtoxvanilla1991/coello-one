@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 
-export type CartFit = "male" | "female";
+export type CartFit = "male" | "female" | "unisex";
 
 export interface CartItem {
   id: string;

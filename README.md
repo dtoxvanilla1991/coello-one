@@ -39,8 +39,14 @@
 
 ## About The App
 
-Empowering you to showcase your story—one sleeve at a time. Coello One combines bold design with active performance, celebrating individuality, artistry, and the confidence to stand out.
-This is a full-stack AI-features integrated and AI-powered application utilizing Next.js for the frontend and Flask for the backend.
+### Stop Hiding Your Story.
+Empowering you to showcase your story—one sleeve at a time. Coello One combines bold design with active performance, celebrating individuality, artistry, and the confidence to stand out. We always saw a disconnect.
+
+You commit hours and endure the pain to wear your story on your skin. That art is a permanent badge of honor, a piece of your identity. Then, you hit the gym, the track, or the trail—another act of pure discipline—and you're forced to cover that story up. At Coello, we believe your art and your athleticism come from the same fire. Both are proof of persistence. Both are forged in commitment. Both deserve to be seen.
+
+We aren't just a clothing brand. We are a statement. We created Coello for the niche-within-a-niche: the athlete who is also the canvas. Our one-sleeve design isn't a gimmick; it's the frame your masterpiece deserves. It's technical apparel built to perform, with a fit that finally celebrates the unique way you've chosen to express yourself. This is for everyone who knows the patience of the artist's chair and the burn of the last rep.
+
+Welcome to Coello.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

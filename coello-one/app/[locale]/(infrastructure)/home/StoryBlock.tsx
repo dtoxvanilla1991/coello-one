@@ -5,13 +5,13 @@ import { Space, Typography } from "antd";
 const { Title, Paragraph } = Typography;
 
 const brandIdea =
-  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Non itaque odit vero voluptates, autem eligendi. Amet culpa quod nobis ipsam!";
+  "Your story is the blueprint. Your commitment is the inspiration. You're the reason they'll start their journey tomorrow.";
 
-const activewearAndLifestyle =
-  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Non itaque odit vero voluptates, autem eligendi. Amet culpa quod nobis ipsam!";
+const brandSpirit =
+  "You earned this. That pain was real. It will forever be a part of you. It is an extension of you; it was forged in persistence, patience, and sweat.";
 
-const confidenceHub =
-  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Non itaque odit vero voluptates, autem eligendi. Amet culpa quod nobis ipsam!";
+const brandFocus =
+  "You know the wall, and you know how to break it. This is for the warrior who never quits—on the pavement, at the gym, or in the chair.";
 
 const StoryBlock: React.FC = () => {
   return (
@@ -22,9 +22,9 @@ const StoryBlock: React.FC = () => {
       role="list"
       aria-label="Coello story highlights"
     >
-      <BrandListing paragraph={brandIdea} title="Bold design with active performance" />
-      <BrandListing paragraph={activewearAndLifestyle} title="Healthier Lifestyle" />
-      <BrandListing paragraph={confidenceHub} title="Confidence to stand out hub" />
+      <BrandListing paragraph={brandIdea} title="For those who come after" />
+      <BrandListing paragraph={brandSpirit} title="For those who felt the pain" />
+      <BrandListing paragraph={brandFocus} title="For those who kept going" />
     </Space>
   );
 };

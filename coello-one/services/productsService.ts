@@ -7,15 +7,20 @@ import {
   productSummarySchema,
   type ProductSummary,
   type ProductServiceResult,
-} from '@/types/products';
-import { trackEvent } from '@/utils/trackEvent';
+  productGenderSchema,
+} from "@/types/products";
+import { trackEvent } from "@/utils/trackEvent";
+import {
+  createCuratedPopularProducts,
+  extractCuratedPopularProducts,
+} from "../app/[locale]/(infrastructure)/home/popularCuratedData";
 
 const CACHE_DB_PATH = Bun.env.PRODUCT_CACHE_DB_PATH ?? ":memory:";
 const CACHE_TTL_MS = Number(Bun.env.PRODUCT_CACHE_TTL_MS ?? 5 * 60 * 1000);
-const PRODUCT_CACHE_DEBUG = Bun.env.PRODUCT_CACHE_DEBUG === 'true';
-const FLASK_API_BASE_URL = Bun.env.FLASK_API_BASE_URL ?? 'http://localhost:3500';
+const PRODUCT_CACHE_DEBUG = Bun.env.PRODUCT_CACHE_DEBUG === "true";
+const FLASK_API_BASE_URL = Bun.env.FLASK_API_BASE_URL ?? "http://localhost:3500";
 
-const CACHE_TABLE = 'product_cache';
+const CACHE_TABLE = "product_cache";
 const productSummaryListSchema = productSummarySchema.array();
 
 let cacheHitCount = 0;
@@ -23,7 +28,36 @@ let cacheMissCount = 0;
 let cacheFallbackCount = 0;
 let isPrimingCache = false;
 
-const cacheWarmupCategories = ['all', 'popular'] as const;
+const cacheWarmupCategories = ["all", "popular"] as const;
+
+const POPULAR_FALLBACK_CACHE_SUFFIX = ":popular:fallback";
+async function ensurePopularFallback(
+  cacheKey: string,
+  persistPrimary = false,
+): Promise<{ products: ProductSummary[]; updatedAt: number }> {
+  const fallbackKey = `${cacheKey}${POPULAR_FALLBACK_CACHE_SUFFIX}`;
+  const fallbackRow = await readCache(fallbackKey);
+  const cachedFallback = parseCachePayload(fallbackRow);
+
+  if (fallbackRow && cachedFallback && !isExpired(fallbackRow.updated_at)) {
+    if (persistPrimary) {
+      await writeCache(cacheKey, cachedFallback);
+    }
+    return { products: cachedFallback, updatedAt: fallbackRow.updated_at };
+  }
+
+  const fallbackProducts = createCuratedPopularProducts();
+  await writeCache(fallbackKey, fallbackProducts);
+  if (persistPrimary) {
+    await writeCache(cacheKey, fallbackProducts);
+  }
+  const refreshedRow = await readCache(fallbackKey);
+
+  return {
+    products: fallbackProducts,
+    updatedAt: refreshedRow?.updated_at ?? Date.now(),
+  };
+}
 
 interface CacheRow {
   cache_key: string;
@@ -152,16 +186,18 @@ function normalizeProducts(products: FlaskProductList, category?: string): Produ
   const categoryLabel = category ?? "all";
 
   return products.map((product, index) => {
-    const gender = index % 2 === 0 ? "Women" : "Men";
-    const imageIndex = (index % 8) + 1;
+    const parsedGender = product.gender ? productGenderSchema.safeParse(product.gender) : null;
+    const gender = parsedGender?.success ? parsedGender.data : index % 2 === 0 ? "Women" : "Men";
+    const imageUrl = product.imageUrl ?? `/athletes/vertical/main-secondary-${(index % 8) + 1}.jpg`;
+    const normalizedCategory = product.category ?? categoryLabel;
 
     return {
       id: product.id,
       name: product.name,
       price: product.price,
-      category: categoryLabel,
+      category: normalizedCategory,
       gender,
-      imageUrl: `/athletes/vertical/main-secondary-${imageIndex}.jpg`,
+      imageUrl,
     } as ProductSummary;
   });
 }
@@ -244,6 +280,43 @@ export async function fetchProducts(
   } as const;
 
   if (isCacheHit && !cacheExpired) {
+    let productsFromCache = cachedProducts ?? [];
+
+    if (category === "popular") {
+      const curatedCacheProducts = extractCuratedPopularProducts(productsFromCache);
+
+      if (!curatedCacheProducts) {
+        const fallbackResult = await ensurePopularFallback(cacheKey, true);
+
+        cacheFallbackCount += 1;
+        const analyticsPayload = {
+          ...analyticsContext,
+          stale: true,
+          hitCount: cacheHitCount,
+          missCount: cacheMissCount,
+          fallbackCount: cacheFallbackCount,
+          reason: "popular_cache_invalidated",
+        } as const;
+        if (!skipAnalytics) {
+          emitCacheAnalytics("product_cache_fallback", analyticsPayload);
+        }
+
+        return {
+          products: fallbackResult.products,
+          cache: {
+            source: "fallback",
+            updatedAt: fallbackResult.updatedAt,
+            stale: true,
+            hit: false,
+            errorMessage: "Popular cache invalidated",
+            debug: analyticsPayload,
+          },
+        };
+      }
+
+      productsFromCache = curatedCacheProducts;
+    }
+
     debugLog("cache_hit", { cacheKey });
 
     cacheHitCount += 1;
@@ -253,13 +326,13 @@ export async function fetchProducts(
       hitCount: cacheHitCount,
       missCount: cacheMissCount,
       fallbackCount: cacheFallbackCount,
-    };
+    } as const;
     if (!skipAnalytics) {
       emitCacheAnalytics("product_cache_hit", analyticsPayload);
     }
 
     return {
-      products: cachedProducts ?? [],
+      products: productsFromCache,
       cache: {
         source: "cache",
         updatedAt: cacheRow!.updated_at,
@@ -294,6 +367,69 @@ export async function fetchProducts(
     const normalized = normalizeProducts(networkProducts, options.category);
     const validProducts = productSummaryListSchema.parse(normalized);
 
+    if (category === "popular") {
+      const curatedProducts = extractCuratedPopularProducts(validProducts);
+
+      if (curatedProducts) {
+        await writeCache(cacheKey, curatedProducts);
+
+        debugLog("popular_network_curated", {
+          cacheKey,
+          count: curatedProducts.length,
+        });
+
+        cacheMissCount += 1;
+        const analyticsPayload = {
+          ...analyticsContext,
+          stale: false,
+          hitCount: cacheHitCount,
+          missCount: cacheMissCount,
+          fallbackCount: cacheFallbackCount,
+        };
+        if (!skipAnalytics) {
+          emitCacheAnalytics("product_cache_miss", analyticsPayload);
+        }
+
+        return {
+          products: curatedProducts,
+          cache: {
+            source: "network",
+            updatedAt: Date.now(),
+            stale: false,
+            hit: false,
+            debug: analyticsPayload,
+          },
+        };
+      }
+
+      const fallbackResult = await ensurePopularFallback(cacheKey, true);
+
+      cacheFallbackCount += 1;
+      const analyticsPayload = {
+        ...analyticsContext,
+        stale: true,
+        hitCount: cacheHitCount,
+        missCount: cacheMissCount,
+        fallbackCount: cacheFallbackCount,
+        reason: "popular_feed_unavailable",
+      };
+      if (!skipAnalytics) {
+        emitCacheAnalytics("product_cache_fallback", analyticsPayload);
+      }
+
+      return {
+        products: fallbackResult.products,
+        cache: {
+          source: "fallback",
+          updatedAt: fallbackResult.updatedAt,
+          stale: true,
+          hit: false,
+          errorMessage: "Popular feed unavailable",
+          debug: analyticsPayload,
+        },
+      };
+    }
+
     await writeCache(cacheKey, validProducts);
 
     debugLog("network_fetch", { cacheKey, count: validProducts.length });
@@ -316,7 +452,7 @@ export async function fetchProducts(
         source: "network",
         updatedAt: Date.now(),
         stale: false,
-        hit: isCacheHit,
+        hit: false,
         debug: analyticsPayload,
       },
     };
@@ -344,6 +480,36 @@ export async function fetchProducts(
           updatedAt: cacheRow!.updated_at,
           stale: true,
           hit: true,
+          errorMessage: error instanceof Error ? error.message : "Unknown error",
+          debug: analyticsPayload,
+        },
+      };
+    }
+
+    if (category === "popular") {
+      const fallbackResult = await ensurePopularFallback(cacheKey, true);
+
+      cacheFallbackCount += 1;
+      const analyticsPayload = {
+        ...analyticsContext,
+        stale: true,
+        hitCount: cacheHitCount,
+        missCount: cacheMissCount,
+        fallbackCount: cacheFallbackCount,
+        errorMessage: error instanceof Error ? error.message : "Unknown error",
+        reason: "popular_fallback",
+      };
+      if (!skipAnalytics) {
+        emitCacheAnalytics("product_cache_fallback", analyticsPayload);
+      }
+
+      return {
+        products: fallbackResult.products,
+        cache: {
+          source: "fallback",
+          updatedAt: fallbackResult.updatedAt,
+          stale: true,
+          hit: false,
           errorMessage: error instanceof Error ? error.message : "Unknown error",
           debug: analyticsPayload,
         },
