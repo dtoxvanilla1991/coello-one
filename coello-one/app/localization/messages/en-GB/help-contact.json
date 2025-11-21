@@ -1,0 +1,81 @@
+{
+  "metadata": {
+    "title": "Contact Us | Coello Help",
+    "description": "Reach the Coello concierge team for styling advice, order support, or partnership enquiries."
+  },
+  "breadcrumbLabel": "Help Centre",
+  "title": "Speak with Coello",
+  "description": "Our concierge advisors love solving fit, styling, and training questions. Choose the channel that suits you best.",
+  "channelsCard": {
+    "title": "Concierge channels",
+    "items": [
+      {
+        "title": "Concierge chat",
+        "description": "WhatsApp +44 20 1234 5678 · iMessage concierge@coello.one",
+        "availability": "08:00 – 00:00 GMT"
+      },
+      {
+        "title": "Email support",
+        "description": "support@coello.one",
+        "availability": "Replies within 4 business hours"
+      },
+      {
+        "title": "Phone",
+        "description": "+44 20 7654 3210",
+        "availability": "Monday to Friday, 09:00 – 18:00 GMT"
+      }
+    ]
+  },
+  "formIntro": {
+    "title": "Send us a message",
+    "description": "Share your question below. We route directly to the right specialist based on your topic."
+  },
+  "responseStandards": {
+    "title": "Response standards",
+    "items": [
+      "Chat: under 2 minutes during staffed hours",
+      "Email: within 4 business hours",
+      "VIP members: priority routing with optional video styling sessions"
+    ],
+    "prompt": "Need instant answers? Browse the {link} any time.",
+    "promptLinkText": "FAQ"
+  },
+  "form": {
+    "intro": "Our concierge team responds within minutes between 08:00 and 00:00 GMT. Choose your preferred channel and we will pick up from there.",
+    "topics": [
+      { "label": "Order support", "value": "order_support" },
+      { "label": "Product styling", "value": "product_styling" },
+      { "label": "Membership & concierge", "value": "membership" },
+      { "label": "Partnership enquiry", "value": "partnership" }
+    ],
+    "channels": [
+      { "label": "Email", "value": "email" },
+      { "label": "WhatsApp", "value": "whatsapp" },
+      { "label": "Phone", "value": "phone" }
+    ],
+    "fields": {
+      "nameLabel": "Name",
+      "namePlaceholder": "Your name",
+      "emailLabel": "Email",
+      "emailPlaceholder": "name@example.com",
+      "topicLabel": "Topic",
+      "channelLabel": "Preferred channel",
+      "messageLabel": "How can we help?",
+      "messagePlaceholder": "Include order numbers, sizing questions, or feedback"
+    },
+    "errors": {
+      "name": "Enter your name so we know how to greet you.",
+      "email": "Use a valid email address.",
+      "topic": "Select the topic that best fits.",
+      "channel": "Pick how we should contact you.",
+      "message": "Let us know how we can help—add at least 10 characters.",
+      "messageMax": "Keep your message under 1000 characters.",
+      "generic": "Please double-check your inputs."
+    },
+    "buttonLabel": "Send message",
+    "successTitle": "Message received",
+    "successSubtitle": "We will reply via {channel} shortly.",
+    "successReference": "Reference topic: {topic}",
+    "resetLabel": "Send another message"
+  }
+}

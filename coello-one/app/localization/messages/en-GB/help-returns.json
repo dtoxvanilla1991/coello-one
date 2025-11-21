@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "title": "Return an Item | Coello Help",
+    "description": "Start a return or exchange for your Coello one-sleeve essential in a few quick steps."
+  },
+  "breadcrumbLabel": "Help Centre",
+  "title": "Return or exchange an item",
+  "description": "Log your return, print a label, and choose between refund, exchange, or instant credit.",
+  "stepsCard": {
+    "title": "How the return flow works",
+    "steps": [
+      { "title": "Request", "description": "Submit your order number and select refund or exchange." },
+      { "title": "Pack", "description": "Seal the garment in its original bag with the authenticity card." },
+      { "title": "Hand off", "description": "Drop at your chosen courier or book a DPD collection slot." },
+      { "title": "Refund", "description": "We issue refunds in 3-5 days or dispatch exchanges instantly." }
+    ]
+  },
+  "remindersCard": {
+    "title": "Helpful reminders",
+    "items": [
+      "Exchanges depend on live inventory—if a size sells out we default to a refund.",
+      "Gift returns issue credit to the purchaser unless you flag it as a gift during the flow.",
+      "Need bespoke help? Contact concierge via speak with us."
+    ],
+    "ctaText": "speak with us",
+    "ctaHref": "contact-us"
+  },
+  "form": {
+    "intro": "Share your order details and pick the resolution you want. Our concierge team reviews submissions instantly.",
+    "fields": {
+      "orderIdLabel": "Order number",
+      "orderIdPlaceholder": "e.g. COELLO123",
+      "emailLabel": "Email address",
+      "reasonLabel": "Reason for returning",
+      "resolutionLabel": "Resolution preference",
+      "courierLabel": "Preferred courier",
+      "notesLabel": "Notes for the concierge team",
+      "notesPlaceholder": "Optional details on fit or product feedback"
+    },
+    "reasons": [
+      { "label": "Fit wasn't right", "value": "fit" },
+      { "label": "Changed my mind", "value": "change_of_mind" },
+      { "label": "Gift return", "value": "gift" },
+      { "label": "Product issue", "value": "product_issue" }
+    ],
+    "resolutions": [
+      { "label": "Refund", "value": "refund" },
+      { "label": "Exchange", "value": "exchange" }
+    ],
+    "couriers": [
+      { "label": "DPD Pickup", "value": "dpd_pickup" },
+      { "label": "Royal Mail Drop", "value": "royal_mail" },
+      { "label": "DHL Express", "value": "dhl_express" }
+    ],
+    "errors": {
+      "orderMin": "Order number should be at least 6 characters.",
+      "orderMax": "Order number is too long.",
+      "orderRequired": "Enter the order number from your confirmation email.",
+      "email": "Enter a valid email.",
+      "reason": "Select a reason for returning.",
+      "resolution": "Choose refund or exchange.",
+      "courier": "Pick your courier option.",
+      "notesMax": "Notes cannot exceed 400 characters.",
+      "generic": "Please review the form inputs."
+    },
+    "buttonLabel": "Generate return label",
+    "successTitle": "Return request logged",
+    "successOrder": "Order {orderId}",
+    "successDetail": "We emailed {email} with your prepaid label and exchange instructions.",
+    "resetLabel": "Start another return"
+  }
+}

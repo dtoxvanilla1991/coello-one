@@ -1,0 +1,55 @@
+{
+  "metadata": {
+    "title": "Centro de ayuda de Coello",
+    "description": "Explora plazos de entrega, devoluciones, canales de concierge y más dentro del centro de ayuda de Coello."
+  },
+  "hero": {
+    "title": "Bienvenido al centro de ayuda de Coello",
+    "description": "Desde el ajuste de la manga hasta los aranceles, cubrimos cada detalle para que solo te ocupes de sentirte increíble."
+  },
+  "introCard": {
+    "title": "Soporte creado por concierge",
+    "description": "Nuestro hub de ayuda replica la experiencia premium de nuestras flagship: curada, proactiva y lista para varios idiomas. Empieza con las tarjetas o conecta con concierge cuando quieras."
+  },
+  "quickLinks": [
+    {
+      "id": "faq",
+      "title": "Encuentra respuestas al instante",
+      "description": "Revisa nuestro FAQ curado y actualizado cada semana por concierge.",
+      "href": "faq",
+      "icon": "question",
+      "ctaLabel": "Explorar"
+    },
+    {
+      "id": "delivery",
+      "title": "Tiempos de entrega",
+      "description": "Consulta cortes de envío, socios de mensajería y ETAs internacionales.",
+      "href": "delivery-information",
+      "icon": "arrow",
+      "ctaLabel": "Explorar"
+    },
+    {
+      "id": "returns",
+      "title": "Devoluciones y cambios",
+      "description": "Repasa nuestra promesa de 30 días y solicita un cambio de talla en minutos.",
+      "href": "returns-policy",
+      "icon": "arrow",
+      "ctaLabel": "Explorar"
+    },
+    {
+      "id": "international",
+      "title": "Pedidos internacionales",
+      "description": "Comprende aranceles, divisas admitidas y seguimiento de aduanas.",
+      "href": "orders-international",
+      "icon": "arrow",
+      "ctaLabel": "Explorar"
+    }
+  ],
+  "contactCard": {
+    "title": "¿Necesitas a un humano ahora?",
+    "description": "Nuestros estilistas concierge responden en menos de dos minutos entre 8:00 y medianoche GMT.",
+    "channelsLabel": "WhatsApp • iMessage • Email",
+    "buttonLabel": "Habla con nosotros",
+    "buttonHref": "contact-us"
+  }
+}

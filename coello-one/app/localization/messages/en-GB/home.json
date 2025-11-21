@@ -1,0 +1,8 @@
+{
+  "mainBanner": {
+    "headline": "NOW YOU TRULY STAND OUT.",
+    "ctaLabel": "Shop now",
+    "ctaAnalyticsKey": "home.mainBanner.cta",
+    "ctaVariant": "primary"
+  }
+}

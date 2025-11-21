@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, mock } from "bun:test";
 import { fireEvent, render, screen, within } from "@testing-library/react";
-import type { FAQCategory } from "./constants";
+import type { FAQCategory } from "./types";
 
 const trackEventMock = mock<(event: string, payload?: unknown) => void>(() => {});
 

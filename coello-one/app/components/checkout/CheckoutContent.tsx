@@ -25,8 +25,10 @@ import {
   cartSubtotalAtom,
   cartTotalAtom,
 } from "@/store/cartStore";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { buildLocaleRoute } from "@config/routes";
+import { useTranslations } from "@/localization/useTranslations";
+import { useCurrentLocale } from "@/hooks/useCurrentLocale";
 import { trackEvent } from "@/utils/trackEvent";
 import type { CheckoutFormValues } from "./types";
 import { COUNTRY_OPTIONS, EXPRESS_METHODS, FORMAT_PRICE, PAYMENT_OPTIONS } from "./constants";
@@ -39,8 +41,10 @@ export function CheckoutContent() {
   const shipping = useAtomValue(cartShippingAtom);
   const total = useAtomValue(cartTotalAtom);
   const router = useRouter();
-  const params = useParams();
-  const locale = typeof params?.locale === "string" ? params.locale : "en-GB";
+  const locale = useCurrentLocale();
+  const checkoutCopy = useTranslations("checkout");
+  const { hero, express, contact, delivery, payment, remember, orderSummary, cta, messages } =
+    checkoutCopy;
   const bagRoute = buildLocaleRoute(locale, "bag");
 
   const itemCount = useMemo(() => items.reduce((count, item) => count + item.quantity, 0), [items]);
@@ -69,35 +73,41 @@ export function CheckoutContent() {
 
   const handlePlaceOrder = (values: CheckoutFormValues) => {
     if (!hasItems) {
-      message.warning("Add an item to your bag before completing checkout.");
+      message.warning(messages.emptyWarning);
       return;
     }
 
-    trackEvent("checkout_submit_attempt", {
-      subtotal,
-      shipping,
-      total,
-      itemCount,
-      deliveryMethod: values.deliveryMethod,
-      paymentMethod: values.paymentMethod,
-      rememberMe: values.rememberMe ?? false,
-    });
+    trackEvent(
+      "checkout_submit_attempt",
+      {
+        subtotal,
+        shipping,
+        total,
+        itemCount,
+        deliveryMethod: values.deliveryMethod,
+        paymentMethod: values.paymentMethod,
+        rememberMe: values.rememberMe ?? false,
+      },
+      {
+        locale,
+        translationKey: "checkout.cta.submit",
+        translationVariant: "primary",
+      },
+    );
 
-    message.success("Checkout submission captured. Configure Stripe to finish.");
+    message.success(messages.success);
   };
 
   return (
     <Flex vertical gap={24} className="w-full px-4 pt-8 pb-24 md:px-8">
       <Flex justify="space-between" align="center" wrap className="gap-4">
         <Flex vertical gap={4}>
-          <Title level={2} className="m-0! tracking-wide uppercase">
-            Checkout
-          </Title>
-          <Text className="text-sm text-gray-500">
-            {hasItems
-              ? "Review your details before placing the order."
-              : "Add at least one item to complete your order."}
-          </Text>
+            <Title level={2} className="m-0! tracking-wide uppercase">
+              {hero.title}
+            </Title>
+            <Text className="text-sm text-gray-500">
+              {hasItems ? hero.subtitleReady : hero.subtitleEmpty}
+            </Text>
         </Flex>
         <Button
           type="default"
@@ -105,7 +115,7 @@ export function CheckoutContent() {
           className="rounded-full! px-6 uppercase"
           onClick={handleReturnToBag}
         >
-          Back to bag
+            {hero.backToBag}
         </Button>
       </Flex>
 
@@ -114,7 +124,7 @@ export function CheckoutContent() {
           <Card className="rounded-2xl! border border-gray-200!">
             <Flex vertical gap={16}>
               <Title level={4} className="m-0! tracking-wide uppercase">
-                Express checkout
+                {express.title}
               </Title>
               <Space size={12} wrap>
                 {EXPRESS_METHODS.map((method) => (
@@ -127,10 +137,8 @@ export function CheckoutContent() {
                   </Button>
                 ))}
               </Space>
-              <Divider className="my-2">or</Divider>
-              <Text className="text-xs text-gray-500">
-                Continue to secure checkout for additional payment methods.
-              </Text>
+              <Divider className="my-2">{express.divider}</Divider>
+              <Text className="text-xs text-gray-500">{express.helper}</Text>
             </Flex>
           </Card>
 
@@ -140,90 +148,90 @@ export function CheckoutContent() {
                 <Flex vertical gap={16}>
                   <Flex justify="space-between" align="center">
                     <Title level={4} className="m-0! tracking-wide uppercase">
-                      Contact
+                      {contact.title}
                     </Title>
-                    <Button type="link">Sign in</Button>
+                    <Button type="link">{contact.signIn}</Button>
                   </Flex>
                   <Form.Item
-                    label="Email"
+                    label={contact.emailLabel}
                     name="email"
-                    rules={[{ required: true, message: "Enter an email" }]}
+                    rules={[{ required: true, message: contact.emailError }]}
                   >
-                    <Input size="large" type="email" placeholder="Email" />
+                    <Input size="large" type="email" placeholder={contact.emailPlaceholder} />
                   </Form.Item>
                   <Form.Item name="marketingOptIn" valuePropName="checked">
-                    <Checkbox>Tick here to receive emails about launches and exclusives.</Checkbox>
+                    <Checkbox>{contact.optInLabel}</Checkbox>
                   </Form.Item>
-                  <Text className="text-xs text-gray-500">View our Privacy Policy.</Text>
+                  <Text className="text-xs text-gray-500">{contact.privacy}</Text>
                 </Flex>
               </Card>
 
               <Card className="rounded-2xl! border border-gray-200!">
                 <Flex vertical gap={16}>
                   <Title level={4} className="m-0! tracking-wide uppercase">
-                    Delivery
+                    {delivery.title}
                   </Title>
                   <Form.Item name="deliveryMethod">
                     <Radio.Group className="w-full">
                       <Space direction="vertical" size={12} className="w-full">
-                        <Radio value="home">Home Delivery (selected)</Radio>
-                        <Radio value="pickup">Pickup Point</Radio>
+                        <Radio value="home">{delivery.home}</Radio>
+                        <Radio value="pickup">{delivery.pickup}</Radio>
                       </Space>
                     </Radio.Group>
                   </Form.Item>
                   <Form.Item
-                    label="Country/Region"
+                    label={delivery.countryLabel}
                     name="country"
-                    rules={[{ required: true, message: "Select a country" }]}
+                    rules={[{ required: true, message: delivery.countryError }]}
                   >
                     <Select size="large" options={COUNTRY_OPTIONS} className="w-full" />
                   </Form.Item>
                   <Flex gap={16} className="flex-col md:flex-row">
                     <Form.Item
-                      label="First name"
+                      label={delivery.firstNameLabel}
                       name="firstName"
                       className="flex-1"
-                      rules={[{ required: true, message: "Enter first name" }]}
+                      rules={[{ required: true, message: delivery.firstNameError }]}
                     >
-                      <Input size="large" placeholder="First name" />
+                      <Input size="large" placeholder={delivery.firstNamePlaceholder} />
                     </Form.Item>
                     <Form.Item
-                      label="Last name"
+                      label={delivery.lastNameLabel}
                       name="lastName"
                       className="flex-1"
-                      rules={[{ required: true, message: "Enter last name" }]}
+                      rules={[{ required: true, message: delivery.lastNameError }]}
                     >
-                      <Input size="large" placeholder="Last name" />
+                      <Input size="large" placeholder={delivery.lastNamePlaceholder} />
                     </Form.Item>
                   </Flex>
                   <Form.Item
-                    label="Address line 1"
+                    label={delivery.addressLine1Label}
                     name="addressLine1"
-                    rules={[{ required: true, message: "Enter an address" }]}
+                    rules={[{ required: true, message: delivery.addressLine1Error }]}
                   >
-                    <Input size="large" placeholder="Address line 1" />
+                    <Input size="large" placeholder={delivery.addressLine1Placeholder} />
                   </Form.Item>
-                  <Form.Item label="Address line 2" name="addressLine2">
-                    <Input size="large" placeholder="Address line 2" />
+                  <Form.Item label={delivery.addressLine2Label} name="addressLine2">
+                    <Input size="large" placeholder={delivery.addressLine2Label} />
                   </Form.Item>
                   <Form.Item
-                    label="City"
+                    label={delivery.cityLabel}
                     name="city"
-                    rules={[{ required: true, message: "Enter a city" }]}
+                    rules={[{ required: true, message: delivery.cityError }]}
                   >
-                    <Input size="large" placeholder="City" />
+                    <Input size="large" placeholder={delivery.cityPlaceholder} />
                   </Form.Item>
                   <Flex gap={16} className="flex-col md:flex-row">
                     <Form.Item
-                      label="Postcode"
+                      label={delivery.postcodeLabel}
                       name="postcode"
                       className="flex-1"
-                      rules={[{ required: true, message: "Enter postcode" }]}
+                      rules={[{ required: true, message: delivery.postcodeError }]}
                     >
-                      <Input size="large" placeholder="Postcode" />
+                      <Input size="large" placeholder={delivery.postcodePlaceholder} />
                     </Form.Item>
-                    <Form.Item label="Phone" name="phone" className="flex-1">
-                      <Input size="large" placeholder="Phone" />
+                    <Form.Item label={delivery.phoneLabel} name="phone" className="flex-1">
+                      <Input size="large" placeholder={delivery.phonePlaceholder} />
                     </Form.Item>
                   </Flex>
                 </Flex>
@@ -232,11 +240,9 @@ export function CheckoutContent() {
               <Card className="rounded-2xl! border border-gray-200!">
                 <Flex vertical gap={16}>
                   <Title level={4} className="m-0! tracking-wide uppercase">
-                    Payment
+                    {payment.title}
                   </Title>
-                  <Text className="text-xs text-gray-500">
-                    All transactions are secure and encrypted via Stripe.
-                  </Text>
+                  <Text className="text-xs text-gray-500">{payment.helper}</Text>
                   <Form.Item name="paymentMethod">
                     <Radio.Group className="w-full">
                       <Space direction="vertical" size={12} className="w-full">
@@ -251,7 +257,7 @@ export function CheckoutContent() {
                   <Alert
                     type="warning"
                     showIcon
-                    message="Connect your Stripe keys to process live payments."
+                    message={payment.alert}
                     className="rounded-xl! border border-amber-200! bg-amber-50!"
                   />
                 </Flex>
@@ -260,14 +266,12 @@ export function CheckoutContent() {
               <Card className="rounded-2xl! border border-gray-200!">
                 <Flex vertical gap={16}>
                   <Title level={4} className="m-0! tracking-wide uppercase">
-                    Remember me
+                    {remember.title}
                   </Title>
                   <Form.Item name="rememberMe" valuePropName="checked">
-                    <Switch checkedChildren="On" unCheckedChildren="Off" />
+                    <Switch checkedChildren={remember.on} unCheckedChildren={remember.off} />
                   </Form.Item>
-                  <Text className="text-sm text-gray-500">
-                    Save your information for a faster checkout with a Coello account.
-                  </Text>
+                  <Text className="text-sm text-gray-500">{remember.helper}</Text>
                 </Flex>
               </Card>
 
@@ -279,7 +283,7 @@ export function CheckoutContent() {
                 className="rounded-full! py-4 text-base! uppercase"
                 disabled={!hasItems}
               >
-                Place order securely
+                {cta.submit}
               </Button>
             </Space>
           </Form>
@@ -289,7 +293,7 @@ export function CheckoutContent() {
           <Card className="rounded-2xl! border border-gray-200!">
             <Flex vertical gap={16}>
               <Title level={4} className="m-0! tracking-wide uppercase">
-                Order summary
+                {orderSummary.title}
               </Title>
               <Flex vertical gap={12}>
                 {hasItems ? (
@@ -332,45 +336,43 @@ export function CheckoutContent() {
                   <Alert
                     type="info"
                     showIcon
-                    message="Your bag is empty. Add items to see the order summary."
+                    message={orderSummary.empty}
                     className="rounded-xl! border border-gray-200!"
                   />
                 )}
               </Flex>
 
               <Space.Compact className="w-full">
-                <Input placeholder="Gift card or discount code" size="large" />
+                <Input placeholder={orderSummary.discountPlaceholder} size="large" />
                 <Button type="default" size="large">
-                  Apply
+                  {orderSummary.discountApply}
                 </Button>
               </Space.Compact>
               <Button type="link" className="self-start">
-                Been referred by a friend?
+                {orderSummary.referral}
               </Button>
 
               <Divider className="my-2" />
 
               <Flex justify="space-between">
-                <Text className="text-gray-500">Subtotal</Text>
+                <Text className="text-gray-500">{orderSummary.subtotal}</Text>
                 <Text className="font-semibold">{FORMAT_PRICE.format(subtotal)}</Text>
               </Flex>
               <Flex justify="space-between">
-                <Text className="text-gray-500">Shipping</Text>
+                <Text className="text-gray-500">{orderSummary.shipping}</Text>
                 <Text className="font-semibold">
-                  {shipping === 0 ? "Free" : FORMAT_PRICE.format(shipping)}
+                  {shipping === 0 ? orderSummary.shippingFree : FORMAT_PRICE.format(shipping)}
                 </Text>
               </Flex>
               <Flex justify="space-between">
-                <Text className="text-gray-500">Items</Text>
+                <Text className="text-gray-500">{orderSummary.items}</Text>
                 <Text className="font-semibold">{itemCount}</Text>
               </Flex>
               <Flex justify="space-between" align="center">
-                <Text className="text-base font-semibold uppercase">Total</Text>
+                <Text className="text-base font-semibold uppercase">{orderSummary.total}</Text>
                 <Text className="text-lg font-semibold">{FORMAT_PRICE.format(total)}</Text>
               </Flex>
-              <Text className="text-xs text-gray-500">
-                Enter your shipping address to view available methods.
-              </Text>
+              <Text className="text-xs text-gray-500">{orderSummary.shippingPrompt}</Text>
             </Flex>
           </Card>
         </Flex>

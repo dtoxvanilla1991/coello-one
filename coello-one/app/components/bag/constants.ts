@@ -9,7 +9,7 @@ export const recommendedExtras: ExtraItem[] = [
     color: "Black",
     size: "One Size",
     fit: "female",
-    highlight: "Add to unlock free delivery",
+    highlightKey: "unlockFreeDelivery",
   },
   {
     id: "recovery-gloves",

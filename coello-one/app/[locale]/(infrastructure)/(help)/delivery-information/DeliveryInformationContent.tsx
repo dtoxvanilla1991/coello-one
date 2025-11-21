@@ -1,17 +1,18 @@
 "use client";
 
 import { Card, Flex, Timeline, Typography } from "antd";
+import { useTranslations } from "@/localization/useTranslations";
 import DeliveryCalculator from "./DeliveryCalculator";
 import DeliveryMatrixTable from "./DeliveryMatrixTable";
-import type { DeliveryPromise, DeliveryTier, DutyInsight, PackingStep } from "./constants";
+import type { DeliveryPromise, DeliveryTier, DutyInsight, PackingStep } from "./types";
 
 const { Title, Paragraph } = Typography;
 
 type DeliveryInformationContentProps = {
-  tiers: DeliveryTier[];
-  promises: DeliveryPromise[];
-  packingSteps: PackingStep[];
-  dutyInsights: DutyInsight[];
+  tiers?: DeliveryTier[];
+  promises?: DeliveryPromise[];
+  packingSteps?: PackingStep[];
+  dutyInsights?: DutyInsight[];
 };
 
 // TEST-WAIVER: Pure presentational aggregator; behavior is exercised via DeliveryCalculator and higher-level page tests.
@@ -21,30 +22,33 @@ export function DeliveryInformationContent({
   packingSteps,
   dutyInsights,
 }: DeliveryInformationContentProps) {
+  const deliveryCopy = useTranslations("helpDelivery");
+  const resolvedTiers = tiers ?? deliveryCopy.tiers;
+  const resolvedPromises = promises ?? deliveryCopy.promises;
+  const resolvedPackingSteps = packingSteps ?? deliveryCopy.packingSteps;
+  const resolvedDutyInsights = dutyInsights ?? deliveryCopy.dutyInsights;
+
   return (
     <Flex vertical gap={24}>
-      <DeliveryCalculator tiers={tiers} />
+      <DeliveryCalculator tiers={resolvedTiers} />
 
       <Card className="border-gray-200">
         <Flex vertical gap={16}>
           <Title level={3} className="mb-0! text-2xl">
-            Shipping speeds at a glance
+            {deliveryCopy.sections.speedsTitle}
           </Title>
-          <Paragraph className="mb-0! text-gray-600">
-            Pricing auto-adjusts for your locale at checkout. Express and same-day options appear when your postcode
-            qualifies.
-          </Paragraph>
-          <DeliveryMatrixTable tiers={tiers} />
+          <Paragraph className="mb-0! text-gray-600">{deliveryCopy.sections.speedsDescription}</Paragraph>
+          <DeliveryMatrixTable tiers={resolvedTiers} columnCopy={deliveryCopy.matrixColumns} />
         </Flex>
       </Card>
 
       <Card className="border-gray-200 bg-white/70">
         <Flex vertical gap={16}>
           <Title level={3} className="mb-0! text-2xl">
-            What you can expect
+            {deliveryCopy.sections.promisesTitle}
           </Title>
           <Flex gap={16} wrap>
-            {promises.map((promise) => (
+            {resolvedPromises.map((promise) => (
               <Card key={promise.title} className="w-full border-gray-200 md:max-w-[320px] md:flex-1">
                 <Flex vertical gap={8}>
                   <Title level={4} className="mb-0! text-lg font-semibold">
@@ -61,11 +65,11 @@ export function DeliveryInformationContent({
       <Card className="border-gray-200">
         <Flex vertical gap={16}>
           <Title level={3} className="mb-0! text-2xl">
-            From studio to your door
+            {deliveryCopy.sections.packingTitle}
           </Title>
           <Timeline
             mode="left"
-            items={packingSteps.map((step) => ({
+            items={resolvedPackingSteps.map((step) => ({
               children: (
                 <Flex vertical gap={4}>
                   <Title level={4} className="mb-0! text-base font-semibold">
@@ -82,10 +86,10 @@ export function DeliveryInformationContent({
       <Card className="border-gray-200 bg-white/60">
         <Flex vertical gap={16}>
           <Title level={3} className="mb-0! text-2xl">
-            Duties and taxes, simplified
+            {deliveryCopy.sections.dutiesTitle}
           </Title>
           <Flex gap={16} wrap>
-            {dutyInsights.map((insight) => (
+            {resolvedDutyInsights.map((insight) => (
               <Card key={insight.market} className="w-full border-gray-200 md:max-w-[320px] md:flex-1">
                 <Flex vertical gap={8}>
                   <Title level={4} className="mb-0! text-lg font-semibold">

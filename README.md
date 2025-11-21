@@ -137,6 +137,7 @@ curl -fsSL https://bun.sh/install | bash
 - Backend dependency upgrade: `make backend-upgrade` (rebuilds lockfiles with `pip-compile --upgrade`).
 - Backend linting: `make backend-lint` (runs Ruff checks; `make backend-lint-fix` applies autofixes).
 - CI enforces both checks (`bun run format` and `python -m black --check .`) to prevent drift across services.
+- Run `cd coello-one && bun run verify:locales` before opening a PR that adds or edits copy to ensure every locale ships the same keyset.
 - Knowledge workflow: use Context7 for every documentation or code lookup and capture the retrieved snippet/links in Serena before editing so future agents can trace decisions.
 
 ### Testing Mandate

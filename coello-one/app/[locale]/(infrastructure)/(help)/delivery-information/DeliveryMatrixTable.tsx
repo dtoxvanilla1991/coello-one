@@ -2,33 +2,33 @@
 
 import { Flex, Table, Tag, Typography } from "antd";
 import type { TableColumnsType } from "antd";
-import type { DeliveryTier } from "./constants";
+import type { DeliveryMatrixColumnCopy, DeliveryTier } from "./types";
 
 const { Text } = Typography;
 
-const columns: TableColumnsType<DeliveryTier> = [
+const createColumns = (columnCopy: DeliveryMatrixColumnCopy): TableColumnsType<DeliveryTier> => [
   {
-    title: "Region",
+    title: columnCopy.region,
     dataIndex: "region",
     key: "region",
   },
   {
-    title: "Service",
+    title: columnCopy.service,
     dataIndex: "service",
     key: "service",
   },
   {
-    title: "Estimated arrival",
+    title: columnCopy.eta,
     dataIndex: "eta",
     key: "eta",
   },
   {
-    title: "Order by",
+    title: columnCopy.cutoff,
     dataIndex: "cutoff",
     key: "cutoff",
   },
   {
-    title: "Cost",
+    title: columnCopy.cost,
     dataIndex: "displayCost",
     key: "displayCost",
     render: (value: string, record: DeliveryTier) => (
@@ -46,14 +46,15 @@ const columns: TableColumnsType<DeliveryTier> = [
 
 type DeliveryMatrixTableProps = {
   tiers: DeliveryTier[];
+  columnCopy: DeliveryMatrixColumnCopy;
 };
 
 // TEST-WAIVER: Declarative wrapper around Ant Design Table; additional tests would duplicate DeliveryCalculator coverage.
-export default function DeliveryMatrixTable({ tiers }: DeliveryMatrixTableProps) {
+export default function DeliveryMatrixTable({ tiers, columnCopy }: DeliveryMatrixTableProps) {
   return (
     <Table
       rowKey="id"
-      columns={columns}
+      columns={createColumns(columnCopy)}
       dataSource={tiers}
       pagination={false}
       className="overflow-hidden rounded-xl border border-gray-200"

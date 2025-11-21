@@ -4,6 +4,8 @@ import { useMemo } from "react";
 import type { SegmentedValue } from "antd/es/segmented";
 import { Flex, Segmented, Typography } from "antd";
 import { HeartFilled, HeartOutlined, ShoppingFilled, ShoppingOutlined } from "@ant-design/icons";
+import { useTranslations } from "@/localization/useTranslations";
+import { formatMessage } from "@/localization/formatMessage";
 import type { ViewMode } from "../types";
 
 const { Title, Text } = Typography;
@@ -15,6 +17,8 @@ type BagHeaderProps = {
 };
 
 export function BagHeader({ viewMode, itemCount, onViewModeChange }: BagHeaderProps) {
+  const bagCopy = useTranslations("bag");
+  const headerCopy = bagCopy.header;
   const options = useMemo(
     () => [
       {
@@ -25,7 +29,7 @@ export function BagHeader({ viewMode, itemCount, onViewModeChange }: BagHeaderPr
             ) : (
               <ShoppingOutlined className="text-base" />
             )}
-            <Text strong>{`Bag (${itemCount})`}</Text>
+            <Text strong>{formatMessage(headerCopy.bagLabel, { count: itemCount })}</Text>
           </Flex>
         ),
         value: "bag" as const,
@@ -38,19 +42,19 @@ export function BagHeader({ viewMode, itemCount, onViewModeChange }: BagHeaderPr
             ) : (
               <HeartOutlined className="text-base" />
             )}
-            <Text strong>Wishlist</Text>
+            <Text strong>{headerCopy.wishlistLabel}</Text>
           </Flex>
         ),
         value: "wishlist" as const,
       },
     ],
-    [viewMode, itemCount],
+    [viewMode, itemCount, headerCopy.bagLabel, headerCopy.wishlistLabel],
   );
 
   return (
     <Flex vertical gap={16} className="w-full">
       <Title level={2} className="mt-8 mb-0! text-center tracking-wide uppercase">
-        {viewMode === "bag" ? "Your bag" : "Wishlist"}
+        {viewMode === "bag" ? headerCopy.bagTitle : headerCopy.wishlistTitle}
       </Title>
       <Segmented
         block

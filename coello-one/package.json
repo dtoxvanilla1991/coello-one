@@ -10,6 +10,7 @@
     "test": "bun test --preload ./test-setup.ts",
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
+    "verify:locales": "bun scripts/verifyTranslations.ts",
     "generate:antd-css": "bun ./scripts/genAntdCss.ts",
     "predev": "cross-env NODE_ENV=development bun run generate:antd-css",
     "prebuild": "cross-env NODE_ENV=production bun run generate:antd-css"

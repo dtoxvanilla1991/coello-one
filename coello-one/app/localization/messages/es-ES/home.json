@@ -1,0 +1,8 @@
+{
+  "mainBanner": {
+    "headline": "AHORA TU HISTORIA RESALTA.",
+    "ctaLabel": "Comprar ahora",
+    "ctaAnalyticsKey": "home.mainBanner.cta",
+    "ctaVariant": "primary"
+  }
+}

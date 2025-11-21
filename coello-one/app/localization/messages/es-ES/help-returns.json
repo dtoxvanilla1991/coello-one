@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "title": "Devolver un artículo | Ayuda Coello",
+    "description": "Inicia una devolución o cambio de tu esencial de una sola manga en pocos pasos."
+  },
+  "breadcrumbLabel": "Centro de ayuda",
+  "title": "Devuelve o cambia un artículo",
+  "description": "Registra tu devolución, imprime la etiqueta y elige entre reembolso, cambio o crédito instantáneo.",
+  "stepsCard": {
+    "title": "Así funciona el flujo",
+    "steps": [
+      { "title": "Solicitud", "description": "Introduce tu número de pedido y elige reembolso o cambio." },
+      { "title": "Empaque", "description": "Sella la prenda en su bolsa original con la tarjeta de autenticidad." },
+      { "title": "Entrega", "description": "Deja el paquete en el mensajero elegido o reserva una recogida DPD." },
+      { "title": "Reembolso", "description": "Procesamos reembolsos en 3-5 días o enviamos cambios al instante." }
+    ]
+  },
+  "remindersCard": {
+    "title": "Recordatorios útiles",
+    "items": [
+      "Los cambios dependen del inventario en vivo; si se agota la talla, emitimos reembolso.",
+      "Las devoluciones de regalo generan crédito para el comprador salvo que indiques que es regalo.",
+      "¿Necesitas ayuda a medida? Contacta a concierge mediante speak with us."
+    ],
+    "ctaText": "habla con nosotros",
+    "ctaHref": "contact-us"
+  },
+  "form": {
+    "intro": "Comparte los detalles de tu pedido y la resolución deseada. Concierge revisa las solicitudes al instante.",
+    "fields": {
+      "orderIdLabel": "Número de pedido",
+      "orderIdPlaceholder": "p. ej. COELLO123",
+      "emailLabel": "Correo electrónico",
+      "reasonLabel": "Motivo de la devolución",
+      "resolutionLabel": "Preferencia de resolución",
+      "courierLabel": "Mensajero preferido",
+      "notesLabel": "Notas para el equipo concierge",
+      "notesPlaceholder": "Detalles opcionales sobre ajuste o feedback"
+    },
+    "reasons": [
+      { "label": "El ajuste no era correcto", "value": "fit" },
+      { "label": "Cambié de opinión", "value": "change_of_mind" },
+      { "label": "Devolución de regalo", "value": "gift" },
+      { "label": "Problema con el producto", "value": "product_issue" }
+    ],
+    "resolutions": [
+      { "label": "Reembolso", "value": "refund" },
+      { "label": "Cambio", "value": "exchange" }
+    ],
+    "couriers": [
+      { "label": "Recogida DPD", "value": "dpd_pickup" },
+      { "label": "Entrega Royal Mail", "value": "royal_mail" },
+      { "label": "DHL Express", "value": "dhl_express" }
+    ],
+    "errors": {
+      "orderMin": "El número debe tener al menos 6 caracteres.",
+      "orderMax": "El número es demasiado largo.",
+      "orderRequired": "Introduce el número que aparece en tu email de confirmación.",
+      "email": "Introduce un correo válido.",
+      "reason": "Selecciona un motivo.",
+      "resolution": "Elige reembolso o cambio.",
+      "courier": "Elige un mensajero.",
+      "notesMax": "Las notas no pueden superar los 400 caracteres.",
+      "generic": "Revisa los campos e inténtalo de nuevo."
+    },
+    "buttonLabel": "Generar etiqueta",
+    "successTitle": "Solicitud registrada",
+    "successOrder": "Pedido {orderId}",
+    "successDetail": "Enviamos un email a {email} con la etiqueta prepaga e instrucciones del cambio.",
+    "resetLabel": "Iniciar otra devolución"
+  }
+}

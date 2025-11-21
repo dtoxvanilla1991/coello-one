@@ -5,7 +5,7 @@ import type { CartItem } from "@/store/cartStore";
 import { cartItemsAtom } from "@/store/cartStore";
 import { resetNavigationMocks, routerMocks, setNavigationState } from "@test-utils/navigation";
 
-const trackEventMock = mock<(event: string, payload?: unknown) => void>(() => {});
+const trackEventMock = mock<(event: string, payload?: unknown, meta?: unknown) => void>(() => {});
 
 mock.module("@/utils/trackEvent", () => ({
   trackEvent: trackEventMock,

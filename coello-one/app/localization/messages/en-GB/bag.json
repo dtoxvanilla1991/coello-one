@@ -1,0 +1,61 @@
+{
+  "header": {
+    "bagTitle": "Your bag",
+    "wishlistTitle": "Wishlist",
+    "bagLabel": "Bag ({count})",
+    "wishlistLabel": "Wishlist"
+  },
+  "shippingStatus": {
+    "qualifiedCopy": "You have qualified for Free Express Shipping",
+    "progressCopy": "Add {amount} more for Free Express Shipping",
+    "qualifiedTooltip": "Enjoy free express shipping on this order.",
+    "progressTooltip": "Express shipping unlocks once your subtotal meets the free delivery threshold."
+  },
+  "reservation": {
+    "title": "Your items are not reserved",
+    "body": "Checkout quickly to make sure you do not miss out."
+  },
+  "items": {
+    "continueShopping": "Continue shopping",
+    "tag": "Core favorite",
+    "fitMale": "Men's",
+    "fitFemale": "Women's",
+    "quantity": "Qty",
+    "sizeLabel": "Size",
+    "remove": "Remove"
+  },
+  "extras": {
+    "title": "Add a little extra",
+    "description": "Add one or more of these items to get free delivery.",
+    "add": "Add",
+    "added": "Added",
+    "highlights": {
+      "unlockFreeDelivery": "Add to unlock free delivery"
+    }
+  },
+  "empty": {
+    "title": "Your bag is empty",
+    "description": "Browse the collection to add your first piece.",
+    "cta": "Continue shopping"
+  },
+  "summary": {
+    "discountTitle": "Discount code",
+    "discountPlaceholder": "Enter code",
+    "discountApply": "Apply",
+    "discountHelp": "Gift card codes can be applied at checkout.",
+    "title": "Order summary",
+    "subtotal": "Subtotal",
+    "shipping": "Express shipping",
+    "shippingFree": "Free",
+    "total": "Total",
+    "taxes": "Taxes included where applicable",
+    "checkoutCta": "Checkout securely",
+    "accepted": "We accept"
+  },
+  "wishlist": {
+    "title": "Save to wishlist",
+    "description": "Save your favorite fits in one place to come back to later. Almost like a wishlist.",
+    "createAccount": "Create account",
+    "login": "Log in"
+  }
+}

@@ -3,26 +3,13 @@
 import { Alert, Button, Card, Flex, Form, InputNumber, Result, Select, Typography } from "antd";
 import { useMemo, useState } from "react";
 import { z } from "zod";
+import { useCurrentLocale } from "@/hooks/useCurrentLocale";
+import { useTranslations } from "@/localization/useTranslations";
+import { formatMessage } from "@/localization/formatMessage";
 import { trackEvent } from "@/utils/trackEvent";
-import type { DeliveryTier } from "./constants";
-import { DELIVERY_MATRIX } from "./constants";
+import type { DeliveryTier } from "./types";
 
 const { Title, Paragraph, Text } = Typography;
-
-const REGION_OPTIONS = [
-  "United Kingdom",
-  "London Zones 1-3",
-  "European Union",
-  "North America",
-] as const;
-
-const SERVICE_OPTIONS = ["Standard", "Express", "Same Day"] as const;
-
-const calculatorSchema = z.object({
-  region: z.enum(REGION_OPTIONS),
-  service: z.enum(SERVICE_OPTIONS),
-  orderValue: z.number().min(0).max(5000),
-});
 
 type QuoteResult = {
   tier: DeliveryTier;
@@ -30,46 +17,82 @@ type QuoteResult = {
   savingsLabel?: string;
 };
 
-type FormValues = z.infer<typeof calculatorSchema>;
+type FormValues = {
+  region: string;
+  service: string;
+  orderValue: number;
+};
 
 type DeliveryCalculatorProps = {
   tiers?: DeliveryTier[];
   initialValues?: Partial<FormValues>;
 };
 
-const DEFAULT_INITIAL_VALUES: FormValues = {
-  region: REGION_OPTIONS[0],
-  service: "Standard",
-  orderValue: 120,
-};
-
 export default function DeliveryCalculator({
-  tiers = DELIVERY_MATRIX,
+  tiers,
   initialValues,
 }: DeliveryCalculatorProps) {
   const [form] = Form.useForm<FormValues>();
   const [quote, setQuote] = useState<QuoteResult | null>(null);
   const [validationError, setValidationError] = useState<string | null>(null);
+  const locale = useCurrentLocale();
+  const helpDeliveryCopy = useTranslations("helpDelivery");
+  const calculatorCopy = helpDeliveryCopy.calculator;
+  const resolvedTiers = tiers ?? helpDeliveryCopy.tiers;
+
+  const regionOptions = useMemo(
+    () => Array.from(new Set(resolvedTiers.map((tier) => tier.region))),
+    [resolvedTiers],
+  );
+
+  const serviceOptions = useMemo(
+    () => Array.from(new Set(resolvedTiers.map((tier) => tier.service))),
+    [resolvedTiers],
+  );
+
+  const defaultRegion = regionOptions[0] ?? "";
+  const defaultService =
+    resolvedTiers.find((tier) => tier.region === defaultRegion)?.service ?? serviceOptions[0] ?? "";
+
+  const effectiveInitialValues: FormValues = {
+    region: initialValues?.region ?? defaultRegion,
+    service: initialValues?.service ?? defaultService,
+    orderValue: initialValues?.orderValue ?? 120,
+  };
+
+  const calculatorSchema = useMemo(
+    () =>
+      z.object({
+        region: z
+          .string()
+          .refine((value) => regionOptions.includes(value), calculatorCopy.validationError),
+        service: z
+          .string()
+          .refine((value) => serviceOptions.includes(value), calculatorCopy.serviceRequired),
+        orderValue: z.number().min(0).max(5000),
+      }),
+    [calculatorCopy.serviceRequired, calculatorCopy.validationError, regionOptions, serviceOptions],
+  );
 
   const tierMap = useMemo(() => {
-    return tiers.reduce<Record<string, DeliveryTier>>((acc, tier) => {
+    return resolvedTiers.reduce<Record<string, DeliveryTier>>((acc, tier) => {
       const key = `${tier.region}-${tier.service}`;
       acc[key] = tier;
       return acc;
     }, {});
-  }, [tiers]);
+  }, [resolvedTiers]);
 
   const availableServicesByRegion = useMemo(() => {
-    return tiers.reduce<Record<string, DeliveryTier["service"][]>>((acc, tier) => {
+    return resolvedTiers.reduce<Record<string, DeliveryTier["service"][]>>((acc, tier) => {
       acc[tier.region] = acc[tier.region] ? [...acc[tier.region], tier.service] : [tier.service];
       return acc;
     }, {});
-  }, [tiers]);
+  }, [resolvedTiers]);
 
   const handleFinish = (values: FormValues) => {
     const parsed = calculatorSchema.safeParse(values);
     if (!parsed.success) {
-      setValidationError("Please review the inputs and try again.");
+      setValidationError(parsed.error.issues[0]?.message ?? calculatorCopy.validationError);
       setQuote(null);
       return;
     }
@@ -81,27 +104,31 @@ export default function DeliveryCalculator({
 
     if (!tier) {
       setQuote(null);
-      setValidationError("We do not currently ship that combination—choose another option.");
+      setValidationError(calculatorCopy.combinationError);
       return;
     }
 
     const qualifiesForFree =
       typeof tier.freeThresholdValue === "number" && orderValue >= tier.freeThresholdValue;
 
-    const fulfilledCost = qualifiesForFree ? "Complimentary" : tier.displayCost;
+    const fulfilledCost = qualifiesForFree ? calculatorCopy.complimentaryLabel : tier.displayCost;
 
     const savingsLabel = qualifiesForFree
-      ? `Saved ${tier.displayCost} shipping with your spend.`
+      ? formatMessage(calculatorCopy.savingsLabel, { amount: tier.displayCost })
       : undefined;
 
     setQuote({ tier, fulfilledCost, savingsLabel });
-    trackEvent("help_delivery_quote", { region, service, orderValue, qualifiesForFree });
+    trackEvent(
+      "help_delivery_quote",
+      { region, service, orderValue, qualifiesForFree },
+      { locale, translationKey: "helpDelivery.calculator" },
+    );
   };
 
   const selectedRegion = Form.useWatch("region", form);
   const availableServices = selectedRegion
     ? (availableServicesByRegion[selectedRegion] ?? [])
-    : SERVICE_OPTIONS;
+    : serviceOptions;
   const uniqueServices = Array.from(new Set(availableServices));
 
   return (
@@ -109,12 +136,9 @@ export default function DeliveryCalculator({
       <Flex vertical gap={16}>
         <Flex vertical gap={8}>
           <Title level={3} className="mb-0! text-2xl">
-            Delivery cost calculator
+            {calculatorCopy.title}
           </Title>
-          <Paragraph className="mb-0! text-gray-600">
-            Model your shipping charge in seconds. Spend thresholds unlock complimentary delivery
-            automatically.
-          </Paragraph>
+          <Paragraph className="mb-0! text-gray-600">{calculatorCopy.subtitle}</Paragraph>
         </Flex>
         {validationError ? (
           <Alert type="error" showIcon message={validationError} className="border-red-200" />
@@ -122,15 +146,12 @@ export default function DeliveryCalculator({
         <Form<FormValues>
           form={form}
           layout="vertical"
-          initialValues={{
-            ...DEFAULT_INITIAL_VALUES,
-            ...initialValues,
-          }}
+          initialValues={effectiveInitialValues}
           onFinish={handleFinish}
         >
-          <Form.Item<FormValues> name="region" label="Where are we delivering?">
+          <Form.Item<FormValues> name="region" label={calculatorCopy.regionLabel}>
             <Select
-              options={REGION_OPTIONS.map((option) => ({
+              options={regionOptions.map((option) => ({
                 label: option,
                 value: option,
               }))}
@@ -144,11 +165,11 @@ export default function DeliveryCalculator({
           </Form.Item>
           <Form.Item<FormValues>
             name="service"
-            label="Choose a service"
-            rules={[{ required: true, message: "Select your service level." }]}
+            label={calculatorCopy.serviceLabel}
+            rules={[{ required: true, message: calculatorCopy.serviceRequired }]}
           >
             <Select
-              placeholder="Select delivery speed"
+              placeholder={calculatorCopy.servicePlaceholder}
               options={uniqueServices.map((service) => ({
                 label: service,
                 value: service,
@@ -161,14 +182,15 @@ export default function DeliveryCalculator({
           </Form.Item>
           <Form.Item<FormValues>
             name="orderValue"
-            label="Order value (local currency)"
-            rules={[{ required: true, message: "Enter your order total." }]}
+            label={calculatorCopy.orderValueLabel}
+            rules={[{ required: true, message: calculatorCopy.orderValueRequired }]}
           >
             <InputNumber
               min={0}
               max={5000}
               className="w-full"
               controls={false}
+              placeholder={calculatorCopy.orderValuePlaceholder}
               onChange={() => {
                 setQuote(null);
                 setValidationError(null);
@@ -178,7 +200,7 @@ export default function DeliveryCalculator({
           <Form.Item>
             <Flex justify="flex-end">
               <Button type="primary" htmlType="submit" size="large">
-                Calculate shipping
+                {calculatorCopy.submitLabel}
               </Button>
             </Flex>
           </Form.Item>
@@ -186,11 +208,15 @@ export default function DeliveryCalculator({
         {quote ? (
           <Result
             status="success"
-            title={`Your shipping is ${quote.fulfilledCost}`}
+            title={formatMessage(calculatorCopy.resultTitle, { amount: quote.fulfilledCost })}
             subTitle={
               <Flex vertical gap={4}>
                 <Text className="text-gray-700">
-                  {quote.tier.service} · {quote.tier.eta} · {quote.tier.cutoff}
+                  {formatMessage(calculatorCopy.resultMeta, {
+                    service: quote.tier.service,
+                    eta: quote.tier.eta,
+                    cutoff: quote.tier.cutoff,
+                  })}
                 </Text>
                 {quote.savingsLabel ? (
                   <Text className="text-sm text-emerald-600">{quote.savingsLabel}</Text>
@@ -201,7 +227,7 @@ export default function DeliveryCalculator({
         ) : (
           <Card className="border-dashed border-gray-200 bg-gray-50">
             <Paragraph className="mb-0! text-center text-gray-500">
-              Enter your details and tap submit to preview shipping.
+              {calculatorCopy.emptyPrompt}
             </Paragraph>
           </Card>
         )}

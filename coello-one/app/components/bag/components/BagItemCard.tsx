@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Button, Card, Flex, InputNumber, Space, Tag, Typography } from "antd";
 import type { CartItem } from "@/store/cartStore";
+import { useTranslations } from "@/localization/useTranslations";
 import { formatPrice } from "../constants";
 
 const { Title, Text } = Typography;
@@ -14,7 +15,10 @@ type BagItemCardProps = {
 };
 
 export function BagItemCard({ item, onQuantityChange, onRemove }: BagItemCardProps) {
+  const bagCopy = useTranslations("bag");
+  const itemsCopy = bagCopy.items;
   const priceLabel = formatPrice.format(item.price * item.quantity);
+  const fitCopy = item.fit === "male" ? itemsCopy.fitMale : itemsCopy.fitFemale;
 
   return (
     <Card
@@ -42,20 +46,20 @@ export function BagItemCard({ item, onQuantityChange, onRemove }: BagItemCardPro
               <Title level={4} className="m-0! text-lg!">
                 {item.name}
               </Title>
-              <Tag className="rounded-full! bg-black! px-3 py-1 text-white!">Core favorite</Tag>
+              <Tag className="rounded-full! bg-black! px-3 py-1 text-white!">{itemsCopy.tag}</Tag>
             </Space>
             <Text className="text-sm text-gray-500">
-              {`${item.fit === "male" ? "Men's" : "Women's"} fit / ${item.color} / Size ${item.size}`}
+              {`${fitCopy} / ${item.color} / ${itemsCopy.sizeLabel} ${item.size}`}
             </Text>
           </Flex>
           <Flex justify="space-between" align="center" wrap className="gap-3">
             <Space align="center" size={6}>
-              <Text className="text-xs text-gray-500 uppercase">Qty</Text>
+              <Text className="text-xs text-gray-500 uppercase">{itemsCopy.quantity}</Text>
               <InputNumber
                 min={1}
                 value={item.quantity}
                 size="small"
-                aria-label={`Quantity for ${item.name}`}
+                aria-label={`${itemsCopy.quantity} for ${item.name}`}
                 onChange={(value) => {
                   const nextValue = Number(value ?? item.quantity);
                   onQuantityChange(item.id, nextValue);
@@ -65,7 +69,7 @@ export function BagItemCard({ item, onQuantityChange, onRemove }: BagItemCardPro
             <Space align="center" size={16}>
               <Text className="text-lg font-semibold">{priceLabel}</Text>
               <Button type="link" danger onClick={() => onRemove(item.id)}>
-                Remove
+                {itemsCopy.remove}
               </Button>
             </Space>
           </Flex>

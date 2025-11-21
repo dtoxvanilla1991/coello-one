@@ -3,6 +3,7 @@
 import { Button, Flex } from "antd";
 import type { CartItem } from "@/store/cartStore";
 import type { ExtraItem } from "../types";
+import { useTranslations } from "@/localization/useTranslations";
 import { BagItemCard } from "./BagItemCard";
 import { RecommendedExtrasCard } from "./RecommendedExtrasCard";
 
@@ -21,6 +22,7 @@ export function BagItemsSection({
   onAddExtra,
   onContinueShopping,
 }: BagItemsSectionProps) {
+  const bagCopy = useTranslations("bag");
   return (
     <Flex vertical gap={16} className="min-w-0 flex-1">
       {items.map((item) => (
@@ -35,7 +37,7 @@ export function BagItemsSection({
       <RecommendedExtrasCard items={items} onAddExtra={onAddExtra} />
 
       <Button type="link" onClick={onContinueShopping}>
-        Continue shopping
+        {bagCopy.items.continueShopping}
       </Button>
     </Flex>
   );

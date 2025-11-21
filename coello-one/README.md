@@ -55,6 +55,13 @@ bun dev
 - Wrap catalog detail pages with `ProductDetailShell` to inherit responsive paddings and max-width constraints.
 - Use Tailwind’s canonical important syntax (`utility!`) for overrides; if linting disagrees, coordinate the rule update rather than toggling back to legacy prefixes.
 
+### Localization & Copy Guidelines
+
+- Store all user-facing copy in `app/localization/messages/<locale>/<namespace>.json`; keep namespaces aligned across locales via `bun run verify:locales`.
+- Fetch text through `useTranslations(namespace)` (client) or `getNamespaceCopy(locale, namespace)` (server) instead of embedding literals; rely on `formatMessage` for placeholder substitution.
+- When emitting analytics for localized CTAs, pass `locale`, `translationKey`, and (when relevant) `translationVariant` through the third `trackEvent` argument so funnel reports stay traceable.
+- New translation entries must be documented in Serena with the Context7 snippet ID used to source or review the copy; mention any pending reviewer (e.g., Laura) in the same note.
+
 ### Navigation & Routing
 
 - Use `buildLocaleRoute` from `config/routes` to construct locale-aware paths (e.g. bag, search, home).

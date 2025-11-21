@@ -10,5 +10,5 @@ export type ExtraItem = {
   color: string;
   size: string;
   fit: CartFit;
-  highlight?: string;
+  highlightKey?: string;
 };

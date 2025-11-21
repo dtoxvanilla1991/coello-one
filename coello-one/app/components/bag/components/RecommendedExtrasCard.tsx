@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Button, Card, Flex, Tag, Typography } from "antd";
 import type { CartItem } from "@/store/cartStore";
+import { useTranslations } from "@/localization/useTranslations";
 import { formatPrice, recommendedExtras } from "../constants";
 import type { ExtraItem } from "../types";
 
@@ -14,18 +15,19 @@ type RecommendedExtrasCardProps = {
 };
 
 export function RecommendedExtrasCard({ items, onAddExtra }: RecommendedExtrasCardProps) {
+  const bagCopy = useTranslations("bag");
+  const extrasCopy = bagCopy.extras;
+
   return (
     <Card
-      title="Add a little extra"
+      title={extrasCopy.title}
       className="rounded-2xl! border border-gray-200!"
       classNames={{
         header: "uppercase tracking-wide text-sm!",
       }}
     >
       <Flex vertical gap={16}>
-        <Text className="text-sm text-gray-500">
-          Add one or more of these items to get free delivery.
-        </Text>
+        <Text className="text-sm text-gray-500">{extrasCopy.description}</Text>
         <Flex vertical gap={12}>
           {recommendedExtras.map((extra) => {
             const isInCart = items.some((cartItem) => cartItem.id === extra.id);
@@ -52,9 +54,9 @@ export function RecommendedExtrasCard({ items, onAddExtra }: RecommendedExtrasCa
                   </Flex>
                   <Flex justify="space-between" align="center" className="flex-1" gap={12} wrap>
                     <Flex vertical gap={2} className="min-w-[140px]">
-                      {extra.highlight ? (
+                      {extra.highlightKey ? (
                         <Tag className="w-fit rounded-full! bg-amber-100! px-3 py-1 text-amber-700!">
-                          {extra.highlight}
+                          {extrasCopy.highlights[extra.highlightKey] ?? ""}
                         </Tag>
                       ) : null}
                       <Text strong>{extra.name}</Text>
@@ -68,7 +70,7 @@ export function RecommendedExtrasCard({ items, onAddExtra }: RecommendedExtrasCa
                       onClick={() => onAddExtra(extra)}
                       disabled={isInCart}
                     >
-                      {isInCart ? "Added" : "Add"}
+                      {isInCart ? extrasCopy.added : extrasCopy.add}
                     </Button>
                   </Flex>
                 </Flex>

@@ -6,9 +6,10 @@ import type { Key } from "react";
 import { useMemo, useRef, useState } from "react";
 import { z } from "zod";
 import { useLocalePath } from "@/hooks/useLocalePath";
+import { useCurrentLocale } from "@/hooks/useCurrentLocale";
+import { useTranslations } from "@/localization/useTranslations";
 import { trackEvent } from "@/utils/trackEvent";
-import type { FAQCategory } from "./constants";
-import { FAQ_CATEGORIES, FAQ_TRENDING_TOPICS } from "./constants";
+import type { FAQCategory } from "./types";
 
 const { Title, Paragraph, Text, Link } = Typography;
 
@@ -28,20 +29,20 @@ function sanitizeQueryValue(value: string) {
   return value.slice(0, 80).trim().toLowerCase();
 }
 
-export default function FAQContent({
-  categories = FAQ_CATEGORIES,
-  initialQuery = "",
-}: FAQContentProps) {
+export default function FAQContent({ categories, initialQuery = "" }: FAQContentProps) {
   const [query, setQuery] = useState(() => sanitizeQueryValue(initialQuery));
   const viewedQuestionsRef = useRef(new Set<string>());
   const withLocalePath = useLocalePath();
+  const locale = useCurrentLocale();
+  const helpFaqCopy = useTranslations("helpFaq");
+  const resolvedCategories = categories ?? helpFaqCopy.categories;
 
   const filteredCategories = useMemo(() => {
     if (!query) {
-      return categories;
+      return resolvedCategories;
     }
 
-    return categories
+    return resolvedCategories
       .map((category) => {
         const entries = category.entries.filter((entry) => {
           const haystack = [entry.question, ...entry.answer, ...entry.tags]
@@ -53,7 +54,7 @@ export default function FAQContent({
         return entries.length > 0 ? { ...category, entries } : undefined;
       })
       .filter((category): category is FAQCategory => Boolean(category));
-  }, [categories, query]);
+  }, [resolvedCategories, query]);
 
   const handleCollapseChange: CollapseProps["onChange"] = (keys) => {
     const keysArray = Array.isArray(keys) ? keys : [keys];
@@ -61,7 +62,11 @@ export default function FAQContent({
       const key = String(rawKey);
       if (!viewedQuestionsRef.current.has(key)) {
         viewedQuestionsRef.current.add(key);
-        trackEvent("help_faq_view_question", { questionId: key });
+        trackEvent(
+          "help_faq_view_question",
+          { questionId: key },
+          { locale, translationKey: "helpFaq.categories", translationVariant: key },
+        );
       }
     });
   };
@@ -74,7 +79,11 @@ export default function FAQContent({
     const sanitized = sanitizeQueryValue(value);
     setQuery(sanitized);
     if (sanitized) {
-      trackEvent("help_faq_search", { query: sanitized });
+      trackEvent(
+        "help_faq_search",
+        { query: sanitized },
+        { locale, translationKey: "helpFaq.search" },
+      );
     }
   };
 
@@ -112,17 +121,17 @@ export default function FAQContent({
         <Flex vertical gap={16}>
           <Flex vertical gap={8}>
             <Paragraph className="mb-0! text-sm uppercase tracking-[0.25em] text-gray-500">
-              Search our knowledge base
+              {helpFaqCopy.search.overline}
             </Paragraph>
             <Title level={3} className="mb-0! text-2xl md:text-3xl!">
-              What can we help you find today?
+              {helpFaqCopy.search.title}
             </Title>
             <Paragraph className="mb-0! text-base text-gray-600">
-              Explore trending questions or search for keywords such as returns portal.
+              {helpFaqCopy.search.description}
             </Paragraph>
           </Flex>
           <Input.Search
-            placeholder="Search the help centre"
+            placeholder={helpFaqCopy.search.placeholder}
             size="large"
             allowClear
             onChange={(event) => handleSearchChange(event.target.value)}
@@ -130,7 +139,7 @@ export default function FAQContent({
             value={query}
           />
           <Flex gap={8} wrap>
-            {FAQ_TRENDING_TOPICS.map((topic) => (
+            {helpFaqCopy.trendingTopics.map((topic) => (
               <Link key={topic} href={withLocalePath(`search?query=${encodeURIComponent(topic)}`)}>
                 <Tag className="cursor-pointer border-gray-200 bg-gray-50 text-gray-700">
                   #{topic}
@@ -146,9 +155,7 @@ export default function FAQContent({
           <Empty
             image={Empty.PRESENTED_IMAGE_SIMPLE}
             description={
-              <Text className="text-base text-gray-600">
-                No answers found—try another keyword or reach us via Concierge chat.
-              </Text>
+              <Text className="text-base text-gray-600">{helpFaqCopy.search.empty}</Text>
             }
           />
         </Card>

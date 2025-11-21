@@ -13,8 +13,11 @@ import {
   removeCartItemAtom,
   updateCartItemQuantityAtom,
 } from "@/store/cartStore";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { buildLocaleRoute } from "@config/routes";
+import { useTranslations } from "@/localization/useTranslations";
+import { formatMessage } from "@/localization/formatMessage";
+import { useCurrentLocale } from "@/hooks/useCurrentLocale";
 import { trackEvent } from "@/utils/trackEvent";
 import { formatPrice } from "./constants";
 import type { ExtraItem, ViewMode } from "./types";
@@ -35,8 +38,8 @@ export function BagContent() {
   const removeItem = useSetAtom(removeCartItemAtom);
   const addItem = useSetAtom(addCartItemAtom);
   const router = useRouter();
-  const params = useParams();
-  const locale = typeof params?.locale === "string" ? params.locale : "en-GB";
+  const locale = useCurrentLocale();
+  const bagCopy = useTranslations("bag");
   const homeRoute = buildLocaleRoute(locale, "home");
   const checkoutRoute = buildLocaleRoute(locale, "checkout");
 
@@ -54,12 +57,14 @@ export function BagContent() {
   const qualifiesForFreeShipping = hasItems && remainingForShipping === 0;
 
   const shippingCopy = qualifiesForFreeShipping
-    ? "You have qualified for Free Express Shipping"
-    : `Add ${formatPrice.format(remainingForShipping)} more for Free Express Shipping`;
+    ? bagCopy.shippingStatus.qualifiedCopy
+    : formatMessage(bagCopy.shippingStatus.progressCopy, {
+        amount: formatPrice.format(remainingForShipping),
+      });
 
   const shippingTooltip = qualifiesForFreeShipping
-    ? "Enjoy free express shipping on this order."
-    : "Express shipping unlocks once your subtotal meets the free delivery threshold.";
+    ? bagCopy.shippingStatus.qualifiedTooltip
+    : bagCopy.shippingStatus.progressTooltip;
 
   const handleContinueShopping = () => {
     router.push(homeRoute);
@@ -81,20 +86,28 @@ export function BagContent() {
       return;
     }
 
-    trackEvent("bag_checkout_attempt", {
-      subtotal,
-      shipping,
-      total,
-      itemCount,
-      items: items.map((item) => ({
-        id: item.id,
-        quantity: item.quantity,
-        price: item.price,
-        size: item.size,
-        color: item.color,
-        fit: item.fit,
-      })),
-    });
+    trackEvent(
+      "bag_checkout_attempt",
+      {
+        subtotal,
+        shipping,
+        total,
+        itemCount,
+        items: items.map((item) => ({
+          id: item.id,
+          quantity: item.quantity,
+          price: item.price,
+          size: item.size,
+          color: item.color,
+          fit: item.fit,
+        })),
+      },
+      {
+        locale,
+        translationKey: "bag.summary.checkoutCta",
+        translationVariant: "primary",
+      },
+    );
 
     router.push(checkoutRoute);
   };
