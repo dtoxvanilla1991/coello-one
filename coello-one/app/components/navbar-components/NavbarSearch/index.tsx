@@ -10,13 +10,12 @@ import { SearchOutlined } from "@ant-design/icons";
 interface NavbarSearchProps {
   searchVisible: boolean;
   onClose: () => void;
-  locale: string;
 }
 
-export function NavbarSearch({ searchVisible, onClose, locale }: NavbarSearchProps) {
+export function NavbarSearch({ searchVisible, onClose }: NavbarSearchProps) {
   const searchRef = useRef<InputRef | null>(null);
   const router = useRouter();
-  const baseRoute = buildLocaleRoute(locale, "search");
+  const baseRoute = buildLocaleRoute("search");
 
   useEffect(() => {
     if (!searchVisible) {

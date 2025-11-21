@@ -86,7 +86,7 @@ describe("BagContent", () => {
 
     fireEvent.click(screen.getByRole("button", { name: /continue shopping/i }));
 
-    expect(routerMocks.push).toHaveBeenCalledWith("/en-GB/home");
+    expect(routerMocks.push).toHaveBeenCalledWith("/home");
   });
 
   it("tracks checkout attempts with the aggregated totals", () => {
@@ -116,6 +116,6 @@ describe("BagContent", () => {
       total: 98.5,
       itemCount: 2,
     });
-    expect(routerMocks.push).toHaveBeenCalledWith("/en-GB/checkout");
+    expect(routerMocks.push).toHaveBeenCalledWith("/checkout");
   });
 });

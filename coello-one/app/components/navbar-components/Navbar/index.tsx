@@ -13,7 +13,7 @@ import { useAtom, useAtomValue } from "jotai";
 import { siderCollapsedAtom } from "@/store/siderStore";
 import { cartCountAtom } from "@/store/cartStore";
 import Image from "next/image";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { buildLocaleRoute } from "@config/routes";
 
 const { Header } = Layout;
@@ -23,13 +23,11 @@ export function Navbar() {
   const cartCount = useAtomValue(cartCountAtom);
 
   const [searchVisible, setSearchVisible] = useState<boolean>(false);
-  const params = useParams();
   const router = useRouter();
-  const locale = typeof params?.locale === "string" ? params.locale : "en-GB";
-  const homeHref = buildLocaleRoute(locale, "home");
+  const homeHref = buildLocaleRoute("home");
 
   const toggleSearch = () => setSearchVisible((prev) => !prev);
-  const navigateToBag = () => router.push(buildLocaleRoute(locale, "bag"));
+  const navigateToBag = () => router.push(buildLocaleRoute("bag"));
 
   const visibilityClass = searchVisible ? "hidden!" : "block!";
 
@@ -81,7 +79,7 @@ export function Navbar() {
           aria-label="Open search"
         />
       </Space>
-      <NavbarSearch searchVisible={searchVisible} onClose={toggleSearch} locale={locale} />
+      <NavbarSearch searchVisible={searchVisible} onClose={toggleSearch} />
     </Header>
   );
 }

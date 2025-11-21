@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { Card, Empty, Flex, Space, Typography } from "antd";
 import Link from "next/link";
 import Image from "next/image";
+import { useLocalePath } from "@/hooks/useLocalePath";
 
 const { Title, Text } = Typography;
 
@@ -77,11 +78,11 @@ export const searchCatalog: SearchCatalogItem[] = [
 ];
 
 interface SearchResultsProps {
-  locale?: string;
   query?: string;
 }
 
-export function SearchResults({ locale = "en-GB", query = "" }: SearchResultsProps) {
+export function SearchResults({ query = "" }: SearchResultsProps) {
+  const withLocalePath = useLocalePath();
   const trimmedQuery = query.trim();
   const normalizedQuery = trimmedQuery.toLowerCase();
 
@@ -134,7 +135,7 @@ export function SearchResults({ locale = "en-GB", query = "" }: SearchResultsPro
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {results.map((item) => {
-            const productPath = `/${locale}/${item.slug}`;
+            const productPath = withLocalePath(item.slug);
             const href = Object.keys(item.query).length
               ? { pathname: productPath, query: item.query }
               : productPath;

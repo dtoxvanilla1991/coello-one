@@ -4,7 +4,7 @@ import { SearchResults } from "./SearchResults";
 
 describe("SearchResults", () => {
   it("shows filtered results that match the query", () => {
-    render(<SearchResults locale="en-GB" query="sea blue" />);
+    render(<SearchResults query="sea blue" />);
 
     expect(screen.getByText(/showing 3 results for "sea blue"/i)).toBeTruthy();
     const ctaButtons = screen.getAllByRole("link", { name: /view product/i });
@@ -12,8 +12,8 @@ describe("SearchResults", () => {
 
     ctaButtons.forEach((link) => {
       const href = link.getAttribute("href");
-        expect(href).toBeTruthy();
-        expect(href).toMatch(/^\/en-GB\/one-sleeve-classic/);
+      expect(href).toBeTruthy();
+      expect(href).toMatch(/^\/one-sleeve-classic/);
     });
 
     const targetUrls = ctaButtons
@@ -25,7 +25,7 @@ describe("SearchResults", () => {
   });
 
   it("renders a recovery state when no results match", () => {
-    render(<SearchResults locale="en-GB" query="hoodie" />);
+    render(<SearchResults query="hoodie" />);
 
     expect(screen.getByText(/no matches found/i)).toBeTruthy();
     expect(screen.getByText(/we couldn't find matches for "hoodie"/i)).toBeTruthy();

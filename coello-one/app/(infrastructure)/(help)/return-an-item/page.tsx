@@ -11,12 +11,6 @@ export const metadata: Metadata = {
   description: "Start a return or exchange for your Coello one-sleeve essential in a few quick steps.",
 };
 
-type ReturnAnItemPageProps = {
-  params: {
-    locale?: string;
-  };
-};
-
 const steps = [
   {
     title: "Request",
@@ -37,14 +31,17 @@ const steps = [
 ];
 
 // TEST-WAIVER: Route shell simply wraps ReturnRequestForm (which is tested) plus static copy.
-export default function ReturnAnItemPage({ params }: ReturnAnItemPageProps) {
-  const withLocalePath = createLocalePath(params?.locale);
+export default function ReturnAnItemPage() {
+  const withLocalePath = createLocalePath();
 
   return (
     <HelpPageShell
       title="Return or exchange an item"
       description="Log your return, print a label, and choose between refund, exchange, or instant credit."
-      breadcrumb={[{ title: "Help Centre", href: withLocalePath("help") }, { title: "Return an item" }]}
+      breadcrumb={[
+        { title: "Help Centre", href: withLocalePath("help") },
+        { title: "Return an item" },
+      ]}
     >
       <Flex vertical gap={24}>
         <Card className="border-gray-200 bg-white/60">
@@ -82,8 +79,11 @@ export default function ReturnAnItemPage({ params }: ReturnAnItemPageProps) {
                   <Paragraph className="mb-0! text-gray-600">
                     {index === 2 ? (
                       <>
-                        Need bespoke help? Contact concierge via{' '}
-                        <Link href={withLocalePath("contact-us")} className="font-medium text-gray-900">
+                        Need bespoke help? Contact concierge via{" "}
+                        <Link
+                          href={withLocalePath("contact-us")}
+                          className="font-medium text-gray-900"
+                        >
                           speak with us
                         </Link>
                         .

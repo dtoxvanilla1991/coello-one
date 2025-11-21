@@ -11,12 +11,6 @@ export const metadata: Metadata = {
   description: "Reach the Coello concierge team for styling advice, order support, or partnership enquiries.",
 };
 
-type ContactPageProps = {
-  params: {
-    locale?: string;
-  };
-};
-
 const contactChannels = [
   {
     title: "Concierge chat",
@@ -36,8 +30,8 @@ const contactChannels = [
 ];
 
 // TEST-WAIVER: This Next.js route shell only composes tested child components (ContactForm) and static content.
-export default function ContactPage({ params }: ContactPageProps) {
-  const withLocalePath = createLocalePath(params?.locale);
+export default function ContactPage() {
+  const withLocalePath = createLocalePath();
 
   return (
     <HelpPageShell
@@ -53,13 +47,16 @@ export default function ContactPage({ params }: ContactPageProps) {
             </Title>
             <Flex gap={16} wrap>
               {contactChannels.map((channel) => (
-                <Card key={channel.title} className="w-full border-gray-200 md:max-w-[300px] md:flex-1">
+                <Card
+                  key={channel.title}
+                  className="w-full border-gray-200 md:max-w-[300px] md:flex-1"
+                >
                   <Flex vertical gap={8}>
                     <Title level={4} className="mb-0! text-lg font-semibold">
                       {channel.title}
                     </Title>
                     <Paragraph className="mb-0! text-gray-600">{channel.description}</Paragraph>
-                    <Tag color="blue" className="w-fit uppercase tracking-wide">
+                    <Tag color="blue" className="w-fit tracking-wide uppercase">
                       {channel.availability}
                     </Tag>
                   </Flex>
@@ -75,7 +72,8 @@ export default function ContactPage({ params }: ContactPageProps) {
               Send us a message
             </Title>
             <Paragraph className="mb-0! text-gray-600">
-              Share your question below. We route directly to the right specialist based on your topic.
+              Share your question below. We route directly to the right specialist based on your
+              topic.
             </Paragraph>
           </Flex>
         </Card>
@@ -100,10 +98,10 @@ export default function ContactPage({ params }: ContactPageProps) {
               )}
             />
             <Text className="text-sm text-gray-500">
-              Need instant answers? Browse the{' '}
+              Need instant answers? Browse the{" "}
               <Link href={withLocalePath("faq")} className="font-semibold text-gray-900">
                 FAQ
-              </Link>{' '}
+              </Link>{" "}
               any time.
             </Text>
           </Flex>

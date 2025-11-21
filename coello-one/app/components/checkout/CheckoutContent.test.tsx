@@ -126,6 +126,6 @@ describe("CheckoutContent", () => {
 
     fireEvent.click(screen.getByRole("button", { name: /back to bag/i }));
 
-    expect(routerMocks.push).toHaveBeenCalledWith("/en-GB/bag");
+    expect(routerMocks.push).toHaveBeenCalledWith("/bag");
   });
 });

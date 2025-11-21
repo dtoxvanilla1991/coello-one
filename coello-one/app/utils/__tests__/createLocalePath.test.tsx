@@ -6,22 +6,22 @@ import { createLocalePath } from "@/utils/createLocalePath";
 const DummyContent = () => <div>hello shell</div>;
 
 describe("createLocalePath", () => {
-  it("falls back to en-GB when no locale is provided", () => {
-    const withLocalePath = createLocalePath(undefined);
-    expect(withLocalePath("help")).toBe("/en-GB/help");
-    expect(withLocalePath("")).toBe("/en-GB");
+  it("normalizes empty paths to the site root", () => {
+    const withLocalePath = createLocalePath();
+    expect(withLocalePath("help")).toBe("/help");
+    expect(withLocalePath("")).toBe("/");
   });
 
-  it("avoids duplicating locale segments", () => {
-    const withLocalePath = createLocalePath("es-ES");
-    expect(withLocalePath("es-ES/orders")).toBe("/es-ES/orders");
-    expect(withLocalePath("/orders")).toBe("/es-ES/orders");
+  it("ensures a single leading slash without duplicating segments", () => {
+    const withLocalePath = createLocalePath();
+    expect(withLocalePath("orders")).toBe("/orders");
+    expect(withLocalePath("/orders")).toBe("/orders");
   });
 });
 
 describe("createLocalePath integration", () => {
   it("builds breadcrumb links that HelpPageShell renders correctly", () => {
-    const withLocalePath = createLocalePath("es-ES");
+    const withLocalePath = createLocalePath();
 
     render(
       <HelpPageShell
@@ -34,6 +34,6 @@ describe("createLocalePath integration", () => {
     );
 
     const helpLink = screen.getByRole("link", { name: /help centre/i });
-    expect(helpLink.getAttribute("href")).toBe("/es-ES/help");
+    expect(helpLink.getAttribute("href")).toBe("/help");
   });
 });

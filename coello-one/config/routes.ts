@@ -15,12 +15,6 @@ export const routes = {
 
 export type RouteKey = keyof typeof routes;
 
-export function buildLocaleRoute(locale: string, routeKey: RouteKey): string {
-  const path = routes[routeKey];
-
-  if (path === "/") {
-    return `/${locale}`;
-  }
-
-  return `/${locale}${path}`;
+export function buildLocaleRoute(routeKey: RouteKey): string {
+  return routes[routeKey];
 }

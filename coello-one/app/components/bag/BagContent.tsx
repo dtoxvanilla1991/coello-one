@@ -40,8 +40,8 @@ export function BagContent() {
   const router = useRouter();
   const locale = useCurrentLocale();
   const bagCopy = useTranslations("bag");
-  const homeRoute = buildLocaleRoute(locale, "home");
-  const checkoutRoute = buildLocaleRoute(locale, "checkout");
+  const homeRoute = buildLocaleRoute("home");
+  const checkoutRoute = buildLocaleRoute("checkout");
 
   const itemCount = useMemo(() => items.reduce((count, item) => count + item.quantity, 0), [items]);
 

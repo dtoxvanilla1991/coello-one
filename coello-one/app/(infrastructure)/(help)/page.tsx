@@ -3,23 +3,18 @@ import { ArrowRightOutlined, MessageOutlined, QuestionCircleOutlined } from "@an
 import { Button, Card, Flex, Typography } from "antd";
 import HelpPageShell from "@components/help/HelpPageShell";
 import { getNamespaceCopy } from "@/localization/dictionary";
+import { getRequestLocale } from "@/localization/getRequestLocale";
 import { createLocalePath } from "@/utils/createLocalePath";
 
 const { Title, Paragraph, Text, Link } = Typography;
-
-type HelpLandingPageProps = {
-  params: {
-    locale?: string;
-  };
-};
 
 const QUICK_LINK_ICONS = {
   question: <QuestionCircleOutlined className="text-xl text-gray-500" />,
   arrow: <ArrowRightOutlined className="text-xl text-gray-500" />,
 } as const;
 
-export async function generateMetadata({ params }: HelpLandingPageProps): Promise<Metadata> {
-  const copy = getNamespaceCopy(params?.locale, "helpLanding");
+export function generateMetadata(): Metadata {
+  const copy = getNamespaceCopy(undefined, "helpLanding");
   return {
     title: copy.metadata.title,
     description: copy.metadata.description,
@@ -27,26 +22,26 @@ export async function generateMetadata({ params }: HelpLandingPageProps): Promis
 }
 
 // TEST-WAIVER: Route shell composes static content plus tested widgets; duplicative render tests add minimal value.
-export default function HelpLandingPage({ params }: HelpLandingPageProps) {
-  const withLocalePath = createLocalePath(params?.locale);
-  const landingCopy = getNamespaceCopy(params?.locale, "helpLanding");
+export default async function HelpLandingPage() {
+  const locale = await getRequestLocale();
+  const withLocalePath = createLocalePath();
+  const landingCopy = getNamespaceCopy(locale, "helpLanding");
   const quickLinks = landingCopy.quickLinks.map((link) => ({
     ...link,
     href: withLocalePath(link.href),
   }));
 
   return (
-    <HelpPageShell
-      title={landingCopy.hero.title}
-      description={landingCopy.hero.description}
-    >
+    <HelpPageShell title={landingCopy.hero.title} description={landingCopy.hero.description}>
       <Flex vertical gap={24}>
         <Card className="border-gray-200">
           <Flex vertical gap={16}>
             <Title level={3} className="mb-0! text-2xl md:text-3xl!">
               {landingCopy.introCard.title}
             </Title>
-            <Paragraph className="mb-0! text-gray-600">{landingCopy.introCard.description}</Paragraph>
+            <Paragraph className="mb-0! text-gray-600">
+              {landingCopy.introCard.description}
+            </Paragraph>
           </Flex>
         </Card>
 
@@ -81,8 +76,10 @@ export default function HelpLandingPage({ params }: HelpLandingPageProps) {
                 <Title level={3} className="mb-0! text-2xl md:text-3xl!">
                   {landingCopy.contactCard.title}
                 </Title>
-                <Paragraph className="mb-0! text-gray-600">{landingCopy.contactCard.description}</Paragraph>
-                <Text className="text-sm uppercase tracking-[0.3em] text-gray-500">
+                <Paragraph className="mb-0! text-gray-600">
+                  {landingCopy.contactCard.description}
+                </Paragraph>
+                <Text className="text-sm tracking-[0.3em] text-gray-500 uppercase">
                   {landingCopy.contactCard.channelsLabel}
                 </Text>
               </Flex>

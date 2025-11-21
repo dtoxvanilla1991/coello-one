@@ -18,12 +18,6 @@ export const metadata: Metadata = {
     "Learn how Coello handles duties, currency conversion, and tracking for international one-sleeve orders.",
 };
 
-type InternationalOrdersPageProps = {
-  params: {
-    locale?: string;
-  };
-};
-
 const currencyColumns: TableColumnsType<CurrencyCoverage> = [
   {
     title: "Currency",
@@ -43,14 +37,17 @@ const currencyColumns: TableColumnsType<CurrencyCoverage> = [
 ];
 
 // TEST-WAIVER: Declarative route shell that reuses static datasets; dedicated tests would duplicate component coverage.
-export default function InternationalOrdersPage({ params }: InternationalOrdersPageProps) {
-  const withLocalePath = createLocalePath(params?.locale);
+export default function InternationalOrdersPage() {
+  const withLocalePath = createLocalePath();
 
   return (
     <HelpPageShell
       title="Ordering internationally"
       description="We designed a global fulfilment network so your one-sleeve arrives fast, insured, and duty-paid."
-      breadcrumb={[{ title: "Help Centre", href: withLocalePath("help") }, { title: "International orders" }]}
+      breadcrumb={[
+        { title: "Help Centre", href: withLocalePath("help") },
+        { title: "International orders" },
+      ]}
     >
       <Flex vertical gap={24}>
         <Card className="border-gray-200 bg-white/70">
@@ -60,7 +57,10 @@ export default function InternationalOrdersPage({ params }: InternationalOrdersP
             </Title>
             <Flex gap={16} wrap>
               {FULFILMENT_NODES.map((node) => (
-                <Card key={node.title} className="w-full border-gray-200 md:max-w-[320px] md:flex-1">
+                <Card
+                  key={node.title}
+                  className="w-full border-gray-200 md:max-w-[320px] md:flex-1"
+                >
                   <Flex vertical gap={8}>
                     <Title level={4} className="mb-0! text-lg font-semibold">
                       {node.title}
@@ -79,7 +79,8 @@ export default function InternationalOrdersPage({ params }: InternationalOrdersP
               Currency coverage
             </Title>
             <Paragraph className="mb-0! text-gray-600">
-              We localise pricing in your currency and keep the rate locked for 30 minutes while you check out.
+              We localise pricing in your currency and keep the rate locked for 30 minutes while you
+              check out.
             </Paragraph>
             <Table
               rowKey="currency"
@@ -106,7 +107,8 @@ export default function InternationalOrdersPage({ params }: InternationalOrdersP
                         Checkout duties calculated
                       </Title>
                       <Paragraph className="mb-0! text-gray-600">
-                        We show duties and taxes in your currency before you pay—no courier surprises.
+                        We show duties and taxes in your currency before you pay—no courier
+                        surprises.
                       </Paragraph>
                     </Flex>
                   ),
@@ -118,7 +120,8 @@ export default function InternationalOrdersPage({ params }: InternationalOrdersP
                         Smart routing in motion
                       </Title>
                       <Paragraph className="mb-0! text-gray-600">
-                        We pick the closest fulfilment node and auto-book the fastest insured courier lane.
+                        We pick the closest fulfilment node and auto-book the fastest insured
+                        courier lane.
                       </Paragraph>
                     </Flex>
                   ),
@@ -130,7 +133,8 @@ export default function InternationalOrdersPage({ params }: InternationalOrdersP
                         Track in your language
                       </Title>
                       <Paragraph className="mb-0! text-gray-600">
-                        Real-time updates arrive in your locale with locker redirect options where available.
+                        Real-time updates arrive in your locale with locker redirect options where
+                        available.
                       </Paragraph>
                     </Flex>
                   ),
@@ -147,7 +151,10 @@ export default function InternationalOrdersPage({ params }: InternationalOrdersP
             </Title>
             <Flex gap={16} wrap>
               {SUPPORT_INSIGHTS.map((insight) => (
-                <Card key={insight.title} className="w-full border-gray-200 md:max-w-[320px] md:flex-1">
+                <Card
+                  key={insight.title}
+                  className="w-full border-gray-200 md:max-w-[320px] md:flex-1"
+                >
                   <Flex vertical gap={8}>
                     <Title level={4} className="mb-0! text-lg font-semibold">
                       {insight.title}
@@ -158,10 +165,10 @@ export default function InternationalOrdersPage({ params }: InternationalOrdersP
               ))}
             </Flex>
             <Text className="text-sm text-gray-500">
-              Need a hand with customs paperwork? Head to{' '}
+              Need a hand with customs paperwork? Head to{" "}
               <Link href={withLocalePath("contact-us")} className="font-semibold text-gray-900">
                 Contact Us
-              </Link>{' '}
+              </Link>{" "}
               and mention customs in your message.
             </Text>
           </Flex>

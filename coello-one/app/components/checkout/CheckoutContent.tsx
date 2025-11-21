@@ -45,7 +45,7 @@ export function CheckoutContent() {
   const checkoutCopy = useTranslations("checkout");
   const { hero, express, contact, delivery, payment, remember, orderSummary, cta, messages } =
     checkoutCopy;
-  const bagRoute = buildLocaleRoute(locale, "bag");
+  const bagRoute = buildLocaleRoute("bag");
 
   const itemCount = useMemo(() => items.reduce((count, item) => count + item.quantity, 0), [items]);
 
