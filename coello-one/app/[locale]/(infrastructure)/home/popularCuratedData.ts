@@ -64,7 +64,11 @@ function createVariantSummary(variant: PopularVariantDefinition, gender: Gender)
   } satisfies ProductSummary;
 }
 
-export function createCuratedPopularProducts(randomFn: () => number = Math.random): ProductSummary[] {
+const DEFAULT_VARIANT_SELECTOR = () => 0;
+
+export function createCuratedPopularProducts(
+  randomFn: () => number = DEFAULT_VARIANT_SELECTOR,
+): ProductSummary[] {
   const femaleVariant = createVariantSummary(pickPopularVariant("female", randomFn), "female");
   const maleVariant = createVariantSummary(pickPopularVariant("male", randomFn), "male");
 
@@ -88,7 +92,7 @@ export function extractCuratedPopularProducts(products: ProductSummary[]): Produ
     return null;
   }
 
-  return createCuratedPopularProducts(Math.random);
+  return createCuratedPopularProducts();
 }
 
 export type PopularProductLinkInfo =

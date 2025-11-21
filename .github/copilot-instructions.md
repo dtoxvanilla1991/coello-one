@@ -11,4 +11,5 @@ Please treat `coello-one/README.md` as the authoritative playbook for AI collabo
 - For any Next.js API routes, route handlers, or server-side functions, rely on Bun's `Bun.file`/`Bun.write` primitives instead of Node's `fs` module for file IO.
 - Follow the Bun-native primitives guidance outlined in `coello-one/README.md` (Bun.SQL, Bun.YAML, Bun.secrets).
 - Validate every runtime payload with Zod schemas—no unchecked external or boundary data.
+- Uphold the mandatory testing doctrine: every method or function needs unit **and** integration coverage unless a `// TEST-WAIVER: reason` comment explains why it's impractical; focus on impactful tests instead of low-value snapshots.
 - Adopt React 19.2 conventions: reach for `<Activity>` instead of ad-hoc conditional mounting, prefer `useEffectEvent` to isolate side-effect callbacks, and use new cache-aware server APIs (`cacheSignal`, `prerender`/`resume`) where applicable.

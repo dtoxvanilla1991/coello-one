@@ -138,6 +138,13 @@ curl -fsSL https://bun.sh/install | bash
 - Backend linting: `make backend-lint` (runs Ruff checks; `make backend-lint-fix` applies autofixes).
 - CI enforces both checks (`bun run format` and `python -m black --check .`) to prevent drift across services.
 
+### Testing Mandate
+
+- **Every method or function must ship with both unit and integration coverage.** The default posture is "write the test before or alongside the implementation."
+- **Exemptions must be explicit.** If coverage is genuinely unreasonable (for example, third-party hooks that cannot be exercised in jsdom), leave a code comment in the affected file that starts with `// TEST-WAIVER:` and describes the rationale plus a tracking issue/reference.
+- **Bias toward high-value tests.** Focus on behavior that protects the user journey or business logic; redundant snapshots, boilerplate renders, or tests that fail to add signal should be skipped and explicitly called out as non-essential.
+- **Cross-reference in pull requests.** When exceptions are used, mention the waiver in PR notes so reviewers (and future agents) can re-evaluate.
+
 ## Implemented Features
 
 - Semantic Search

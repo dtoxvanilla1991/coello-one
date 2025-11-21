@@ -26,6 +26,6 @@ describe("BrandListings", () => {
       name: /^Men's line$/i,
     });
     const mensList = mensHeading.nextElementSibling as HTMLElement;
-    expect(within(mensList).getByText("Mens's Passion")).toBeTruthy();
+    expect(within(mensList).getByText("Men's Passion")).toBeTruthy();
   });
 });

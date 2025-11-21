@@ -12,6 +12,7 @@ This repository is a monorepo containing two separate applications: a **_Next.js
 - Treat Zod as the non-negotiable runtime guardrail—every boundary payload (network, storage, form submission) must pass through a schema.
 - Build with React 19.2 patterns by default: `<Activity>` for visibility control, `useEffectEvent` for side-effect callbacks, and cache-aware server APIs (`cacheSignal`, `prerender`, `resume`) whenever they fit the flow.
 	- See the "Bun & Database Guidelines" section of `coello-one/README.md` for the complete Bun-native primitives policy (Bun.SQL, Bun.YAML, Bun.secrets).
+- Testing doctrine: every method or function must have unit **and** integration coverage. When an exception is truly unavoidable, add a `// TEST-WAIVER: reason` comment in-code and document it in Serena; keep the emphasis on high-value tests rather than noisy snapshots.
 
 **Agent: coello-one (Next.js Frontend)** 🎨
 
