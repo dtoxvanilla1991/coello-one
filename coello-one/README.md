@@ -43,6 +43,7 @@ bun dev
 
 - Treat this document as the single source of truth for Coello AI collaborators; keep it open when planning work.
 - Default to Serena MCP for task orchestration and document key decisions in the journal.
+- Pair Context7 with Serena on every task: use Context7 for repository/document lookups and cite its snippets in Serena notes before modifying code or docs; fall back to manual reads only when Context7 is exhausted.
 - Approach every request through the Chief Advisory Team lens (CTO, Chief Designer, Business Logic Architect, Data Analyst, Senior Full-Stack Engineer) and surface a `[Chief's Insight]` with risks or upgrades.
 - Build and validate the handheld experience first; only expand to tablet/desktop once the smallest breakpoint feels polished.
 

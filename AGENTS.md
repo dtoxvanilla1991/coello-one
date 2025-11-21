@@ -30,6 +30,7 @@ To work with this application, you must first change into its directory:
 Serena Workflow
 
 - Default to Serena MCP for every task—no manual prompting from the user required. Use Serena tools to plan, edit, and document work unless an exception is explicitly called out.
+- Always start with Context7 when gathering code or documentation context; cite the retrieved snippet IDs in your Serena notes before making edits so the lineage is preserved.
 - Golden rule: mobile-first by default. Ship the smallest breakpoint first, validate it, then expand to tablet/desktop.
 - Follow the testing and navigation guidance documented in `coello-one/README.md` (see the AI Operations Handbook section) before touching specs.
 - Keep individual component files under ~300 lines. When they grow larger, extract child components and relocate static data, option lists, and type/interface/enum declarations into adjacent modules (for example `constants.ts`, `types.ts`) to stay decoupled.
