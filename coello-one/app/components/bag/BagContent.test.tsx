@@ -82,7 +82,7 @@ describe("BagContent", () => {
 
     fireEvent.click(screen.getByRole("button", { name: /continue shopping/i }));
 
-    expect(routerMocks.push).toHaveBeenCalledWith("/home");
+    expect(routerMocks.push).toHaveBeenCalledWith("/");
   });
 
   it("tracks checkout attempts with the aggregated totals", () => {

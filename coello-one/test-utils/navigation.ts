@@ -29,7 +29,7 @@ const createRouterMocks = (): RouterMocks => ({
 const routerMocks = createRouterMocks();
 
 const createDefaultNavigationState = (): NavigationState => ({
-  pathname: "/home",
+  pathname: "/",
   params: {},
   searchParams: new URLSearchParams(),
 });
