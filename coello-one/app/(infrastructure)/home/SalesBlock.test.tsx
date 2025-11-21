@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, mock } from "bun:test";
-import { routerMocks, setNavigationState } from "@test-utils/navigation";
+import { resetNavigationMocks, routerMocks } from "@test-utils/navigation";
 
 const trackEventMock = mock<(event: string, payload?: unknown) => void>(() => {});
 
@@ -18,11 +18,7 @@ const renderSalesBlock = () => {
 };
 
 beforeEach(() => {
-  setNavigationState({
-    locale: "en-GB",
-    pathname: "/en-GB/home",
-    params: { locale: "en-GB" },
-  });
+  resetNavigationMocks();
 });
 
 describe("SalesBlock", () => {
@@ -53,27 +49,25 @@ describe("SalesBlock", () => {
     expect(screen.getByRole("button", { name: /Shop men/i })).toBeTruthy();
   });
 
-  it("navigates women CTA with locale-prefixed query", () => {
-    setNavigationState({ locale: "es-ES", pathname: "/es-ES/home" });
+  it("navigates women CTA with normalized query", () => {
     renderSalesBlock();
 
     fireEvent.click(screen.getByRole("button", { name: /Shop women/i }));
 
     expect(trackEventMock).toHaveBeenCalledWith("sales_block_cta_click", { audience: "women" });
     expect(routerMocks.push).toHaveBeenCalledWith(
-      "/es-ES/one-sleeve-classic?gender=female&size=M&color=mild+red",
+      "/one-sleeve-classic?gender=female&size=M&color=mild+red",
     );
   });
 
-  it("navigates men CTA with locale-prefixed query", () => {
-    setNavigationState({ locale: "fr-FR", pathname: "/fr-FR/home" });
+  it("navigates men CTA with normalized query", () => {
     renderSalesBlock();
 
     fireEvent.click(screen.getByRole("button", { name: /Shop men/i }));
 
     expect(trackEventMock).toHaveBeenCalledWith("sales_block_cta_click", { audience: "men" });
     expect(routerMocks.push).toHaveBeenCalledWith(
-      "/fr-FR/one-sleeve-classic?gender=male&size=M&color=sea+blue",
+      "/one-sleeve-classic?gender=male&size=M&color=sea+blue",
     );
   });
 });

@@ -24,7 +24,7 @@ describe("NavbarSearch", () => {
     expect(handleClose.mock.calls.length).toBeGreaterThan(0);
   });
 
-  it("falls back to the locale search route when no query is provided", () => {
+  it("falls back to the default search route when no query is provided", () => {
     const handleClose = mock<() => void>(() => {});
 
     render(<NavbarSearch searchVisible onClose={handleClose} />);

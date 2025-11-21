@@ -3,7 +3,7 @@ import { act, fireEvent, render, screen } from "@testing-library/react";
 import { Provider, createStore } from "jotai";
 import type { CartItem } from "@/store/cartStore";
 import { cartItemsAtom } from "@/store/cartStore";
-import { resetNavigationMocks, routerMocks, setNavigationState } from "@test-utils/navigation";
+import { resetNavigationMocks, routerMocks } from "@test-utils/navigation";
 
 const trackEventMock = mock<(event: string, payload?: unknown, meta?: unknown) => void>(() => {});
 
@@ -27,10 +27,6 @@ const renderCheckout = (items: CartItem[] = []) => {
 describe("CheckoutContent", () => {
   beforeEach(() => {
     resetNavigationMocks();
-    setNavigationState({
-      locale: "en-GB",
-      params: { locale: "en-GB" },
-    });
     trackEventMock.mockReset();
   });
 

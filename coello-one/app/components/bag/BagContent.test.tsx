@@ -3,7 +3,7 @@ import { fireEvent, render, screen, within } from "@testing-library/react";
 import { Provider, createStore } from "jotai";
 import type { CartItem } from "@/store/cartStore";
 import { cartItemsAtom } from "@/store/cartStore";
-import { resetNavigationMocks, routerMocks, setNavigationState } from "@test-utils/navigation";
+import { resetNavigationMocks, routerMocks } from "@test-utils/navigation";
 
 const trackEventMock = mock<(event: string, payload?: unknown, meta?: unknown) => void>(() => {});
 
@@ -27,10 +27,6 @@ const renderWithCart = (items: CartItem[] = []) => {
 describe("BagContent", () => {
   beforeEach(() => {
     resetNavigationMocks();
-    setNavigationState({
-      locale: "en-GB",
-      params: { locale: "en-GB" },
-    });
     trackEventMock.mockReset();
   });
 
@@ -81,7 +77,7 @@ describe("BagContent", () => {
     expect(summaryRegion.getByText("£143.50")).toBeTruthy();
   });
 
-  it("navigates back to the locale home when Continue shopping is pressed", () => {
+  it("navigates back to the home route when Continue shopping is pressed", () => {
     renderWithCart();
 
     fireEvent.click(screen.getByRole("button", { name: /continue shopping/i }));

@@ -7,9 +7,7 @@ describe("OneSleeveClassicPage", () => {
   beforeEach(() => {
     resetNavigationMocks();
     setNavigationState({
-      locale: "en-GB",
-      pathname: "/en-GB/products/one-sleeve-classic",
-      params: { locale: "en-GB" },
+      pathname: "/products/one-sleeve-classic",
       searchParams: new URLSearchParams(),
     });
   });

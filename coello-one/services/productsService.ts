@@ -13,7 +13,7 @@ import { trackEvent } from "@/utils/trackEvent";
 import {
   createCuratedPopularProducts,
   extractCuratedPopularProducts,
-} from "../app/[locale]/(infrastructure)/home/popularCuratedData";
+} from "../app/(infrastructure)/home/popularCuratedData";
 
 const CACHE_DB_PATH = Bun.env.PRODUCT_CACHE_DB_PATH ?? ":memory:";
 const CACHE_TTL_MS = Number(Bun.env.PRODUCT_CACHE_TTL_MS ?? 5 * 60 * 1000);

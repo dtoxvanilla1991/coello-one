@@ -3,7 +3,6 @@ import { mock } from "bun:test";
 // Centralized Next.js navigation mocks so tests reuse shared router state.
 
 type NavigationState = {
-  locale: string;
   pathname: string;
   params: Record<string, string>;
   searchParams: URLSearchParams;
@@ -30,9 +29,8 @@ const createRouterMocks = (): RouterMocks => ({
 const routerMocks = createRouterMocks();
 
 const createDefaultNavigationState = (): NavigationState => ({
-  locale: "en-GB",
-  pathname: "/en-GB/home",
-  params: { locale: "en-GB" },
+  pathname: "/home",
+  params: {},
   searchParams: new URLSearchParams(),
 });
 
@@ -66,13 +64,6 @@ const setNavigationState = (overrides: Partial<NavigationState>) => {
         ? new URLSearchParams(overrides.searchParams)
         : navigationState.searchParams,
   };
-
-  if (overrides.locale) {
-    navigationState.params = {
-      ...navigationState.params,
-      locale: overrides.locale,
-    };
-  }
 };
 
 const getNavigationState = (): NavigationState => ({

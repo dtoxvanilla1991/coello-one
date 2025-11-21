@@ -3,14 +3,13 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider, createStore } from "jotai";
 import { cartItemsAtom } from "@/store/cartStore";
 import type { CartItem } from "@/store/cartStore";
-import { resetNavigationMocks, routerMocks, setNavigationState } from "@test-utils/navigation";
+import { resetNavigationMocks, routerMocks } from "@test-utils/navigation";
 
 const { Navbar } = await import("./index");
 
 describe("Navbar", () => {
   beforeEach(() => {
     resetNavigationMocks();
-    setNavigationState({ locale: "en-GB" });
   });
 
   const renderNavbar = (cartQuantity = 0) => {
@@ -47,11 +46,11 @@ describe("Navbar", () => {
     expect(header?.className).toContain("top-0");
   });
 
-  it("routes to the locale-aware bag page when the bag control is pressed", () => {
+  it("routes to the bag page when the bag control is pressed", () => {
     renderNavbar(1);
 
     fireEvent.click(screen.getByRole("button", { name: /view bag/i }));
 
-    expect(routerMocks.push).toHaveBeenCalledWith("/en-GB/bag");
+    expect(routerMocks.push).toHaveBeenCalledWith("/bag");
   });
 });

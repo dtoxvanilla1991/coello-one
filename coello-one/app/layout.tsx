@@ -7,7 +7,7 @@ import esES from "antd/locale/es_ES";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { Geist, Geist_Mono } from "./fonts";
 import { AntdCompatibilityGate } from "@/components/providers/AntdCompatibilityGate";
-import { LocaleContext } from "@/localization/LocaleContext";
+import { LocaleProvider } from "@/localization/LocaleProvider";
 import { getRequestLocale } from "@/localization/getRequestLocale";
 import type { SupportedLocale } from "@config/i18n";
 
@@ -40,7 +40,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   if (process.env.NODE_ENV === "test") {
     return (
       <div className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <LocaleContext.Provider value={locale}>{children}</LocaleContext.Provider>
+        <LocaleProvider value={locale}>{children}</LocaleProvider>
       </div>
     );
   }
@@ -48,7 +48,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <LocaleContext.Provider value={locale}>
+        <LocaleProvider value={locale}>
           <ConfigProvider
             locale={antdLocale}
             theme={{
@@ -67,7 +67,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               <AntdRegistry>{children}</AntdRegistry>
             </AntdCompatibilityGate>
           </ConfigProvider>
-        </LocaleContext.Provider>
+        </LocaleProvider>
       </body>
     </html>
   );

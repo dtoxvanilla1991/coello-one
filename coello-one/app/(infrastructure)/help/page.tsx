@@ -17,9 +17,15 @@ export default async function HelpLandingPage() {
   const locale = await getRequestLocale();
   const withLocalePath = createLocalePath();
   const landingCopy = getNamespaceCopy(locale, "helpLanding");
+  const toHelpPath = (path: string) => {
+    const normalized = path.startsWith("/help")
+      ? path
+      : `/help/${path.replace(/^\/+/u, "")}`;
+    return withLocalePath(normalized);
+  };
   const quickLinks = landingCopy.quickLinks.map((link) => ({
     ...link,
-    href: withLocalePath(link.href),
+    href: toHelpPath(link.href),
   }));
 
   return (
@@ -29,7 +35,7 @@ export default async function HelpLandingPage() {
       quickLinks={quickLinks}
       contactCard={{
         ...landingCopy.contactCard,
-        buttonHref: withLocalePath(landingCopy.contactCard.buttonHref),
+        buttonHref: toHelpPath(landingCopy.contactCard.buttonHref),
       }}
     />
   );
