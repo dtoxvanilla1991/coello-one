@@ -35,8 +35,6 @@ describe("Home route integration", () => {
     expect(response.status).toBe(200);
     expect(cookieHeader).toContain("NEXT_LOCALE=es-ES");
 
-    setNavigationState({ params: { locale: "es-ES" } });
-
     render(
       <LocaleProvider value="es-ES">
         <MainBanner />

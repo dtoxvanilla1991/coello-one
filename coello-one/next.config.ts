@@ -16,6 +16,9 @@ const nextConfig: NextConfig = {
     locales: [...SUPPORTED_LOCALES],
     defaultLocale: DEFAULT_LOCALE,
     domains: activeDomainLocales,
+    // Keep localeDetection disabled—Next.js would otherwise redirect to /{locale}
+    // while we intentionally serve localized content at canonical, locale-less paths.
+    localeDetection: false,
   },
   turbopack: {
     root: __dirname,

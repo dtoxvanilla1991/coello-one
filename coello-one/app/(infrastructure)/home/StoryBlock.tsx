@@ -1,19 +1,21 @@
 "use client";
 
+import { useMemo } from "react";
 import { Space, Typography } from "antd";
+import { useTranslations } from "@/localization/useTranslations";
 
 const { Title, Paragraph } = Typography;
 
-const brandIdea =
-  "Your story is the blueprint. Your commitment is the inspiration. You're the reason they'll start their journey tomorrow.";
-
-const brandSpirit =
-  "You earned this. That pain was real. It will forever be a part of you. It is an extension of you; it was forged in persistence, patience, and sweat.";
-
-const brandFocus =
-  "You know the wall, and you know how to break it. This is for the warrior who never quits—on the pavement, at the gym, or in the chair.";
-
 const StoryBlock: React.FC = () => {
+  const copy = useTranslations("home").storyBlock;
+  const listings = useMemo(
+    () => [
+      { title: copy.ideaTitle, paragraph: copy.ideaBody },
+      { title: copy.spiritTitle, paragraph: copy.spiritBody },
+      { title: copy.focusTitle, paragraph: copy.focusBody },
+    ],
+    [copy],
+  );
   return (
     <Space
       direction="vertical"
@@ -22,9 +24,9 @@ const StoryBlock: React.FC = () => {
       role="list"
       aria-label="Coello story highlights"
     >
-      <BrandListing paragraph={brandIdea} title="For those who come after" />
-      <BrandListing paragraph={brandSpirit} title="For those who felt the pain" />
-      <BrandListing paragraph={brandFocus} title="For those who kept going" />
+      {listings.map((listing) => (
+        <BrandListing key={listing.title} paragraph={listing.paragraph} title={listing.title} />
+      ))}
     </Space>
   );
 };

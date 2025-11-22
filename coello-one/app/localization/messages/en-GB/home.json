@@ -4,5 +4,13 @@
     "ctaLabel": "Shop now",
     "ctaAnalyticsKey": "home.mainBanner.cta",
     "ctaVariant": "primary"
+  },
+  "storyBlock": {
+    "ideaTitle": "For those who come after",
+    "ideaBody": "Your story is the blueprint. Your commitment is the inspiration. You're the reason they'll start their journey tomorrow.",
+    "spiritTitle": "For those who felt the pain",
+    "spiritBody": "You earned this. That pain was real. It will forever be a part of you. It is an extension of you; it was forged in persistence, patience, and sweat.",
+    "focusTitle": "For those who kept going",
+    "focusBody": "You know the wall, and you know how to break it. This is for the warrior who never quits—on the pavement, at the gym, through the art."
   }
 }
