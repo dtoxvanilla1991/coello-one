@@ -62,6 +62,31 @@ bun dev
 - When emitting analytics for localized CTAs, pass `locale`, `translationKey`, and (when relevant) `translationVariant` through the third `trackEvent` argument so funnel reports stay traceable.
 - New translation entries must be documented in Serena with the Context7 snippet ID used to source or review the copy; mention any pending reviewer (e.g., Laura) in the same note.
 
+#### Locale Domain Configuration
+
+- Configure hostname → locale routing through environment variables so Growth can launch microsites without shipping code:
+  - `NEXT_PUBLIC_PRODUCTION_DOMAIN_LOCALES`
+  - `NEXT_PUBLIC_LOCAL_DOMAIN_LOCALES`
+- Each variable accepts a JSON array of Next.js domain locale objects (see `config/i18n.ts`). Example:
+
+```json
+[
+  {
+    "domain": "coelloone.uk",
+    "defaultLocale": "en-GB",
+    "locales": ["en-GB"]
+  },
+  {
+    "domain": "localhost.co",
+    "defaultLocale": "es-ES",
+    "locales": ["es-ES"],
+    "http": true
+  }
+]
+```
+
+- Local entries should set `http: true` so Next.js serves them over HTTP. Production hosts omit the flag and default to HTTPS.
+
 ### Navigation & Routing
 
 - Use `buildLocaleRoute` from `config/routes` to construct locale-aware paths (e.g. bag, search, home).

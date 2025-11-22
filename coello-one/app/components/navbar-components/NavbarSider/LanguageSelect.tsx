@@ -1,7 +1,8 @@
 "use client";
 
 import { useTransition } from "react";
-import { Select } from "antd";
+import { Select, message } from "antd";
+import { trackEvent } from "@/utils/trackEvent";
 import { useRouter } from "next/navigation";
 import { useCurrentLocale } from "@/hooks/useCurrentLocale";
 import type { SupportedLocale } from "@config/i18n";
@@ -13,6 +14,7 @@ const LANGUAGE_OPTIONS = [
 
 export default function LanguageSelect() {
   const [isPending, startTransition] = useTransition();
+  const [messageApi, contextHolder] = message.useMessage();
   const router = useRouter();
   const activeLocale = useCurrentLocale() as SupportedLocale;
 
@@ -33,18 +35,30 @@ export default function LanguageSelect() {
       });
     } catch (error) {
       console.error("language_select_error", error);
+      trackEvent("locale_switch_failed", {
+        locale: value,
+        reason: error instanceof Error ? error.message : "unknown",
+      });
+      messageApi.error({
+        key: "language-switch-error",
+        content: "Unable to switch language. Check your connection and try again.",
+        duration: 4,
+      });
     }
   };
 
   return (
-    <Select
-      aria-label="Language selector"
-      className="w-[4.5em]"
-      value={activeLocale}
-      loading={isPending}
-      disabled={isPending}
-      onChange={handleChange}
-      options={LANGUAGE_OPTIONS}
-    />
+    <>
+      {contextHolder}
+      <Select
+        aria-label="Language selector"
+        className="w-[4.5em]"
+        value={activeLocale}
+        loading={isPending}
+        disabled={isPending}
+        onChange={handleChange}
+        options={LANGUAGE_OPTIONS}
+      />
+    </>
   );
 }

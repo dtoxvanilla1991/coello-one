@@ -10,6 +10,7 @@ import { AntdCompatibilityGate } from "@/components/providers/AntdCompatibilityG
 import { LocaleProvider } from "@/localization/LocaleProvider";
 import { getRequestLocale } from "@/localization/getRequestLocale";
 import type { SupportedLocale } from "@config/i18n";
+import { PRODUCTION_LANGUAGE_ALTERNATES } from "@config/i18n";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
@@ -23,10 +24,7 @@ const ANTD_LOCALES: Record<SupportedLocale, typeof enGB> = {
 };
 
 const LANGUAGE_ALTERNATES: Metadata["alternates"] = {
-  languages: {
-    "en-GB": "https://coelloone.uk",
-    "es-ES": "https://coelloone.co",
-  },
+  languages: PRODUCTION_LANGUAGE_ALTERNATES,
 };
 
 export const metadata: Metadata = {

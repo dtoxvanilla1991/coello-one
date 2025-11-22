@@ -1,7 +1,14 @@
 import { beforeAll, beforeEach, afterAll, describe, expect, it, mock } from "bun:test";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import LanguageSelect from "./LanguageSelect";
 import { routerMocks, resetNavigationMocks } from "@test-utils/navigation";
+
+const trackEventSpy = mock(() => {});
+
+mock.module("@/utils/trackEvent", () => ({
+  trackEvent: trackEventSpy,
+}));
+
+const { default: LanguageSelect } = await import("./LanguageSelect");
 
 const originalFetch = globalThis.fetch;
 const fetchSpy = mock(
@@ -33,6 +40,7 @@ beforeEach(() => {
   resetNavigationMocks();
   fetchSpy.mockClear();
   routerMocks.refresh.mockClear();
+  trackEventSpy.mockClear();
 });
 
 describe("LanguageSelect", () => {
@@ -59,5 +67,32 @@ describe("LanguageSelect", () => {
     });
 
     expect(routerMocks.refresh).toHaveBeenCalled();
+  });
+
+  it("notifies the shopper when the locale update fails", async () => {
+    fetchSpy.mockImplementationOnce(async () => {
+      return new Response(JSON.stringify({ success: false }), { status: 503 });
+    });
+
+    render(<LanguageSelect />);
+
+    const [selector] = screen.getAllByLabelText("Language selector");
+    const dropdownTrigger = selector.querySelector(".ant-select-selector");
+    expect(dropdownTrigger).toBeTruthy();
+
+    fireEvent.mouseDown(dropdownTrigger as Element);
+
+    const spanishOption = await screen.findByTitle("ES");
+    fireEvent.click(spanishOption);
+
+    await waitFor(() => {
+      expect(screen.getByText(/Unable to switch language/i)).toBeTruthy();
+    });
+
+    expect(routerMocks.refresh).not.toHaveBeenCalled();
+    expect(trackEventSpy).toHaveBeenCalledWith("locale_switch_failed", {
+      locale: "es-ES",
+      reason: "Locale update failed with status 503",
+    });
   });
 });
