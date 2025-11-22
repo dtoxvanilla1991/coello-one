@@ -1,3 +1,4 @@
+import path from "node:path";
 import type { NextConfig } from "next";
 import {
   SUPPORTED_LOCALES,
@@ -32,6 +33,13 @@ const nextConfig: NextConfig = {
         locale: false,
       },
     ];
+  },
+  webpack(config) {
+    config.resolve ??= {};
+    config.resolve.alias ??= {};
+    // Deduplicate jotai across the monorepo to avoid multiple default stores in dev.
+    config.resolve.alias.jotai = path.resolve(__dirname, "node_modules/jotai");
+    return config;
   },
 };
 

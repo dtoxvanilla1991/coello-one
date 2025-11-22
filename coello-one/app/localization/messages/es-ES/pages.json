@@ -1,0 +1,293 @@
+{
+  "about": {
+    "metadata": {
+      "title": "Acerca de Coello One",
+      "description": "Conoce la casa de una sola manga que celebra a lxs atletas que tratan su cuerpo como una galería."
+    },
+    "hero": {
+      "kicker": "Acerca de Coello One",
+      "title": "Una sola manga. Toda tu historia a la vista.",
+      "description": "Te empoderamos para mostrar tu historia, una manga a la vez. Coello One fusiona diseño audaz con rendimiento técnico para que tu arte y tu atletismo nunca compitan.",
+      "highlightStats": [
+        { "label": "Horas de prototipo", "value": "3.200+" },
+        { "label": "Atletas testers", "value": "140" },
+        { "label": "Cobertura de tinta visible", "value": "92%" }
+      ]
+    },
+    "story": {
+      "title": "Creado para la audiencia más exigente",
+      "paragraphs": [
+        "Siempre vimos una desconexión. Pasas horas bajo la aguja para que tu historia viva en tu piel y después entrenas sin parar para terminar cubriéndola. En Coello creemos que tu arte y tu atletismo nacen del mismo fuego.",
+        "Nuestro diseño de una sola manga no es un truco. Es el marco que tu obra maestra merece: prendas técnicas afinadas para el rendimiento con un ajuste que celebra cómo elegiste expresarte.",
+        "Esta marca es para quienes conocen la paciencia de la silla del artista y el ardor de la última repetición. Somos una declaración tanto como una prenda."
+      ],
+      "quote": {
+        "text": "Tu arte y tu entrenamiento son prueba de persistencia. Nuestro trabajo es permitir que esa prueba se vea.",
+        "attribution": "Laura Gómez · Directora Creativa"
+      }
+    },
+    "pillars": [
+      {
+        "id": "craft",
+        "title": "Asimetría intencional",
+        "description": "El mapeo 3D mantiene la compresión donde necesitas estabilidad y libera el lado tatuado para que la tinta respire y siga vibrante.",
+        "statLabel": "Ciclos de prueba",
+        "statValue": "214"
+      },
+      {
+        "id": "performance",
+        "title": "Tejidos de alto rendimiento",
+        "description": "Hilados italianos que canalizan la humedad, micro malla de secado rápido y costuras termoselladas que acompañan cada levantamiento, zancada y golpe.",
+        "statLabel": "Innovaciones textiles",
+        "statValue": "4"
+      },
+      {
+        "id": "community",
+        "title": "Rituales construidos con la comunidad",
+        "description": "Co-creamos con atletas que también son lienzos—de muralistas a artistas de MMA—para que cada lanzamiento honre experiencias reales.",
+        "statLabel": "Laboratorios artísticos",
+        "statValue": "12"
+      }
+    ],
+    "timeline": {
+      "title": "Hitos que moldearon a Coello",
+      "milestones": [
+        { "year": "2019", "title": "Observación", "description": "Vimos a atletas de élite ocultar sus tatuajes durante el entrenamiento y trazamos la oportunidad ergonómica." },
+        { "year": "2020", "title": "Primer laboratorio", "description": "Construimos los primeros prototipos asimétricos junto a ilustradores y velocistas en Barcelona." },
+        { "year": "2022", "title": "Salto material", "description": "Sellamos una receta textil que mantiene la tinta saturada hasta 3 ºC más fresca." },
+        { "year": "2024", "title": "Lanzamiento comunitario", "description": "Abrimos la One Sleeve Residency para que lxs atletas prototipen en vivo con el equipo de Laura." },
+        { "year": "2025", "title": "Debut global", "description": "Coello One se lanza internacionalmente con hubs educativos localizados y storytelling atlético." }
+      ]
+    },
+    "cta": {
+      "label": "Descubre la One-Sleeve Classic",
+      "href": "/one-sleeve-classic"
+    }
+  },
+  "discounts": {
+    "metadata": {
+      "title": "Descuentos e ingresos VIP",
+      "description": "La lista de espera para lanzamientos que realmente importan."
+    },
+    "hero": {
+      "kicker": "Descuentos y drops",
+      "title": "No hacemos rebajas eternas. Planeamos recompensas precisas.",
+      "description": "Únete a la lista exclusiva para activar la próxima ventana promocional, estudios de color y residencias privadas."
+    },
+    "statusCard": {
+      "title": "Hoy no hay promos masivas",
+      "body": "Preferimos proteger la artesanía antes que bajar precios cada fin de semana. La siguiente oferta será limitada, intencional y se enviará primero a esta lista.",
+      "reminderLabel": "Lo que recibes"
+    },
+    "benefits": [
+      {
+        "title": "Precios de lanzamiento",
+        "description": "Sé la primera persona en enterarte cuando haya un nuevo color o tejido y recibe un código único."
+      },
+      {
+        "title": "Invitaciones a residencias",
+        "description": "Acceso prioritario a talleres virtuales con Laura y atletas invitados para co-diseñar futuros lanzamientos."
+      },
+      {
+        "title": "Inteligencia de entrenamiento",
+        "description": "Micro guías mensuales del Coello Education Hub enfocadas en piel en recuperación y semanas de alto volumen."
+      }
+    ],
+    "privacy": {
+      "title": "Nuestra promesa de privacidad",
+      "points": [
+        "Nada de spam: solo actualizaciones con propósito ligadas a drops o educación.",
+        "Los datos se quedan en Coello. Nunca venderemos ni compartiremos tu información.",
+        "Puedes salirte cuando quieras con un solo clic."
+      ]
+    },
+    "form": {
+      "title": "Reserva tu futuro código",
+      "description": "Añade tu correo para recibir el aviso en cuanto activemos un descuento o lanzamiento privado.",
+      "emailPlaceholder": "tu@email.com",
+      "submitLabel": "Unirme a la lista",
+      "privacyNote": "Al enviar aceptas recibir actualizaciones curadas de Coello. Sin spam, lo prometemos.",
+      "successTitle": "Ya estás en la lista",
+      "successDescription": "Te avisaremos antes de la próxima ventana promocional: espera algo relevante, nunca masivo.",
+      "validation": {
+        "required": "El correo es obligatorio",
+        "invalid": "Introduce una dirección válida",
+        "refine": "¿Quisiste escribir .com?"
+      }
+    }
+  },
+  "educationHub": {
+    "metadata": {
+      "title": "Coello Education Hub",
+      "description": "Inteligencia sobre salud, sueño y actividad para atletas que también son lienzos."
+    },
+    "hero": {
+      "kicker": "Education Hub",
+      "title": "Entrena mejor, recupera más rápido, deja que el arte respire.",
+      "description": "Alterna entre Salud, Sueño y Actividad con guías creadas junto a preparadores físicos, especialistas en recuperación y el consejo de atletas de Laura."
+    },
+    "tabs": [
+      {
+        "key": "health",
+        "label": "Salud",
+        "title": "Bases de la nutrición",
+        "description": "Diseña rituales diarios que nutren la piel y sostienen el rendimiento.",
+        "image": "/athletes/vertical/main-secondary-4.jpg",
+        "imageAlt": "Atleta hidratándose después del entrenamiento",
+        "focusPoints": [
+          "Hidrátate con 35 ml por kg de peso corporal y suma electrolitos cuando la sesión supere 60 minutos.",
+          "Prioriza 30 g de proteína dentro de los 30 minutos posteriores para acelerar la reparación.",
+          "Vitamina D y omega 3 ayudan a mantener la viveza del tatuaje y reducen la inflamación."
+        ],
+        "highlights": [
+          { "title": "Comidas de micro recuperación", "description": "Llena el plato con pigmentos intensos—frutos rojos, hojas verdes, cítricos—para mantener el brillo de la piel." },
+          { "title": "Hidratación sin fricción", "description": "Lleva botellas térmicas del lado tatuado para evitar que la tinta se degrade con el sol." }
+        ],
+        "resources": [
+          {
+            "label": "YouTube · Protocolo de movilidad + combustible",
+            "type": "video",
+            "href": "https://www.youtube.com/watch?v=UItWltVZZmE",
+            "description": "Rutina guiada de 20 minutos que combina movilidad dinámica con recordatorios de nutrición."
+          },
+          {
+            "label": "Descarga · Plantilla de nutrición Coello",
+            "type": "program",
+            "href": "https://coello.one/resources/fueling-template.pdf",
+            "description": "Plan imprimible de macros e hidratación probado en nuestra residencia."
+          }
+        ],
+        "cta": {
+          "label": "Ver la guía completa de nutrición",
+          "href": "https://coello.one/blog/fueling"
+        }
+      },
+      {
+        "key": "sleep",
+        "label": "Sueño",
+        "title": "Duerme como si importara",
+        "description": "Protege las horas donde ocurre la adaptación y la reparación de la tinta.",
+        "image": "/athletes/horizontal/main-secondary-h-4.jpg",
+        "imageAlt": "Atleta descansando en un estudio tenue",
+        "focusPoints": [
+          "Apunta a 7,5–9 horas con horarios consistentes incluso en giras.",
+          "Crea rituales: sauna infrarroja o ducha caliente, magnesio glicinato, paneles blackout del lado tatuado.",
+          "Controla HRV y pulso en reposo para decidir cuándo bajar la intensidad."
+        ],
+        "highlights": [
+          { "title": "Disciplina de luz", "description": "Cambia el scroll por respiraciones con lentes bloqueadores de azul." },
+          { "title": "Tejidos amigables", "description": "Duerme con fibras de eucalipto transpirables para reducir la fricción." }
+        ],
+        "resources": [
+          {
+            "label": "Podcast · Profundidad en recuperación",
+            "type": "audio",
+            "href": "https://www.youtube.com/watch?v=RrwC6KqAZNo",
+            "description": "La científica del sueño Kristen Holmes comparte rutinas amigas del HRV."
+          },
+          {
+            "label": "Guía · Kit de sueño para viajes",
+            "type": "article",
+            "href": "https://coello.one/blog/sleep-kit",
+            "description": "Los cinco básicos que Laura lleva a cada gira larga."
+          }
+        ],
+        "cta": {
+          "label": "Descargar checklist de sueño",
+          "href": "https://coello.one/resources/sleep-checklist.pdf"
+        }
+      },
+      {
+        "key": "activity",
+        "label": "Actividad",
+        "title": "Programación que respeta el arte",
+        "description": "Combina rendimiento con cuidado de la piel en cada bloque de entrenamiento.",
+        "image": "/athletes/vertical/main-secondary-7.jpg",
+        "imageAlt": "Atleta sprintando con top asimétrico",
+        "focusPoints": [
+          "Alterna rutinas push/pull con sesiones de movilidad en días de curación de tatuajes.",
+          "Incluye contrast training dos veces por semana para mantener el sistema nervioso alerta sin rozar la manga.",
+          "Programa sesiones indoor sin UV durante 48 horas posteriores a un tatuaje para cuidar el pigmento."
+        ],
+        "highlights": [
+          { "title": "Bloques de contraste", "description": "Combina peso muerto con empujes de trineo para potencia sin abrasión." },
+          { "title": "Inteligencia de coaches", "description": "Lxs coaches residentes comparten tips semanales en el Discord de Coello." }
+        ],
+        "resources": [
+          {
+            "label": "Video · Sesión asimétrica de Laura",
+            "type": "video",
+            "href": "https://www.youtube.com/watch?v=mgHz0YLq5z8",
+            "description": "Rutina de cuerpo completo que muestra puntos de ventilación de la manga."
+          },
+          {
+            "label": "Programa · Plan híbrido de 4 semanas",
+            "type": "program",
+            "href": "https://coello.one/programs/hybrid.pdf",
+            "description": "Bloque descargable que alterna fuerza, conditioning y skill days."
+          }
+        ],
+        "cta": {
+          "label": "Únete al Discord de Coello",
+          "href": "https://discord.gg/coello"
+        }
+      }
+    ],
+    "commitment": {
+      "title": "Experimentación constante",
+      "description": "El hub se actualiza cada mes con datos del laboratorio, entrevistas y experimentos de recuperación. Guarda tus recursos favoritos y cuéntanos qué construir." }
+  },
+  "sustainability": {
+    "metadata": {
+      "title": "Sostenibilidad",
+      "description": "Materiales conscientes, cadenas cortas y transparencia radical."
+    },
+    "hero": {
+      "kicker": "Sostenibilidad",
+      "title": "Rendimiento que respeta el lienzo y el planeta.",
+      "description": "Mantenemos una huella ligera con insumos reciclados, energía renovable y micro lotes bajo demanda."
+    },
+    "initiatives": [
+      {
+        "title": "Textiles de bajo impacto",
+        "description": "El 70% de cada manga se hila con nylon reciclado mezclado con elastano bio-based para mantener elasticidad y reducir residuos.",
+        "badge": "70% reciclado"
+      },
+      {
+        "title": "Producción trazable",
+        "description": "Seis talleres aliados en Portugal y España comparten paneles en vivo de agua, energía y estándares laborales.",
+        "badge": "Cadena UE"
+      },
+      {
+        "title": "Reparar antes que reemplazar",
+        "description": "Refuerzo gratuito de costuras y servicio de re-teñido durante 24 meses para alargar la vida de cada prenda.",
+        "badge": "Cuidado de por vida"
+      }
+    ],
+    "metrics": [
+      { "label": "Agua ahorrada por top", "value": "11 L" },
+      { "label": "Producción solar", "value": "82%" },
+      { "label": "Aliadxs locales", "value": "6" }
+    ],
+    "materials": {
+      "title": "Stack de materiales",
+      "items": [
+        "Fibras SeaCell® calman la piel recién tatuada con antioxidantes naturales.",
+        "Hilados teñidos en masa reducen los baños químicos un 40% mientras fijan el color.",
+        "Fundas de empaque biodegradables hechas con pulpa certificada FSC."
+      ]
+    },
+    "roadmap": {
+      "title": "Ruta hacia clima positivo",
+      "steps": [
+        { "year": "2025", "title": "Medir", "description": "Auditoría externa de cada proveedor y reporte público." },
+        { "year": "2026", "title": "Reducir", "description": "Transición a salas de corte 100% renovables y herrajes reciclados." },
+        { "year": "2027", "title": "Regenerar", "description": "Inversión en proyectos de reforestación amigables con tatuajes junto a artistas locales." }
+      ]
+    },
+    "cta": {
+      "label": "Lee el manifiesto de proveedores",
+      "href": "https://coello.one/sustainability/manifesto"
+    }
+  }
+}

@@ -8,7 +8,8 @@ const { Title, Paragraph, Text, Link } = Typography;
 
 export const metadata: Metadata = {
   title: "Return an Item | Coello Help",
-  description: "Start a return or exchange for your Coello one-sleeve essential in a few quick steps.",
+  description:
+    "Start a return or exchange for your Coello one-sleeve essential in a few quick steps.",
 };
 
 const steps = [

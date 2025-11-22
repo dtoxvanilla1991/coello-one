@@ -9,6 +9,7 @@ import helpContactEnGb from "./messages/en-GB/help-contact.json" assert { type: 
 import helpReturnsEnGb from "./messages/en-GB/help-returns.json" assert { type: "json" };
 import accessoriesEnGb from "./messages/en-GB/accessories.json" assert { type: "json" };
 import welcomeEnGb from "./messages/en-GB/welcome.json" assert { type: "json" };
+import pagesEnGb from "./messages/en-GB/pages.json" assert { type: "json" };
 import homeEsEs from "./messages/es-ES/home.json" assert { type: "json" };
 import bagEsEs from "./messages/es-ES/bag.json" assert { type: "json" };
 import checkoutEsEs from "./messages/es-ES/checkout.json" assert { type: "json" };
@@ -19,6 +20,7 @@ import helpContactEsEs from "./messages/es-ES/help-contact.json" assert { type: 
 import helpReturnsEsEs from "./messages/es-ES/help-returns.json" assert { type: "json" };
 import accessoriesEsEs from "./messages/es-ES/accessories.json" assert { type: "json" };
 import welcomeEsEs from "./messages/es-ES/welcome.json" assert { type: "json" };
+import pagesEsEs from "./messages/es-ES/pages.json" assert { type: "json" };
 import { DEFAULT_LOCALE, normalizeLocale } from "./config";
 
 const translations = {
@@ -33,6 +35,7 @@ const translations = {
     helpReturns: helpReturnsEnGb,
     accessories: accessoriesEnGb,
     welcome: welcomeEnGb,
+    pages: pagesEnGb,
   },
   "es-ES": {
     home: homeEsEs,
@@ -45,6 +48,7 @@ const translations = {
     helpReturns: helpReturnsEsEs,
     accessories: accessoriesEsEs,
     welcome: welcomeEsEs,
+    pages: pagesEsEs,
   },
 } as const;
 

@@ -182,6 +182,10 @@ it("routes to the locale bag", () => {
 - `@test-utils/trackEventMock`: import this mock to assert telemetry payloads; call `trackEventMock.mockReset()` inside `beforeEach` hooks so parallel specs stay isolated.
 - `@test-utils/clickWithAct`: wrap `fireEvent.click` calls with this helper to automatically run interactions inside `act()`—it keeps Ant Design form updates synchronous without repeating boilerplate.
 
+#### Footer Smoke Test
+
+- `config/footerLinks.smoke.test.ts` walks every footer link and asserts a 200 response. Set `FOOTER_LINKS_BASE_URL` (for example, `http://127.0.0.1:3000`) in CI to enable the check; when the variable is absent the suite is skipped locally so you can iterate without launching the dev server first.
+
 ### Analytics & Experimentation
 
 - Track key funnel events with `trackEvent`; include subtotal, shipping, total, and itemCount when instrumenting cart milestones.
