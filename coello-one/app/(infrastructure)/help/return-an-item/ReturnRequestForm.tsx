@@ -11,7 +11,7 @@ import {
   Select,
   Typography,
 } from "antd";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { z } from "zod";
 import { trackEvent } from "@/utils/trackEvent";
 
@@ -59,6 +59,7 @@ export default function ReturnRequestForm({
   const [form] = Form.useForm<ReturnFormValues>();
   const [submissionError, setSubmissionError] = useState<string | null>(null);
   const [confirmation, setConfirmation] = useState<ReturnFormValues | null>(null);
+  const startTimeRef = useRef<number>(typeof performance !== "undefined" ? performance.now() : Date.now());
 
   const initialValues: Partial<ReturnFormValues> = useMemo(
     () => ({
@@ -71,27 +72,48 @@ export default function ReturnRequestForm({
     [defaultEmail, initialOverrides],
   );
 
+  const resetTimer = () => {
+    startTimeRef.current = typeof performance !== "undefined" ? performance.now() : Date.now();
+  };
+
   const handleFinish = (values: ReturnFormValues) => {
+    trackEvent("help_return_request_attempt", {
+      resolution: values.resolution,
+      courier: values.courier,
+      reason: values.reason,
+    });
     const parsed = returnSchema.safeParse(values);
     if (!parsed.success) {
       setSubmissionError(parsed.error.issues[0]?.message ?? "Please review the form inputs.");
       setConfirmation(null);
+      trackEvent("help_return_request_error", {
+        resolution: values.resolution,
+        courier: values.courier,
+        reason: values.reason,
+        message: parsed.error.issues[0]?.message ?? "unknown",
+      });
       return;
     }
 
     setSubmissionError(null);
     const payload = parsed.data;
     setConfirmation(payload);
+    const responseTimeMs = Math.round(
+      (typeof performance !== "undefined" ? performance.now() : Date.now()) - startTimeRef.current,
+    );
     trackEvent("help_return_request", {
       resolution: payload.resolution,
       courier: payload.courier,
       reason: payload.reason,
+      responseTimeMs,
     });
+    resetTimer();
   };
 
   const handleRetry = () => {
     setConfirmation(null);
     setSubmissionError(null);
+    resetTimer();
   };
 
   if (confirmation) {

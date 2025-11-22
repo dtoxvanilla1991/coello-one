@@ -16,7 +16,16 @@ describe("ReturnRequestForm", () => {
     await clickWithAct(screen.getByRole("button", { name: /generate return label/i }));
 
     expect(await screen.findByText(/Order number should be at least 6 characters./i)).toBeTruthy();
-    expect(trackEventMock).not.toHaveBeenCalled();
+    expect(trackEventMock).toHaveBeenNthCalledWith(
+      1,
+      "help_return_request_attempt",
+      expect.objectContaining({ resolution: "Refund", courier: "DPD Pickup", reason: "Fit wasn't right" }),
+    );
+    expect(trackEventMock).toHaveBeenNthCalledWith(
+      2,
+      "help_return_request_error",
+      expect.objectContaining({ message: expect.stringContaining("at least 6 characters") }),
+    );
   });
 
   it("integration: logs a successful return when the form is valid", async () => {
@@ -34,9 +43,19 @@ describe("ReturnRequestForm", () => {
 
     expect(await screen.findByText(/Return request logged/i)).toBeTruthy();
     expect(screen.getByText(/Order COELLO777/i)).toBeTruthy();
-    expect(trackEventMock).toHaveBeenCalledWith(
-      "help_return_request",
+    expect(trackEventMock).toHaveBeenNthCalledWith(
+      1,
+      "help_return_request_attempt",
       expect.objectContaining({ resolution: "Refund", courier: "DPD Pickup" }),
+    );
+    expect(trackEventMock).toHaveBeenNthCalledWith(
+      2,
+      "help_return_request",
+      expect.objectContaining({
+        resolution: "Refund",
+        courier: "DPD Pickup",
+        responseTimeMs: expect.any(Number),
+      }),
     );
   });
 });

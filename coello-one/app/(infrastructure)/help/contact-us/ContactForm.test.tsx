@@ -25,7 +25,16 @@ describe("ContactForm", () => {
     expect(
       await screen.findByText(/Let us know how we can help—add at least 10 characters./i),
     ).toBeTruthy();
-    expect(trackEventMock).not.toHaveBeenCalled();
+    expect(trackEventMock).toHaveBeenNthCalledWith(
+      1,
+      "help_contact_request_attempt",
+      expect.objectContaining({ topic: "Order support", channel: "Email" }),
+    );
+    expect(trackEventMock).toHaveBeenNthCalledWith(
+      2,
+      "help_contact_request_error",
+      expect.objectContaining({ reason: expect.stringContaining("10 characters") }),
+    );
   });
 
   it("integration: shows the success state and tracks the request when inputs are valid", async () => {
@@ -44,6 +53,22 @@ describe("ContactForm", () => {
 
     expect(await screen.findByText(/Message received/i)).toBeTruthy();
     expect(screen.getByText(/We will reply via email shortly./i)).toBeTruthy();
-    expect(trackEventMock).toHaveBeenCalledWith("help_contact_request", expect.any(Object));
+    expect(trackEventMock).toHaveBeenNthCalledWith(
+      1,
+      "help_contact_request_attempt",
+      expect.objectContaining({
+        topic: "Order support",
+        channel: "Email",
+      }),
+    );
+    expect(trackEventMock).toHaveBeenNthCalledWith(
+      2,
+      "help_contact_request",
+      expect.objectContaining({
+        topic: "Order support",
+        channel: "Email",
+        responseTimeMs: expect.any(Number),
+      }),
+    );
   });
 });

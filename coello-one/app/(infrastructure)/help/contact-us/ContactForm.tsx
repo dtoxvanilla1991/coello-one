@@ -1,7 +1,7 @@
 "use client";
 
 import { Alert, Button, Card, Flex, Form, Input, Result, Select, Typography } from "antd";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { z } from "zod";
 import { trackEvent } from "@/utils/trackEvent";
 
@@ -45,6 +45,7 @@ export default function ContactForm({
   const [form] = Form.useForm<ContactFormValues>();
   const [error, setError] = useState<string | null>(null);
   const [complete, setComplete] = useState<ContactFormValues | null>(null);
+  const startTimeRef = useRef<number>(typeof performance !== "undefined" ? performance.now() : Date.now());
 
   const initialValues = useMemo(
     () => ({
@@ -56,26 +57,45 @@ export default function ContactForm({
     [defaultEmail, initialOverrides],
   );
 
+  const resetTimer = () => {
+    startTimeRef.current = typeof performance !== "undefined" ? performance.now() : Date.now();
+  };
+
   const handleFinish = (values: ContactFormValues) => {
+    trackEvent("help_contact_request_attempt", {
+      topic: values.topic,
+      channel: values.channel,
+    });
     const parsed = contactSchema.safeParse(values);
     if (!parsed.success) {
       setError(parsed.error.issues[0]?.message ?? "Please double-check your inputs.");
       setComplete(null);
+      trackEvent("help_contact_request_error", {
+        topic: values.topic,
+        channel: values.channel,
+        reason: parsed.error.issues[0]?.message ?? "unknown",
+      });
       return;
     }
 
     setError(null);
     setComplete(parsed.data);
+    const responseTimeMs = Math.round(
+      (typeof performance !== "undefined" ? performance.now() : Date.now()) - startTimeRef.current,
+    );
     trackEvent("help_contact_request", {
       topic: parsed.data.topic,
       channel: parsed.data.channel,
+      responseTimeMs,
     });
+    resetTimer();
   };
 
   const resetForm = () => {
     setComplete(null);
     setError(null);
     form.resetFields();
+    resetTimer();
   };
 
   if (complete) {

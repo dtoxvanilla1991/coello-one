@@ -11,6 +11,7 @@ export const routes = {
   helpReturnAnItem: "/help/return-an-item",
   helpContactUs: "/help/contact-us",
   helpOrdersInternational: "/help/orders-international",
+  helpKpiDashboard: "/help/kpi-dashboard",
   accessDenied: "/access-denied",
   comingSoon: "/coming-soon",
   maintenance: "/maintenance",
