@@ -26,16 +26,7 @@ const nextConfig: NextConfig = {
         source: "/home",
         destination: "/",
         permanent: true,
-      },
-      {
-        source: "/:locale(en-GB|es-ES)",
-        destination: "/",
-        permanent: false,
-      },
-      {
-        source: "/:locale(en-GB|es-ES)/:path*",
-        destination: "/:path*",
-        permanent: false,
+        locale: false,
       },
     ];
   },

@@ -33,6 +33,7 @@ Serena Workflow
 - Always start with Context7 when gathering code or documentation context; cite the retrieved snippet IDs in your Serena notes before making edits so the lineage is preserved.
 - Golden rule: mobile-first by default. Ship the smallest breakpoint first, validate it, then expand to tablet/desktop.
 - Follow the testing and navigation guidance documented in `coello-one/README.md` (see the AI Operations Handbook section) before touching specs.
+- When writing tests, reference the "Shared Testing Helpers" section in `coello-one/README.md` and reuse `@test-utils/trackEventMock` plus `@test-utils/clickWithAct` instead of re-creating mocks or ad-hoc act wrappers.
 - Keep individual component files under ~300 lines. When they grow larger, extract child components and relocate static data, option lists, and type/interface/enum declarations into adjacent modules (for example `constants.ts`, `types.ts`) to stay decoupled.
 - Enforce the React 19.2 toolkit across features: favor Activity-based pre-rendering over conditional mounts, split effect event handlers with `useEffectEvent`, and wire cache-boundary work to the resume/prerender APIs when building data-heavy flows.
 - Prefer semantic queries in tests—reserve `data-testid` for cases where accessible roles, labels, or text are unavailable, and capture any exception in Serena.

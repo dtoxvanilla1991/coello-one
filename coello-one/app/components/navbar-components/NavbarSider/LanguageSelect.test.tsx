@@ -1,12 +1,7 @@
 import { beforeAll, beforeEach, afterAll, describe, expect, it, mock } from "bun:test";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { routerMocks, resetNavigationMocks } from "@test-utils/navigation";
-
-const trackEventSpy = mock(() => {});
-
-mock.module("@/utils/trackEvent", () => ({
-  trackEvent: trackEventSpy,
-}));
+import { trackEventMock } from "@test-utils/trackEventMock";
 
 const { default: LanguageSelect } = await import("./LanguageSelect");
 
@@ -40,7 +35,7 @@ beforeEach(() => {
   resetNavigationMocks();
   fetchSpy.mockClear();
   routerMocks.refresh.mockClear();
-  trackEventSpy.mockClear();
+  trackEventMock.mockClear();
 });
 
 describe("LanguageSelect", () => {
@@ -90,7 +85,7 @@ describe("LanguageSelect", () => {
     });
 
     expect(routerMocks.refresh).not.toHaveBeenCalled();
-    expect(trackEventSpy).toHaveBeenCalledWith("locale_switch_failed", {
+    expect(trackEventMock).toHaveBeenCalledWith("locale_switch_failed", {
       locale: "es-ES",
       reason: "Locale update failed with status 503",
     });

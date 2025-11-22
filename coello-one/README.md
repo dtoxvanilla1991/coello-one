@@ -177,6 +177,11 @@ it("routes to the locale bag", () => {
 
 - Prefer React Testing Library for component assertions and lean on Jotai’s `Provider` when stateful atoms are involved.
 
+#### Shared Testing Helpers
+
+- `@test-utils/trackEventMock`: import this mock to assert telemetry payloads; call `trackEventMock.mockReset()` inside `beforeEach` hooks so parallel specs stay isolated.
+- `@test-utils/clickWithAct`: wrap `fireEvent.click` calls with this helper to automatically run interactions inside `act()`—it keeps Ant Design form updates synchronous without repeating boilerplate.
+
 ### Analytics & Experimentation
 
 - Track key funnel events with `trackEvent`; include subtotal, shipping, total, and itemCount when instrumenting cart milestones.

@@ -1,11 +1,6 @@
-import { beforeEach, describe, expect, it, mock } from "bun:test";
+import { beforeEach, describe, expect, it } from "bun:test";
 import { fireEvent, render, screen } from "@testing-library/react";
-
-const trackEventMock = mock<(event: string, payload?: unknown) => void>(() => {});
-
-mock.module("@/utils/trackEvent", () => ({
-  trackEvent: trackEventMock,
-}));
+import { trackEventMock } from "@test-utils/trackEventMock";
 
 const { default: ContactForm } = await import("./ContactForm");
 

@@ -1,15 +1,11 @@
-import { beforeEach, describe, expect, it, mock } from "bun:test";
+import { beforeEach, describe, expect, it } from "bun:test";
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { Provider, createStore } from "jotai";
 import type { CartItem } from "@/store/cartStore";
 import { cartItemsAtom } from "@/store/cartStore";
 import { resetNavigationMocks, routerMocks } from "@test-utils/navigation";
-
-const trackEventMock = mock<(event: string, payload?: unknown, meta?: unknown) => void>(() => {});
-
-mock.module("@/utils/trackEvent", () => ({
-  trackEvent: trackEventMock,
-}));
+import { trackEventMock } from "@test-utils/trackEventMock";
+import { clickWithAct } from "@test-utils/clickWithAct";
 
 const { CheckoutContent } = await import("./CheckoutContent");
 
@@ -120,7 +116,7 @@ describe("CheckoutContent", () => {
       }
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /back to bag/i }));
+    await clickWithAct(screen.getByRole("button", { name: /back to bag/i }));
 
     expect(routerMocks.push).toHaveBeenCalledWith("/bag");
   });

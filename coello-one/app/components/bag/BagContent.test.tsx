@@ -1,15 +1,10 @@
-import { beforeEach, describe, expect, it, mock } from "bun:test";
+import { beforeEach, describe, expect, it } from "bun:test";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { Provider, createStore } from "jotai";
 import type { CartItem } from "@/store/cartStore";
 import { cartItemsAtom } from "@/store/cartStore";
 import { resetNavigationMocks, routerMocks } from "@test-utils/navigation";
-
-const trackEventMock = mock<(event: string, payload?: unknown, meta?: unknown) => void>(() => {});
-
-mock.module("@/utils/trackEvent", () => ({
-  trackEvent: trackEventMock,
-}));
+import { trackEventMock } from "@test-utils/trackEventMock";
 
 const { BagContent } = await import("./BagContent");
 
