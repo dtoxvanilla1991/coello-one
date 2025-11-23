@@ -54,8 +54,7 @@ export default function ContactForm({
     [defaultEmail, initialOverrides],
   );
 
-  const getTimestamp = () =>
-    (typeof performance !== "undefined" ? performance.now() : Date.now());
+  const getTimestamp = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
 
   const resetTimer = () => {
     startTimeRef.current = getTimestamp();
