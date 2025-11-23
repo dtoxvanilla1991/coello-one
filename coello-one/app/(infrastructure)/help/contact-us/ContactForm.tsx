@@ -1,7 +1,7 @@
 "use client";
 
 import { Alert, Button, Card, Flex, Form, Input, Result, Select, Typography } from "antd";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { z } from "zod";
 import { trackEvent } from "@/utils/trackEvent";
 
@@ -42,9 +42,7 @@ export default function ContactForm({
   const [form] = Form.useForm<ContactFormValues>();
   const [error, setError] = useState<string | null>(null);
   const [complete, setComplete] = useState<ContactFormValues | null>(null);
-  const startTimeRef = useRef<number>(
-    typeof performance !== "undefined" ? performance.now() : Date.now(),
-  );
+  const startTimeRef = useRef<number | null>(null);
 
   const initialValues = useMemo(
     () => ({
@@ -56,9 +54,16 @@ export default function ContactForm({
     [defaultEmail, initialOverrides],
   );
 
+  const getTimestamp = () =>
+    (typeof performance !== "undefined" ? performance.now() : Date.now());
+
   const resetTimer = () => {
-    startTimeRef.current = typeof performance !== "undefined" ? performance.now() : Date.now();
+    startTimeRef.current = getTimestamp();
   };
+
+  useEffect(() => {
+    startTimeRef.current = getTimestamp();
+  }, []);
 
   const handleFinish = (values: ContactFormValues) => {
     trackEvent("help_contact_request_attempt", {
@@ -79,9 +84,8 @@ export default function ContactForm({
 
     setError(null);
     setComplete(parsed.data);
-    const responseTimeMs = Math.round(
-      (typeof performance !== "undefined" ? performance.now() : Date.now()) - startTimeRef.current,
-    );
+    const startedAt = startTimeRef.current ?? getTimestamp();
+    const responseTimeMs = Math.round(getTimestamp() - startedAt);
     trackEvent("help_contact_request", {
       topic: parsed.data.topic,
       channel: parsed.data.channel,

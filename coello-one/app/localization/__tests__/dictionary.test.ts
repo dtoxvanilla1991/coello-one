@@ -15,6 +15,6 @@ describe("localization dictionary", () => {
 
   it("returns Spanish checkout copy when requested", () => {
     const copy = getNamespaceCopy("es-ES", "checkout");
-    expect(copy.hero.subtitleEmpty).toContain("Articulo");
+    expect(copy.hero.subtitleEmpty).toContain("Anade al menos un articulo");
   });
 });

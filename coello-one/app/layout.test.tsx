@@ -1,35 +1,24 @@
-import { render, cleanup, screen } from "@testing-library/react";
-import { describe, it, expect, afterEach } from "bun:test";
-import RootLayout from "./layout";
+import { beforeEach, describe, it, expect } from "bun:test";
+import { resetRequestLocaleState } from "@test-utils/requestLocaleState";
 
-// Manually cleaning up the DOM after each test to prevent test pollution
-afterEach(() => {
-  cleanup();
-  document.body.className = "";
+const { default: RootLayout } = await import("./layout");
+
+beforeEach(() => {
+  resetRequestLocaleState();
 });
 
 describe("RootLayout", () => {
-  it("should render its children", () => {
-    render(
-      <RootLayout>
-        <div>Hello World</div>
-      </RootLayout>,
-    );
-    const childElement = screen.getByText("Hello World");
-    expect(childElement).toBeTruthy();
-    expect(childElement.textContent).toBe("Hello World");
-  });
+  it("renders the locale shell with font utilities in test environments", async () => {
+    const tree = await RootLayout({
+      children: <div data-testid="child">Hello World</div>,
+    });
 
-  it("should apply the correct font and utility classes to the body element", () => {
-    const { container } = render(
-      <RootLayout>
-        <div />
-      </RootLayout>,
-    );
-    const wrapper = container.firstElementChild;
-    const className = wrapper?.getAttribute("class") || "";
-    expect(className).toContain("--font-geist-sans");
-    expect(className).toContain("--font-geist-mono");
-    expect(className).toContain("antialiased");
+    expect(tree.props.className).toContain("--font-geist-sans");
+    expect(tree.props.className).toContain("--font-geist-mono");
+    expect(tree.props.className).toContain("antialiased");
+
+    const provider = tree.props.children;
+    expect(provider.props.value).toBe("en-GB");
+    expect(provider.props.children.props["data-testid"]).toBe("child");
   });
 });

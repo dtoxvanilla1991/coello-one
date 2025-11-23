@@ -1,10 +1,13 @@
-// test-setup.ts
 import { GlobalRegistrator } from "@happy-dom/global-registrator";
 import { cleanup } from "@testing-library/react";
 import * as matchers from "@testing-library/jest-dom/matchers";
 import type { AnchorHTMLAttributes, ImgHTMLAttributes, ReactNode } from "react";
 import { expect, afterEach, mock } from "bun:test";
 import { getNavigationState, resetNavigationMocks, routerMocks } from "./test-utils/navigation";
+import {
+  requestLocaleHeaderState,
+  requestLocaleCookieState,
+} from "./test-utils/requestLocaleState";
 
 // Register the DOM environment
 GlobalRegistrator.register();
@@ -115,6 +118,30 @@ mock.module("next/link", () => ({
   },
 }));
 
+mock.module("next/headers", () => ({
+  __esModule: true,
+  headers: async () => ({
+    get: (key: string) => {
+      const normalized = key.toLowerCase();
+      if (normalized === "host") {
+        return requestLocaleHeaderState.host ?? null;
+      }
+      if (normalized === "accept-language") {
+        return requestLocaleHeaderState.acceptLanguage ?? null;
+      }
+      return null;
+    },
+  }),
+  cookies: async () => ({
+    get: (name: string) => {
+      if (name === "NEXT_LOCALE" && requestLocaleCookieState.NEXT_LOCALE) {
+        return { name, value: requestLocaleCookieState.NEXT_LOCALE };
+      }
+      return undefined;
+    },
+  }),
+}));
+
 // Mock next/navigation hooks and functions using shared router state
 mock.module("next/navigation", () => ({
   __esModule: true,
@@ -132,6 +159,9 @@ mock.module("next/navigation", () => ({
     throw new Error("NEXT_REDIRECT");
   },
 }));
+
+// Prevent server-only guard from throwing when server modules are imported in tests
+mock.module("server-only", () => ({}));
 
 // Mock AntdRegistry to be a pass-through wrapper in tests
 mock.module("@ant-design/nextjs-registry", () => ({

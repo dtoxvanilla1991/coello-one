@@ -37,6 +37,8 @@ type ReturnRequestFormProps = {
 
 const reasonOptions = ["Fit wasn't right", "Changed my mind", "Gift return", "Product issue"];
 
+const getTimestamp = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
+
 export default function ReturnRequestForm({
   defaultEmail,
   initialValues: initialOverrides = {},
@@ -44,9 +46,7 @@ export default function ReturnRequestForm({
   const [form] = Form.useForm<ReturnFormValues>();
   const [submissionError, setSubmissionError] = useState<string | null>(null);
   const [confirmation, setConfirmation] = useState<ReturnFormValues | null>(null);
-  const startTimeRef = useRef<number>(
-    typeof performance !== "undefined" ? performance.now() : Date.now(),
-  );
+  const startTimeRef = useRef<number | null>(null);
 
   const initialValues: Partial<ReturnFormValues> = useMemo(
     () => ({
@@ -60,7 +60,13 @@ export default function ReturnRequestForm({
   );
 
   const resetTimer = () => {
-    startTimeRef.current = typeof performance !== "undefined" ? performance.now() : Date.now();
+    startTimeRef.current = null;
+  };
+
+  const registerInteraction = () => {
+    if (startTimeRef.current === null) {
+      startTimeRef.current = getTimestamp();
+    }
   };
 
   const handleFinish = (values: ReturnFormValues) => {
@@ -71,13 +77,14 @@ export default function ReturnRequestForm({
     });
     const parsed = returnSchema.safeParse(values);
     if (!parsed.success) {
-      setSubmissionError(parsed.error.issues[0]?.message ?? "Please review the form inputs.");
+      const issueMessage = parsed.error.issues[0]?.message ?? "Please review the form inputs.";
+      setSubmissionError(issueMessage);
       setConfirmation(null);
       trackEvent("help_return_request_error", {
         resolution: values.resolution,
         courier: values.courier,
         reason: values.reason,
-        message: parsed.error.issues[0]?.message ?? "unknown",
+        message: issueMessage,
       });
       return;
     }
@@ -85,9 +92,8 @@ export default function ReturnRequestForm({
     setSubmissionError(null);
     const payload = parsed.data;
     setConfirmation(payload);
-    const responseTimeMs = Math.round(
-      (typeof performance !== "undefined" ? performance.now() : Date.now()) - startTimeRef.current,
-    );
+    const startedAt = startTimeRef.current ?? getTimestamp();
+    const responseTimeMs = Math.round(getTimestamp() - startedAt);
     trackEvent("help_return_request", {
       resolution: payload.resolution,
       courier: payload.courier,
@@ -140,6 +146,7 @@ export default function ReturnRequestForm({
           layout="vertical"
           initialValues={initialValues}
           onFinish={handleFinish}
+          onFocusCapture={registerInteraction}
         >
           <Form.Item<ReturnFormValues>
             name="orderId"
