@@ -1,0 +1,169 @@
+{
+  "metadata": {
+    "title": "Información de entrega | Ayuda Coello",
+    "description": "Consulta velocidades de entrega, precios y socios de mensajería de Coello en Reino Unido, UE y Norteamérica."
+  },
+  "breadcrumbLabel": "Centro de ayuda",
+  "title": "Información de entrega",
+  "description": "Todo lo que necesitas saber sobre cortes de despacho, precios y cómo protegemos tus paquetes.",
+  "calculator": {
+    "title": "Calculadora de envío",
+    "subtitle": "Simula el coste en segundos. Los umbrales de gasto desbloquean la entrega gratuita automáticamente.",
+    "regionLabel": "¿A dónde entregamos?",
+    "serviceLabel": "Elige un servicio",
+    "servicePlaceholder": "Selecciona la velocidad",
+    "serviceRequired": "Selecciona tu nivel de servicio.",
+    "orderValueLabel": "Valor del pedido (moneda local)",
+    "orderValuePlaceholder": "Introduce el total",
+    "orderValueRequired": "Introduce el total de tu pedido.",
+    "submitLabel": "Calcular envío",
+    "validationError": "Revisa los datos e inténtalo de nuevo.",
+    "combinationError": "Aún no enviamos esa combinación: elige otra opción.",
+    "complimentaryLabel": "Gratis",
+    "resultTitle": "Tu envío es {amount}",
+    "resultMeta": "{service} · {eta} · {cutoff}",
+    "savingsLabel": "Ahorraste {amount} en envío con tu gasto.",
+    "emptyPrompt": "Introduce tus datos y pulsa enviar para previsualizar el envío.",
+    "successTitle": "Cotización lista"
+  },
+  "sections": {
+    "speedsTitle": "Velocidades de un vistazo",
+    "speedsDescription": "El precio se ajusta según tu región en el checkout. Express y Same Day aparecen cuando tu código postal califica.",
+    "promisesTitle": "Lo que puedes esperar",
+    "packingTitle": "Del estudio a tu puerta",
+    "dutiesTitle": "Impuestos simplificados"
+  },
+  "matrixColumns": {
+    "region": "Región",
+    "service": "Servicio",
+    "eta": "Llegada estimada",
+    "cutoff": "Pide antes de",
+    "cost": "Costo"
+  },
+  "tiers": [
+    {
+      "id": "uk-standard",
+      "region": "Reino Unido",
+      "service": "Estándar",
+      "eta": "1-3 días laborables",
+      "cutoff": "Pide antes de las 16:00 GMT",
+      "displayCost": "£4.95",
+      "costValue": 4.95,
+      "currency": "GBP",
+      "freeThreshold": "Gratis desde £150",
+      "freeThresholdValue": 150
+    },
+    {
+      "id": "uk-express",
+      "region": "Reino Unido",
+      "service": "Express",
+      "eta": "Al día siguiente antes de las 18:00",
+      "cutoff": "Pide antes de las 19:00 GMT",
+      "displayCost": "£9.95",
+      "costValue": 9.95,
+      "currency": "GBP",
+      "freeThreshold": "Gratis desde £250",
+      "freeThresholdValue": 250
+    },
+    {
+      "id": "uk-same-day",
+      "region": "Londres Zonas 1-3",
+      "service": "Mismo día",
+      "eta": "Misma tarde",
+      "cutoff": "Pide antes de las 15:00 GMT",
+      "displayCost": "£14.95",
+      "costValue": 14.95,
+      "currency": "GBP"
+    },
+    {
+      "id": "eu-standard",
+      "region": "Unión Europea",
+      "service": "Estándar",
+      "eta": "3-6 días laborables",
+      "cutoff": "Pide antes de las 16:00 CET",
+      "displayCost": "€12.50",
+      "costValue": 12.5,
+      "currency": "EUR",
+      "freeThreshold": "Gratis desde €200",
+      "freeThresholdValue": 200
+    },
+    {
+      "id": "eu-express",
+      "region": "Unión Europea",
+      "service": "Express",
+      "eta": "2-3 días laborables",
+      "cutoff": "Pide antes de las 18:00 CET",
+      "displayCost": "€19.00",
+      "costValue": 19,
+      "currency": "EUR"
+    },
+    {
+      "id": "na-standard",
+      "region": "Norteamérica",
+      "service": "Estándar",
+      "eta": "4-7 días laborables",
+      "cutoff": "Pide antes de las 14:00 EST",
+      "displayCost": "$18.00",
+      "costValue": 18,
+      "currency": "USD",
+      "freeThreshold": "Gratis desde $250",
+      "freeThresholdValue": 250
+    },
+    {
+      "id": "na-express",
+      "region": "Norteamérica",
+      "service": "Express",
+      "eta": "2-4 días laborables",
+      "cutoff": "Pide antes de las 18:00 EST",
+      "displayCost": "$28.00",
+      "costValue": 28,
+      "currency": "USD"
+    }
+  ],
+  "promises": [
+    {
+      "title": "Seguimiento proactivo",
+      "description": "Recibe hitos del mensajero en tu idioma con ajustes de ETA al minuto."
+    },
+    {
+      "title": "Destinos flexibles",
+      "description": "Redirige a un punto DPD, locker DHL o mostrador concierge en dos toques desde el enlace de seguimiento."
+    },
+    {
+      "title": "Logística con huella consciente",
+      "description": "Consolidamos envíos a diario y compensamos con proyectos textiles regenerativos verificados."
+    }
+  ],
+  "packingSteps": [
+    {
+      "title": "Pedido confirmado",
+      "description": "El ruteo inteligente elige el centro más cercano y asigna el inventario ideal."
+    },
+    {
+      "title": "Chequeo de rendimiento",
+      "description": "Cada prenda pasa pruebas de absorción y sellado de la manga antes del embolsado."
+    },
+    {
+      "title": "Empaque seguro",
+      "description": "Precintos anti-manipulación y acolchado reciclado protegen tu manga en tránsito."
+    },
+    {
+      "title": "Entrega al mensajero",
+      "description": "Entregamos a socios de confianza con seguro equivalente al valor del pedido por defecto."
+    }
+  ],
+  "dutyInsights": [
+    {
+      "market": "Aduanas UE",
+      "detail": "Enviamos desde Rotterdam, por lo que no hay arancel adicional para clientes europeos."
+    },
+    {
+      "market": "EE. UU. y Canadá",
+      "detail": "Las tasas se pre-pagan hasta $800; importes superiores se gestionan automáticamente vía DHL."
+    },
+    {
+      "market": "Oriente Medio",
+      "detail": "Calculamos IVA y aranceles en el checkout, así evitas sorpresas en la entrega."
+    }
+  ]
+}

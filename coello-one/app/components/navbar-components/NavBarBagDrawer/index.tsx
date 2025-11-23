@@ -8,10 +8,7 @@ interface NavBarBagDrawerProps {
   handleShowBag: () => void;
 }
 
-const NavBarBagDrawer: React.FC<NavBarBagDrawerProps> = ({
-  showBag,
-  handleShowBag,
-}) => {
+const NavBarBagDrawer: React.FC<NavBarBagDrawerProps> = ({ showBag, handleShowBag }) => {
   return (
     <Drawer
       title="YOUR BAG"
@@ -24,20 +21,22 @@ const NavBarBagDrawer: React.FC<NavBarBagDrawerProps> = ({
       //     </Button>
       //   }
       onClose={handleShowBag}
-      open={showBag}>
+      open={showBag}
+    >
       <Empty
         description="Your bag is empty"
         className="uppercase"
         image={<EmptyBagIcon />}
-        styles={{ image: { marginBottom: 0 } }}>
+        styles={{ image: { marginBottom: 0 } }}
+      >
         <Space direction="vertical">
           <Button type="primary" className="w-full">
-            <Text className="uppercase text-white!" strong>
+            <Text className="text-white! uppercase" strong>
               Shop men
             </Text>
           </Button>
           <Button type="primary">
-            <Text className="uppercase text-white!" strong>
+            <Text className="text-white! uppercase" strong>
               Shop women
             </Text>
           </Button>

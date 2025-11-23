@@ -1,9 +1,13 @@
 {
-  "cSpell.words": ["Coello"],
+  "cSpell.words": [
+    "Coello",
+    "lockfiles",
+    "piptools",
+    "venv",
+    "VENV",
+    "Virtualenv"
+  ],
   "npm.packageManager": "bun",
   "typescript.preferences.importModuleSpecifier": "relative",
-  "github.copilot.chat.agent.terminal.allowList": {
-    "bun run test": true,
-    "/^git (status|log)$/": true
-  }
+  "eslint.useFlatConfig": true
 }

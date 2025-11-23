@@ -1,0 +1,44 @@
+"use client";
+
+import { Button, Flex } from "antd";
+import type { CartItem } from "@/store/cartStore";
+import type { ExtraItem } from "../types";
+import { useTranslations } from "@/localization/useTranslations";
+import { BagItemCard } from "./BagItemCard";
+import { RecommendedExtrasCard } from "./RecommendedExtrasCard";
+
+type BagItemsSectionProps = {
+  items: CartItem[];
+  onQuantityChange: (id: string, quantity: number) => void;
+  onRemove: (id: string) => void;
+  onAddExtra: (extra: ExtraItem) => void;
+  onContinueShopping: () => void;
+};
+
+export function BagItemsSection({
+  items,
+  onQuantityChange,
+  onRemove,
+  onAddExtra,
+  onContinueShopping,
+}: BagItemsSectionProps) {
+  const bagCopy = useTranslations("bag");
+  return (
+    <Flex vertical gap={16} className="min-w-0 flex-1">
+      {items.map((item) => (
+        <BagItemCard
+          key={item.id}
+          item={item}
+          onQuantityChange={onQuantityChange}
+          onRemove={onRemove}
+        />
+      ))}
+
+      <RecommendedExtrasCard items={items} onAddExtra={onAddExtra} />
+
+      <Button type="link" onClick={onContinueShopping}>
+        {bagCopy.items.continueShopping}
+      </Button>
+    </Flex>
+  );
+}

@@ -1,0 +1,344 @@
+{
+  "about": {
+    "metadata": {
+      "title": "About Coello One",
+      "description": "Meet the one-sleeve performance house celebrating athletes who treat their bodies as galleries."
+    },
+    "hero": {
+      "kicker": "About Coello One",
+      "title": "One sleeve. Every story on display.",
+      "description": "Empowering you to showcase your story—one sleeve at a time. Coello One fuses bold design with technical performance so your art and athleticism never have to compete.",
+      "highlightStats": [
+        { "label": "Prototype hours", "value": "3,200+" },
+        { "label": "Fit testers worldwide", "value": "140" },
+        { "label": "Visible ink coverage", "value": "92%" }
+      ]
+    },
+    "story": {
+      "title": "Built for the niche-within-a-niche",
+      "paragraphs": [
+        "We always saw a disconnect. You commit hours under the needle so your story lives on your skin, then you grind through training only to cover it up. At Coello, we believe your art and your athleticism come from the same fire.",
+        "Our one-sleeve design is not a gimmick. It is the frame your masterpiece deserves—technical apparel tuned for performance, with a fit that finally celebrates the way you've chosen to express yourself.",
+        "This brand is for everyone who knows the patience of the artist's chair and the burn of the last rep. We are a statement as much as we are a garment."
+      ],
+      "quote": {
+        "text": "Both your art and your training are proof of persistence. Our job is to let that proof be seen.",
+        "attribution": "Laura Gomez · Chief Designer"
+      }
+    },
+    "pillars": [
+      {
+        "id": "craft",
+        "title": "Intentional asymmetry",
+        "description": "3D body mapping keeps compression where you need stability and releases the tattooed side so ink stays breathable and bright.",
+        "statLabel": "Proto cycles",
+        "statValue": "214"
+      },
+      {
+        "id": "performance",
+        "title": "Performance-grade fabrics",
+        "description": "Moisture-channeling Italian yarns, micro-wicking mesh, and bonded seams move with every lift, stride, and strike.",
+        "statLabel": "Fabric innovations",
+        "statValue": "4"
+      },
+      {
+        "id": "community",
+        "title": "Community-built rituals",
+        "description": "We co-create with athletes who are also canvases—from muralists to MMA artists—so every drop honors lived experience.",
+        "statLabel": "Artist labs",
+        "statValue": "12"
+      }
+    ],
+    "timeline": {
+      "title": "Milestones that shaped Coello",
+      "milestones": [
+        {
+          "year": "2019",
+          "title": "Observation",
+          "description": "Noticed elite athletes hiding tattoos mid-training and mapped the ergonomic gap."
+        },
+        {
+          "year": "2020",
+          "title": "First lab",
+          "description": "Built our first asymmetrical prototypes alongside illustrators and sprinters in Barcelona."
+        },
+        {
+          "year": "2022",
+          "title": "Material breakthrough",
+          "description": "Locked a fabric recipe that keeps saturated ink tones cooler by up to 3ºC."
+        },
+        {
+          "year": "2024",
+          "title": "Community drop",
+          "description": "Opened the One Sleeve Residency so athletes can prototype live with Laura's team."
+        },
+        {
+          "year": "2025",
+          "title": "Global debut",
+          "description": "Coello One launches internationally with localized education hubs and athlete storytelling."
+        }
+      ]
+    },
+    "cta": {
+      "label": "Explore the One-Sleeve Classic",
+      "href": "/one-sleeve-classic"
+    }
+  },
+  "discounts": {
+    "metadata": {
+      "title": "Discounts & VIP access",
+      "description": "The waitlist for future drops that actually matter."
+    },
+    "hero": {
+      "kicker": "Discounts & Drops",
+      "title": "We don't run endless sales. We plan precise rewards.",
+      "description": "Join the insider list to unlock the next promo window, exclusive color studies, and residency invites."
+    },
+    "statusCard": {
+      "title": "No blanket promos today",
+      "body": "We'd rather protect craftsmanship than slash prices every weekend. The next offer will be limited, intentional, and delivered directly to this list first.",
+      "reminderLabel": "What you get"
+    },
+    "benefits": [
+      {
+        "title": "Launch-window pricing",
+        "description": "Be the first to know when a new one-sleeve colorway or fabric update drops and receive a one-time code."
+      },
+      {
+        "title": "Residency invites",
+        "description": "Priority access to virtual workshops with Laura and guest athletes to co-design future releases."
+      },
+      {
+        "title": "Training intelligence",
+        "description": "Monthly micro-guides from the Coello Education Hub tailored to recovering skin and high-output weeks."
+      }
+    ],
+    "privacy": {
+      "title": "Our privacy promise",
+      "points": [
+        "No spam—just purposeful updates tied to drops or education.",
+        "Data stays with Coello. We will never sell, rent, or trade your contact details.",
+        "You can leave the list at any time with a single click."
+      ]
+    },
+    "form": {
+      "title": "Reserve your future code",
+      "description": "Add your email to be notified the moment we activate a discount or private launch.",
+      "emailPlaceholder": "you@email.com",
+      "submitLabel": "Join the waitlist",
+      "privacyNote": "By submitting you agree to receive curated Coello updates. No spam, promise.",
+      "successTitle": "You're on the list",
+      "successDescription": "We'll notify you ahead of the next promo window—expect something purposeful, not spammy.",
+      "validation": {
+        "required": "Email is required",
+        "invalid": "Please enter a valid email address",
+        "refine": "Did you mean .com?"
+      }
+    }
+  },
+  "educationHub": {
+    "metadata": {
+      "title": "Coello Education Hub",
+      "description": "Health, sleep, and activity intel curated for athletes who are also canvases."
+    },
+    "hero": {
+      "kicker": "Education Hub",
+      "title": "Train smarter, heal faster, let the art breathe.",
+      "description": "Switch between Health, Sleep, and Activity guidance crafted with performance coaches, recovery techs, and Laura's athlete council."
+    },
+    "tabs": [
+      {
+        "key": "health",
+        "label": "Health",
+        "title": "Fueling foundations",
+        "description": "Dial in daily rituals that keep skin nourished and output high.",
+        "image": "/athletes/vertical/main-secondary-4.jpg",
+        "imageAlt": "Athlete hydrating post-session",
+        "focusPoints": [
+          "Hydrate at 35 ml per kg of bodyweight and add electrolytes when training exceeds 60 minutes.",
+          "Prioritize 30g of protein within 30 minutes post-session to accelerate tissue repair.",
+          "Vitamin D and omega-3 stacks support vibrant ink and lower inflammation markers."
+        ],
+        "highlights": [
+          {
+            "title": "Micro-recovery meals",
+            "description": "Build plates with bold pigments—berries, leafy greens, citrus—to keep skin glow strong."
+          },
+          {
+            "title": "Low-friction hydration",
+            "description": "Carry insulated bottles on the side of your ink to prevent UV fade between sessions."
+          }
+        ],
+        "resources": [
+          {
+            "label": "YouTube · Mobility + fueling protocol",
+            "type": "video",
+            "href": "https://www.youtube.com/watch?v=UItWltVZZmE",
+            "description": "20-minute guided routine pairing dynamic prep with fueling cues."
+          },
+          {
+            "label": "Download · Coello fueling template",
+            "type": "program",
+            "href": "https://coello.one/resources/fueling-template.pdf",
+            "description": "Printable macro + hydration tracker tested by our residency."
+          }
+        ],
+        "cta": {
+          "label": "View complete fueling guide",
+          "href": "https://coello.one/blog/fueling"
+        }
+      },
+      {
+        "key": "sleep",
+        "label": "Sleep",
+        "title": "Sleep like you mean it",
+        "description": "Protect the hours where adaptation and ink repair happen.",
+        "image": "/athletes/horizontal/main-secondary-h-4.jpg",
+        "imageAlt": "Athlete resetting in dim studio",
+        "focusPoints": [
+          "Aim for 7.5–9 hours with consistent bed times even during travel blocks.",
+          "Stack rituals: infrared or warm shower, magnesium glycinate, black-out panels on the tattooed side.",
+          "Track HRV and resting heart rate to gauge when to downshift intensity."
+        ],
+        "highlights": [
+          {
+            "title": "Light discipline",
+            "description": "Swap phone doom scrolling for breathing drills while wearing blue-light lenses."
+          },
+          {
+            "title": "Ink-safe fabrics",
+            "description": "Sleep in breathable eucalyptus fibers to reduce friction on fresh tattoos."
+          }
+        ],
+        "resources": [
+          {
+            "label": "Podcast · Whoop recovery deep dive",
+            "type": "audio",
+            "href": "https://www.youtube.com/watch?v=RrwC6KqAZNo",
+            "description": "Sleep scientist Kristen Holmes on HRV-friendly routines."
+          },
+          {
+            "label": "Guide · Travel-ready sleep kit",
+            "type": "article",
+            "href": "https://coello.one/blog/sleep-kit",
+            "description": "The five items Laura packs for long-haul showings."
+          }
+        ],
+        "cta": {
+          "label": "Download the sleep checklist",
+          "href": "https://coello.one/resources/sleep-checklist.pdf"
+        }
+      },
+      {
+        "key": "activity",
+        "label": "Activity",
+        "title": "Programming that flexes with art",
+        "description": "Layer performance with skin-first considerations across training blocks.",
+        "image": "/athletes/vertical/main-secondary-7.jpg",
+        "imageAlt": "Athlete sprinting in asymmetrical top",
+        "focusPoints": [
+          "Alternate push/pull splits with mobility resets on days when tattoos are healing.",
+          "Use contrast training (heavy + plyo) twice per week to keep the nervous system sharp without over-rubbing sleeves.",
+          "Schedule UV-free indoor sessions 48 hours post-ink to maintain pigment integrity."
+        ],
+        "highlights": [
+          {
+            "title": "Contrast blocks",
+            "description": "Pair trap-bar deadlifts with sled pushes for power without abrasion."
+          },
+          {
+            "title": "Coaching intel",
+            "description": "Resident coaches drop weekly cues inside the Coello Discord."
+          }
+        ],
+        "resources": [
+          {
+            "label": "Video · Laura's asymmetry session",
+            "type": "video",
+            "href": "https://www.youtube.com/watch?v=mgHz0YLq5z8",
+            "description": "Full-body routine demonstrating sleeve ventilation checkpoints."
+          },
+          {
+            "label": "Program · 4-week hybrid plan",
+            "type": "program",
+            "href": "https://coello.one/programs/hybrid.pdf",
+            "description": "Downloadable block alternating strength, conditioning, and skill days."
+          }
+        ],
+        "cta": {
+          "label": "Join the Coello Discord",
+          "href": "https://discord.gg/coello"
+        }
+      }
+    ],
+    "commitment": {
+      "title": "Always-on experimentation",
+      "description": "The hub updates monthly with lab data, pro interviews, and recovery experiments. Save your favorite resources and tell us what to build next."
+    }
+  },
+  "sustainability": {
+    "metadata": {
+      "title": "Sustainability",
+      "description": "Purposeful materials, short supply chains, and radical transparency."
+    },
+    "hero": {
+      "kicker": "Sustainability",
+      "title": "Performance gear that respects the canvas and the planet.",
+      "description": "We keep our footprint lean through recycled inputs, renewable energy partners, and made-to-order micro runs."
+    },
+    "initiatives": [
+      {
+        "title": "Low-impact textiles",
+        "description": "70% of each one-sleeve is spun from recycled nylon blended with bio-based elastane to keep stretch high and waste low.",
+        "badge": "70% recycled"
+      },
+      {
+        "title": "Traceable production",
+        "description": "Six partner ateliers across Portugal and Spain share live dashboards on water, energy, and labor benchmarks.",
+        "badge": "EU supply chain"
+      },
+      {
+        "title": "Repair > replace",
+        "description": "Free seam reinforcement and re-dye service for products within 24 months to extend every garment's story.",
+        "badge": "Lifetime care"
+      }
+    ],
+    "metrics": [
+      { "label": "Water saved per top", "value": "11 L" },
+      { "label": "Solar-powered production", "value": "82%" },
+      { "label": "Local partners", "value": "6" }
+    ],
+    "materials": {
+      "title": "Material stack",
+      "items": [
+        "SeaCell® fibers calm freshly inked skin with natural antioxidants.",
+        "Dope-dyed yarns lock in color while cutting chemical baths by 40%.",
+        "Biodegradable packaging sleeves made from FSC-certified pulp."
+      ]
+    },
+    "roadmap": {
+      "title": "Roadmap to climate positivity",
+      "steps": [
+        {
+          "year": "2025",
+          "title": "Measure",
+          "description": "Third-party audit of every supplier plus public reporting."
+        },
+        {
+          "year": "2026",
+          "title": "Reduce",
+          "description": "Shift to 100% renewable cutting rooms and recycled trims."
+        },
+        {
+          "year": "2027",
+          "title": "Regenerate",
+          "description": "Invest in tattoo-friendly reforestation projects with local artists."
+        }
+      ]
+    },
+    "cta": {
+      "label": "Read the supplier manifesto",
+      "href": "https://coello.one/sustainability/manifesto"
+    }
+  }
+}

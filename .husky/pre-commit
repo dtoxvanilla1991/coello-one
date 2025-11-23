@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+set -euo pipefail
+
+REPO_ROOT="$(dirname "$0")/.."
+cd "${REPO_ROOT}" || exit 1
+
+if ! command -v bunx >/dev/null 2>&1; then
+  echo "[pre-commit] bunx is required. Install root dev dependencies with 'bun install'." >&2
+  exit 1
+fi
+
+bunx --bun lint-staged
+
+PY_CHANGED=$(git diff --cached --name-only --diff-filter=ACMRTUXB -- 'flask-server/**/*.py')
+if [ -n "$PY_CHANGED" ]; then
+  if ! command -v make >/dev/null 2>&1; then
+    echo "[pre-commit] make is required to run backend lint fixes." >&2
+    exit 1
+  fi
+
+  make backend-lint-fix
+fi

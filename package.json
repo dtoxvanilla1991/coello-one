@@ -1,0 +1,16 @@
+{
+  "name": "coello-one-monorepo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare": "husky",
+    "format": "cd coello-one && bun run format",
+    "format:fix": "cd coello-one && bun run format:fix",
+    "format:backend": "cd flask-server && python -m black --check .",
+    "format:backend:fix": "cd flask-server && python -m black ."
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.6"
+  }
+}

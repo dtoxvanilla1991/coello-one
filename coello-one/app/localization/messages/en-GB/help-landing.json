@@ -1,0 +1,55 @@
+{
+  "metadata": {
+    "title": "Coello Help Centre",
+    "description": "Explore delivery timelines, returns, concierge contact options, and more inside the Coello help centre."
+  },
+  "hero": {
+    "title": "Welcome to the Coello Help Centre",
+    "description": "From sleeve fit to customs duties, we cover every detail so you can focus on feeling incredible."
+  },
+  "introCard": {
+    "title": "Concierge-crafted support",
+    "description": "Our help hub mirrors the premium experience in our flagship stores—curated, proactive, and multilingual-ready. Start with the tiles below or connect with our concierge team any time."
+  },
+  "quickLinks": [
+    {
+      "id": "faq",
+      "title": "Find your answer fast",
+      "description": "Browse our curated FAQ updated weekly by the concierge desk.",
+      "href": "faq",
+      "icon": "question",
+      "ctaLabel": "Explore"
+    },
+    {
+      "id": "delivery",
+      "title": "Delivery timelines",
+      "description": "See shipping cut-offs, courier partners, and international ETAs.",
+      "href": "delivery-information",
+      "icon": "arrow",
+      "ctaLabel": "Explore"
+    },
+    {
+      "id": "returns",
+      "title": "Returns & exchanges",
+      "description": "Review our 30-day promise and start a size swap in minutes.",
+      "href": "returns-policy",
+      "icon": "arrow",
+      "ctaLabel": "Explore"
+    },
+    {
+      "id": "international",
+      "title": "International orders",
+      "description": "Understand duties, currency support, and customs tracking.",
+      "href": "orders-international",
+      "icon": "arrow",
+      "ctaLabel": "Explore"
+    }
+  ],
+  "contactCard": {
+    "title": "Need a human right now?",
+    "description": "Our concierge stylists respond in under two minutes between 8am and midnight GMT.",
+    "channelsLabel": "WhatsApp • iMessage • Email",
+    "buttonLabel": "Speak with us",
+    "buttonHref": "contact-us"
+  }
+}

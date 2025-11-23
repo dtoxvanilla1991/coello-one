@@ -1,0 +1,173 @@
+{
+  "metadata": {
+    "title": "FAQ del centro de ayuda | Coello",
+    "description": "Obtén respuestas a las preguntas habituales de Coello: ajuste de la manga, velocidades de entrega y políticas de devolución."
+  },
+  "breadcrumbLabel": "Centro de ayuda",
+  "title": "FAQ del centro de ayuda",
+  "description": "Respuestas premium a las preguntas más solicitadas, actualizadas cada semana por el equipo de concierge.",
+  "search": {
+    "overline": "Busca en nuestra base de conocimiento",
+    "title": "¿En qué podemos ayudarte hoy?",
+    "description": "Explora los temas en tendencia o busca palabras clave como portal de devoluciones.",
+    "placeholder": "Busca en el centro de ayuda",
+    "empty": "No encontramos resultados: prueba otra palabra clave o contáctanos por Concierge chat."
+  },
+  "trendingTopics": [
+    "Guía de ajuste de la manga",
+    "Zonas de entrega en el día",
+    "Acceso al portal de devoluciones",
+    "Pagos Klarna",
+    "Membresía concierge"
+  ],
+  "categories": [
+    {
+      "id": "orders",
+      "title": "Pedidos y pagos",
+      "summary": "Sigue el estado de tu pedido y gestiona cómo pagas tus esenciales Coello.",
+      "entries": [
+        {
+          "id": "order-status",
+          "question": "¿Cómo consulto el estado de mi pedido?",
+          "answer": [
+            "Inicia sesión en tu cuenta Coello y entra en Mis pedidos para ver actualizaciones en tiempo real.",
+            "Las confirmaciones con checkout como invitado incluyen un enlace de seguimiento; usa la opción de búsqueda por email si lo perdiste.",
+            "Para preorders te avisamos por email en cuanto tu esencial de una sola manga esté listo para envío."
+          ],
+          "tags": ["seguimiento", "cuenta"]
+        },
+        {
+          "id": "payment-methods",
+          "question": "¿Qué métodos de pago aceptáis?",
+          "answer": [
+            "Aceptamos Visa, Mastercard, American Express, Apple Pay, Google Pay y Klarna.",
+            "Las opciones buy now pay later se validan al instante, sin formularios adicionales.",
+            "Todas las transacciones usan 3-D Secure y protocolos regionales de cumplimiento para la máxima protección."
+          ],
+          "tags": ["pagos", "klarna"]
+        },
+        {
+          "id": "order-changes",
+          "question": "¿Puedo editar o cancelar un pedido después de hacerlo?",
+          "answer": [
+            "Puedes editarlo durante 30 minutos desde Mis pedidos; busca el botón Gestionar.",
+            "Si se cierra la ventana, contacta con soporte con tu número de pedido: intentaremos interceptar el paquete cuando sea posible.",
+            "Las piezas a medida entran en producción de inmediato y no se pueden modificar una vez confirmadas."
+          ],
+          "tags": ["cambios", "soporte"]
+        }
+      ]
+    },
+    {
+      "id": "shipping",
+      "title": "Entrega",
+      "summary": "Conoce velocidades, socios logísticos y cómo protegemos la entrega.",
+      "entries": [
+        {
+          "id": "shipping-times",
+          "question": "¿Cuáles son los tiempos estándar de entrega?",
+          "answer": [
+            "Los pedidos en Reino Unido llegan en 1-3 días laborables; el resto de Europa suele recibir en 3-6 días.",
+            "El servicio Express prioriza la salida por la mañana con entrega garantizada al atardecer en áreas metropolitanas.",
+            "Las zonas rurales pueden necesitar un día adicional; el seguimiento se actualiza en cada traspaso de depósito."
+          ],
+          "tags": ["envío", "tiempos"]
+        },
+        {
+          "id": "same-day",
+          "question": "¿Ofrecéis entrega en el mismo día?",
+          "answer": [
+            "Sí, en las zonas 1-3 de Londres para pedidos antes de las 15:00 hora local.",
+            "Selecciona Same Day al pagar para ver los huecos; el mensajero envía confirmación por SMS en 15 minutos.",
+            "Estamos ampliando el programa: súmate al boletín para avisos de lanzamiento en Manchester y Birmingham."
+          ],
+          "tags": ["mismo día", "mensajería"]
+        },
+        {
+          "id": "delivery-security",
+          "question": "¿Cómo aseguráis las entregas?",
+          "answer": [
+            "Cada paquete viaja con precintos antimanipulación y seguro equivalente al valor del pedido.",
+            "Puedes redirigirlo a un locker InPost o punto DPD directamente desde el portal de seguimiento.",
+            "La entrega sin firma es opcional: actívala en Mis pedidos si prefieres drop-off sin contacto."
+          ],
+          "tags": ["seguridad", "punto de recogida"]
+        }
+      ]
+    },
+    {
+      "id": "returns",
+      "title": "Devoluciones y cambios",
+      "summary": "Planifica una devolución, cambia de talla o conviértelo en crédito Coello sin fricción.",
+      "entries": [
+        {
+          "id": "return-window",
+          "question": "¿Cuánto tiempo tengo para devolver un artículo?",
+          "answer": [
+            "Dispones de 30 días desde la entrega; en periodos festivos ampliamos a 45 días.",
+            "Las prendas deben estar sin usar e incluir el precinto desmontable y la tarjeta de autenticidad.",
+            "Las promos en pack pueden devolverse parcialmente; el crédito se ajusta automáticamente."
+          ],
+          "tags": ["devoluciones", "política"]
+        },
+        {
+          "id": "exchange-sizes",
+          "question": "¿Puedo cambiar por otra talla?",
+          "answer": [
+            "Sí, elige Exchange durante el flujo y dinos el ajuste que quieres.",
+            "Reservamos la prenda de reemplazo durante siete días mientras recibimos la original.",
+            "Si la talla se agota, emitimos reembolso completo o crédito instantáneo según prefieras."
+          ],
+          "tags": ["cambio", "tallas"]
+        },
+        {
+          "id": "processing-times",
+          "question": "¿Cuánto tardan los reembolsos?",
+          "answer": [
+            "Los reembolsos llegan en 3-5 días laborables tras escanear tu devolución.",
+            "El crédito se emite al instante y llega por email en minutos.",
+            "Los pagos Klarna se actualizan automáticamente; no necesitas hacer nada más."
+          ],
+          "tags": ["reembolsos", "tiempo"]
+        }
+      ]
+    },
+    {
+      "id": "account",
+      "title": "Cuenta y soporte",
+      "summary": "Controla la personalización, notificaciones y acceso al concierge.",
+      "entries": [
+        {
+          "id": "account-benefits",
+          "question": "¿Por qué crear una cuenta Coello?",
+          "answer": [
+            "Desbloqueas insights de sastrería de la manga, preferencias guardadas y acceso anticipado a drops.",
+            "El checkout en un clic guarda tokens de pago seguros con vaulting compatible PCI-DSS.",
+            "Puedes exportar todos tus datos desde Ajustes de cuenta cumpliendo con GDPR."
+          ],
+          "tags": ["cuenta", "privacidad"]
+        },
+        {
+          "id": "notifications",
+          "question": "¿Cómo gestiono las notificaciones?",
+          "answer": [
+            "En Ajustes de cuenta activa las alertas que quieras: lanzamientos, reposiciones o contenido de entrenamiento.",
+            "Las alertas SMS son del transportista y puedes pausarlas sin afectar los emails.",
+            "Las invitaciones al programa embajador son por orden de llegada: responde en 48h para asegurar plaza."
+          ],
+          "tags": ["notificaciones", "embajador"]
+        },
+        {
+          "id": "concierge",
+          "question": "¿Qué es Coello Concierge?",
+          "answer": [
+            "Es tu canal 24/7 con estilistas y expertos por WhatsApp e iMessage.",
+            "Los miembros obtienen planes de entrenamiento personalizados junto a nuestros atletas socios.",
+            "Actívalo en Ajustes de cuenta > Membresía; el primer mes es gratuito para nuevos miembros."
+          ],
+          "tags": ["concierge", "membresía"]
+        }
+      ]
+    }
+  ]
+}

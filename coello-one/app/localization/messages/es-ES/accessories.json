@@ -1,0 +1,35 @@
+{
+  "resistanceBands": {
+    "name": "Bandas de resistencia Coello",
+    "subtitle": "Unisex • Potencia tu sesión",
+    "description": "Tres bandas circulares diseñadas para sobrecarga progresiva. Cada cinta sigue la paleta de la manga única y viene en una bolsa transpirable para ventilar después del entrenamiento.",
+    "strengthGuideTitle": "Guía de fuerza",
+    "strengthLevels": [
+      {
+        "key": "light",
+        "badge": "Ligera • Peach",
+        "resistance": "5-10 kg (10-20 lb)",
+        "focus": "Movilidad, calentamientos y activaciones controladas."
+      },
+      {
+        "key": "medium",
+        "badge": "Media • Coral",
+        "resistance": "10-20 kg (20-45 lb)",
+        "focus": "Construcción de fuerza, refuerzo de compuestos y trabajo de tempo."
+      },
+      {
+        "key": "heavy",
+        "badge": "Intensa • Merlot",
+        "resistance": "20-35 kg (45-75 lb)",
+        "focus": "Entrenamiento de potencia, acondicionamiento atlético y máxima estabilidad."
+      }
+    ],
+    "bagContentsTitle": "Qué incluye la bolsa",
+    "bagContents": [
+      "Tres bandas tonales (Peach, Coral, Merlot)",
+      "Bolsa de malla transpirable",
+      "Guía rápida de activación"
+    ],
+    "ctaLabel": "Añadir a la bolsa"
+  }
+}

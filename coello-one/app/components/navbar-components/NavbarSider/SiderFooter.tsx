@@ -1,6 +1,6 @@
-import React from "react";
 import { List, Space, Typography } from "antd";
 import Link from "next/link";
+import type { FC } from "react";
 
 const { Text } = Typography;
 
@@ -16,12 +16,9 @@ const data: {
   { text: "Blog", href: "#" },
 ];
 
-const SiderFooter: React.FC = () => {
+const SiderFooter: FC = () => {
   return (
-    <Space
-      direction="vertical"
-      size="small"
-      className="flex bg-gray-200 w-full p-4">
+    <Space direction="vertical" size="small" className="flex w-full bg-gray-200 p-4">
       <Text strong className="uppercase">
         More
       </Text>

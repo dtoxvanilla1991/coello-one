@@ -1,0 +1,16 @@
+{
+  "mainBanner": {
+    "headline": "AHORA TU HISTORIA RESALTA.",
+    "ctaLabel": "Comprar ahora",
+    "ctaAnalyticsKey": "home.mainBanner.cta",
+    "ctaVariant": "primary"
+  },
+  "storyBlock": {
+    "ideaTitle": "Para quienes inspiran a otros",
+    "ideaBody": "Tu historia es el plano. Tu compromiso es la inspiración. Tú eres la razón por la que alguien empezará mañana.",
+    "spiritTitle": "Para quienes sintieron el dolor",
+    "spiritBody": "Te lo ganaste. Ese dolor fue real. Siempre será parte de ti; se forjó con persistencia, paciencia y sudor.",
+    "focusTitle": "Para quienes nunca se rinden",
+    "focusBody": "Conoces el muro y sabes cómo derribarlo. Esto es para la guerrera o el guerrero que nunca abandona: en la calle, en el gimnasio, a través del arte."
+  }
+}

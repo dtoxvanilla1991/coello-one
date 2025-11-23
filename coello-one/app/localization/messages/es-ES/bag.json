@@ -1,0 +1,61 @@
+{
+  "header": {
+    "bagTitle": "Tu bolsa",
+    "wishlistTitle": "Lista de deseos",
+    "bagLabel": "Bolsa ({count})",
+    "wishlistLabel": "Lista"
+  },
+  "shippingStatus": {
+    "qualifiedCopy": "Has desbloqueado envio express gratis",
+    "progressCopy": "Anade {amount} mas para envio express gratis",
+    "qualifiedTooltip": "Disfruta del envio express gratuito en este pedido.",
+    "progressTooltip": "El envio express se activa cuando el subtotal alcanza el umbral."
+  },
+  "reservation": {
+    "title": "Tus prendas no estan reservadas",
+    "body": "Finaliza pronto para no perder tu seleccion."
+  },
+  "items": {
+    "continueShopping": "Seguir comprando",
+    "tag": "Favorito",
+    "fitMale": "Corte hombre",
+    "fitFemale": "Corte mujer",
+    "quantity": "Cant",
+    "sizeLabel": "Talla",
+    "remove": "Quitar"
+  },
+  "extras": {
+    "title": "Anade un detalle extra",
+    "description": "Incluye uno o mas articulos para conseguir envio gratuito.",
+    "add": "Anadir",
+    "added": "Anadido",
+    "highlights": {
+      "unlockFreeDelivery": "Anade para liberar el envio"
+    }
+  },
+  "empty": {
+    "title": "Tu bolsa esta vacia",
+    "description": "Explora la coleccion para sumar tu primera prenda.",
+    "cta": "Seguir comprando"
+  },
+  "summary": {
+    "discountTitle": "Codigo de descuento",
+    "discountPlaceholder": "Introduce el codigo",
+    "discountApply": "Aplicar",
+    "discountHelp": "Los codigos de regalo se aplican en el checkout.",
+    "title": "Resumen del pedido",
+    "subtotal": "Subtotal",
+    "shipping": "Envio express",
+    "shippingFree": "Gratis",
+    "total": "Total",
+    "taxes": "Impuestos incluidos cuando aplique",
+    "checkoutCta": "Pagar con seguridad",
+    "accepted": "Aceptamos"
+  },
+  "wishlist": {
+    "title": "Guarda en la lista",
+    "description": "Guarda tus fits favoritos en un mismo lugar para volver mas tarde.",
+    "createAccount": "Crear cuenta",
+    "login": "Iniciar sesion"
+  }
+}

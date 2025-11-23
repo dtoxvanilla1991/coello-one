@@ -1,9 +1,15 @@
 # AI tooling files
 .serena/
 
+# python backend artifacts
+flask-server/.venv/
+*.egg-info/
+pip-wheel-metadata/
+
 # Node/Bun workspaces
 node_modules/
 .pnp*
+bun.lockb
 
 # Python virtual environments & caches
 .venv/
