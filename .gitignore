@@ -1,2 +1,23 @@
 # AI tooling files
 .serena/
+
+# Node/Bun workspaces
+node_modules/
+.pnp*
+
+# Python virtual environments & caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Build and bundler caches
+.cache/
+dist/
+build/
+
+# OS/editor cruft
+.DS_Store
+.idea/
+.vscode/
