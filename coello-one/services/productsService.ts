@@ -1,4 +1,4 @@
-'use server';
+"use server";
 
 import { SQL, sql } from "bun";
 import {
@@ -556,14 +556,14 @@ export async function primeProductCache(): Promise<void> {
     cacheWarmupCategories.map((category) =>
       fetchProducts({ category }, { skipAnalytics: true })
         .then((result) => {
-          debugLog('warmup_success', {
+          debugLog("warmup_success", {
             category,
             cacheSource: result.cache.source,
             count: result.products.length,
           });
         })
         .catch((error) => {
-          debugLog('warmup_error', { category, error });
+          debugLog("warmup_error", { category, error });
         }),
     ),
   );
@@ -571,7 +571,7 @@ export async function primeProductCache(): Promise<void> {
   isPrimingCache = false;
 }
 
-const shouldPrimeCache = Bun.env.PRODUCT_CACHE_WARMUP !== 'false' && Bun.env.NODE_ENV !== 'test';
+const shouldPrimeCache = Bun.env.PRODUCT_CACHE_WARMUP !== "false" && Bun.env.NODE_ENV !== "test";
 
 if (shouldPrimeCache) {
   void primeProductCache();

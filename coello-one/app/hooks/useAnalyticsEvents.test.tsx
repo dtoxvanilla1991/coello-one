@@ -28,8 +28,16 @@ describe("useAnalyticsEvents", () => {
     });
 
     await act(async () => {
-      dispatchAnalytics({ event: "help_contact_request", timestamp: 2, payload: { responseTimeMs: 500 } });
-      dispatchAnalytics({ event: "help_contact_request_error", timestamp: 3, payload: { reason: "validation" } });
+      dispatchAnalytics({
+        event: "help_contact_request",
+        timestamp: 2,
+        payload: { responseTimeMs: 500 },
+      });
+      dispatchAnalytics({
+        event: "help_contact_request_error",
+        timestamp: 3,
+        payload: { reason: "validation" },
+      });
     });
 
     await waitFor(() => {

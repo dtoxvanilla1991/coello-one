@@ -17,10 +17,7 @@ const TOPICS = [
 const CHANNELS = ["Email", "WhatsApp", "Phone"] as const;
 
 const contactSchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(2, "Enter your name so we know how to greet you."),
+  name: z.string().trim().min(2, "Enter your name so we know how to greet you."),
   email: z.string().email("Use a valid email address."),
   topic: z.enum(TOPICS),
   channel: z.enum(CHANNELS),
@@ -45,7 +42,9 @@ export default function ContactForm({
   const [form] = Form.useForm<ContactFormValues>();
   const [error, setError] = useState<string | null>(null);
   const [complete, setComplete] = useState<ContactFormValues | null>(null);
-  const startTimeRef = useRef<number>(typeof performance !== "undefined" ? performance.now() : Date.now());
+  const startTimeRef = useRef<number>(
+    typeof performance !== "undefined" ? performance.now() : Date.now(),
+  );
 
   const initialValues = useMemo(
     () => ({
@@ -105,7 +104,9 @@ export default function ContactForm({
         title="Message received"
         subTitle={
           <Flex vertical gap={4}>
-            <Text className="text-gray-700">We will reply via {complete.channel.toLowerCase()} shortly.</Text>
+            <Text className="text-gray-700">
+              We will reply via {complete.channel.toLowerCase()} shortly.
+            </Text>
             <Text className="text-gray-500">Reference topic: {complete.topic}</Text>
           </Flex>
         }
@@ -122,11 +123,16 @@ export default function ContactForm({
     <Card className="border-gray-200 bg-white/70">
       <Flex vertical gap={16}>
         <Paragraph className="mb-0! text-gray-600">
-          Our concierge team responds within minutes between 08:00 and 00:00 GMT. Choose your preferred channel and we
-          will pick up from there.
+          Our concierge team responds within minutes between 08:00 and 00:00 GMT. Choose your
+          preferred channel and we will pick up from there.
         </Paragraph>
         {error ? <Alert type="error" showIcon message={error} className="border-red-200" /> : null}
-        <Form<ContactFormValues> form={form} layout="vertical" initialValues={initialValues} onFinish={handleFinish}>
+        <Form<ContactFormValues>
+          form={form}
+          layout="vertical"
+          initialValues={initialValues}
+          onFinish={handleFinish}
+        >
           <Form.Item<ContactFormValues>
             name="name"
             label="Name"

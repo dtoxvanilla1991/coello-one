@@ -36,7 +36,13 @@ describe("DiscountWaitlistForm", () => {
   it("integration: submits the email when the schema passes", async () => {
     const onSubscribe = mock(async () => ({ success: true }));
 
-    render(<DiscountWaitlistForm copy={formCopy} onSubscribe={onSubscribe} initialEmail="athlete@coello.one" />);
+    render(
+      <DiscountWaitlistForm
+        copy={formCopy}
+        onSubscribe={onSubscribe}
+        initialEmail="athlete@coello.one"
+      />,
+    );
 
     const input = screen.getByPlaceholderText(/you@email.com/i) as HTMLInputElement;
 
@@ -52,7 +58,10 @@ describe("DiscountWaitlistForm", () => {
     expect(trackEventMock).toHaveBeenCalledWith(
       "discount_waitlist_join",
       { channel: "email" },
-      expect.objectContaining({ locale: "en-GB", translationKey: "pages.discounts.form.submitLabel" }),
+      expect.objectContaining({
+        locale: "en-GB",
+        translationKey: "pages.discounts.form.submitLabel",
+      }),
     );
   });
 });

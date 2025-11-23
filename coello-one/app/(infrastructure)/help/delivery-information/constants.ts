@@ -110,45 +110,54 @@ export const DELIVERY_MATRIX: DeliveryTier[] = [
 export const DELIVERY_PROMISES: DeliveryPromise[] = [
   {
     title: "Proactive tracking",
-    description: "Receive live courier milestones in your language with ETA adjustments by the minute.",
+    description:
+      "Receive live courier milestones in your language with ETA adjustments by the minute.",
   },
   {
     title: "Flexible destinations",
-    description: "Redirect to a DPD Pickup, DHL locker, or concierge desk with two taps from the tracking link.",
+    description:
+      "Redirect to a DPD Pickup, DHL locker, or concierge desk with two taps from the tracking link.",
   },
   {
     title: "Carbon-aware logistics",
-    description: "We consolidate shipments daily and offset through verified regenerative textile projects.",
+    description:
+      "We consolidate shipments daily and offset through verified regenerative textile projects.",
   },
 ];
 
 export const PACKING_STEPS: PackingStep[] = [
   {
     title: "Order confirmed",
-    description: "Smart routing picks the closest fulfilment centre and assigns the best-fit sleeve inventory.",
+    description:
+      "Smart routing picks the closest fulfilment centre and assigns the best-fit sleeve inventory.",
   },
   {
     title: "Performance check",
-    description: "Each garment passes a moisture-wicking and sleeve seal inspection before bagging.",
+    description:
+      "Each garment passes a moisture-wicking and sleeve seal inspection before bagging.",
   },
   {
     title: "Secure packaging",
-    description: "Tamper-proof seals and recycled cushioning keep your one-sleeve pristine in transit.",
+    description:
+      "Tamper-proof seals and recycled cushioning keep your one-sleeve pristine in transit.",
   },
   {
     title: "Courier hand-off",
-    description: "We hand over to trusted partners with insurance matching your order value by default.",
+    description:
+      "We hand over to trusted partners with insurance matching your order value by default.",
   },
 ];
 
 export const DUTY_INSIGHTS: DutyInsight[] = [
   {
     market: "EU Customs",
-    detail: "Orders ship from our Rotterdam micro-fulfilment hub—no additional duty for EU customers.",
+    detail:
+      "Orders ship from our Rotterdam micro-fulfilment hub—no additional duty for EU customers.",
   },
   {
     market: "US & Canada",
-    detail: "Import duties are pre-paid up to $800; higher values are handled seamlessly via DHL brokerage.",
+    detail:
+      "Import duties are pre-paid up to $800; higher values are handled seamlessly via DHL brokerage.",
   },
   {
     market: "Middle East",

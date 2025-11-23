@@ -32,7 +32,7 @@ const SiderFooter: FC = () => {
           </List.Item>
         )}
         split={false}
-  className="text-xs!"
+        className="text-xs!"
       />
     </Space>
   );

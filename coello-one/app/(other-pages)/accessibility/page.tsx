@@ -7,7 +7,7 @@ const { Title, Paragraph } = Typography;
 const AccessibilityStatement: React.FC = () => {
   return (
     <div className="p-4 text-center">
-  <Title level={4} className="font-bold! uppercase">
+      <Title level={4} className="font-bold! uppercase">
         Coello One&apos;s Commitment to accessibility
       </Title>
       <Paragraph>

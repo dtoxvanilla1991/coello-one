@@ -21,11 +21,13 @@ export const FULFILMENT_NODES: FulfilmentNode[] = [
   },
   {
     title: "London flagship",
-    description: "Fulfils UK, Nordics, and Middle East orders with same-day tailoring capabilities.",
+    description:
+      "Fulfils UK, Nordics, and Middle East orders with same-day tailoring capabilities.",
   },
   {
     title: "Los Angeles studio",
-    description: "Supports North America with climate-controlled storage and 48-hour express dispatch.",
+    description:
+      "Supports North America with climate-controlled storage and 48-hour express dispatch.",
   },
 ];
 
@@ -59,11 +61,13 @@ export const SUPPORT_INSIGHTS: SupportInsight[] = [
   },
   {
     title: "Localized tracking",
-    description: "Tracking pages localize to your language and surface locker redirection when available.",
+    description:
+      "Tracking pages localize to your language and surface locker redirection when available.",
   },
   {
     title: "Size & fit guidance",
-    description: "Request a concierge video consult before delivery—especially handy for first-time one-sleeve buyers.",
+    description:
+      "Request a concierge video consult before delivery—especially handy for first-time one-sleeve buyers.",
   },
 ];
 

@@ -1,20 +1,24 @@
-'use client';
+"use client";
 
-import { useMemo } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Button, Card, Empty, Flex, Space, Typography } from 'antd';
-import { useProductCollections } from '@/hooks/useProductCollections';
-import { useLocalePath } from '@/hooks/useLocalePath';
-import { trackEvent } from '@/utils/trackEvent';
+import { useMemo } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Button, Card, Empty, Flex, Space, Typography } from "antd";
+import { useProductCollections } from "@/hooks/useProductCollections";
+import { useLocalePath } from "@/hooks/useLocalePath";
+import { trackEvent } from "@/utils/trackEvent";
 import {
   createCuratedPopularProducts,
   extractCuratedPopularProducts,
   getPopularProductLinkInfo,
   RESISTANCE_BANDS_PATH_SEGMENT,
-} from './popularCuratedData';
-import { DEFAULT_SIZE, PRODUCT_NAME_SLUG } from '../(products)/one-sleeve-classic/constants';
-import type { ProductCacheMetadata, ProductCollectionConfig, ProductSummary } from '@/types/products';
+} from "./popularCuratedData";
+import { DEFAULT_SIZE, PRODUCT_NAME_SLUG } from "../(products)/one-sleeve-classic/constants";
+import type {
+  ProductCacheMetadata,
+  ProductCollectionConfig,
+  ProductSummary,
+} from "@/types/products";
 
 const { Title, Text } = Typography;
 
@@ -31,7 +35,7 @@ export default function PopularSectionClient({ products, cache }: PopularSection
     [withLocalePath],
   );
   const currencyFormatter = useMemo(
-    () => new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }),
+    () => new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }),
     [],
   );
 
@@ -182,7 +186,8 @@ export default function PopularSectionClient({ products, cache }: PopularSection
                     <Image
                       alt={product.name}
                       src={
-                        product.imageUrl ?? `/athletes/vertical/main-secondary-${(index % 8) + 6}.jpg`
+                        product.imageUrl ??
+                        `/athletes/vertical/main-secondary-${(index % 8) + 6}.jpg`
                       }
                       sizes="(max-width: 640px) 100vw, 640px"
                       fill
@@ -202,7 +207,10 @@ export default function PopularSectionClient({ products, cache }: PopularSection
                   </Link>,
                 ]}
               >
-                <Card.Meta title={product.name} description={currencyFormatter.format(product.price)} />
+                <Card.Meta
+                  title={product.name}
+                  description={currencyFormatter.format(product.price)}
+                />
               </Card>
             );
           })

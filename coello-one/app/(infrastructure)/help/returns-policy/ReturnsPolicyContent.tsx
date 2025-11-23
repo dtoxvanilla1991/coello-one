@@ -27,12 +27,16 @@ export default function ReturnsPolicyContent() {
             Your 30-day promise
           </Title>
           <Paragraph className="mb-0! text-gray-600">
-            Start a return within 30 days of delivery (extended to 45 days for November and December purchases).
-            We refund to your original payment method or convert instantly to Coello credit—your choice every time.
+            Start a return within 30 days of delivery (extended to 45 days for November and December
+            purchases). We refund to your original payment method or convert instantly to Coello
+            credit—your choice every time.
           </Paragraph>
           <Flex gap={16} wrap>
             {RETURN_HIGHLIGHTS.map((highlight) => (
-              <Card key={highlight.title} className="w-full border-gray-200 md:max-w-[320px] md:flex-1">
+              <Card
+                key={highlight.title}
+                className="w-full border-gray-200 md:max-w-[320px] md:flex-1"
+              >
                 <Flex vertical gap={8}>
                   <Title level={4} className="mb-0! text-lg font-semibold">
                     {highlight.title}
@@ -52,16 +56,34 @@ export default function ReturnsPolicyContent() {
           </Title>
           <Flex gap={16} wrap>
             <Card className="w-full border-gray-200 md:max-w-[220px] md:flex-1">
-              <Statistic title="Refunds land in" value="3-5 days" valueStyle={{ fontSize: "1.5rem" }} />
-              <Text className="text-sm text-gray-500">from the moment the warehouse scans your sleeve</Text>
+              <Statistic
+                title="Refunds land in"
+                value="3-5 days"
+                valueStyle={{ fontSize: "1.5rem" }}
+              />
+              <Text className="text-sm text-gray-500">
+                from the moment the warehouse scans your sleeve
+              </Text>
             </Card>
             <Card className="w-full border-gray-200 md:max-w-[220px] md:flex-1">
-              <Statistic title="Credit issued" value="Instantly" valueStyle={{ fontSize: "1.5rem" }} />
-              <Text className="text-sm text-gray-500">usable in checkout as soon as you confirm</Text>
+              <Statistic
+                title="Credit issued"
+                value="Instantly"
+                valueStyle={{ fontSize: "1.5rem" }}
+              />
+              <Text className="text-sm text-gray-500">
+                usable in checkout as soon as you confirm
+              </Text>
             </Card>
             <Card className="w-full border-gray-200 md:max-w-[220px] md:flex-1">
-              <Statistic title="Exchange prep" value="Under 24h" valueStyle={{ fontSize: "1.5rem" }} />
-              <Text className="text-sm text-gray-500">replacement sleeves pulled as soon as you request</Text>
+              <Statistic
+                title="Exchange prep"
+                value="Under 24h"
+                valueStyle={{ fontSize: "1.5rem" }}
+              />
+              <Text className="text-sm text-gray-500">
+                replacement sleeves pulled as soon as you request
+              </Text>
             </Card>
           </Flex>
         </Flex>

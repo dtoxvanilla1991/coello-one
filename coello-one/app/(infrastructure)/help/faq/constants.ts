@@ -168,7 +168,7 @@ export const FAQ_TRENDING_TOPICS: string[] = [
   "Same-day delivery zones",
   "Returns portal login",
   "Klarna repayments",
-  "Concierge membership"
+  "Concierge membership",
 ];
 
 export type { FAQCategory, FAQEntry };

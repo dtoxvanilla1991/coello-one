@@ -1,16 +1,6 @@
 "use client";
 
-import {
-  Alert,
-  Button,
-  Card,
-  Flex,
-  Form,
-  Input,
-  Result,
-  Select,
-  Typography,
-} from "antd";
+import { Alert, Button, Card, Flex, Form, Input, Result, Select, Typography } from "antd";
 import { useMemo, useRef, useState } from "react";
 import { z } from "zod";
 import { trackEvent } from "@/utils/trackEvent";
@@ -45,12 +35,7 @@ type ReturnRequestFormProps = {
   initialValues?: Partial<ReturnFormValues>;
 };
 
-const reasonOptions = [
-  "Fit wasn't right",
-  "Changed my mind",
-  "Gift return",
-  "Product issue",
-];
+const reasonOptions = ["Fit wasn't right", "Changed my mind", "Gift return", "Product issue"];
 
 export default function ReturnRequestForm({
   defaultEmail,
@@ -59,7 +44,9 @@ export default function ReturnRequestForm({
   const [form] = Form.useForm<ReturnFormValues>();
   const [submissionError, setSubmissionError] = useState<string | null>(null);
   const [confirmation, setConfirmation] = useState<ReturnFormValues | null>(null);
-  const startTimeRef = useRef<number>(typeof performance !== "undefined" ? performance.now() : Date.now());
+  const startTimeRef = useRef<number>(
+    typeof performance !== "undefined" ? performance.now() : Date.now(),
+  );
 
   const initialValues: Partial<ReturnFormValues> = useMemo(
     () => ({
@@ -142,7 +129,8 @@ export default function ReturnRequestForm({
     <Card className="border-gray-200 bg-white/70">
       <Flex vertical gap={16}>
         <Paragraph className="mb-0! text-gray-600">
-          Share your order details and pick the resolution you want. Our concierge team reviews submissions instantly.
+          Share your order details and pick the resolution you want. Our concierge team reviews
+          submissions instantly.
         </Paragraph>
         {submissionError ? (
           <Alert type="error" showIcon message={submissionError} className="border-red-200" />
@@ -156,7 +144,9 @@ export default function ReturnRequestForm({
           <Form.Item<ReturnFormValues>
             name="orderId"
             label="Order number"
-            rules={[{ required: true, message: "Enter the order number from your confirmation email." }]}
+            rules={[
+              { required: true, message: "Enter the order number from your confirmation email." },
+            ]}
           >
             <Input placeholder="e.g. COELLO123" onChange={() => setSubmissionError(null)} />
           </Form.Item>

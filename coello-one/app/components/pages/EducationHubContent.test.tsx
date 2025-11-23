@@ -96,7 +96,10 @@ describe("EducationHubContent", () => {
     expect(trackEventMock).toHaveBeenCalledWith(
       "education_hub_tab_change",
       { tabKey: "activity" },
-      expect.objectContaining({ locale: "en-GB", translationKey: "pages.educationHub.tabs.activity" }),
+      expect.objectContaining({
+        locale: "en-GB",
+        translationKey: "pages.educationHub.tabs.activity",
+      }),
     );
   });
 });

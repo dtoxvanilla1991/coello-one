@@ -26,15 +26,11 @@ export default function HelpPageShell({
   children,
 }: HelpPageShellProps) {
   return (
-    <Flex
-      vertical
-      gap={24}
-      className="mx-auto w-full max-w-5xl px-4 py-12 md:px-6 lg:px-0"
-    >
+    <Flex vertical gap={24} className="mx-auto w-full max-w-5xl px-4 py-12 md:px-6 lg:px-0">
       <Flex vertical gap={12}>
         {breadcrumb && breadcrumb.length > 0 ? (
           <Breadcrumb
-            className="text-xs uppercase tracking-[0.2em] text-gray-500"
+            className="text-xs tracking-[0.2em] text-gray-500 uppercase"
             items={breadcrumb.map((crumb) => ({
               title: crumb.href ? (
                 <Typography.Link href={crumb.href}>{crumb.title}</Typography.Link>
@@ -58,7 +54,9 @@ export default function HelpPageShell({
           {actions}
         </Flex>
       </Flex>
-      <Flex vertical gap={24}>{children}</Flex>
+      <Flex vertical gap={24}>
+        {children}
+      </Flex>
     </Flex>
   );
 }

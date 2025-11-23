@@ -102,12 +102,12 @@ export function CheckoutContent() {
     <Flex vertical gap={24} className="w-full px-4 pt-8 pb-24 md:px-8">
       <Flex justify="space-between" align="center" wrap className="gap-4">
         <Flex vertical gap={4}>
-            <Title level={2} className="m-0! tracking-wide uppercase">
-              {hero.title}
-            </Title>
-            <Text className="text-sm text-gray-500">
-              {hasItems ? hero.subtitleReady : hero.subtitleEmpty}
-            </Text>
+          <Title level={2} className="m-0! tracking-wide uppercase">
+            {hero.title}
+          </Title>
+          <Text className="text-sm text-gray-500">
+            {hasItems ? hero.subtitleReady : hero.subtitleEmpty}
+          </Text>
         </Flex>
         <Button
           type="default"
@@ -115,7 +115,7 @@ export function CheckoutContent() {
           className="rounded-full! px-6 uppercase"
           onClick={handleReturnToBag}
         >
-            {hero.backToBag}
+          {hero.backToBag}
         </Button>
       </Flex>
 

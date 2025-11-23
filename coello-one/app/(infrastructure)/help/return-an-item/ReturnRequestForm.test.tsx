@@ -19,7 +19,11 @@ describe("ReturnRequestForm", () => {
     expect(trackEventMock).toHaveBeenNthCalledWith(
       1,
       "help_return_request_attempt",
-      expect.objectContaining({ resolution: "Refund", courier: "DPD Pickup", reason: "Fit wasn't right" }),
+      expect.objectContaining({
+        resolution: "Refund",
+        courier: "DPD Pickup",
+        reason: "Fit wasn't right",
+      }),
     );
     expect(trackEventMock).toHaveBeenNthCalledWith(
       2,

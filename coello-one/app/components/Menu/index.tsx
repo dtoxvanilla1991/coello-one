@@ -25,8 +25,7 @@ export default function MenuComponent({
         return null;
       }
 
-      const localizedKey =
-        typeof item.key === "string" ? withLocalePath(item.key) : item.key;
+      const localizedKey = typeof item.key === "string" ? withLocalePath(item.key) : item.key;
       const typedItem = item as MenuItem & { children?: MenuItem[] };
       const childItems = Array.isArray(typedItem.children)
         ? typedItem.children
@@ -41,9 +40,7 @@ export default function MenuComponent({
       } as MenuItem;
     };
 
-    return items
-      .map((item) => mapItems(item))
-      .filter((item): item is MenuItem => Boolean(item));
+    return items.map((item) => mapItems(item)).filter((item): item is MenuItem => Boolean(item));
   }, [items, withLocalePath]);
 
   const handleMenuClick: MenuProps["onClick"] = (e) => {
@@ -55,7 +52,7 @@ export default function MenuComponent({
       selectedKeys={[pathname]}
       items={localizedItems}
       onClick={handleMenuClick}
-  className="border-r-0! px-0!"
+      className="border-r-0! px-0!"
       mode="inline"
       inlineIndent={0}
       expandIcon={expandIcon}

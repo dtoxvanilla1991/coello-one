@@ -30,7 +30,7 @@ export default function AboutUsContent({ copy, ctaHref }: AboutUsContentProps) {
     <BrandPageShell hero={copy.hero}>
       <Card className="border-gray-200">
         <Flex gap={24} wrap align="stretch">
-          <Flex vertical gap={16} className="flex-1 min-w-64">
+          <Flex vertical gap={16} className="min-w-64 flex-1">
             <Title level={2} className="mb-0! text-2xl md:text-3xl!">
               {copy.story.title}
             </Title>
@@ -40,10 +40,10 @@ export default function AboutUsContent({ copy, ctaHref }: AboutUsContentProps) {
               </Paragraph>
             ))}
             <Card variant="borderless" className="bg-gray-50 text-gray-700">
-              <Paragraph className="mb-1! text-base italic text-gray-800">
+              <Paragraph className="mb-1! text-base text-gray-800 italic">
                 “{copy.story.quote.text}”
               </Paragraph>
-              <Text className="text-xs uppercase tracking-[0.3em] text-gray-500">
+              <Text className="text-xs tracking-[0.3em] text-gray-500 uppercase">
                 {copy.story.quote.attribution}
               </Text>
             </Card>
@@ -72,7 +72,7 @@ export default function AboutUsContent({ copy, ctaHref }: AboutUsContentProps) {
               <Paragraph className="mb-0! text-sm text-gray-600 md:text-base">
                 {pillar.description}
               </Paragraph>
-              <Text className="text-xs uppercase tracking-[0.25em] text-gray-500">
+              <Text className="text-xs tracking-[0.25em] text-gray-500 uppercase">
                 {pillar.statLabel}
               </Text>
               <Title level={3} className="mb-0! text-2xl">
@@ -99,7 +99,7 @@ export default function AboutUsContent({ copy, ctaHref }: AboutUsContentProps) {
               color: "black",
               children: (
                 <Flex vertical gap={4}>
-                  <Text className="text-xs font-semibold uppercase tracking-[0.3em] text-gray-500">
+                  <Text className="text-xs font-semibold tracking-[0.3em] text-gray-500 uppercase">
                     {milestone.year}
                   </Text>
                   <Title level={4} className="mb-0! text-lg">

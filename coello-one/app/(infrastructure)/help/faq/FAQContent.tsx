@@ -45,9 +45,7 @@ export default function FAQContent({ categories, initialQuery = "" }: FAQContent
     return resolvedCategories
       .map((category) => {
         const entries = category.entries.filter((entry) => {
-          const haystack = [entry.question, ...entry.answer, ...entry.tags]
-            .join(" ")
-            .toLowerCase();
+          const haystack = [entry.question, ...entry.answer, ...entry.tags].join(" ").toLowerCase();
           return haystack.includes(query);
         });
 
@@ -97,7 +95,7 @@ export default function FAQContent({ categories, initialQuery = "" }: FAQContent
           </Paragraph>
           <Flex gap={8} wrap>
             {entry.tags.map((tag) => (
-              <Tag key={`${entry.id}-${tag}`} className="uppercase tracking-wide text-gray-500">
+              <Tag key={`${entry.id}-${tag}`} className="tracking-wide text-gray-500 uppercase">
                 {tag}
               </Tag>
             ))}
@@ -120,7 +118,7 @@ export default function FAQContent({ categories, initialQuery = "" }: FAQContent
       <Card className="border-gray-200 bg-white/70 backdrop-blur">
         <Flex vertical gap={16}>
           <Flex vertical gap={8}>
-            <Paragraph className="mb-0! text-sm uppercase tracking-[0.25em] text-gray-500">
+            <Paragraph className="mb-0! text-sm tracking-[0.25em] text-gray-500 uppercase">
               {helpFaqCopy.search.overline}
             </Paragraph>
             <Title level={3} className="mb-0! text-2xl md:text-3xl!">

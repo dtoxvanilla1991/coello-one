@@ -29,17 +29,19 @@ export const ONE_SLEEVE_POPULAR_VARIANTS: Record<Gender, PopularVariantDefinitio
   ],
 };
 
-const POPULAR_VARIANT_LINK_INDEX: Record<number, { gender: Gender; color: string }> = Object.entries(
-  ONE_SLEEVE_POPULAR_VARIANTS,
-).reduce((accumulator, [genderKey, variantList]) => {
-  variantList.forEach((variant) => {
-    accumulator[variant.id] = {
-      gender: genderKey as Gender,
-      color: variant.color,
-    };
-  });
-  return accumulator;
-}, {} as Record<number, { gender: Gender; color: string }>);
+const POPULAR_VARIANT_LINK_INDEX: Record<number, { gender: Gender; color: string }> =
+  Object.entries(ONE_SLEEVE_POPULAR_VARIANTS).reduce(
+    (accumulator, [genderKey, variantList]) => {
+      variantList.forEach((variant) => {
+        accumulator[variant.id] = {
+          gender: genderKey as Gender,
+          color: variant.color,
+        };
+      });
+      return accumulator;
+    },
+    {} as Record<number, { gender: Gender; color: string }>,
+  );
 
 export const RESISTANCE_BANDS_PATH_SEGMENT = `${PRODUCT_NAME_SLUG}/resistance-bands` as const;
 

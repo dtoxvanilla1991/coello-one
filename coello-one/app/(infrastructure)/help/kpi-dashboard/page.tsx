@@ -6,7 +6,8 @@ import KpiDashboardContent from "./KpiDashboardContent";
 
 export const metadata: Metadata = {
   title: "Help KPI Dashboard | Coello Help",
-  description: "Live analytics for contact and return flows so the concierge team can tune response speed.",
+  description:
+    "Live analytics for contact and return flows so the concierge team can tune response speed.",
 };
 
 // TEST-WAIVER: Shell-only server component; KPI visuals live in separately tested client content.
@@ -17,7 +18,10 @@ export default function HelpKpiDashboardPage() {
     <HelpPageShell
       title="Help KPI dashboard"
       description="Monitor conversions and response times for concierge and return flows in real time."
-      breadcrumb={[{ title: "Help Centre", href: withLocalePath(routes.help) }, { title: "KPI dashboard" }]}
+      breadcrumb={[
+        { title: "Help Centre", href: withLocalePath(routes.help) },
+        { title: "KPI dashboard" },
+      ]}
     >
       <KpiDashboardContent />
     </HelpPageShell>

@@ -29,7 +29,7 @@ export default function SustainabilityContent({ copy }: SustainabilityContentPro
         {copy.initiatives.map((initiative) => (
           <Card key={initiative.title} className="w-full border-gray-200 md:w-[calc(33%-11px)]">
             <Flex vertical gap={12}>
-              <Tag className="w-fit border-gray-200 text-xs uppercase tracking-[0.3em] text-gray-500">
+              <Tag className="w-fit border-gray-200 text-xs tracking-[0.3em] text-gray-500 uppercase">
                 {initiative.badge}
               </Tag>
               <Title level={3} className="mb-0! text-xl">
@@ -44,10 +44,10 @@ export default function SustainabilityContent({ copy }: SustainabilityContentPro
       <Card className="border-gray-200">
         <Flex gap={16} wrap>
           {copy.metrics.map((metric) => (
-            <Card key={metric.label} className="flex-1 min-w-48 border-gray-200 bg-white/70">
+            <Card key={metric.label} className="min-w-48 flex-1 border-gray-200 bg-white/70">
               <Statistic
                 title={
-                  <Text className="text-xs uppercase tracking-[0.25em] text-gray-500">
+                  <Text className="text-xs tracking-[0.25em] text-gray-500 uppercase">
                     {metric.label}
                   </Text>
                 }
@@ -96,7 +96,7 @@ export default function SustainabilityContent({ copy }: SustainabilityContentPro
               color: "black",
               children: (
                 <Flex vertical gap={4}>
-                  <Text className="text-xs uppercase tracking-[0.3em] text-gray-500">
+                  <Text className="text-xs tracking-[0.3em] text-gray-500 uppercase">
                     {step.year}
                   </Text>
                   <Title level={4} className="mb-0! text-lg">

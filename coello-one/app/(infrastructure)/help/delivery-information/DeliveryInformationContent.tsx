@@ -37,7 +37,9 @@ export function DeliveryInformationContent({
           <Title level={3} className="mb-0! text-2xl">
             {deliveryCopy.sections.speedsTitle}
           </Title>
-          <Paragraph className="mb-0! text-gray-600">{deliveryCopy.sections.speedsDescription}</Paragraph>
+          <Paragraph className="mb-0! text-gray-600">
+            {deliveryCopy.sections.speedsDescription}
+          </Paragraph>
           <DeliveryMatrixTable tiers={resolvedTiers} columnCopy={deliveryCopy.matrixColumns} />
         </Flex>
       </Card>
@@ -49,7 +51,10 @@ export function DeliveryInformationContent({
           </Title>
           <Flex gap={16} wrap>
             {resolvedPromises.map((promise) => (
-              <Card key={promise.title} className="w-full border-gray-200 md:max-w-[320px] md:flex-1">
+              <Card
+                key={promise.title}
+                className="w-full border-gray-200 md:max-w-[320px] md:flex-1"
+              >
                 <Flex vertical gap={8}>
                   <Title level={4} className="mb-0! text-lg font-semibold">
                     {promise.title}
@@ -90,7 +95,10 @@ export function DeliveryInformationContent({
           </Title>
           <Flex gap={16} wrap>
             {resolvedDutyInsights.map((insight) => (
-              <Card key={insight.market} className="w-full border-gray-200 md:max-w-[320px] md:flex-1">
+              <Card
+                key={insight.market}
+                className="w-full border-gray-200 md:max-w-[320px] md:flex-1"
+              >
                 <Flex vertical gap={8}>
                   <Title level={4} className="mb-0! text-lg font-semibold">
                     {insight.market}

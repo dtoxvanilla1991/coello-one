@@ -19,10 +19,22 @@ type RecentEventRow = {
 };
 
 const EVENT_STATUS: Record<string, { label: string; status: string; color: string }> = {
-  help_contact_request_attempt: { label: "Contact concierge attempt", status: "Attempt", color: "blue" },
-  help_contact_request: { label: "Contact concierge completed", status: "Completed", color: "green" },
+  help_contact_request_attempt: {
+    label: "Contact concierge attempt",
+    status: "Attempt",
+    color: "blue",
+  },
+  help_contact_request: {
+    label: "Contact concierge completed",
+    status: "Completed",
+    color: "green",
+  },
   help_contact_request_error: { label: "Contact concierge error", status: "Error", color: "red" },
-  help_return_request_attempt: { label: "Return request attempt", status: "Attempt", color: "blue" },
+  help_return_request_attempt: {
+    label: "Return request attempt",
+    status: "Attempt",
+    color: "blue",
+  },
   help_return_request: { label: "Return request completed", status: "Completed", color: "green" },
   help_return_request_error: { label: "Return request error", status: "Error", color: "red" },
 };
@@ -66,7 +78,10 @@ const summarizePayload = (payload: AnalyticsDetail["payload"]): string => {
   }
 
   return Object.entries(payload)
-    .map(([key, value]) => `${key}: ${typeof value === "object" ? JSON.stringify(value) : String(value)}`)
+    .map(
+      ([key, value]) =>
+        `${key}: ${typeof value === "object" ? JSON.stringify(value) : String(value)}`,
+    )
     .join(", ");
 };
 
@@ -104,9 +119,12 @@ export default function KpiDashboardContent() {
             Real-time health
           </Title>
           <Paragraph className="mb-0! text-gray-600">
-            Track how often members reach out, how quickly we respond, and whether friction appears in the flows.
+            Track how often members reach out, how quickly we respond, and whether friction appears
+            in the flows.
           </Paragraph>
-          <Text className="text-sm text-gray-500">Tracking {snapshot.totalEvents} events this session.</Text>
+          <Text className="text-sm text-gray-500">
+            Tracking {snapshot.totalEvents} events this session.
+          </Text>
         </Flex>
       </Card>
 
@@ -126,7 +144,12 @@ export default function KpiDashboardContent() {
                   precision={0}
                 />
                 <Statistic title="Errors" value={snapshot.contact.errors} precision={0} />
-                <Statistic title="Avg response" value={snapshot.contact.averageResponseMs} suffix="ms" precision={0} />
+                <Statistic
+                  title="Avg response"
+                  value={snapshot.contact.averageResponseMs}
+                  suffix="ms"
+                  precision={0}
+                />
               </Flex>
             </Flex>
           </Card>
@@ -146,7 +169,12 @@ export default function KpiDashboardContent() {
                   precision={0}
                 />
                 <Statistic title="Errors" value={snapshot.returns.errors} precision={0} />
-                <Statistic title="Avg response" value={snapshot.returns.averageResponseMs} suffix="ms" precision={0} />
+                <Statistic
+                  title="Avg response"
+                  value={snapshot.returns.averageResponseMs}
+                  suffix="ms"
+                  precision={0}
+                />
               </Flex>
             </Flex>
           </Card>

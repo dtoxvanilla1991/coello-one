@@ -52,11 +52,31 @@
     "timeline": {
       "title": "Milestones that shaped Coello",
       "milestones": [
-        { "year": "2019", "title": "Observation", "description": "Noticed elite athletes hiding tattoos mid-training and mapped the ergonomic gap." },
-        { "year": "2020", "title": "First lab", "description": "Built our first asymmetrical prototypes alongside illustrators and sprinters in Barcelona." },
-        { "year": "2022", "title": "Material breakthrough", "description": "Locked a fabric recipe that keeps saturated ink tones cooler by up to 3ºC." },
-        { "year": "2024", "title": "Community drop", "description": "Opened the One Sleeve Residency so athletes can prototype live with Laura's team." },
-        { "year": "2025", "title": "Global debut", "description": "Coello One launches internationally with localized education hubs and athlete storytelling." }
+        {
+          "year": "2019",
+          "title": "Observation",
+          "description": "Noticed elite athletes hiding tattoos mid-training and mapped the ergonomic gap."
+        },
+        {
+          "year": "2020",
+          "title": "First lab",
+          "description": "Built our first asymmetrical prototypes alongside illustrators and sprinters in Barcelona."
+        },
+        {
+          "year": "2022",
+          "title": "Material breakthrough",
+          "description": "Locked a fabric recipe that keeps saturated ink tones cooler by up to 3ºC."
+        },
+        {
+          "year": "2024",
+          "title": "Community drop",
+          "description": "Opened the One Sleeve Residency so athletes can prototype live with Laura's team."
+        },
+        {
+          "year": "2025",
+          "title": "Global debut",
+          "description": "Coello One launches internationally with localized education hubs and athlete storytelling."
+        }
       ]
     },
     "cta": {
@@ -140,8 +160,14 @@
           "Vitamin D and omega-3 stacks support vibrant ink and lower inflammation markers."
         ],
         "highlights": [
-          { "title": "Micro-recovery meals", "description": "Build plates with bold pigments—berries, leafy greens, citrus—to keep skin glow strong." },
-          { "title": "Low-friction hydration", "description": "Carry insulated bottles on the side of your ink to prevent UV fade between sessions." }
+          {
+            "title": "Micro-recovery meals",
+            "description": "Build plates with bold pigments—berries, leafy greens, citrus—to keep skin glow strong."
+          },
+          {
+            "title": "Low-friction hydration",
+            "description": "Carry insulated bottles on the side of your ink to prevent UV fade between sessions."
+          }
         ],
         "resources": [
           {
@@ -175,8 +201,14 @@
           "Track HRV and resting heart rate to gauge when to downshift intensity."
         ],
         "highlights": [
-          { "title": "Light discipline", "description": "Swap phone doom scrolling for breathing drills while wearing blue-light lenses." },
-          { "title": "Ink-safe fabrics", "description": "Sleep in breathable eucalyptus fibers to reduce friction on fresh tattoos." }
+          {
+            "title": "Light discipline",
+            "description": "Swap phone doom scrolling for breathing drills while wearing blue-light lenses."
+          },
+          {
+            "title": "Ink-safe fabrics",
+            "description": "Sleep in breathable eucalyptus fibers to reduce friction on fresh tattoos."
+          }
         ],
         "resources": [
           {
@@ -210,8 +242,14 @@
           "Schedule UV-free indoor sessions 48 hours post-ink to maintain pigment integrity."
         ],
         "highlights": [
-          { "title": "Contrast blocks", "description": "Pair trap-bar deadlifts with sled pushes for power without abrasion." },
-          { "title": "Coaching intel", "description": "Resident coaches drop weekly cues inside the Coello Discord." }
+          {
+            "title": "Contrast blocks",
+            "description": "Pair trap-bar deadlifts with sled pushes for power without abrasion."
+          },
+          {
+            "title": "Coaching intel",
+            "description": "Resident coaches drop weekly cues inside the Coello Discord."
+          }
         ],
         "resources": [
           {
@@ -281,9 +319,21 @@
     "roadmap": {
       "title": "Roadmap to climate positivity",
       "steps": [
-        { "year": "2025", "title": "Measure", "description": "Third-party audit of every supplier plus public reporting." },
-        { "year": "2026", "title": "Reduce", "description": "Shift to 100% renewable cutting rooms and recycled trims." },
-        { "year": "2027", "title": "Regenerate", "description": "Invest in tattoo-friendly reforestation projects with local artists." }
+        {
+          "year": "2025",
+          "title": "Measure",
+          "description": "Third-party audit of every supplier plus public reporting."
+        },
+        {
+          "year": "2026",
+          "title": "Reduce",
+          "description": "Shift to 100% renewable cutting rooms and recycled trims."
+        },
+        {
+          "year": "2027",
+          "title": "Regenerate",
+          "description": "Invest in tattoo-friendly reforestation projects with local artists."
+        }
       ]
     },
     "cta": {

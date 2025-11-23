@@ -9,10 +9,22 @@
   "stepsCard": {
     "title": "How the return flow works",
     "steps": [
-      { "title": "Request", "description": "Submit your order number and select refund or exchange." },
-      { "title": "Pack", "description": "Seal the garment in its original bag with the authenticity card." },
-      { "title": "Hand off", "description": "Drop at your chosen courier or book a DPD collection slot." },
-      { "title": "Refund", "description": "We issue refunds in 3-5 days or dispatch exchanges instantly." }
+      {
+        "title": "Request",
+        "description": "Submit your order number and select refund or exchange."
+      },
+      {
+        "title": "Pack",
+        "description": "Seal the garment in its original bag with the authenticity card."
+      },
+      {
+        "title": "Hand off",
+        "description": "Drop at your chosen courier or book a DPD collection slot."
+      },
+      {
+        "title": "Refund",
+        "description": "We issue refunds in 3-5 days or dispatch exchanges instantly."
+      }
     ]
   },
   "remindersCard": {

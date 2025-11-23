@@ -44,7 +44,9 @@ describe("FAQContent", () => {
     const panel = collapseHeader.closest(".ant-collapse-item");
     expect(panel).toBeTruthy();
     if (panel) {
-      expect(within(panel as HTMLElement).getByText(/Most UK orders arrive in 1-3 days./i)).toBeTruthy();
+      expect(
+        within(panel as HTMLElement).getByText(/Most UK orders arrive in 1-3 days./i),
+      ).toBeTruthy();
     }
     expect(trackEventMock).toHaveBeenCalledWith(
       "help_faq_view_question",

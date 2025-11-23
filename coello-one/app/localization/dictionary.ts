@@ -52,7 +52,7 @@ const translations = {
   },
 } as const;
 
-export type TranslationNamespaces = typeof translations[typeof DEFAULT_LOCALE];
+export type TranslationNamespaces = (typeof translations)[typeof DEFAULT_LOCALE];
 export type TranslationNamespace = keyof TranslationNamespaces;
 
 export function getNamespaceCopy<N extends TranslationNamespace>(

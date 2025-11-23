@@ -3,9 +3,7 @@ import { footerLinkGroups, routes } from "@config/routes";
 
 const baseUrl = process.env.FOOTER_LINKS_BASE_URL;
 const footerPaths = Array.from(
-  new Set(
-    footerLinkGroups.flatMap((group) => group.links.map((link) => routes[link.route])),
-  ),
+  new Set(footerLinkGroups.flatMap((group) => group.links.map((link) => routes[link.route]))),
 );
 
 const describeFooterSmoke = baseUrl ? describe : describe.skip;

@@ -80,7 +80,10 @@ describe("SustainabilityContent", () => {
     expect(trackEventMock).toHaveBeenCalledWith(
       "sustainability_manifesto_click",
       { surface: "sustainability_roadmap" },
-      expect.objectContaining({ locale: "en-GB", translationKey: "pages.sustainability.cta.label" }),
+      expect.objectContaining({
+        locale: "en-GB",
+        translationKey: "pages.sustainability.cta.label",
+      }),
     );
   });
 });

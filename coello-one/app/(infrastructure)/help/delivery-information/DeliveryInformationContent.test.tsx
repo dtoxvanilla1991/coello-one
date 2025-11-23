@@ -16,17 +16,11 @@ const tiers: DeliveryTier[] = [
   },
 ];
 
-const promises: DeliveryPromise[] = [
-  { title: "Fast", description: "Lightning fast shipping" },
-];
+const promises: DeliveryPromise[] = [{ title: "Fast", description: "Lightning fast shipping" }];
 
-const packingSteps: PackingStep[] = [
-  { title: "Pick", description: "Warehouse pick" },
-];
+const packingSteps: PackingStep[] = [{ title: "Pick", description: "Warehouse pick" }];
 
-const dutyInsights: DutyInsight[] = [
-  { market: "EU", detail: "No duties" },
-];
+const dutyInsights: DutyInsight[] = [{ market: "EU", detail: "No duties" }];
 
 describe("DeliveryInformationContent", () => {
   it("unit: renders the calculator, matrix, and promises", () => {

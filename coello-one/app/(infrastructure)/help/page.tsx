@@ -18,9 +18,7 @@ export default async function HelpLandingPage() {
   const withLocalePath = createLocalePath();
   const landingCopy = getNamespaceCopy(locale, "helpLanding");
   const toHelpPath = (path: string) => {
-    const normalized = path.startsWith("/help")
-      ? path
-      : `/help/${path.replace(/^\/+/u, "")}`;
+    const normalized = path.startsWith("/help") ? path : `/help/${path.replace(/^\/+/u, "")}`;
     return withLocalePath(normalized);
   };
   const quickLinks = landingCopy.quickLinks.map((link) => ({

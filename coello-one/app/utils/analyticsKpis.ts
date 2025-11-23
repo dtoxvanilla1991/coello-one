@@ -94,7 +94,8 @@ function computeFlowMetrics(events: AnalyticsDetail[], key: FlowKey): HelpFlowMe
             accumulator.responseSamples.length,
         )
       : 0;
-  const completionRate = accumulator.attempts > 0 ? accumulator.completed / accumulator.attempts : 0;
+  const completionRate =
+    accumulator.attempts > 0 ? accumulator.completed / accumulator.attempts : 0;
 
   return {
     attempts: accumulator.attempts,

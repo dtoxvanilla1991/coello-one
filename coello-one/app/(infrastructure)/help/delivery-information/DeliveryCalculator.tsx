@@ -28,10 +28,7 @@ type DeliveryCalculatorProps = {
   initialValues?: Partial<FormValues>;
 };
 
-export default function DeliveryCalculator({
-  tiers,
-  initialValues,
-}: DeliveryCalculatorProps) {
+export default function DeliveryCalculator({ tiers, initialValues }: DeliveryCalculatorProps) {
   const [form] = Form.useForm<FormValues>();
   const [quote, setQuote] = useState<QuoteResult | null>(null);
   const [validationError, setValidationError] = useState<string | null>(null);

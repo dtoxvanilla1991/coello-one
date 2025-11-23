@@ -13,17 +13,13 @@ const renderTabContent = (tab: HubTab) => (
   <Flex vertical gap={16}>
     <Card className="border-gray-200">
       <Flex gap={16} wrap>
-        <Flex vertical gap={12} className="flex-1 min-w-60">
+        <Flex vertical gap={12} className="min-w-60 flex-1">
           <Title level={3} className="mb-0! text-2xl">
             {tab.title}
           </Title>
           <Paragraph className="mb-0! text-gray-600">{tab.description}</Paragraph>
           <List
-            header={
-              <Text className="text-xs uppercase tracking-[0.3em] text-gray-500">
-                Focus
-              </Text>
-            }
+            header={<Text className="text-xs tracking-[0.3em] text-gray-500 uppercase">Focus</Text>}
             dataSource={tab.focusPoints}
             renderItem={(item) => (
               <List.Item className="border-0 px-0">
@@ -62,9 +58,7 @@ const renderTabContent = (tab: HubTab) => (
       <List
         header={
           <Flex align="center" justify="space-between" wrap>
-            <Text className="text-xs uppercase tracking-[0.3em] text-gray-500">
-              Recursos
-            </Text>
+            <Text className="text-xs tracking-[0.3em] text-gray-500 uppercase">Recursos</Text>
             <Button type="link" href={tab.cta.href} className="px-0">
               {tab.cta.label}
             </Button>
@@ -74,10 +68,15 @@ const renderTabContent = (tab: HubTab) => (
         renderItem={(resource) => (
           <List.Item className="border-0 px-0">
             <Flex vertical gap={4}>
-              <Tag className="w-fit border-gray-200 uppercase text-xs tracking-[0.2em] text-gray-500">
+              <Tag className="w-fit border-gray-200 text-xs tracking-[0.2em] text-gray-500 uppercase">
                 {resource.type}
               </Tag>
-              <Typography.Link href={resource.href} target="_blank" rel="noreferrer" className="text-base font-semibold">
+              <Typography.Link
+                href={resource.href}
+                target="_blank"
+                rel="noreferrer"
+                className="text-base font-semibold"
+              >
                 {resource.label}
               </Typography.Link>
               <Paragraph className="mb-0! text-gray-600">{resource.description}</Paragraph>

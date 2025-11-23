@@ -95,22 +95,25 @@ function toAbsoluteDomainUrl(config: DomainLocaleConfig): string {
 export function buildLocaleAlternateMap(
   domainLocales: DomainLocaleConfig[],
 ): Record<SupportedLocale, string> {
-  return domainLocales.reduce((map, config) => {
-    const url = toAbsoluteDomainUrl(config);
-    const locales = config.locales ?? [config.defaultLocale];
+  return domainLocales.reduce(
+    (map, config) => {
+      const url = toAbsoluteDomainUrl(config);
+      const locales = config.locales ?? [config.defaultLocale];
 
-    locales.forEach((locale) => {
-      if (!map[locale]) {
-        map[locale] = url;
+      locales.forEach((locale) => {
+        if (!map[locale]) {
+          map[locale] = url;
+        }
+      });
+
+      if (!map[config.defaultLocale]) {
+        map[config.defaultLocale] = url;
       }
-    });
 
-    if (!map[config.defaultLocale]) {
-      map[config.defaultLocale] = url;
-    }
-
-    return map;
-  }, {} as Record<SupportedLocale, string>);
+      return map;
+    },
+    {} as Record<SupportedLocale, string>,
+  );
 }
 
 export const PRODUCTION_LANGUAGE_ALTERNATES = buildLocaleAlternateMap(PRODUCTION_DOMAIN_LOCALES);

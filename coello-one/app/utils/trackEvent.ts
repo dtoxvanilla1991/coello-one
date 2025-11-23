@@ -22,7 +22,9 @@ export function trackEvent(
         ...payload,
         ...(localization.locale ? { locale: localization.locale } : {}),
         ...(localization.translationKey ? { translationKey: localization.translationKey } : {}),
-        ...(localization.translationVariant ? { translationVariant: localization.translationVariant } : {}),
+        ...(localization.translationVariant
+          ? { translationVariant: localization.translationVariant }
+          : {}),
       }
     : payload;
 

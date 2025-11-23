@@ -2,11 +2,7 @@
 
 import { Card, Flex, Table, Timeline, Typography } from "antd";
 import type { TableColumnsType } from "antd";
-import {
-  CURRENCY_COVERAGE,
-  FULFILMENT_NODES,
-  SUPPORT_INSIGHTS,
-} from "./constants";
+import { CURRENCY_COVERAGE, FULFILMENT_NODES, SUPPORT_INSIGHTS } from "./constants";
 import type { CurrencyCoverage } from "./constants";
 
 const { Title, Paragraph, Text, Link } = Typography;
@@ -33,7 +29,9 @@ type InternationalOrdersContentProps = {
   contactHref: string;
 };
 
-export default function InternationalOrdersContent({ contactHref }: InternationalOrdersContentProps) {
+export default function InternationalOrdersContent({
+  contactHref,
+}: InternationalOrdersContentProps) {
   return (
     <Flex vertical gap={24}>
       <Card className="border-gray-200 bg-white/70">
@@ -62,7 +60,8 @@ export default function InternationalOrdersContent({ contactHref }: Internationa
             Currency coverage
           </Title>
           <Paragraph className="mb-0! text-gray-600">
-            We localise pricing in your currency and keep the rate locked for 30 minutes while you check out.
+            We localise pricing in your currency and keep the rate locked for 30 minutes while you
+            check out.
           </Paragraph>
           <Table
             rowKey="currency"
@@ -101,7 +100,8 @@ export default function InternationalOrdersContent({ contactHref }: Internationa
                       Smart routing in motion
                     </Title>
                     <Paragraph className="mb-0! text-gray-600">
-                      We pick the closest fulfilment node and auto-book the fastest insured courier lane.
+                      We pick the closest fulfilment node and auto-book the fastest insured courier
+                      lane.
                     </Paragraph>
                   </Flex>
                 ),
@@ -113,7 +113,8 @@ export default function InternationalOrdersContent({ contactHref }: Internationa
                       Track in your language
                     </Title>
                     <Paragraph className="mb-0! text-gray-600">
-                      Real-time updates arrive in your locale with locker redirect options where available.
+                      Real-time updates arrive in your locale with locker redirect options where
+                      available.
                     </Paragraph>
                   </Flex>
                 ),
@@ -130,7 +131,10 @@ export default function InternationalOrdersContent({ contactHref }: Internationa
           </Title>
           <Flex gap={16} wrap>
             {SUPPORT_INSIGHTS.map((insight) => (
-              <Card key={insight.title} className="w-full border-gray-200 md:max-w-[320px] md:flex-1">
+              <Card
+                key={insight.title}
+                className="w-full border-gray-200 md:max-w-[320px] md:flex-1"
+              >
                 <Flex vertical gap={8}>
                   <Title level={4} className="mb-0! text-lg font-semibold">
                     {insight.title}

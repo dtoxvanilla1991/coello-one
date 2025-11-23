@@ -35,7 +35,7 @@ const createColumns = (columnCopy: DeliveryMatrixColumnCopy): TableColumnsType<D
       <Flex align="center" gap={8}>
         <Text className="font-medium text-gray-900">{value}</Text>
         {record.freeThreshold ? (
-          <Tag color="green" className="uppercase tracking-wide">
+          <Tag color="green" className="tracking-wide uppercase">
             {record.freeThreshold}
           </Tag>
         ) : null}

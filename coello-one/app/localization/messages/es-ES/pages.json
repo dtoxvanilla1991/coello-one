@@ -52,11 +52,31 @@
     "timeline": {
       "title": "Hitos que moldearon a Coello",
       "milestones": [
-        { "year": "2019", "title": "Observación", "description": "Vimos a atletas de élite ocultar sus tatuajes durante el entrenamiento y trazamos la oportunidad ergonómica." },
-        { "year": "2020", "title": "Primer laboratorio", "description": "Construimos los primeros prototipos asimétricos junto a ilustradores y velocistas en Barcelona." },
-        { "year": "2022", "title": "Salto material", "description": "Sellamos una receta textil que mantiene la tinta saturada hasta 3 ºC más fresca." },
-        { "year": "2024", "title": "Lanzamiento comunitario", "description": "Abrimos la One Sleeve Residency para que lxs atletas prototipen en vivo con el equipo de Laura." },
-        { "year": "2025", "title": "Debut global", "description": "Coello One se lanza internacionalmente con hubs educativos localizados y storytelling atlético." }
+        {
+          "year": "2019",
+          "title": "Observación",
+          "description": "Vimos a atletas de élite ocultar sus tatuajes durante el entrenamiento y trazamos la oportunidad ergonómica."
+        },
+        {
+          "year": "2020",
+          "title": "Primer laboratorio",
+          "description": "Construimos los primeros prototipos asimétricos junto a ilustradores y velocistas en Barcelona."
+        },
+        {
+          "year": "2022",
+          "title": "Salto material",
+          "description": "Sellamos una receta textil que mantiene la tinta saturada hasta 3 ºC más fresca."
+        },
+        {
+          "year": "2024",
+          "title": "Lanzamiento comunitario",
+          "description": "Abrimos la One Sleeve Residency para que lxs atletas prototipen en vivo con el equipo de Laura."
+        },
+        {
+          "year": "2025",
+          "title": "Debut global",
+          "description": "Coello One se lanza internacionalmente con hubs educativos localizados y storytelling atlético."
+        }
       ]
     },
     "cta": {
@@ -140,8 +160,14 @@
           "Vitamina D y omega 3 ayudan a mantener la viveza del tatuaje y reducen la inflamación."
         ],
         "highlights": [
-          { "title": "Comidas de micro recuperación", "description": "Llena el plato con pigmentos intensos—frutos rojos, hojas verdes, cítricos—para mantener el brillo de la piel." },
-          { "title": "Hidratación sin fricción", "description": "Lleva botellas térmicas del lado tatuado para evitar que la tinta se degrade con el sol." }
+          {
+            "title": "Comidas de micro recuperación",
+            "description": "Llena el plato con pigmentos intensos—frutos rojos, hojas verdes, cítricos—para mantener el brillo de la piel."
+          },
+          {
+            "title": "Hidratación sin fricción",
+            "description": "Lleva botellas térmicas del lado tatuado para evitar que la tinta se degrade con el sol."
+          }
         ],
         "resources": [
           {
@@ -175,8 +201,14 @@
           "Controla HRV y pulso en reposo para decidir cuándo bajar la intensidad."
         ],
         "highlights": [
-          { "title": "Disciplina de luz", "description": "Cambia el scroll por respiraciones con lentes bloqueadores de azul." },
-          { "title": "Tejidos amigables", "description": "Duerme con fibras de eucalipto transpirables para reducir la fricción." }
+          {
+            "title": "Disciplina de luz",
+            "description": "Cambia el scroll por respiraciones con lentes bloqueadores de azul."
+          },
+          {
+            "title": "Tejidos amigables",
+            "description": "Duerme con fibras de eucalipto transpirables para reducir la fricción."
+          }
         ],
         "resources": [
           {
@@ -210,8 +242,14 @@
           "Programa sesiones indoor sin UV durante 48 horas posteriores a un tatuaje para cuidar el pigmento."
         ],
         "highlights": [
-          { "title": "Bloques de contraste", "description": "Combina peso muerto con empujes de trineo para potencia sin abrasión." },
-          { "title": "Inteligencia de coaches", "description": "Lxs coaches residentes comparten tips semanales en el Discord de Coello." }
+          {
+            "title": "Bloques de contraste",
+            "description": "Combina peso muerto con empujes de trineo para potencia sin abrasión."
+          },
+          {
+            "title": "Inteligencia de coaches",
+            "description": "Lxs coaches residentes comparten tips semanales en el Discord de Coello."
+          }
         ],
         "resources": [
           {
@@ -235,7 +273,8 @@
     ],
     "commitment": {
       "title": "Experimentación constante",
-      "description": "El hub se actualiza cada mes con datos del laboratorio, entrevistas y experimentos de recuperación. Guarda tus recursos favoritos y cuéntanos qué construir." }
+      "description": "El hub se actualiza cada mes con datos del laboratorio, entrevistas y experimentos de recuperación. Guarda tus recursos favoritos y cuéntanos qué construir."
+    }
   },
   "sustainability": {
     "metadata": {
@@ -280,9 +319,21 @@
     "roadmap": {
       "title": "Ruta hacia clima positivo",
       "steps": [
-        { "year": "2025", "title": "Medir", "description": "Auditoría externa de cada proveedor y reporte público." },
-        { "year": "2026", "title": "Reducir", "description": "Transición a salas de corte 100% renovables y herrajes reciclados." },
-        { "year": "2027", "title": "Regenerar", "description": "Inversión en proyectos de reforestación amigables con tatuajes junto a artistas locales." }
+        {
+          "year": "2025",
+          "title": "Medir",
+          "description": "Auditoría externa de cada proveedor y reporte público."
+        },
+        {
+          "year": "2026",
+          "title": "Reducir",
+          "description": "Transición a salas de corte 100% renovables y herrajes reciclados."
+        },
+        {
+          "year": "2027",
+          "title": "Regenerar",
+          "description": "Inversión en proyectos de reforestación amigables con tatuajes junto a artistas locales."
+        }
       ]
     },
     "cta": {

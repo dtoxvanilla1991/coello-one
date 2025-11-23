@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useCallback, useMemo, useState } from 'react';
-import type { ProductSummary, ProductCollectionConfig } from '@/types/products';
+import { useCallback, useMemo, useState } from "react";
+import type { ProductSummary, ProductCollectionConfig } from "@/types/products";
 
 type UseProductCollectionsOptions = {
   collections: ProductCollectionConfig[];
@@ -9,7 +9,10 @@ type UseProductCollectionsOptions = {
   onCollectionChange?: (collection: ProductCollectionConfig) => void;
 };
 
-export function useProductCollections(products: ProductSummary[], options: UseProductCollectionsOptions) {
+export function useProductCollections(
+  products: ProductSummary[],
+  options: UseProductCollectionsOptions,
+) {
   const { collections, defaultKey, onCollectionChange } = options;
 
   const initialKey = useMemo(() => {
@@ -20,7 +23,7 @@ export function useProductCollections(products: ProductSummary[], options: UsePr
       }
     }
 
-    return collections[0]?.key ?? '';
+    return collections[0]?.key ?? "";
   }, [collections, defaultKey]);
 
   const [activeKey, setActiveKey] = useState(initialKey);
@@ -48,7 +51,7 @@ export function useProductCollections(products: ProductSummary[], options: UsePr
       setActiveKey(nextCollection.key);
       onCollectionChange?.(nextCollection);
     },
-    [collections, onCollectionChange]
+    [collections, onCollectionChange],
   );
 
   return {

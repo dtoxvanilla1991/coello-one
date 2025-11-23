@@ -9,10 +9,22 @@
   "stepsCard": {
     "title": "Así funciona el flujo",
     "steps": [
-      { "title": "Solicitud", "description": "Introduce tu número de pedido y elige reembolso o cambio." },
-      { "title": "Empaque", "description": "Sella la prenda en su bolsa original con la tarjeta de autenticidad." },
-      { "title": "Entrega", "description": "Deja el paquete en el mensajero elegido o reserva una recogida DPD." },
-      { "title": "Reembolso", "description": "Procesamos reembolsos en 3-5 días o enviamos cambios al instante." }
+      {
+        "title": "Solicitud",
+        "description": "Introduce tu número de pedido y elige reembolso o cambio."
+      },
+      {
+        "title": "Empaque",
+        "description": "Sella la prenda en su bolsa original con la tarjeta de autenticidad."
+      },
+      {
+        "title": "Entrega",
+        "description": "Deja el paquete en el mensajero elegido o reserva una recogida DPD."
+      },
+      {
+        "title": "Reembolso",
+        "description": "Procesamos reembolsos en 3-5 días o enviamos cambios al instante."
+      }
     ]
   },
   "remindersCard": {

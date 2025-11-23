@@ -20,7 +20,7 @@ export default function DiscountsContent({ copy }: DiscountsContentProps) {
             {copy.statusCard.title}
           </Title>
           <Paragraph className="mb-0! text-gray-700">{copy.statusCard.body}</Paragraph>
-          <Text className="text-xs uppercase tracking-[0.3em] text-gray-500">
+          <Text className="text-xs tracking-[0.3em] text-gray-500 uppercase">
             {copy.statusCard.reminderLabel}
           </Text>
         </Flex>

@@ -37,7 +37,10 @@ export default function ContactPageContent({ faqHref }: ContactPageContentProps)
           </Title>
           <Flex gap={16} wrap>
             {contactChannels.map((channel) => (
-              <Card key={channel.title} className="w-full border-gray-200 md:max-w-[300px] md:flex-1">
+              <Card
+                key={channel.title}
+                className="w-full border-gray-200 md:max-w-[300px] md:flex-1"
+              >
                 <Flex vertical gap={8}>
                   <Title level={4} className="mb-0! text-lg font-semibold">
                     {channel.title}
@@ -59,7 +62,8 @@ export default function ContactPageContent({ faqHref }: ContactPageContentProps)
             Send us a message
           </Title>
           <Paragraph className="mb-0! text-gray-600">
-            Share your question below. We route directly to the right specialist based on your topic.
+            Share your question below. We route directly to the right specialist based on your
+            topic.
           </Paragraph>
         </Flex>
       </Card>
@@ -84,7 +88,7 @@ export default function ContactPageContent({ faqHref }: ContactPageContentProps)
             )}
           />
           <Text className="text-sm text-gray-500">
-            Need instant answers? Browse the {" "}
+            Need instant answers? Browse the{" "}
             <Link href={faqHref} className="font-semibold text-gray-900">
               FAQ
             </Link>{" "}

@@ -102,6 +102,7 @@ bun dev
 ### Bun Runtime Guidelines (Bun v1.2.21)
 
 #### Bun.SQL (Mandatory)
+
 When writing server-side code involving SQLite or any SQL database, you must:
 
 1. **Use the `Bun.SQL` API** – rely on the unified tagged template literal syntax introduced in Bun v1.2.21.
@@ -129,19 +130,23 @@ const user = query.get({ $id: userId });
 ```
 
 #### Built-in YAML Support
+
 - Prefer Bun’s native YAML integrations (`import config from "./config.yaml";` or `Bun.YAML.parse`) instead of third-party parsers like `js-yaml`.
 - Keep YAML-Backed config co-located with TypeScript types and ensure schemas validate the parsed payload before use.
 
 #### Secrets & Credentials
+
 - Use `Bun.secrets` to read/write sensitive values during local tooling or CLI tasks. This routes through Keychain (macOS), libsecret (Linux), or Windows Credential Manager, keeping secrets off disk.
 - Document any non-Bun credential storage (e.g., cloud secret managers) in Serena and justify the exception.
 
 #### Tooling & Supply Chain
+
 - Run `bun audit --audit-level=high` before shipping meaningful dependency changes; the Bun 1.2.21 audit filters help surface critical issues fast.
 - Security scanners can now hook directly into `bun install`. If you add one (e.g., Socket’s scanner), record the config in Serena and update CI accordingly.
 - Prefer `bun install --lockfile-only` in CI-generated environments that only need an updated `bun.lock` without downloading tarballs.
 
 #### Operational Notes
+
 - `postMessage`/`structuredClone` improvements in Bun 1.2.21 make worker-based data passing far cheaper—lean on workers for heavy transforms when needed.
 - Keep Bun pinned to ≥1.2.21 (see `.github/workflows/ci.yml`) to guarantee access to these runtime guarantees.
 

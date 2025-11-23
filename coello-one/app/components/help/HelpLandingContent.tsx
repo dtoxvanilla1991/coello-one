@@ -15,7 +15,8 @@ const QUICK_LINK_ICONS: Record<QuickLinkIconKey, ReactNode> = {
   arrow: <ArrowRightOutlined className="text-xl text-gray-500" />,
 };
 
-const resolveQuickLinkIcon = (icon: string) => QUICK_LINK_ICONS[icon as QuickLinkIconKey] ?? QUICK_LINK_ICONS.arrow;
+const resolveQuickLinkIcon = (icon: string) =>
+  QUICK_LINK_ICONS[icon as QuickLinkIconKey] ?? QUICK_LINK_ICONS.arrow;
 
 type QuickLink = {
   id: string;
@@ -45,7 +46,12 @@ type HelpLandingContentProps = {
   };
 };
 
-export default function HelpLandingContent({ hero, introCard, quickLinks, contactCard }: HelpLandingContentProps) {
+export default function HelpLandingContent({
+  hero,
+  introCard,
+  quickLinks,
+  contactCard,
+}: HelpLandingContentProps) {
   return (
     <HelpPageShell title={hero.title} description={hero.description}>
       <Flex vertical gap={24}>
@@ -94,7 +100,12 @@ export default function HelpLandingContent({ hero, introCard, quickLinks, contac
                   {contactCard.channelsLabel}
                 </Text>
               </Flex>
-              <Button size="large" type="primary" icon={<MessageOutlined />} href={contactCard.buttonHref}>
+              <Button
+                size="large"
+                type="primary"
+                icon={<MessageOutlined />}
+                href={contactCard.buttonHref}
+              >
                 {contactCard.buttonLabel}
               </Button>
             </Flex>

@@ -7,10 +7,22 @@ describe("analyticsKpis", () => {
     const baseTimestamp = Date.now();
     const events: AnalyticsDetail[] = [
       { event: "help_contact_request_attempt", timestamp: baseTimestamp, payload: {} },
-      { event: "help_contact_request", timestamp: baseTimestamp + 1, payload: { responseTimeMs: 1200 } },
-      { event: "help_contact_request_error", timestamp: baseTimestamp + 2, payload: { reason: "validation" } },
+      {
+        event: "help_contact_request",
+        timestamp: baseTimestamp + 1,
+        payload: { responseTimeMs: 1200 },
+      },
+      {
+        event: "help_contact_request_error",
+        timestamp: baseTimestamp + 2,
+        payload: { reason: "validation" },
+      },
       { event: "help_return_request_attempt", timestamp: baseTimestamp + 3, payload: {} },
-      { event: "help_return_request", timestamp: baseTimestamp + 4, payload: { responseTimeMs: 800 } },
+      {
+        event: "help_return_request",
+        timestamp: baseTimestamp + 4,
+        payload: { responseTimeMs: 800 },
+      },
     ];
 
     const snapshot = buildHelpKpiSnapshot(events);

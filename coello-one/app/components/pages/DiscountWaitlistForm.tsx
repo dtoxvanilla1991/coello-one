@@ -17,7 +17,11 @@ type DiscountWaitlistFormProps = {
   initialEmail?: string;
 };
 
-export default function DiscountWaitlistForm({ copy, onSubscribe = subscribeUser, initialEmail = "" }: DiscountWaitlistFormProps) {
+export default function DiscountWaitlistForm({
+  copy,
+  onSubscribe = subscribeUser,
+  initialEmail = "",
+}: DiscountWaitlistFormProps) {
   const locale = useCurrentLocale();
   const [email, setEmail] = useState(initialEmail);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -104,9 +108,7 @@ export default function DiscountWaitlistForm({ copy, onSubscribe = subscribeUser
             void handleSubmit(event.currentTarget.value);
           }}
         />
-        {fieldError ? (
-          <Text className="text-xs text-red-500">{fieldError}</Text>
-        ) : null}
+        {fieldError ? <Text className="text-xs text-red-500">{fieldError}</Text> : null}
       </Flex>
       {copy.description ? (
         <Paragraph className="-mt-1 mb-2 text-sm text-gray-600">{copy.description}</Paragraph>
@@ -114,7 +116,13 @@ export default function DiscountWaitlistForm({ copy, onSubscribe = subscribeUser
       {errorMessage ? (
         <Alert type="error" message={errorMessage} showIcon className="mb-2" />
       ) : null}
-      <Button type="primary" size="large" loading={isSubmitting} block onClick={() => void handleSubmit(email)}>
+      <Button
+        type="primary"
+        size="large"
+        loading={isSubmitting}
+        block
+        onClick={() => void handleSubmit(email)}
+      >
         {copy.submitLabel}
       </Button>
       <Text className="mt-2 block text-xs text-gray-500">{copy.privacyNote}</Text>
