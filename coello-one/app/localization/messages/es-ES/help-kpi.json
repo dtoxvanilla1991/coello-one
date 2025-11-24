@@ -1,0 +1,81 @@
+{
+  "metadata": {
+    "title": "Panel KPI de Ayuda | Coello",
+    "description": "Analítica en vivo de los flujos de contacto y devoluciones para ajustar la velocidad de respuesta del concierge."
+  },
+  "breadcrumbLabel": "Centro de ayuda",
+  "title": "Panel KPI de ayuda",
+  "description": "Supervisa en tiempo real las conversiones y tiempos de respuesta de los flujos de concierge y devoluciones.",
+  "content": {
+    "hero": {
+      "title": "Salud en tiempo real",
+      "description": "Controla con qué frecuencia nos contactan, lo rápido que respondemos y dónde aparece fricción.",
+      "tracking": "Registrando {count} eventos en esta sesión."
+    },
+    "cards": {
+      "contact": {
+        "title": "Flujo de contacto concierge",
+        "stats": {
+          "attempts": "Intentos",
+          "completionRate": "Tasa de finalización",
+          "errors": "Errores",
+          "avgResponse": "Resp. media"
+        }
+      },
+      "returns": {
+        "title": "Flujo de devoluciones",
+        "stats": {
+          "attempts": "Intentos",
+          "completionRate": "Tasa de finalización",
+          "errors": "Errores",
+          "avgResponse": "Resp. media"
+        }
+      }
+    },
+    "table": {
+      "title": "Feed analítico reciente",
+      "emptyDescription": "Envía un contacto o devolución para ver datos",
+      "columns": {
+        "event": "Evento",
+        "time": "Hora",
+        "status": "Estado",
+        "details": "Detalles"
+      }
+    },
+    "eventStatus": {
+      "fallback": {
+        "label": "Evento",
+        "status": "Evento"
+      },
+      "map": {
+        "help_contact_request_attempt": {
+          "label": "Intento de contacto concierge",
+          "status": "Intento"
+        },
+        "help_contact_request": {
+          "label": "Contacto concierge completado",
+          "status": "Completado"
+        },
+        "help_contact_request_error": {
+          "label": "Error en contacto concierge",
+          "status": "Error"
+        },
+        "help_return_request_attempt": {
+          "label": "Intento de solicitud de devolución",
+          "status": "Intento"
+        },
+        "help_return_request": {
+          "label": "Solicitud de devolución completada",
+          "status": "Completado"
+        },
+        "help_return_request_error": {
+          "label": "Error en solicitud de devolución",
+          "status": "Error"
+        }
+      }
+    },
+    "summaries": {
+      "none": "Sin payload"
+    }
+  }
+}

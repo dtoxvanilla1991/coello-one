@@ -1,0 +1,98 @@
+{
+  "welcome": {
+    "title": ["Welcome to Coello One", "Ultimate Sportswear."],
+    "body": {
+      "primary": "We have been spending long hours to relaunch the experience you deserve.",
+      "secondary": "Join our mailing list or follow us on Facebook to catch every update."
+    },
+    "actions": {
+      "primary": "Start installation",
+      "secondary": "User guide"
+    },
+    "images": {
+      "primaryAlt": "Illustration of Coello welcome scene",
+      "secondaryAlt": "Floating welcome accent art"
+    }
+  },
+  "accessDenied": {
+    "title": ["Welcome to Coello One", "Ultimate sportswear."],
+    "body": {
+      "primary": "We are refreshing secure areas of the site before letting everyone back in.",
+      "secondary": "Join our mailing list or follow us on Facebook for the latest updates."
+    },
+    "actions": {
+      "primary": "Try items out",
+      "secondary": "User guide"
+    },
+    "images": {
+      "primaryAlt": "Illustration of access denied scene",
+      "secondaryAlt": "Floating access accent art"
+    }
+  },
+  "maintenance": {
+    "title": ["Our website is under construction.", "Please stay patient—launching soon."],
+    "body": {
+      "primary": "We are putting in the final hours on the new experience.",
+      "secondary": "Join our mailing list or follow us on Facebook to hear first."
+    },
+    "subscribePrompt": "Don’t want to miss an update? Subscribe now.",
+    "imageAlt": "Illustration of website maintenance"
+  },
+  "comingSoon": {
+    "title": ["Our website is developing.", "We are coming soon."],
+    "body": {
+      "primary": "We are perfecting every pixel before the next reveal.",
+      "secondary": "Join our mailing list or follow us on Facebook to receive the latest update."
+    },
+    "subscribePrompt": "Don’t want to miss an update? Subscribe now.",
+    "images": {
+      "primaryAlt": "Floating plus icons",
+      "secondaryAlt": "Coming soon illustration"
+    },
+    "countdown": {
+      "labels": {
+        "day": "DAY",
+        "hour": "HOUR",
+        "minute": "MIN",
+        "second": "SEC",
+        "completed": "Countdown completed"
+      }
+    }
+  },
+  "notFound": {
+    "title": "Sorry, the page was not found.",
+    "body": {
+      "primary": "We have been spending long hours to relaunch the experience you deserve.",
+      "secondary": "Join our mailing list or follow us on Facebook to catch every update."
+    },
+    "buttonLabel": "Back to home",
+    "imageAlt": "Illustration for missing page"
+  },
+  "accessibility": {
+    "title": "Coello One’s commitment to accessibility",
+    "paragraphs": [
+      "Coello One is committed to making this website accessible to the widest possible audience. We regularly test and update the site and aim to conform to WCAG 2.1 Level AA where feasible.",
+      "If you encounter an accessibility barrier, please contact us at coello.one@gmail.com with the page URL and a brief description of the issue. We will respond with alternatives and prioritize fixes whenever possible.",
+      "This statement describes our accessibility efforts and is for informational purposes only; it does not create legal rights or obligations."
+    ]
+  },
+  "blog": {
+    "cards": [
+      {
+        "id": "first",
+        "title": "First blog post",
+        "cover": "/ai-generated/coming-soon.svg",
+        "description": "This is the description for the first blog post."
+      },
+      {
+        "id": "second",
+        "title": "Second blog post",
+        "cover": "/ai-generated/coming-soon-2.svg",
+        "description": "This is the description for the second blog post."
+      }
+    ],
+    "actions": {
+      "view": "View blog"
+    }
+  }
+}

@@ -1,27 +1,33 @@
 import type { Metadata } from "next";
 import HelpPageShell from "@components/help/HelpPageShell";
 import { routes } from "@config/routes";
+import { getNamespaceCopy } from "@/localization/dictionary";
+import { getRequestLocale } from "@/localization/getRequestLocale";
 import { createLocalePath } from "@/utils/createLocalePath";
 import ContactPageContent from "./ContactPageContent";
 
-export const metadata: Metadata = {
-  title: "Contact Us | Coello Help",
-  description:
-    "Reach the Coello concierge team for styling advice, order support, or partnership enquiries.",
-};
+export function generateMetadata(): Metadata {
+  const copy = getNamespaceCopy(undefined, "helpContact");
+  return {
+    title: copy.metadata.title,
+    description: copy.metadata.description,
+  };
+}
 
 // TEST-WAIVER: This Next.js route shell only composes tested child components (ContactForm) and static content.
-export default function ContactPage() {
+export default async function ContactPage() {
+  const locale = await getRequestLocale();
+  const copy = getNamespaceCopy(locale, "helpContact");
   const withLocalePath = createLocalePath();
   const faqHref = withLocalePath(routes.helpFaq);
 
   return (
     <HelpPageShell
-      title="Speak with Coello"
-      description="Our concierge advisors love solving fit, styling, and training questions. Choose the channel that suits you best."
+      title={copy.title}
+      description={copy.description}
       breadcrumb={[
-        { title: "Help Centre", href: withLocalePath(routes.help) },
-        { title: "Contact" },
+        { title: copy.breadcrumbLabel, href: withLocalePath(routes.help) },
+        { title: copy.title },
       ]}
     >
       <ContactPageContent faqHref={faqHref} />

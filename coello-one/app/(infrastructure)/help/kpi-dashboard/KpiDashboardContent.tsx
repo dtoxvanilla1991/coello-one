@@ -6,6 +6,8 @@ import { useMemo } from "react";
 import type { AnalyticsDetail } from "@/utils/analyticsAdapter";
 import { buildHelpKpiSnapshot, getRecentHelpEvents } from "@/utils/analyticsKpis";
 import { useAnalyticsEvents } from "@/hooks/useAnalyticsEvents";
+import { useTranslations } from "@/localization/useTranslations";
+import { formatMessage } from "@/localization/formatMessage";
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -18,53 +20,14 @@ type RecentEventRow = {
   details: string;
 };
 
-const EVENT_STATUS: Record<string, { label: string; status: string; color: string }> = {
-  help_contact_request_attempt: {
-    label: "Contact concierge attempt",
-    status: "Attempt",
-    color: "blue",
-  },
-  help_contact_request: {
-    label: "Contact concierge completed",
-    status: "Completed",
-    color: "green",
-  },
-  help_contact_request_error: { label: "Contact concierge error", status: "Error", color: "red" },
-  help_return_request_attempt: {
-    label: "Return request attempt",
-    status: "Attempt",
-    color: "blue",
-  },
-  help_return_request: { label: "Return request completed", status: "Completed", color: "green" },
-  help_return_request_error: { label: "Return request error", status: "Error", color: "red" },
+const EVENT_STATUS_COLORS: Record<string, string> = {
+  help_contact_request_attempt: "blue",
+  help_contact_request: "green",
+  help_contact_request_error: "red",
+  help_return_request_attempt: "blue",
+  help_return_request: "green",
+  help_return_request_error: "red",
 };
-
-const recentColumns: TableColumnsType<RecentEventRow> = [
-  {
-    title: "Event",
-    dataIndex: "label",
-    key: "label",
-    width: 220,
-  },
-  {
-    title: "Time",
-    dataIndex: "time",
-    key: "time",
-    width: 160,
-  },
-  {
-    title: "Status",
-    dataIndex: "status",
-    key: "status",
-    width: 140,
-    render: (_value, record) => <Tag color={record.color}>{record.status}</Tag>,
-  },
-  {
-    title: "Details",
-    dataIndex: "details",
-    key: "details",
-  },
-];
 
 const formatter = new Intl.DateTimeFormat(undefined, {
   hour: "2-digit",
@@ -72,9 +35,9 @@ const formatter = new Intl.DateTimeFormat(undefined, {
   second: "2-digit",
 });
 
-const summarizePayload = (payload: AnalyticsDetail["payload"]): string => {
+const summarizePayload = (payload: AnalyticsDetail["payload"], emptyLabel: string): string => {
   if (!payload || Object.keys(payload).length === 0) {
-    return "No payload";
+    return emptyLabel;
   }
 
   return Object.entries(payload)
@@ -89,26 +52,58 @@ export default function KpiDashboardContent() {
   const events = useAnalyticsEvents(80);
   const snapshot = useMemo(() => buildHelpKpiSnapshot(events), [events]);
   const recentEvents = useMemo(() => getRecentHelpEvents(events, 8), [events]);
+  const copy = useTranslations("helpKpi");
+  const contentCopy = copy.content;
+  const heroCopy = contentCopy.hero;
+  const columnsCopy = contentCopy.table.columns;
+  const eventStatusMap = contentCopy.eventStatus.map;
+  const fallbackStatus = contentCopy.eventStatus.fallback.status;
+  const emptySummary = contentCopy.summaries.none;
+  const tableColumns: TableColumnsType<RecentEventRow> = [
+    {
+      title: columnsCopy.event,
+      dataIndex: "label",
+      key: "label",
+      width: 220,
+    },
+    {
+      title: columnsCopy.time,
+      dataIndex: "time",
+      key: "time",
+      width: 160,
+    },
+    {
+      title: columnsCopy.status,
+      dataIndex: "status",
+      key: "status",
+      width: 140,
+      render: (_value, record) => <Tag color={record.color}>{record.status}</Tag>,
+    },
+    {
+      title: columnsCopy.details,
+      dataIndex: "details",
+      key: "details",
+    },
+  ];
 
   const recentRows = useMemo<RecentEventRow[]>(
     () =>
       recentEvents.map((event) => {
-        const mapping = EVENT_STATUS[event.event] ?? {
-          label: event.event,
-          status: "Event",
-          color: "gray",
-        };
+        const mapping = eventStatusMap[event.event];
+        const label = mapping?.label ?? event.event;
+        const status = mapping?.status ?? fallbackStatus;
+        const color = EVENT_STATUS_COLORS[event.event] ?? "gray";
 
         return {
           key: `${event.event}-${event.timestamp}`,
-          label: mapping.label,
-          status: mapping.status,
-          color: mapping.color,
+          label,
+          status,
+          color,
           time: formatter.format(new Date(event.timestamp)),
-          details: summarizePayload(event.payload),
+          details: summarizePayload(event.payload, emptySummary),
         };
       }),
-    [recentEvents],
+    [recentEvents, eventStatusMap, fallbackStatus, emptySummary],
   );
 
   return (
@@ -116,14 +111,11 @@ export default function KpiDashboardContent() {
       <Card className="border-gray-200 bg-white/70">
         <Flex vertical gap={8}>
           <Title level={3} className="mb-0!">
-            Real-time health
+            {heroCopy.title}
           </Title>
-          <Paragraph className="mb-0! text-gray-600">
-            Track how often members reach out, how quickly we respond, and whether friction appears
-            in the flows.
-          </Paragraph>
+          <Paragraph className="mb-0! text-gray-600">{heroCopy.description}</Paragraph>
           <Text className="text-sm text-gray-500">
-            Tracking {snapshot.totalEvents} events this session.
+            {formatMessage(heroCopy.tracking, { count: snapshot.totalEvents })}
           </Text>
         </Flex>
       </Card>
@@ -133,19 +125,27 @@ export default function KpiDashboardContent() {
           <Card className="border-gray-200">
             <Flex vertical gap={12}>
               <Title level={4} className="mb-0!">
-                Concierge contact flow
+                {contentCopy.cards.contact.title}
               </Title>
               <Flex gap={16} wrap>
-                <Statistic title="Attempts" value={snapshot.contact.attempts} precision={0} />
                 <Statistic
-                  title="Completion rate"
+                  title={contentCopy.cards.contact.stats.attempts}
+                  value={snapshot.contact.attempts}
+                  precision={0}
+                />
+                <Statistic
+                  title={contentCopy.cards.contact.stats.completionRate}
                   value={snapshot.contact.completionRate * 100}
                   suffix="%"
                   precision={0}
                 />
-                <Statistic title="Errors" value={snapshot.contact.errors} precision={0} />
                 <Statistic
-                  title="Avg response"
+                  title={contentCopy.cards.contact.stats.errors}
+                  value={snapshot.contact.errors}
+                  precision={0}
+                />
+                <Statistic
+                  title={contentCopy.cards.contact.stats.avgResponse}
                   value={snapshot.contact.averageResponseMs}
                   suffix="ms"
                   precision={0}
@@ -158,19 +158,27 @@ export default function KpiDashboardContent() {
           <Card className="border-gray-200">
             <Flex vertical gap={12}>
               <Title level={4} className="mb-0!">
-                Returns flow
+                {contentCopy.cards.returns.title}
               </Title>
               <Flex gap={16} wrap>
-                <Statistic title="Attempts" value={snapshot.returns.attempts} precision={0} />
                 <Statistic
-                  title="Completion rate"
+                  title={contentCopy.cards.returns.stats.attempts}
+                  value={snapshot.returns.attempts}
+                  precision={0}
+                />
+                <Statistic
+                  title={contentCopy.cards.returns.stats.completionRate}
                   value={snapshot.returns.completionRate * 100}
                   suffix="%"
                   precision={0}
                 />
-                <Statistic title="Errors" value={snapshot.returns.errors} precision={0} />
                 <Statistic
-                  title="Avg response"
+                  title={contentCopy.cards.returns.stats.errors}
+                  value={snapshot.returns.errors}
+                  precision={0}
+                />
+                <Statistic
+                  title={contentCopy.cards.returns.stats.avgResponse}
                   value={snapshot.returns.averageResponseMs}
                   suffix="ms"
                   precision={0}
@@ -184,14 +192,14 @@ export default function KpiDashboardContent() {
       <Card className="border-gray-200 bg-white/70">
         <Flex vertical gap={16}>
           <Title level={4} className="mb-0!">
-            Recent analytics feed
+            {contentCopy.table.title}
           </Title>
           {recentRows.length === 0 ? (
-            <Empty description="Submit a contact or return to populate analytics" />
+            <Empty description={contentCopy.table.emptyDescription} />
           ) : (
             <Table
               rowKey="key"
-              columns={recentColumns}
+              columns={tableColumns}
               dataSource={recentRows}
               pagination={false}
               size="small"

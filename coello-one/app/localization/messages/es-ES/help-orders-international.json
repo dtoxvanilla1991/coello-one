@@ -1,0 +1,100 @@
+{
+  "metadata": {
+    "title": "Pedidos internacionales | Ayuda Coello",
+    "description": "Descubre cómo Coello gestiona aranceles, divisas y tracking para tus pedidos internacionales de una sola manga."
+  },
+  "breadcrumbLabel": "Centro de ayuda",
+  "title": "Comprar desde el extranjero",
+  "description": "Creamos una red logística global para que tu One-Sleeve llegue rápido, asegurado y con impuestos liquidados.",
+  "sections": {
+    "fulfilment": {
+      "title": "Red de fulfilment",
+      "cards": [
+        {
+          "title": "Hub de Róterdam",
+          "description": "Sirve a la UE con envíos duty-paid y entregas al día siguiente a DHL y DPD."
+        },
+        {
+          "title": "Flagship de Londres",
+          "description": "Prepara pedidos para Reino Unido, Nordics y Oriente Medio con ajustes en el mismo día."
+        },
+        {
+          "title": "Estudio de Los Ángeles",
+          "description": "Da servicio a Norteamérica con almacén climatizado y despacho exprés en 48 horas."
+        }
+      ]
+    },
+    "currency": {
+      "title": "Cobertura de divisas",
+      "description": "Mostramos los precios en tu moneda y fijamos el tipo durante 30 minutos mientras finalizas la compra.",
+      "table": {
+        "columns": {
+          "currency": "Divisa",
+          "regions": "Regiones",
+          "notes": "Notas"
+        },
+        "rows": [
+          {
+            "currency": "GBP",
+            "regions": "Reino Unido, Oriente Medio",
+            "notes": "Divisa principal: compatible con plazos Klarna y Apple Pay."
+          },
+          {
+            "currency": "EUR",
+            "regions": "Unión Europea, Suiza",
+            "notes": "Aranceles incluidos y procesados mediante partners compatibles con SEPA."
+          },
+          {
+            "currency": "USD",
+            "regions": "Estados Unidos, Canadá",
+            "notes": "Impuestos prepagados hasta $800; encima de ese límite gestionamos el papeleo de aduanas."
+          },
+          {
+            "currency": "AED",
+            "regions": "Emiratos Árabes Unidos",
+            "notes": "Convertimos automáticamente al finalizar la compra con tarifas bloqueadas durante 30 minutos."
+          }
+        ]
+      }
+    },
+    "timeline": {
+      "title": "Tu línea de entrega",
+      "steps": [
+        {
+          "title": "Aranceles calculados en checkout",
+          "description": "Mostramos impuestos y tasas en tu moneda antes de pagar: cero sorpresas del mensajero."
+        },
+        {
+          "title": "Enrutado inteligente en marcha",
+          "description": "Elegimos el nodo más cercano y reservamos automáticamente el courier asegurado más rápido."
+        },
+        {
+          "title": "Tracking en tu idioma",
+          "description": "Recibirás actualizaciones en tu idioma con opciones de redirección a lockers cuando existan."
+        }
+      ]
+    },
+    "concierge": {
+      "title": "Tips del concierge",
+      "tips": [
+        {
+          "title": "Aranceles garantizados",
+          "description": "Calculamos aranceles y VAT por adelantado para que el paquete llegue sin sobresaltos."
+        },
+        {
+          "title": "Tracking localizado",
+          "description": "Las páginas de seguimiento se adaptan a tu idioma y muestran redirecciones a lockers cuando aplica."
+        },
+        {
+          "title": "Guía de talla y ajuste",
+          "description": "Pide una video-consulta con el concierge antes del envío; ideal si es tu primera One-Sleeve."
+        }
+      ],
+      "prompt": {
+        "lead": "¿Necesitas ayuda con aduanas? Ve a",
+        "linkLabel": "Contáctanos",
+        "trail": "y menciona “aduanas” en tu mensaje."
+      }
+    }
+  }
+}
