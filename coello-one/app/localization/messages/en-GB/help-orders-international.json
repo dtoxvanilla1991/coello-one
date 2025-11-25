@@ -1,0 +1,100 @@
+{
+  "metadata": {
+    "title": "International Orders | Coello Help",
+    "description": "Learn how Coello handles duties, currency conversion, and tracking for international one-sleeve orders."
+  },
+  "breadcrumbLabel": "Help Centre",
+  "title": "Ordering internationally",
+  "description": "We designed a global fulfilment network so your one-sleeve arrives fast, insured, and duty-paid.",
+  "sections": {
+    "fulfilment": {
+      "title": "Fulfilment network",
+      "cards": [
+        {
+          "title": "Rotterdam hub",
+          "description": "Serves the EU with duty-paid shipments and next-day hand-offs to DHL and DPD."
+        },
+        {
+          "title": "London flagship",
+          "description": "Fulfils UK, Nordics, and Middle East orders with same-day tailoring capabilities."
+        },
+        {
+          "title": "Los Angeles studio",
+          "description": "Supports North America with climate-controlled storage and 48-hour express dispatch."
+        }
+      ]
+    },
+    "currency": {
+      "title": "Currency coverage",
+      "description": "We localise pricing in your currency and keep the rate locked for 30 minutes while you check out.",
+      "table": {
+        "columns": {
+          "currency": "Currency",
+          "regions": "Regions",
+          "notes": "Notes"
+        },
+        "rows": [
+          {
+            "currency": "GBP",
+            "regions": "United Kingdom, Middle East",
+            "notes": "Primary currency—qualifies for Klarna and Apple Pay installments."
+          },
+          {
+            "currency": "EUR",
+            "regions": "European Union, Switzerland",
+            "notes": "Duties included and processed through SEPA-compliant partners."
+          },
+          {
+            "currency": "USD",
+            "regions": "United States, Canada",
+            "notes": "Import taxes pre-paid up to $800; above that we handle brokerage paperwork for you."
+          },
+          {
+            "currency": "AED",
+            "regions": "United Arab Emirates",
+            "notes": "Converted automatically at checkout with locked-in rates for 30 minutes."
+          }
+        ]
+      }
+    },
+    "timeline": {
+      "title": "Your journey timeline",
+      "steps": [
+        {
+          "title": "Checkout duties calculated",
+          "description": "We show duties and taxes in your currency before you pay—no courier surprises."
+        },
+        {
+          "title": "Smart routing in motion",
+          "description": "We pick the closest fulfilment node and auto-book the fastest insured courier lane."
+        },
+        {
+          "title": "Track in your language",
+          "description": "Real-time updates arrive in your locale with locker redirect options where available."
+        }
+      ]
+    },
+    "concierge": {
+      "title": "Concierge tips",
+      "tips": [
+        {
+          "title": "Duties guaranteed",
+          "description": "Coello calculates duties and VAT upfront so parcels arrive with zero surprises."
+        },
+        {
+          "title": "Localized tracking",
+          "description": "Tracking pages localize to your language and surface locker redirection when available."
+        },
+        {
+          "title": "Size & fit guidance",
+          "description": "Request a concierge video consult before delivery—especially handy for first-time one-sleeve buyers."
+        }
+      ],
+      "prompt": {
+        "lead": "Need a hand with customs paperwork? Head to",
+        "linkLabel": "Contact Us",
+        "trail": "and mention customs in your message."
+      }
+    }
+  }
+}

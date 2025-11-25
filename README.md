@@ -141,6 +141,7 @@ curl -fsSL https://bun.sh/install | bash
 - CI enforces both checks (`bun run format` and `python -m black --check .`) to prevent drift across services.
 - Run `cd coello-one && bun run verify:locales` before opening a PR that adds or edits copy to ensure every locale ships the same keyset.
 - Knowledge workflow: use Context7 for every documentation or code lookup and capture the retrieved snippet/links in Serena before editing so future agents can trace decisions.
+- Tailwind syntax governance: before touching any Tailwind utility classes, pull the latest Tailwind CSS guidance through Context7, cite the snippet in Serena, and only ship utilities that match the newest syntax (currently v4). If a required feature isn’t available, escalate a Tailwind upgrade instead of reverting to legacy syntax.
 
 ### Testing Mandate
 

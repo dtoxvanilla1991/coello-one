@@ -1,26 +1,32 @@
 import type { Metadata } from "next";
 import HelpPageShell from "@components/help/HelpPageShell";
 import { routes } from "@config/routes";
+import { getNamespaceCopy } from "@/localization/dictionary";
+import { getRequestLocale } from "@/localization/getRequestLocale";
 import { createLocalePath } from "@/utils/createLocalePath";
 import KpiDashboardContent from "./KpiDashboardContent";
 
-export const metadata: Metadata = {
-  title: "Help KPI Dashboard | Coello Help",
-  description:
-    "Live analytics for contact and return flows so the concierge team can tune response speed.",
-};
+export function generateMetadata(): Metadata {
+  const copy = getNamespaceCopy(undefined, "helpKpi");
+  return {
+    title: copy.metadata.title,
+    description: copy.metadata.description,
+  };
+}
 
 // TEST-WAIVER: Shell-only server component; KPI visuals live in separately tested client content.
-export default function HelpKpiDashboardPage() {
+export default async function HelpKpiDashboardPage() {
+  const locale = await getRequestLocale();
+  const copy = getNamespaceCopy(locale, "helpKpi");
   const withLocalePath = createLocalePath();
 
   return (
     <HelpPageShell
-      title="Help KPI dashboard"
-      description="Monitor conversions and response times for concierge and return flows in real time."
+      title={copy.title}
+      description={copy.description}
       breadcrumb={[
-        { title: "Help Centre", href: withLocalePath(routes.help) },
-        { title: "KPI dashboard" },
+        { title: copy.breadcrumbLabel, href: withLocalePath(routes.help) },
+        { title: copy.title },
       ]}
     >
       <KpiDashboardContent />

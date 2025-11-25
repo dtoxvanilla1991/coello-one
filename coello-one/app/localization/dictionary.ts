@@ -7,6 +7,9 @@ import helpFaqEnGb from "./messages/en-GB/help-faq.json" assert { type: "json" }
 import helpDeliveryEnGb from "./messages/en-GB/help-delivery.json" assert { type: "json" };
 import helpContactEnGb from "./messages/en-GB/help-contact.json" assert { type: "json" };
 import helpReturnsEnGb from "./messages/en-GB/help-returns.json" assert { type: "json" };
+import helpOrdersInternationalEnGb from "./messages/en-GB/help-orders-international.json" assert { type: "json" };
+import helpKpiEnGb from "./messages/en-GB/help-kpi.json" assert { type: "json" };
+import systemPagesEnGb from "./messages/en-GB/system-pages.json" assert { type: "json" };
 import accessoriesEnGb from "./messages/en-GB/accessories.json" assert { type: "json" };
 import welcomeEnGb from "./messages/en-GB/welcome.json" assert { type: "json" };
 import pagesEnGb from "./messages/en-GB/pages.json" assert { type: "json" };
@@ -18,6 +21,9 @@ import helpFaqEsEs from "./messages/es-ES/help-faq.json" assert { type: "json" }
 import helpDeliveryEsEs from "./messages/es-ES/help-delivery.json" assert { type: "json" };
 import helpContactEsEs from "./messages/es-ES/help-contact.json" assert { type: "json" };
 import helpReturnsEsEs from "./messages/es-ES/help-returns.json" assert { type: "json" };
+import helpOrdersInternationalEsEs from "./messages/es-ES/help-orders-international.json" assert { type: "json" };
+import helpKpiEsEs from "./messages/es-ES/help-kpi.json" assert { type: "json" };
+import systemPagesEsEs from "./messages/es-ES/system-pages.json" assert { type: "json" };
 import accessoriesEsEs from "./messages/es-ES/accessories.json" assert { type: "json" };
 import welcomeEsEs from "./messages/es-ES/welcome.json" assert { type: "json" };
 import pagesEsEs from "./messages/es-ES/pages.json" assert { type: "json" };
@@ -33,6 +39,9 @@ const translations = {
     helpDelivery: helpDeliveryEnGb,
     helpContact: helpContactEnGb,
     helpReturns: helpReturnsEnGb,
+    helpOrdersInternational: helpOrdersInternationalEnGb,
+    helpKpi: helpKpiEnGb,
+    systemPages: systemPagesEnGb,
     accessories: accessoriesEnGb,
     welcome: welcomeEnGb,
     pages: pagesEnGb,
@@ -46,6 +55,9 @@ const translations = {
     helpDelivery: helpDeliveryEsEs,
     helpContact: helpContactEsEs,
     helpReturns: helpReturnsEsEs,
+    helpOrdersInternational: helpOrdersInternationalEsEs,
+    helpKpi: helpKpiEsEs,
+    systemPages: systemPagesEsEs,
     accessories: accessoriesEsEs,
     welcome: welcomeEsEs,
     pages: pagesEsEs,
