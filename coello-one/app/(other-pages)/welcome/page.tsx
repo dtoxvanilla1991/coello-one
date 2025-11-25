@@ -40,7 +40,7 @@ export default function WelcomePage() {
           </div>
         </div>
 
-        <div className="relative">
+        <div className="relative perspective-[1000px]">
           <Image
             src={WelcomeImg}
             alt={copy.images.primaryAlt}
@@ -51,8 +51,8 @@ export default function WelcomePage() {
             alt={copy.images.secondaryAlt}
             className="absolute top-1/2 left-0 z-10 aspect-275/390 max-w-[100px] -translate-y-1/2 lg:max-w-[210px]"
           />
-          <div className="bg-gray-1000/50 mx-auto h-20 w-32 transform-[rotateX(80deg)] blur-[57px]" />
-          <div className="bg-gray-1000/50 absolute bottom-10 left-3 mx-auto h-20 w-32 transform-[rotateX(80deg)] blur-[57px] lg:left-7" />
+          <div className="bg-gray-1000/50 mx-auto h-20 w-32 rotate-x-80 blur-[57px]" />
+          <div className="bg-gray-1000/50 absolute bottom-10 left-3 mx-auto h-20 w-32 rotate-x-80 blur-[57px] lg:left-7" />
         </div>
       </div>
     </div>
