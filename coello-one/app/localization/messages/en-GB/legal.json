@@ -1,0 +1,325 @@
+{
+  "navigation": {
+    "ariaLabel": "Legal policies",
+    "links": [
+      { "id": "termsConditions", "label": "Terms & Conditions", "href": "/terms-conditions" },
+      { "id": "privacyNotice", "label": "Privacy Notice", "href": "/privacy-notice" },
+      { "id": "termsOfUse", "label": "Terms of Use", "href": "/terms-of-use" },
+      { "id": "cookiePolicy", "label": "Cookie Policy", "href": "/cookie-policy" }
+    ]
+  },
+  "termsConditions": {
+    "metadata": {
+      "title": "Terms & Conditions",
+      "description": "The commercial agreement that governs every Coello One purchase."
+    },
+    "hero": {
+      "title": "Terms & Conditions",
+      "subtitle": "Ground rules for buying Coello One gear online or through our retail partners, crafted with Laura and reviewed by our Athlete Council.",
+      "updated": "Effective 24 November 2025",
+      "summary": [
+        "Benchmarked against Gymshark, Adidas, and Nike standards so expectations stay familiar across the industry.",
+        "Explains how we confirm orders, process payments, and dispatch from our EU fulfillment hubs.",
+        "Details the remedies, warranty windows, and escalation paths available to every athlete."
+      ]
+    },
+    "sections": [
+      {
+        "id": "orders",
+        "title": "Ordering & eligibility",
+        "paragraphs": [
+          "You may place orders via coello.one, the Coello app, or sanctioned pop-ups. By ordering, you confirm that all account details are accurate and that you are purchasing for personal use, not bulk resale.",
+          "We reserve the right to refuse or limit quantities where fraud, abuse, or supply constraints are suspected. Any changes to your order (address, size, quantity) must be submitted within 2 hours via concierge support."
+        ],
+        "listTitle": "Ordering checklist",
+        "listItems": [
+          { "title": "Age & residency", "description": "You must be 16+ and legally able to enter a binding contract in your territory." },
+          { "title": "Account identity", "description": "One verified account per athlete; duplicate accounts may be merged to protect launch fairness." },
+          { "title": "Communication", "description": "Keep an active email and SMS number on file so we can deliver confirmations and delivery alerts." }
+        ]
+      },
+      {
+        "id": "pricing",
+        "title": "Pricing, payment & currency",
+        "paragraphs": [
+          "Prices are listed in GBP, EUR, or USD depending on your locale and already include applicable VAT or sales tax unless stated otherwise.",
+          "We capture payment once your items leave our warehouse. Pre-authorizations may appear on your statement to validate the card or wallet you used."
+        ],
+        "listTitle": "Accepted tenders",
+        "listItems": [
+          { "title": "Cards & wallets", "description": "Visa, Mastercard, Amex, Apple Pay, Google Pay, and Klarna (where available)." },
+          { "title": "Currency lock", "description": "The currency shown at checkout is the amount billed; your bank may add conversion fees." },
+          { "title": "Fraud monitoring", "description": "We partner with global risk tools that mirror Adidas/Nike safeguards; mismatched info can trigger manual review." }
+        ]
+      },
+      {
+        "id": "shipping",
+        "title": "Shipping & delivery",
+        "paragraphs": [
+          "Orders ship from Barcelona or Porto within 1–2 business days. High-demand launches may extend processing to 5 days, in which case we will email an updated timeline.",
+          "Transit estimates are provided at checkout. Customs clearance, weather, or carrier disruptions are outside our control but we will advocate for you with the carrier."
+        ],
+        "listTitle": "Fulfillment promises",
+        "listItems": [
+          { "title": "Tracking", "description": "Every shipment receives a tracking link once the label prints." },
+          { "title": "Signature", "description": "Orders over £300/€300 require signature or ID verification to mirror premium-brand loss prevention." },
+          { "title": "Split shipments", "description": "We may split orders to keep timelines tight; you are only charged once shipping completes." }
+        ]
+      },
+      {
+        "id": "returns",
+        "title": "Returns, exchanges & warranties",
+        "paragraphs": [
+          "You have 30 days from delivery to initiate a return or size exchange, provided garments remain unwashed with hygiene seals intact.",
+          "Manufacturing defects reported within 24 months receive free repair or replacement, aligning with the durability guarantees used by leading sportswear houses."
+        ],
+        "listTitle": "What to expect",
+        "listItems": [
+          { "title": "Return shipping", "description": "Complimentary within the EU/UK; international athletes receive a prepaid label deducted from the refund." },
+          { "title": "Refund timing", "description": "Funds return within 5–10 business days after our quality inspection clears." },
+          { "title": "Residency limits", "description": "We cannot reimburse duties or taxes; consult your customs office for local recovery options." }
+        ]
+      },
+      {
+        "id": "liability",
+        "title": "Liability & governing law",
+        "paragraphs": [
+          "Coello One is not liable for indirect or consequential damages beyond the value of the product purchased, except where consumer law in your market provides additional mandatory rights.",
+          "Events beyond our reasonable control (force majeure) may delay performance; we will resume obligations immediately after such events.",
+          "These terms are governed by the laws of Spain, and disputes may be brought before the courts of Barcelona or your local consumer court where required." ]
+      }
+    ],
+    "contact": {
+      "title": "Need contract support?",
+      "description": "Reach our concierge inbox for priority handling of any contractual questions.",
+      "channels": [
+        { "label": "Email", "value": "coello.one@gmail.com", "href": "mailto:coello.one@gmail.com" }
+      ]
+    }
+  },
+  "privacyNotice": {
+    "metadata": {
+      "title": "Privacy Notice",
+      "description": "How we collect, use, and protect your personal data."
+    },
+    "hero": {
+      "title": "Privacy Notice",
+      "subtitle": "We follow the privacy playbooks used by Gymshark, Adidas, and Nike and adapt them to Coello's boutique scale.",
+      "updated": "Effective 24 November 2025",
+      "summary": [
+        "Explains the data we collect when you browse, shop, or collaborate with Coello.",
+        "Describes the legal bases we rely on and the partners who help us operate.",
+        "Lists the rights you can exercise at any time, in any market we serve."
+      ]
+    },
+    "sections": [
+      {
+        "id": "data-collected",
+        "title": "Data we collect",
+        "paragraphs": [
+          "We collect only what we need to serve athletes responsibly. Data sources mirror leading sportswear brands but on a reduced scale.",
+          "Providing certain data is optional, yet declining may limit specific experiences (for example, residency labs or tailored fit advice)."
+        ],
+        "listTitle": "Categories",
+        "listItems": [
+          { "title": "Account data", "description": "Name, email, password hashes, locale, marketing preferences." },
+          { "title": "Order data", "description": "Shipping addresses, billing tokens, VAT IDs, fulfillment history." },
+          { "title": "Engagement data", "description": "Device identifiers, cookie IDs, session analytics, and creative submissions." },
+          { "title": "Support data", "description": "Concierge transcripts, repair photos, athlete council applications." }
+        ]
+      },
+      {
+        "id": "usage",
+        "title": "How we use data",
+        "paragraphs": [
+          "We process your information to fulfill orders, personalize storytelling, secure our platforms, and comply with legal duties.",
+          "Automated decision-making is limited to fraud screening and personalization segments; humans can review any outcome on request."
+        ],
+        "listTitle": "Core purposes",
+        "listItems": [
+          { "title": "Commerce", "description": "Process payments, shipping, returns, and warranty cases." },
+          { "title": "Experience", "description": "Localize content, remember preferences, and measure campaign performance." },
+          { "title": "Safety", "description": "Detect abuse, protect intellectual property, and maintain service reliability." }
+        ]
+      },
+      {
+        "id": "sharing",
+        "title": "Sharing & transfers",
+        "paragraphs": [
+          "We do not sell your data. We share limited information with payment providers, logistics partners, analytics platforms, and legal advisors under contracts that mirror Adidas/Nike safeguards.",
+          "Data may move outside the EEA/UK; when it does, we rely on Standard Contractual Clauses or adequacy decisions."
+        ],
+        "listTitle": "Key partners",
+        "listItems": [
+          { "title": "Payments", "description": "Stripe, Adyen, or Klarna store sensitive card data on our behalf." },
+          { "title": "Fulfillment", "description": "DHL, UPS, and Correos receive delivery details only." },
+          { "title": "Analytics", "description": "Privacy-respecting platforms (PostHog, Segment) help us improve the product." }
+        ]
+      },
+      {
+        "id": "rights",
+        "title": "Your rights",
+        "paragraphs": [
+          "Depending on your residency, you may access, correct, delete, restrict, or port your data. We respond within 30 days, faster when feasible.",
+          "You can opt out of marketing at any time, withdraw consent for optional processing, or lodge a complaint with your local authority." ],
+        "listTitle": "How to act",
+        "listItems": [
+          { "title": "Self-service", "description": "Update preferences inside your account dashboard." },
+          { "title": "Concierge", "description": "Email us to action complex requests; we will verify identity before proceeding." },
+          { "title": "Supervisory body", "description": "Contact the Spanish Data Protection Agency (AEPD) or your local regulator." }
+        ]
+      },
+      {
+        "id": "security",
+        "title": "Security & retention",
+        "paragraphs": [
+          "Data is encrypted in transit and at rest. Access is limited to trained team members and approved vendors.",
+          "We retain account and order data for seven years to meet tax requirements, then anonymize or delete. Support media is purged after 24 months unless a repair case stays open." ]
+      }
+    ],
+    "contact": {
+      "title": "Privacy questions",
+      "description": "Reach our Data Protection desk for anything from subject access requests to partnership due diligence.",
+      "channels": [
+        { "label": "Email", "value": "privacy@coello.one", "href": "mailto:privacy@coello.one" }
+      ]
+    }
+  },
+  "termsOfUse": {
+    "metadata": {
+      "title": "Terms of Use",
+      "description": "Rules for using the Coello One digital platforms."
+    },
+    "hero": {
+      "title": "Terms of Use",
+      "subtitle": "These terms align with digital conduct standards from Nike, Adidas, and Gymshark while reflecting Coello's creative community.",
+      "updated": "Effective 24 November 2025",
+      "summary": [
+        "Covers eligibility, account security, and responsible browsing.",
+        "Defines how community submissions, reviews, and collaborations are handled.",
+        "Clarifies intellectual property ownership and service disclaimers."
+      ]
+    },
+    "sections": [
+      {
+        "id": "access",
+        "title": "Access & accounts",
+        "paragraphs": [
+          "You may browse freely, but certain features require an account. Keep credentials confidential and notify us immediately of unauthorized use.",
+          "We may suspend or terminate accounts that violate these terms, harm other athletes, or compromise security." ]
+      },
+      {
+        "id": "acceptable-use",
+        "title": "Acceptable use",
+        "paragraphs": [
+          "You agree not to misuse the site, interfere with infrastructure, mine data, or upload malicious code.",
+          "We enforce a zero-tolerance policy for hate speech, harassment, or imagery that conflicts with our athlete-safe ethos." ],
+        "listTitle": "Prohibited behavior",
+        "listItems": [
+          { "title": "Automation abuse", "description": "Bots that scrape, resell, or bypass launch queues." },
+          { "title": "Security probing", "description": "Reverse engineering, vulnerability scanning, or credential stuffing." },
+          { "title": "Community harm", "description": "Posting defamatory, discriminatory, or infringing content." }
+        ]
+      },
+      {
+        "id": "ugc",
+        "title": "Community contributions",
+        "paragraphs": [
+          "By submitting stories, reviews, or artwork, you grant Coello a non-exclusive, worldwide, royalty-free license to use that content for marketing, product development, and community programming.",
+          "You represent that you own or control the rights to anything you submit and that it does not infringe third-party rights." ]
+      },
+      {
+        "id": "ip",
+        "title": "Intellectual property",
+        "paragraphs": [
+          "All trademarks, graphics, copy, and code on this site belong to Coello One or its licensors. Inspired-by references to other brands do not imply affiliation.",
+          "You may not reuse, modify, or distribute site assets without written permission." ]
+      },
+      {
+        "id": "service",
+        "title": "Service updates & disclaimers",
+        "paragraphs": [
+          "We may modify or discontinue features without notice to keep pace with creative experiments or compliance updates.",
+          "The site is provided \"as is\" to the fullest extent permitted by law; we disclaim implied warranties except where consumer statutes forbid such disclaimers." ]
+      }
+    ],
+    "contact": {
+      "title": "Questions about usage?",
+      "description": "Talk to our digital operations lead for clarifications on platform etiquette or collaborations.",
+      "channels": [
+        { "label": "Email", "value": "support@coello.one", "href": "mailto:support@coello.one" }
+      ]
+    }
+  },
+  "cookiePolicy": {
+    "metadata": {
+      "title": "Cookie Policy",
+      "description": "How Coello One uses cookies and similar technologies."
+    },
+    "hero": {
+      "title": "Cookie Policy",
+      "subtitle": "Built with the same transparency benchmarks used by top global sports brands, adapted for Tailwind-powered Coello experiences.",
+      "updated": "Effective 24 November 2025",
+      "summary": [
+        "Explains the cookies and pixels we rely on.",
+        "Details how you can control preferences from any device.",
+        "Clarifies when third-party ad tech is involved and how we vet it." ]
+    },
+    "sections": [
+      {
+        "id": "overview",
+        "title": "What are cookies?",
+        "paragraphs": [
+          "Cookies are small files stored on your device to remember settings, keep sessions secure, and tailor content.",
+          "We also use equivalent technologies such as local storage, SDK events, and server-side tracking where it improves performance." ]
+      },
+      {
+        "id": "types",
+        "title": "Types of cookies we use",
+        "paragraphs": [
+          "We categorize cookies similarly to Gymshark, Adidas, and Nike to keep consent dialogs familiar." ],
+        "listTitle": "Categories",
+        "listItems": [
+          { "title": "Essential", "description": "Required for checkout, authentication, and load balancing." },
+          { "title": "Performance", "description": "Help us measure traffic, debug issues, and benchmark component speed." },
+          { "title": "Functional", "description": "Store locale, bag contents, and accessibility preferences." },
+          { "title": "Marketing", "description": "Support opt-in campaigns, creator collaborations, or retargeting." }
+        ]
+      },
+      {
+        "id": "controls",
+        "title": "Managing preferences",
+        "paragraphs": [
+          "You can adjust cookie settings through our banner, your browser, or system-level controls. Revoking consent disables non-essential cookies while keeping the site usable.",
+          "Within the EU/UK we honor Global Privacy Control signals and IAB TCF strings where supported." ],
+        "listTitle": "Control options",
+        "listItems": [
+          { "title": "Banner", "description": "Use the \"Manage preferences\" link to toggle categories at any time." },
+          { "title": "Browser", "description": "Clear caches/cookies or use private browsing to reset identifiers." },
+          { "title": "Device", "description": "Limit ad tracking in iOS/Android settings; we respect those choices." }
+        ]
+      },
+      {
+        "id": "ad-tech",
+        "title": "Advertising & analytics",
+        "paragraphs": [
+          "We currently partner with PostHog, Google Analytics 4 (consent mode), and Meta Pixels for opted-in campaigns.",
+          "Each partner contractually agrees to process data only on our behalf and provide regional opt-outs." ]
+      },
+      {
+        "id": "updates",
+        "title": "Policy updates",
+        "paragraphs": [
+          "We review this policy quarterly or whenever we add a new vendor. Material changes trigger an on-site banner and email notice.",
+          "Continuing to use the site after updates signals acceptance of the revised policy." ]
+      }
+    ],
+    "contact": {
+      "title": "Cookie or consent questions",
+      "description": "Our privacy desk can help you tailor analytics without losing essential functionality.",
+      "channels": [
+        { "label": "Email", "value": "privacy@coello.one", "href": "mailto:privacy@coello.one" }
+      ]
+    }
+  }
+}
