@@ -15,12 +15,14 @@ type DiscountWaitlistFormProps = {
   copy: DiscountsCopy["form"];
   onSubscribe?: typeof subscribeUser;
   initialEmail?: string;
+  hideTitle?: boolean;
 };
 
 export default function DiscountWaitlistForm({
   copy,
   onSubscribe = subscribeUser,
   initialEmail = "",
+  hideTitle = false,
 }: DiscountWaitlistFormProps) {
   const locale = useCurrentLocale();
   const [email, setEmail] = useState(initialEmail);
@@ -91,7 +93,9 @@ export default function DiscountWaitlistForm({
   return (
     <Flex vertical gap={12}>
       <Flex vertical gap={6}>
-        <Text className="text-sm font-semibold text-gray-900">{copy.title}</Text>
+        {hideTitle ? null : (
+          <Text className="text-sm font-semibold text-gray-900">{copy.title}</Text>
+        )}
         <Input
           aria-label={copy.title}
           type="email"

@@ -1,9 +1,12 @@
 "use client";
 
-import { Card, Flex, List, Typography } from "antd";
+import { useState, useCallback } from "react";
+import { Card, Flex, List, Typography, Button } from "antd";
 import type { DiscountsCopy } from "@/types/pages";
 import BrandPageShell from "./BrandPageShell";
-import DiscountWaitlistForm from "./DiscountWaitlistForm";
+import PromoSignupModal from "@/components/common/PromoSignupModal";
+import { trackEvent } from "@/utils/trackEvent";
+import { useCurrentLocale } from "@/hooks/useCurrentLocale";
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -12,6 +15,22 @@ type DiscountsContentProps = {
 };
 
 export default function DiscountsContent({ copy }: DiscountsContentProps) {
+  const locale = useCurrentLocale();
+  const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
+
+  const handleOpenModal = useCallback(() => {
+    setIsSignupModalOpen(true);
+    trackEvent(
+      "discounts_open_signup_click",
+      {},
+      { locale, translationKey: "pages.discounts.form.submitLabel" },
+    );
+  }, [locale]);
+
+  const handleCloseModal = useCallback(() => {
+    setIsSignupModalOpen(false);
+  }, []);
+
   return (
     <BrandPageShell hero={copy.hero}>
       <Card className="border-gray-200 bg-gray-50">
@@ -56,8 +75,23 @@ export default function DiscountsContent({ copy }: DiscountsContentProps) {
       </Card>
 
       <Card className="border-gray-200">
-        <DiscountWaitlistForm copy={copy.form} />
+        <Flex vertical gap={16}>
+          <Title level={3} className="mb-0! text-2xl">
+            {copy.form.title}
+          </Title>
+          <Paragraph className="mb-0! text-gray-600">{copy.form.description}</Paragraph>
+          <Button type="primary" size="large" onClick={handleOpenModal}>
+            {copy.form.submitLabel}
+          </Button>
+          <Text className="text-xs text-gray-500">{copy.form.privacyNote}</Text>
+        </Flex>
       </Card>
+      <PromoSignupModal
+        open={isSignupModalOpen}
+        onClose={handleCloseModal}
+        copy={copy.form}
+        source="discounts-page"
+      />
     </BrandPageShell>
   );
 }
