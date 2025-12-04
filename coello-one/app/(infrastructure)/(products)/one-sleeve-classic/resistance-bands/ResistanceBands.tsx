@@ -8,44 +8,20 @@ import { ProductDetailShell } from "@/components/product/ProductDetailShell";
 import { incrementCartAtom } from "@/store/cartStore";
 import { trackEvent } from "@/utils/trackEvent";
 import {
+  RESISTANCE_BANDS_BAG_CONTENTS,
   RESISTANCE_BANDS_DEFAULT_COLOR,
   RESISTANCE_BANDS_DEFAULT_SIZE,
+  RESISTANCE_BANDS_DESCRIPTION,
   RESISTANCE_BANDS_IMAGE,
   RESISTANCE_BANDS_NAME,
   RESISTANCE_BANDS_PRICE_GBP,
   RESISTANCE_BANDS_PRODUCT_ID,
+  RESISTANCE_BANDS_STRENGTH_LEVELS,
+  RESISTANCE_BANDS_SUBTITLE,
+  type ResistanceStrengthLevel,
 } from "./constants";
 
 const { Title, Text, Paragraph } = Typography;
-
-const STRENGTH_LEVELS = [
-  {
-    key: "light",
-    badge: "Light • Peach",
-    resistance: "5-10 kg (10-20 lb)",
-    focus: "Mobility, warm-ups, and controlled activation.",
-  },
-  {
-    key: "medium",
-    badge: "Medium • Coral",
-    resistance: "10-20 kg (20-45 lb)",
-    focus: "Strength building, compound reinforcement, tempo work.",
-  },
-  {
-    key: "heavy",
-    badge: "Heavy • Merlot",
-    resistance: "20-35 kg (45-75 lb)",
-    focus: "Power training, athletic conditioning, maximal stability.",
-  },
-] as const;
-
-const BAG_CONTENTS = [
-  "Three tonal bands (Peach, Coral, Merlot)",
-  "Breathable mesh carry pouch",
-  "Quick-start activation guide",
-] as const;
-
-type StrengthLevel = (typeof STRENGTH_LEVELS)[number];
 
 const currencyFormatter = new Intl.NumberFormat("en-GB", {
   style: "currency",
@@ -100,15 +76,14 @@ export default function ResistanceBands() {
               <Title level={2} className="tracking-wide uppercase">
                 {RESISTANCE_BANDS_NAME}
               </Title>
-              <Text className="text-lg text-gray-400 uppercase">Unisex • Fuel your session</Text>
+              <Text className="text-lg text-gray-400 uppercase">{RESISTANCE_BANDS_SUBTITLE}</Text>
               <Text strong className="text-2xl">
                 {formattedPrice}
               </Text>
             </Space>
 
             <Paragraph className="text-base text-gray-200">
-              Three loop bands tuned for progressive overload. Each strap matches our one-sleeve
-              palette and ships in a breathable pouch for post-session ventilation.
+              {RESISTANCE_BANDS_DESCRIPTION}
             </Paragraph>
 
             <Card variant="borderless" className="bg-gray-950!">
@@ -116,9 +91,9 @@ export default function ResistanceBands() {
                 <Text strong className="text-xs text-gray-400 uppercase">
                   Strength guide
                 </Text>
-                <List<StrengthLevel>
+                <List<ResistanceStrengthLevel>
                   itemLayout="vertical"
-                  dataSource={Array.from(STRENGTH_LEVELS)}
+                  dataSource={Array.from(RESISTANCE_BANDS_STRENGTH_LEVELS)}
                   renderItem={(item) => (
                     <List.Item key={item.key} className="border-0! px-0!">
                       <Space direction="vertical" size={4} className="w-full">
@@ -143,7 +118,7 @@ export default function ResistanceBands() {
                 </Text>
                 <List<string>
                   itemLayout="horizontal"
-                  dataSource={Array.from(BAG_CONTENTS)}
+                  dataSource={Array.from(RESISTANCE_BANDS_BAG_CONTENTS)}
                   renderItem={(item, index) => (
                     <List.Item key={index} className="border-0! px-0!">
                       <Text className="text-sm text-gray-200">{item}</Text>

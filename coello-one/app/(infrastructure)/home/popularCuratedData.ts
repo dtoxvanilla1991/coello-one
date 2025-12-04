@@ -4,19 +4,20 @@ import type { Gender } from "../(products)/one-sleeve-classic/types";
 import { RESISTANCE_BANDS_SUMMARY } from "../(products)/one-sleeve-classic/resistance-bands/constants";
 
 const ONE_SLEEVE_PRICE = Number(PRODUCT_DATA.price.replace(/[^\d.]/g, "")) || 45;
+const ONE_SLEEVE_PRICE_MINOR = Math.round(ONE_SLEEVE_PRICE * 100);
 
 const GENDER_LABEL: Record<Gender, "Men" | "Women"> = {
   male: "Men",
   female: "Women",
 };
 
-export type PopularVariantDefinition = {
+type PopularVariantDefinition = {
   id: number;
   color: string;
   imageUrl: string;
 };
 
-export const ONE_SLEEVE_POPULAR_VARIANTS: Record<Gender, PopularVariantDefinition[]> = {
+const ONE_SLEEVE_POPULAR_VARIANTS: Record<Gender, PopularVariantDefinition[]> = {
   male: [
     { id: 6101, color: "Stone Gray", imageUrl: "/athletes/vertical/main-secondary-2.jpg" },
     { id: 6102, color: "Sea Blue", imageUrl: "/athletes/vertical/main-secondary-3.jpg" },
@@ -29,88 +30,32 @@ export const ONE_SLEEVE_POPULAR_VARIANTS: Record<Gender, PopularVariantDefinitio
   ],
 };
 
-const POPULAR_VARIANT_LINK_INDEX: Record<number, { gender: Gender; color: string }> =
-  Object.entries(ONE_SLEEVE_POPULAR_VARIANTS).reduce(
-    (accumulator, [genderKey, variantList]) => {
-      variantList.forEach((variant) => {
-        accumulator[variant.id] = {
-          gender: genderKey as Gender,
-          color: variant.color,
-        };
-      });
-      return accumulator;
-    },
-    {} as Record<number, { gender: Gender; color: string }>,
-  );
-
-export const RESISTANCE_BANDS_PATH_SEGMENT = `${PRODUCT_NAME_SLUG}/resistance-bands` as const;
-
-export const POPULAR_ACCESSORY_PRODUCT: ProductSummary = {
-  ...RESISTANCE_BANDS_SUMMARY,
-};
-
-function pickPopularVariant(gender: Gender, randomFn: () => number): PopularVariantDefinition {
-  const variants = ONE_SLEEVE_POPULAR_VARIANTS[gender];
-  const index = Math.min(variants.length - 1, Math.floor(randomFn() * variants.length));
-  return variants[index] ?? variants[0];
-}
-
-function createVariantSummary(variant: PopularVariantDefinition, gender: Gender): ProductSummary {
-  return {
+export function createPopularFallbackProducts(): ProductSummary[] {
+  const buildVariant = (variant: PopularVariantDefinition, gender: Gender): ProductSummary => ({
     id: variant.id,
+    slug: PRODUCT_NAME_SLUG,
     name: `One Sleeve Classic – ${variant.color}`,
     price: ONE_SLEEVE_PRICE,
+    priceMinor: ONE_SLEEVE_PRICE_MINOR,
+    currencyCode: "GBP",
     category: PRODUCT_NAME_SLUG,
     gender: GENDER_LABEL[gender],
     imageUrl: variant.imageUrl,
-  } satisfies ProductSummary;
-}
-
-const DEFAULT_VARIANT_SELECTOR = () => 0;
-
-export function createCuratedPopularProducts(
-  randomFn: () => number = DEFAULT_VARIANT_SELECTOR,
-): ProductSummary[] {
-  const femaleVariant = createVariantSummary(pickPopularVariant("female", randomFn), "female");
-  const maleVariant = createVariantSummary(pickPopularVariant("male", randomFn), "male");
-
-  return [femaleVariant, maleVariant, POPULAR_ACCESSORY_PRODUCT];
-}
-
-export function extractCuratedPopularProducts(products: ProductSummary[]): ProductSummary[] | null {
-  const curated = products.filter((product) => {
-    const normalizedName = product.name.toLowerCase();
-    return (
-      product.category === PRODUCT_NAME_SLUG ||
-      normalizedName.includes("one sleeve") ||
-      normalizedName.includes("coello one classic")
-    );
+    link: {
+      type: "variant",
+      gender,
+      color: variant.color,
+    },
   });
 
-  const hasFemale = curated.some((product) => product.gender === "Women");
-  const hasMale = curated.some((product) => product.gender === "Men");
+  const femaleVariant = ONE_SLEEVE_POPULAR_VARIANTS.female[0];
+  const maleVariant = ONE_SLEEVE_POPULAR_VARIANTS.male[0];
 
-  if (!hasFemale || !hasMale) {
-    return null;
-  }
-
-  return createCuratedPopularProducts();
-}
-
-export type PopularProductLinkInfo =
-  | { type: "variant"; gender: Gender; color: string }
-  | { type: "accessory" };
-
-export function getPopularProductLinkInfo(productId: number): PopularProductLinkInfo | null {
-  const variantLink = POPULAR_VARIANT_LINK_INDEX[productId];
-
-  if (variantLink) {
-    return { type: "variant", ...variantLink };
-  }
-
-  if (productId === POPULAR_ACCESSORY_PRODUCT.id) {
-    return { type: "accessory" };
-  }
-
-  return null;
+  return [
+    buildVariant(femaleVariant, "female"),
+    buildVariant(maleVariant, "male"),
+    {
+      ...RESISTANCE_BANDS_SUMMARY,
+    },
+  ];
 }

@@ -1,12 +1,13 @@
 import { SQL } from "bun";
+import { isProd, isLocalHost } from "../utils/env";
 
-// Determine environment
-const isProd = process.env.NODE_ENV === "production";
+const isProduction = isProd();
+const devHostname = process.env.DB_HOST_DEV ?? "localhost";
+const resolvedDevHost = isLocalHost(devHostname) ? "127.0.0.1" : devHostname;
 
-// Configure the Native Bun SQL Client
-// This bypasses Node.js overhead for maximum speed.
+// Native Bun SQL Client config to bypass Node.js overhead for maximum speed.
 export const db = new SQL(
-  isProd
+  isProduction
     ? {
         url: process.env.DB_URL_PROD!,
         // Aiven requires SSL. Bun handles this via the URL usually,
@@ -16,7 +17,8 @@ export const db = new SQL(
         },
       }
     : {
-        hostname: process.env.DB_HOST_DEV!,
+        adapter: "mysql",
+        hostname: resolvedDevHost,
         username: process.env.DB_USER_DEV!,
         password: process.env.DB_PASS_DEV!,
         database: process.env.DB_NAME_DEV!,

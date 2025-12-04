@@ -1,24 +1,19 @@
 "use server";
 
 import { SQL, sql } from "bun";
+import { db } from "@config/db";
 import {
-  flaskProductListSchema,
-  type FlaskProductList,
   productSummarySchema,
   type ProductSummary,
   type ProductServiceResult,
-  productGenderSchema,
+  type ProductGender,
 } from "@/types/products";
 import { trackEvent } from "@/utils/trackEvent";
-import {
-  createCuratedPopularProducts,
-  extractCuratedPopularProducts,
-} from "../app/(infrastructure)/home/popularCuratedData";
+import { createPopularFallbackProducts } from "../app/(infrastructure)/home/popularCuratedData";
 
 const CACHE_DB_PATH = Bun.env.PRODUCT_CACHE_DB_PATH ?? ":memory:";
 const CACHE_TTL_MS = Number(Bun.env.PRODUCT_CACHE_TTL_MS ?? 5 * 60 * 1000);
 const PRODUCT_CACHE_DEBUG = Bun.env.PRODUCT_CACHE_DEBUG === "true";
-const FLASK_API_BASE_URL = Bun.env.FLASK_API_BASE_URL ?? "http://localhost:3500";
 
 const CACHE_TABLE = "product_cache";
 const productSummaryListSchema = productSummarySchema.array();
@@ -29,6 +24,8 @@ let cacheFallbackCount = 0;
 let isPrimingCache = false;
 
 const cacheWarmupCategories = ["all", "popular"] as const;
+const MIN_POPULAR_RESULTS = 3;
+const ANALYTICS_DISABLED = Bun.env.NODE_ENV === "test";
 
 const POPULAR_FALLBACK_CACHE_SUFFIX = ":popular:fallback";
 async function ensurePopularFallback(
@@ -46,7 +43,7 @@ async function ensurePopularFallback(
     return { products: cachedFallback, updatedAt: fallbackRow.updated_at };
   }
 
-  const fallbackProducts = createCuratedPopularProducts();
+  const fallbackProducts = createPopularFallbackProducts();
   await writeCache(fallbackKey, fallbackProducts);
   if (persistPrimary) {
     await writeCache(cacheKey, fallbackProducts);
@@ -182,48 +179,341 @@ function parseCachePayload(cacheRow: CacheRow | null): ProductSummary[] | null {
   }
 }
 
-function normalizeProducts(products: FlaskProductList, category?: string): ProductSummary[] {
-  const categoryLabel = category ?? "all";
+const PRODUCT_IMAGE_FALLBACKS = [
+  "/athletes/vertical/main-secondary-5.jpg",
+  "/athletes/vertical/main-secondary-6.jpg",
+  "/athletes/vertical/main-secondary-7.jpg",
+  "/athletes/vertical/main-secondary-8.jpg",
+  "/athletes/vertical/main-secondary-9.jpg",
+  "/athletes/vertical/main-secondary-10.jpg",
+  "/athletes/vertical/main-secondary-11.jpg",
+  "/athletes/vertical/main-secondary-12.jpg",
+] as const;
 
-  return products.map((product, index) => {
-    const parsedGender = product.gender ? productGenderSchema.safeParse(product.gender) : null;
-    const gender = parsedGender?.success ? parsedGender.data : index % 2 === 0 ? "Women" : "Men";
-    const imageUrl = product.imageUrl ?? `/athletes/vertical/main-secondary-${(index % 8) + 1}.jpg`;
-    const normalizedCategory = product.category ?? categoryLabel;
+type ProductSummaryRow = {
+  id: number;
+  public_id: number | null;
+  slug: string;
+  name: string;
+  price_minor: number;
+  currency_code: string;
+  category: string;
+  default_gender: string | null;
+  hero_image: string | null;
+};
+
+function resolveProductGender(rawGender: string | null): ProductGender | undefined {
+  if (!rawGender) {
+    return undefined;
+  }
+
+  switch (rawGender.toLowerCase()) {
+    case "male":
+      return "Men";
+    case "female":
+      return "Women";
+    case "unisex":
+      return "Unisex";
+    default:
+      return undefined;
+  }
+}
+
+function mapRowToSummary(row: ProductSummaryRow, index: number): ProductSummary {
+  const priceMinor = row.price_minor;
+  const resolvedPrice = Number((priceMinor ?? 0) / 100);
+  const fallbackImage = PRODUCT_IMAGE_FALLBACKS[index % PRODUCT_IMAGE_FALLBACKS.length];
+
+  return productSummarySchema.parse({
+    id: row.public_id ?? row.id,
+    slug: row.slug,
+    name: row.name,
+    price: resolvedPrice,
+    priceMinor,
+    currencyCode: row.currency_code,
+    category: row.category,
+    gender: resolveProductGender(row.default_gender),
+    imageUrl: row.hero_image ?? fallbackImage,
+  });
+}
+
+function countProductLinks(products: ProductSummary[]): { variant: number; accessory: number } {
+  return products.reduce(
+    (acc, product) => {
+      if (product.link?.type === "variant") {
+        acc.variant += 1;
+      }
+      if (product.link?.type === "accessory") {
+        acc.accessory += 1;
+      }
+      return acc;
+    },
+    { variant: 0, accessory: 0 },
+  );
+}
+
+async function fetchProductsFromDatabase(category?: string): Promise<ProductSummary[]> {
+  let rows: ProductSummaryRow[];
+
+  if (category) {
+    rows = (await db`
+      SELECT
+        id,
+        public_id,
+        slug,
+        name,
+        price_minor,
+        currency_code,
+        category,
+        default_gender,
+        hero_image
+      FROM products
+      WHERE category = ${category}
+      ORDER BY include_in_popular_feed DESC, id ASC
+    `) as ProductSummaryRow[];
+  } else {
+    rows = (await db`
+      SELECT
+        id,
+        public_id,
+        slug,
+        name,
+        price_minor,
+        currency_code,
+        category,
+        default_gender,
+        hero_image
+      FROM products
+      ORDER BY include_in_popular_feed DESC, id ASC
+    `) as ProductSummaryRow[];
+  }
+
+  return rows.map(mapRowToSummary);
+}
+
+type PopularVariantRow = {
+  slug: string;
+  product_name: string;
+  price_minor: number;
+  currency_code: string;
+  category: string;
+  hero_image: string | null;
+  variant_gender: string;
+  color_public_id: number;
+  color_name: string;
+  color_image_url: string | null;
+  popular_rank: number | null;
+};
+
+type PopularAccessoryRow = {
+  id: number;
+  public_id: number | null;
+  slug: string;
+  name: string;
+  price_minor: number;
+  currency_code: string;
+  category: string;
+  hero_image: string | null;
+  default_gender: string | null;
+};
+
+async function fetchPopularProductsFromDatabase(): Promise<ProductSummary[]> {
+  const variantRows = (await db`
+    SELECT
+      p.slug,
+      p.name AS product_name,
+      p.price_minor,
+      p.currency_code,
+      p.category,
+      p.hero_image,
+      pv.variant_gender,
+      vc.public_id AS color_public_id,
+      vc.color_name,
+      vc.image_url AS color_image_url,
+      vc.popular_rank
+    FROM products p
+    INNER JOIN product_variants pv ON pv.product_id = p.id
+    INNER JOIN variant_colors vc ON vc.variant_id = pv.id
+    WHERE p.include_in_popular_feed = 1
+      AND p.product_type = 'apparel'
+      AND vc.is_popular_pick = 1
+    ORDER BY pv.variant_gender ASC, vc.popular_rank ASC, vc.public_id ASC
+  `) as PopularVariantRow[];
+
+  const seenVariants = new Set<string>();
+  const variantSummaries: ProductSummary[] = [];
+
+  variantRows.forEach((row, index) => {
+    const genderKey = row.variant_gender.toLowerCase();
+    if (seenVariants.has(genderKey)) {
+      return;
+    }
+    seenVariants.add(genderKey);
+
+    const genderLabel: ProductGender =
+      genderKey === "female" ? "Women" : genderKey === "male" ? "Men" : "Unisex";
+    const linkGender = genderKey === "female" ? "female" : "male";
+    const fallbackImage =
+      row.color_image_url ??
+      row.hero_image ??
+      PRODUCT_IMAGE_FALLBACKS[index % PRODUCT_IMAGE_FALLBACKS.length];
+
+    variantSummaries.push(
+      productSummarySchema.parse({
+        id: row.color_public_id,
+        slug: row.slug,
+        name: `${row.product_name} – ${row.color_name}`,
+        price: row.price_minor / 100,
+        priceMinor: row.price_minor,
+        currencyCode: row.currency_code,
+        category: row.category,
+        gender: genderLabel,
+        imageUrl: fallbackImage,
+        link: {
+          type: "variant",
+          gender: linkGender,
+          color: row.color_name,
+        },
+      }),
+    );
+  });
+
+  const accessoryRows = (await db`
+    SELECT
+      id,
+      public_id,
+      slug,
+      name,
+      price_minor,
+      currency_code,
+      category,
+      hero_image,
+      default_gender
+    FROM products
+    WHERE include_in_popular_feed = 1
+      AND product_type = 'accessory'
+    ORDER BY id ASC
+  `) as PopularAccessoryRow[];
+
+  const accessorySummaries = accessoryRows.map((row, index) => {
+    const fallbackImage =
+      row.hero_image ?? PRODUCT_IMAGE_FALLBACKS[index % PRODUCT_IMAGE_FALLBACKS.length];
+    return productSummarySchema.parse({
+      id: row.public_id ?? row.id,
+      slug: row.slug,
+      name: row.name,
+      price: row.price_minor / 100,
+      priceMinor: row.price_minor,
+      currencyCode: row.currency_code,
+      category: row.category,
+      gender: resolveProductGender(row.default_gender) ?? "Unisex",
+      imageUrl: fallbackImage,
+      link: {
+        type: "accessory",
+      },
+    });
+  });
+
+  const databaseMix = [...variantSummaries, ...accessorySummaries];
+
+  emitPopularMixSnapshot({
+    source: "database",
+    curatedFallback: false,
+    variantCount: variantSummaries.length,
+    accessoryCount: accessorySummaries.length,
+    totalCount: databaseMix.length,
+    dbVariantRows: variantRows.length,
+    dbAccessoryRows: accessoryRows.length,
+    reason: databaseMix.length < MIN_POPULAR_RESULTS ? "below_threshold" : undefined,
+  });
+
+  return databaseMix;
+}
+
+type PrimarySourceResult = {
+  products: ProductSummary[];
+  source: "database" | "curated";
+};
+
+async function loadProductsFromPrimarySource(category: string): Promise<PrimarySourceResult> {
+  if (category === "popular") {
+    const popularProducts = await fetchPopularProductsFromDatabase();
+
+    if (popularProducts.length >= MIN_POPULAR_RESULTS) {
+      return {
+        products: popularProducts,
+        source: "database",
+      } as const;
+    }
+
+    emitPopularFallbackEvent({
+      category,
+      reason: "insufficient_db_rows",
+      dbCount: popularProducts.length,
+      minRequired: MIN_POPULAR_RESULTS,
+    });
+
+    const curatedProducts = createPopularFallbackProducts();
+    const curatedCounts = countProductLinks(curatedProducts);
+    const dbCounts = countProductLinks(popularProducts);
+
+    emitPopularMixSnapshot({
+      source: "curated",
+      curatedFallback: true,
+      variantCount: curatedCounts.variant,
+      accessoryCount: curatedCounts.accessory,
+      totalCount: curatedProducts.length,
+      dbVariantRows: dbCounts.variant,
+      dbAccessoryRows: dbCounts.accessory,
+      reason: "curated_fallback",
+    });
 
     return {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      category: normalizedCategory,
-      gender,
-      imageUrl,
-    } as ProductSummary;
-  });
+      products: curatedProducts,
+      source: "curated",
+    } as const;
+  }
+
+  const normalizedCategory = category === "all" ? undefined : category;
+  const databaseProducts = await fetchProductsFromDatabase(normalizedCategory);
+
+  return {
+    products: databaseProducts,
+    source: "database",
+  } as const;
 }
 
 function fallbackProducts(): ProductSummary[] {
   const fallback = [
     {
       id: 9001,
+      slug: "fallback-classic",
       name: "Coello One Classic Tee",
       price: 48,
+      priceMinor: 4800,
+      currencyCode: "GBP",
       category: "fallback",
       gender: "Women",
       imageUrl: "/athletes/vertical/main-secondary-6.jpg",
     },
     {
       id: 9002,
+      slug: "fallback-training",
       name: "Coello One Training Tee",
       price: 52,
+      priceMinor: 5200,
+      currencyCode: "GBP",
       category: "fallback",
       gender: "Men",
       imageUrl: "/athletes/vertical/main-secondary-7.jpg",
     },
     {
       id: 9003,
+      slug: "fallback-performance",
       name: "Coello One Performance Tee",
       price: 55,
+      priceMinor: 5500,
+      currencyCode: "GBP",
       category: "fallback",
       gender: "Women",
       imageUrl: "/athletes/vertical/main-secondary-8.jpg",
@@ -252,11 +542,45 @@ function emitCacheAnalytics(
   event: "product_cache_hit" | "product_cache_miss" | "product_cache_fallback",
   payload: Record<string, unknown>,
 ): void {
-  if (Bun.env.NODE_ENV === "test") {
+  if (ANALYTICS_DISABLED) {
     return;
   }
 
   trackEvent(event, payload);
+}
+
+type PopularMixSnapshotPayload = {
+  source: "database" | "curated" | "fallback";
+  curatedFallback: boolean;
+  variantCount: number;
+  accessoryCount: number;
+  totalCount: number;
+  dbVariantRows: number;
+  dbAccessoryRows: number;
+  reason?: string;
+};
+
+type PopularFallbackPayload = {
+  category: string;
+  reason: "insufficient_db_rows" | "error";
+  dbCount: number;
+  minRequired: number;
+};
+
+function emitPopularMixSnapshot(payload: PopularMixSnapshotPayload): void {
+  if (ANALYTICS_DISABLED) {
+    return;
+  }
+
+  trackEvent("popular_feed_mix_snapshot", payload);
+}
+
+function emitPopularFallbackEvent(payload: PopularFallbackPayload): void {
+  if (ANALYTICS_DISABLED) {
+    return;
+  }
+
+  trackEvent("popular_feed_fallback", payload);
 }
 
 type FetchProductsInternalOptions = {
@@ -280,42 +604,7 @@ export async function fetchProducts(
   } as const;
 
   if (isCacheHit && !cacheExpired) {
-    let productsFromCache = cachedProducts ?? [];
-
-    if (category === "popular") {
-      const curatedCacheProducts = extractCuratedPopularProducts(productsFromCache);
-
-      if (!curatedCacheProducts) {
-        const fallbackResult = await ensurePopularFallback(cacheKey, true);
-
-        cacheFallbackCount += 1;
-        const analyticsPayload = {
-          ...analyticsContext,
-          stale: true,
-          hitCount: cacheHitCount,
-          missCount: cacheMissCount,
-          fallbackCount: cacheFallbackCount,
-          reason: "popular_cache_invalidated",
-        } as const;
-        if (!skipAnalytics) {
-          emitCacheAnalytics("product_cache_fallback", analyticsPayload);
-        }
-
-        return {
-          products: fallbackResult.products,
-          cache: {
-            source: "fallback",
-            updatedAt: fallbackResult.updatedAt,
-            stale: true,
-            hit: false,
-            errorMessage: "Popular cache invalidated",
-            debug: analyticsPayload,
-          },
-        };
-      }
-
-      productsFromCache = curatedCacheProducts;
-    }
+    const productsFromCache = cachedProducts ?? [];
 
     debugLog("cache_hit", { cacheKey });
 
@@ -326,6 +615,9 @@ export async function fetchProducts(
       hitCount: cacheHitCount,
       missCount: cacheMissCount,
       fallbackCount: cacheFallbackCount,
+      cacheSource: "cache",
+      productCount: productsFromCache.length,
+      cacheUpdatedAt: cacheRow!.updated_at,
     } as const;
     if (!skipAnalytics) {
       emitCacheAnalytics("product_cache_hit", analyticsPayload);
@@ -343,96 +635,17 @@ export async function fetchProducts(
     };
   }
 
-  const requestUrl = new URL("/api/products", FLASK_API_BASE_URL);
-
-  if (options.category) {
-    requestUrl.searchParams.set("category", options.category);
-  }
-
   try {
-    const response = await fetch(requestUrl.toString(), {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-      },
-      cache: "no-store",
-    });
-
-    if (!response.ok) {
-      throw new Error(`Flask API responded with status ${response.status}`);
-    }
-
-    const jsonPayload = await response.json();
-    const networkProducts = flaskProductListSchema.parse(jsonPayload);
-    const normalized = normalizeProducts(networkProducts, options.category);
-    const validProducts = productSummaryListSchema.parse(normalized);
-
-    if (category === "popular") {
-      const curatedProducts = extractCuratedPopularProducts(validProducts);
-
-      if (curatedProducts) {
-        await writeCache(cacheKey, curatedProducts);
-
-        debugLog("popular_network_curated", {
-          cacheKey,
-          count: curatedProducts.length,
-        });
-
-        cacheMissCount += 1;
-        const analyticsPayload = {
-          ...analyticsContext,
-          stale: false,
-          hitCount: cacheHitCount,
-          missCount: cacheMissCount,
-          fallbackCount: cacheFallbackCount,
-        };
-        if (!skipAnalytics) {
-          emitCacheAnalytics("product_cache_miss", analyticsPayload);
-        }
-
-        return {
-          products: curatedProducts,
-          cache: {
-            source: "network",
-            updatedAt: Date.now(),
-            stale: false,
-            hit: false,
-            debug: analyticsPayload,
-          },
-        };
-      }
-
-      const fallbackResult = await ensurePopularFallback(cacheKey, true);
-
-      cacheFallbackCount += 1;
-      const analyticsPayload = {
-        ...analyticsContext,
-        stale: true,
-        hitCount: cacheHitCount,
-        missCount: cacheMissCount,
-        fallbackCount: cacheFallbackCount,
-        reason: "popular_feed_unavailable",
-      };
-      if (!skipAnalytics) {
-        emitCacheAnalytics("product_cache_fallback", analyticsPayload);
-      }
-
-      return {
-        products: fallbackResult.products,
-        cache: {
-          source: "fallback",
-          updatedAt: fallbackResult.updatedAt,
-          stale: true,
-          hit: false,
-          errorMessage: "Popular feed unavailable",
-          debug: analyticsPayload,
-        },
-      };
-    }
+    const primaryResult = await loadProductsFromPrimarySource(category);
+    const validProducts = productSummaryListSchema.parse(primaryResult.products);
 
     await writeCache(cacheKey, validProducts);
 
-    debugLog("network_fetch", { cacheKey, count: validProducts.length });
+    debugLog("primary_fetch", {
+      cacheKey,
+      count: validProducts.length,
+      source: primaryResult.source,
+    });
 
     cacheMissCount += 1;
     const analyticsPayload = {
@@ -441,6 +654,9 @@ export async function fetchProducts(
       hitCount: cacheHitCount,
       missCount: cacheMissCount,
       fallbackCount: cacheFallbackCount,
+      cacheSource: primaryResult.source,
+      productCount: validProducts.length,
+      cacheUpdatedAt: Date.now(),
     };
     if (!skipAnalytics) {
       emitCacheAnalytics("product_cache_miss", analyticsPayload);
@@ -449,7 +665,7 @@ export async function fetchProducts(
     return {
       products: validProducts,
       cache: {
-        source: "network",
+        source: primaryResult.source,
         updatedAt: Date.now(),
         stale: false,
         hit: false,
@@ -457,7 +673,7 @@ export async function fetchProducts(
       },
     };
   } catch (error) {
-    debugLog("network_error", { cacheKey, error });
+    debugLog("primary_error", { cacheKey, error });
 
     if (isCacheHit && cachedProducts) {
       cacheHitCount += 1;
@@ -468,6 +684,9 @@ export async function fetchProducts(
         missCount: cacheMissCount,
         fallbackCount: cacheFallbackCount,
         errorMessage: error instanceof Error ? error.message : "Unknown error",
+        cacheSource: "cache",
+        productCount: cachedProducts.length,
+        cacheUpdatedAt: cacheRow!.updated_at,
       };
       if (!skipAnalytics) {
         emitCacheAnalytics("product_cache_hit", analyticsPayload);
@@ -487,7 +706,26 @@ export async function fetchProducts(
     }
 
     if (category === "popular") {
+      emitPopularFallbackEvent({
+        category,
+        reason: "error",
+        dbCount: 0,
+        minRequired: MIN_POPULAR_RESULTS,
+      });
+
       const fallbackResult = await ensurePopularFallback(cacheKey, true);
+      const fallbackCounts = countProductLinks(fallbackResult.products);
+
+      emitPopularMixSnapshot({
+        source: "fallback",
+        curatedFallback: true,
+        variantCount: fallbackCounts.variant,
+        accessoryCount: fallbackCounts.accessory,
+        totalCount: fallbackResult.products.length,
+        dbVariantRows: 0,
+        dbAccessoryRows: 0,
+        reason: "popular_primary_error",
+      });
 
       cacheFallbackCount += 1;
       const analyticsPayload = {
@@ -498,6 +736,9 @@ export async function fetchProducts(
         fallbackCount: cacheFallbackCount,
         errorMessage: error instanceof Error ? error.message : "Unknown error",
         reason: "popular_fallback",
+        cacheSource: "fallback",
+        productCount: fallbackResult.products.length,
+        cacheUpdatedAt: fallbackResult.updatedAt,
       };
       if (!skipAnalytics) {
         emitCacheAnalytics("product_cache_fallback", analyticsPayload);
@@ -526,6 +767,9 @@ export async function fetchProducts(
       missCount: cacheMissCount,
       fallbackCount: cacheFallbackCount,
       errorMessage: error instanceof Error ? error.message : "Unknown error",
+      cacheSource: "fallback",
+      productCount: fallback.length,
+      cacheUpdatedAt: Date.now(),
     };
     if (!skipAnalytics) {
       emitCacheAnalytics("product_cache_fallback", analyticsPayload);

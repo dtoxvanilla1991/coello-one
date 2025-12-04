@@ -7,13 +7,8 @@ import { Button, Card, Empty, Flex, Space, Typography } from "antd";
 import { useProductCollections } from "@/hooks/useProductCollections";
 import { useLocalePath } from "@/hooks/useLocalePath";
 import { trackEvent } from "@/utils/trackEvent";
-import {
-  createCuratedPopularProducts,
-  extractCuratedPopularProducts,
-  getPopularProductLinkInfo,
-  RESISTANCE_BANDS_PATH_SEGMENT,
-} from "./popularCuratedData";
-import { DEFAULT_SIZE, PRODUCT_NAME_SLUG } from "../(products)/one-sleeve-classic/constants";
+import { createPopularFallbackProducts } from "./popularCuratedData";
+import { DEFAULT_SIZE } from "../(products)/one-sleeve-classic/constants";
 import type {
   ProductCacheMetadata,
   ProductCollectionConfig,
@@ -29,28 +24,38 @@ type PopularSectionClientProps = {
 
 export default function PopularSectionClient({ products, cache }: PopularSectionClientProps) {
   const withLocalePath = useLocalePath();
-  const productBasePath = useMemo(() => withLocalePath(PRODUCT_NAME_SLUG), [withLocalePath]);
-  const resistancePath = useMemo(
-    () => withLocalePath(RESISTANCE_BANDS_PATH_SEGMENT),
-    [withLocalePath],
-  );
   const currencyFormatter = useMemo(
     () => new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }),
     [],
   );
 
   const { displayProducts, isFallback } = useMemo(() => {
-    const curated = extractCuratedPopularProducts(products);
+    const derivedFallback = cache.source === "fallback" || cache.source === "curated";
 
-    if (curated) {
-      return { displayProducts: curated, isFallback: false } as const;
+    if (products.length > 0) {
+      return { displayProducts: products, isFallback: derivedFallback } as const;
     }
 
     return {
-      displayProducts: createCuratedPopularProducts(() => 0),
+      displayProducts: createPopularFallbackProducts(),
       isFallback: true,
     } as const;
-  }, [products]);
+  }, [products, cache.source]);
+
+  const computeProductHref = (product: ProductSummary) => {
+    const basePath = withLocalePath(product.slug);
+
+    if (product.link?.type === "variant") {
+      const params = new URLSearchParams({
+        gender: product.link.gender,
+        color: product.link.color,
+        size: DEFAULT_SIZE,
+      });
+      return `${basePath}?${params.toString()}`;
+    }
+
+    return basePath;
+  };
 
   const collections = useMemo<ProductCollectionConfig[]>(
     () => [
@@ -159,19 +164,7 @@ export default function PopularSectionClient({ products, cache }: PopularSection
           />
         ) : (
           filteredProducts.map((product, index) => {
-            const linkInfo = getPopularProductLinkInfo(product.id);
-            let href = productBasePath;
-
-            if (linkInfo?.type === "variant") {
-              const params = new URLSearchParams({
-                gender: linkInfo.gender,
-                color: linkInfo.color,
-                size: DEFAULT_SIZE,
-              });
-              href = `${productBasePath}?${params.toString()}`;
-            } else if (linkInfo?.type === "accessory") {
-              href = resistancePath;
-            }
+            const href = computeProductHref(product);
 
             return (
               <Card
@@ -196,7 +189,7 @@ export default function PopularSectionClient({ products, cache }: PopularSection
                   </Flex>
                 }
                 actions={[
-                  <Link key={`${product.id}-browse`} href={href} prefetch={false} role="link">
+                  <Link key={`${product.id}-browse`} href={href} role="link">
                     <Button
                       className="uppercase"
                       data-analytics-id={`popular-browse-${(product.category ?? "popular").toLowerCase()}`}
