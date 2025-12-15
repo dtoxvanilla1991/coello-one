@@ -17,6 +17,8 @@ export type TimelineMilestone = {
   description: string;
 };
 
+export type TrainingPlanId = "essentialist" | "architect" | "craftsman";
+
 export type AboutCopy = {
   metadata: {
     title: string;
@@ -88,30 +90,26 @@ export type DiscountsCopy = {
   };
 };
 
-export type HubResource = {
-  label: string;
-  type: string;
-  href: string;
-  description: string;
-};
-
-export type HubTab = {
-  key: string;
-  label: string;
+export type ProtocolCardCopy = {
+  id: string;
+  code: string;
   title: string;
-  description: string;
-  image: string;
-  imageAlt: string;
-  focusPoints: string[];
-  highlights: Array<{
+  subtitle: string;
+  tagline: string;
+  summary: string;
+  science: {
     title: string;
     description: string;
-  }>;
-  resources: HubResource[];
-  cta: {
+  };
+  action: string;
+  tlDr: string[];
+  microDose: string[];
+  deepDive: {
     label: string;
     href: string;
   };
+  image: string;
+  imageAlt: string;
 };
 
 export type EducationHubCopy = {
@@ -124,11 +122,16 @@ export type EducationHubCopy = {
     title: string;
     description: string;
   };
-  tabs: HubTab[];
-  commitment: {
-    title: string;
-    description: string;
+  ui: {
+    modalTitlePrefix: string;
+    openTlDrLabel: string;
+    closeLabel: string;
+    scienceLabel: string;
+    actionLabel: string;
+    tlDrHeading: string;
+    microDoseHeading: string;
   };
+  protocols: ProtocolCardCopy[];
 };
 
 export type SustainabilityCopy = {
@@ -161,9 +164,75 @@ export type SustainabilityCopy = {
   };
 };
 
+export type PlanSplitCopy = {
+  label: string;
+  isNature?: boolean;
+};
+
+export type CoelloPlanCopy = {
+  name: string;
+  tagline: string;
+  description: string;
+  focus: string[];
+  split: PlanSplitCopy[];
+};
+
+export type CoelloPlanSelectorCopy = {
+  kicker: string;
+  description: string;
+  daysLabel: string;
+};
+
+export type CoelloPlanDisplayCopy = {
+  daysPerWeekLabel: string;
+  weeklySplitHeading: string;
+  dayLabel: string;
+};
+
+export type CoelloRitualCardCopy = {
+  id: string;
+  label: string;
+  description: string;
+};
+
+export type CoelloRitualCopy = {
+  title: string;
+  philosophy: string;
+  cards: CoelloRitualCardCopy[];
+};
+
+export type CoelloLivingCopy = {
+  kicker: string;
+  title: string;
+  description: string;
+  diet: string;
+};
+
+export type CoelloCutTrainingCopy = {
+  hero: {
+    kicker: string;
+    title: string;
+    description: string;
+  };
+  manifesto: {
+    headline: string;
+    subheading: string;
+    bulletPoints: Array<{
+      title: string;
+      description: string;
+    }>;
+  };
+  planSelector: CoelloPlanSelectorCopy;
+  planDisplay: CoelloPlanDisplayCopy;
+  plans: Record<TrainingPlanId, CoelloPlanCopy>;
+  ritual: CoelloRitualCopy;
+  living: CoelloLivingCopy;
+};
+
 export type PagesCopy = {
   about: AboutCopy;
   discounts: DiscountsCopy;
   educationHub: EducationHubCopy;
   sustainability: SustainabilityCopy;
+  coelloCutTraining: CoelloCutTrainingCopy;
 };

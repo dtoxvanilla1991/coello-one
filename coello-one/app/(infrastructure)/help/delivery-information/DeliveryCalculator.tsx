@@ -1,7 +1,18 @@
 "use client";
 
-import { Alert, Button, Card, Flex, Form, InputNumber, Result, Select, Typography } from "antd";
-import { useMemo, useState } from "react";
+import {
+  Alert,
+  Button,
+  Card,
+  Flex,
+  Form,
+  Grid,
+  InputNumber,
+  Result,
+  Select,
+  Typography,
+} from "antd";
+import { useCallback, useMemo, useState } from "react";
 import { z } from "zod";
 import { useCurrentLocale } from "@/hooks/useCurrentLocale";
 import { useTranslations } from "@/localization/useTranslations";
@@ -10,6 +21,7 @@ import { trackEvent } from "@/utils/trackEvent";
 import type { DeliveryTier } from "./types";
 
 const { Title, Paragraph, Text } = Typography;
+const { useBreakpoint } = Grid;
 
 type QuoteResult = {
   tier: DeliveryTier;
@@ -36,6 +48,7 @@ export default function DeliveryCalculator({ tiers, initialValues }: DeliveryCal
   const helpDeliveryCopy = useTranslations("helpDelivery");
   const calculatorCopy = helpDeliveryCopy.calculator;
   const resolvedTiers = tiers ?? helpDeliveryCopy.tiers;
+  const screens = useBreakpoint();
 
   const regionOptions = useMemo(
     () => Array.from(new Set(resolvedTiers.map((tier) => tier.region))),
@@ -71,20 +84,31 @@ export default function DeliveryCalculator({ tiers, initialValues }: DeliveryCal
     [calculatorCopy.serviceRequired, calculatorCopy.validationError, regionOptions, serviceOptions],
   );
 
+  const buildTierKey = useCallback((region: string, service: string) => `${region}::${service}`, []);
+
   const tierMap = useMemo(() => {
     return resolvedTiers.reduce<Record<string, DeliveryTier>>((acc, tier) => {
-      const key = `${tier.region}-${tier.service}`;
+      const key = buildTierKey(tier.region, tier.service);
       acc[key] = tier;
+      return acc;
+    }, {});
+  }, [buildTierKey, resolvedTiers]);
+
+  const availableServicesByRegion = useMemo(() => {
+    return resolvedTiers.reduce<Record<string, DeliveryTier["service"][]>>((acc, tier) => {
+      const current = acc[tier.region] ?? [];
+      if (!current.includes(tier.service)) {
+        current.push(tier.service);
+      }
+      acc[tier.region] = current;
       return acc;
     }, {});
   }, [resolvedTiers]);
 
-  const availableServicesByRegion = useMemo(() => {
-    return resolvedTiers.reduce<Record<string, DeliveryTier["service"][]>>((acc, tier) => {
-      acc[tier.region] = acc[tier.region] ? [...acc[tier.region], tier.service] : [tier.service];
-      return acc;
-    }, {});
-  }, [resolvedTiers]);
+  const resetQuoteState = useCallback(() => {
+    setQuote(null);
+    setValidationError(null);
+  }, []);
 
   const handleFinish = (values: FormValues) => {
     const parsed = calculatorSchema.safeParse(values);
@@ -97,7 +121,7 @@ export default function DeliveryCalculator({ tiers, initialValues }: DeliveryCal
     setValidationError(null);
 
     const { region, service, orderValue } = parsed.data;
-    const tier = tierMap[`${region}-${service}`];
+    const tier = tierMap[buildTierKey(region, service)];
 
     if (!tier) {
       setQuote(null);
@@ -122,17 +146,38 @@ export default function DeliveryCalculator({ tiers, initialValues }: DeliveryCal
     );
   };
 
-  const selectedRegion = Form.useWatch("region", form);
-  const availableServices = selectedRegion
-    ? (availableServicesByRegion[selectedRegion] ?? [])
-    : serviceOptions;
-  const uniqueServices = Array.from(new Set(availableServices));
+  const selectedRegion = Form.useWatch("region", form) ?? effectiveInitialValues.region;
+
+  const availableServices = useMemo(() => {
+    if (!selectedRegion) {
+      return serviceOptions;
+    }
+    const regionServices = availableServicesByRegion[selectedRegion] ?? [];
+    return regionServices.length ? regionServices : serviceOptions;
+  }, [availableServicesByRegion, selectedRegion, serviceOptions]);
+
+  const handleRegionChange = useCallback(
+    (nextRegion: FormValues["region"]) => {
+      const services = availableServicesByRegion[nextRegion] ?? [];
+      form.setFieldsValue({ service: services[0] ?? serviceOptions[0] ?? "" });
+      resetQuoteState();
+    },
+    [availableServicesByRegion, form, resetQuoteState, serviceOptions],
+  );
+
+  const handleServiceChange = useCallback(() => {
+    resetQuoteState();
+  }, [resetQuoteState]);
+
+  const handleOrderValueChange = useCallback(() => {
+    resetQuoteState();
+  }, [resetQuoteState]);
 
   return (
-    <Card className="border-gray-200 bg-white/70">
+    <Card className="border-gray-200 bg-white/70" classNames={{ body: "p-4 md:p-6" }}>
       <Flex vertical gap={16}>
         <Flex vertical gap={8}>
-          <Title level={3} className="mb-0! text-2xl">
+          <Title level={3} className="mb-0! text-xl md:text-2xl">
             {calculatorCopy.title}
           </Title>
           <Paragraph className="mb-0! text-gray-600">{calculatorCopy.subtitle}</Paragraph>
@@ -145,42 +190,41 @@ export default function DeliveryCalculator({ tiers, initialValues }: DeliveryCal
           layout="vertical"
           initialValues={effectiveInitialValues}
           onFinish={handleFinish}
+          className="grid gap-4 md:grid-cols-2"
         >
-          <Form.Item<FormValues> name="region" label={calculatorCopy.regionLabel}>
+          <Form.Item<FormValues>
+            name="region"
+            label={calculatorCopy.regionLabel}
+            className="md:col-span-1"
+          >
             <Select
               options={regionOptions.map((option) => ({
                 label: option,
                 value: option,
               }))}
-              onChange={(nextRegion: FormValues["region"]) => {
-                const services = availableServicesByRegion[nextRegion] ?? [];
-                form.setFieldsValue({ service: services[0] });
-                setQuote(null);
-                setValidationError(null);
-              }}
+              onChange={handleRegionChange}
             />
           </Form.Item>
           <Form.Item<FormValues>
             name="service"
             label={calculatorCopy.serviceLabel}
             rules={[{ required: true, message: calculatorCopy.serviceRequired }]}
+            className="md:col-span-1"
           >
             <Select
               placeholder={calculatorCopy.servicePlaceholder}
-              options={uniqueServices.map((service) => ({
+              options={availableServices.map((service) => ({
                 label: service,
                 value: service,
               }))}
-              onChange={() => {
-                setQuote(null);
-                setValidationError(null);
-              }}
+              onChange={handleServiceChange}
             />
           </Form.Item>
           <Form.Item<FormValues>
             name="orderValue"
             label={calculatorCopy.orderValueLabel}
             rules={[{ required: true, message: calculatorCopy.orderValueRequired }]}
+            className="md:col-span-1"
           >
             <InputNumber
               min={0}
@@ -188,15 +232,12 @@ export default function DeliveryCalculator({ tiers, initialValues }: DeliveryCal
               className="w-full"
               controls={false}
               placeholder={calculatorCopy.orderValuePlaceholder}
-              onChange={() => {
-                setQuote(null);
-                setValidationError(null);
-              }}
+              onChange={handleOrderValueChange}
             />
           </Form.Item>
-          <Form.Item>
-            <Flex justify="flex-end">
-              <Button type="primary" htmlType="submit" size="large">
+          <Form.Item className="md:col-span-2">
+            <Flex justify={screens.md ? "flex-end" : "stretch"}>
+              <Button type="primary" htmlType="submit" size="large" block={!screens.md}>
                 {calculatorCopy.submitLabel}
               </Button>
             </Flex>

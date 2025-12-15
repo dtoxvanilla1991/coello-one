@@ -12,6 +12,7 @@ export const routes = {
   helpContactUs: "/help/contact-us",
   helpOrdersInternational: "/help/orders-international",
   helpKpiDashboard: "/help/kpi-dashboard",
+  accessibility: "/accessibility",
   accessDenied: "/access-denied",
   comingSoon: "/coming-soon",
   maintenance: "/maintenance",
@@ -21,7 +22,8 @@ export const routes = {
   termsAndConditions: "/terms-and-conditions",
   about: "/about-us",
   discounts: "/discounts",
-  educationHub: "/hub",
+  blueprint: "/hub",
+  coelloCutTraining: "/coello-cut-training",
   sustainability: "/sustainability",
 } as const;
 
@@ -61,7 +63,7 @@ export const footerLinkGroups = [
     links: [
       { label: "About Us", route: "about" },
       { label: "Discounts", route: "discounts" },
-      { label: "Coello Education Hub", route: "educationHub" },
+      { label: "Coello One Blueprint", route: "blueprint" },
       { label: "Sustainability", route: "sustainability" },
     ],
   },

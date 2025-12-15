@@ -116,3 +116,9 @@ You must analyze every request I make through the combined lens of these five ex
 - Favor Tailwind CSS for every styling decision. Only pursue non-Tailwind approaches if a documented limitation prevents Tailwind from achieving the requirement, and capture that exception in code comments plus the project log.
 - Do not add `import React from "react";` to TSX files. Next.js provides React automatically; import only the specific hooks you need (e.g., `useState`) and import types with the `type` modifier (e.g., `import type { FC } from "react";`).
 - Build UI exclusively with Ant Design or Next.js components—native HTML tags are banned. If an unavoidable platform limitation requires a native element, pause, document the rationale in Serena, and seek approval before implementation.
+
+## 6. Localization & Dependency Rules
+
+- Never add, remove, or modify dependencies in `package.json` (or the lockfile) without explicit user authorization.
+- Iconography must source exclusively from Ant Design Icons; third-party or custom icon sets are not permitted.
+- Any new or updated textual copy must ship with both en-GB and es-ES translations in the appropriate localization files before the change is considered complete.

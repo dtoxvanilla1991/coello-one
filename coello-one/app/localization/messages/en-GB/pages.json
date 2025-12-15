@@ -110,7 +110,7 @@
       },
       {
         "title": "Training intelligence",
-        "description": "Monthly micro-guides from the Coello Education Hub tailored to recovering skin and high-output weeks."
+        "description": "Monthly micro-guides from the Coello One Blueprint tailored to recovering skin and high-output weeks."
       }
     ],
     "privacy": {
@@ -138,142 +138,249 @@
   },
   "educationHub": {
     "metadata": {
-      "title": "Coello Education Hub",
-      "description": "Health, sleep, and activity intel curated for athletes who are also canvases."
+      "title": "Coello One Hub",
+      "description": "Science-backed micro protocols for athletes who wear their story."
     },
     "hero": {
-      "kicker": "Education Hub",
-      "title": "Train smarter, heal faster, let the art breathe.",
-      "description": "Switch between Health, Sleep, and Activity guidance crafted with performance coaches, recovery techs, and Laura's athlete council."
+      "kicker": "The Coello Protocols",
+      "title": "Four algorithms for bodies that double as canvases.",
+      "description": "Hover for the codename, tap for the TL;DR, and save the ritual before your next session."
     },
-    "tabs": [
+    "ui": {
+      "modalTitlePrefix": "Protocol TL;DR",
+      "openTlDrLabel": "Read the TL;DR",
+      "closeLabel": "Close protocol",
+      "scienceLabel": "Science",
+      "actionLabel": "Action",
+      "tlDrHeading": "TL;DR",
+      "microDoseHeading": "Microdose Rituals"
+    },
+    "protocols": [
       {
-        "key": "health",
-        "label": "Health",
-        "title": "Fueling foundations",
-        "description": "Dial in daily rituals that keep skin nourished and output high.",
-        "image": "/athletes/vertical/main-secondary-4.jpg",
-        "imageAlt": "Athlete hydrating post-session",
-        "focusPoints": [
-          "Hydrate at 35 ml per kg of bodyweight and add electrolytes when training exceeds 60 minutes.",
-          "Prioritize 30g of protein within 30 minutes post-session to accelerate tissue repair.",
-          "Vitamin D and omega-3 stacks support vibrant ink and lower inflammation markers."
+        "id": "recovery",
+        "code": "Protocol 01",
+        "title": "Repair",
+        "subtitle": "The Recovery Protocol",
+        "tagline": "Circadian anchoring & glymphatic clearance",
+        "summary": "Deep sleep is the pigment lab. Time your light so cortisol fires early and melatonin lands when tissue repair peaks.",
+        "science": {
+          "title": "Sleeping for saturation",
+          "description": "Slow-wave sleep releases growth hormone that reseals skin elasticity, keeping saturated ink sharp."
+        },
+        "action": "Anchor your circadian clock with 10k lux within 20 minutes of waking, then blackout the tattooed side and cool the room to finish the loop 14 hours later.",
+        "tlDr": [
+          "3 minutes of direct morning sunlight",
+          "Zero screens after 22:00",
+          "10 mg glycine + magnesium stack"
         ],
-        "highlights": [
-          {
-            "title": "Micro-recovery meals",
-            "description": "Build plates with bold pigments—berries, leafy greens, citrus—to keep skin glow strong."
-          },
-          {
-            "title": "Low-friction hydration",
-            "description": "Carry insulated bottles on the side of your ink to prevent UV fade between sessions."
-          }
+        "microDose": [
+          "Track light in lux, not vibes",
+          "18 °C room temp or colder",
+          "Legs-up breathing for 5 minutes pre-bed"
         ],
-        "resources": [
-          {
-            "label": "YouTube · Mobility + fueling protocol",
-            "type": "video",
-            "href": "https://www.youtube.com/watch?v=UItWltVZZmE",
-            "description": "20-minute guided routine pairing dynamic prep with fueling cues."
-          },
-          {
-            "label": "Download · Coello fueling template",
-            "type": "program",
-            "href": "https://coello.one/resources/fueling-template.pdf",
-            "description": "Printable macro + hydration tracker tested by our residency."
-          }
-        ],
-        "cta": {
-          "label": "View complete fueling guide",
-          "href": "https://coello.one/blog/fueling"
-        }
+        "deepDive": {
+          "label": "Read deep dive",
+          "href": "/hub/protocol/recovery"
+        },
+        "image": "/athletes/vertical/main-secondary-5.jpg",
+        "imageAlt": "Athlete breathing beside window light"
       },
       {
-        "key": "sleep",
-        "label": "Sleep",
-        "title": "Sleep like you mean it",
-        "description": "Protect the hours where adaptation and ink repair happen.",
-        "image": "/athletes/horizontal/main-secondary-h-4.jpg",
-        "imageAlt": "Athlete resetting in dim studio",
-        "focusPoints": [
-          "Aim for 7.5–9 hours with consistent bed times even during travel blocks.",
-          "Stack rituals: infrared or warm shower, magnesium glycinate, black-out panels on the tattooed side.",
-          "Track HRV and resting heart rate to gauge when to downshift intensity."
+        "id": "canvas",
+        "code": "Protocol 02",
+        "title": "Preserve",
+        "subtitle": "The Canvas Preservation",
+        "tagline": "Dermal nutrition & anti-glycation",
+        "summary": "Eat like you own a gallery. Sugar stiffens collagen and blurs ink, so meals must protect the canvas.",
+        "science": {
+          "title": "Dermal nutrition",
+          "description": "Advanced glycation end-products bind to collagen, yellowing skin and softening tattoo edges."
+        },
+        "action": "Cycle low-glycation plates and load collagen precursors—vitamin C, copper, glycine—to keep line-work crisp.",
+        "tlDr": [
+          "Ditch added sugar on training days",
+          "2 g glycine + vitamin C before meals",
+          "Char-free cooking to reduce AGEs"
         ],
-        "highlights": [
-          {
-            "title": "Light discipline",
-            "description": "Swap phone doom scrolling for breathing drills while wearing blue-light lenses."
-          },
-          {
-            "title": "Ink-safe fabrics",
-            "description": "Sleep in breathable eucalyptus fibers to reduce friction on fresh tattoos."
-          }
+        "microDose": [
+          "Swap caramelized sauces for citrus",
+          "Add bone broth shots post-ink",
+          "Track weekly skin hydration photos"
         ],
-        "resources": [
-          {
-            "label": "Podcast · Whoop recovery deep dive",
-            "type": "audio",
-            "href": "https://www.youtube.com/watch?v=RrwC6KqAZNo",
-            "description": "Sleep scientist Kristen Holmes on HRV-friendly routines."
-          },
-          {
-            "label": "Guide · Travel-ready sleep kit",
-            "type": "article",
-            "href": "https://coello.one/blog/sleep-kit",
-            "description": "The five items Laura packs for long-haul showings."
-          }
-        ],
-        "cta": {
-          "label": "Download the sleep checklist",
-          "href": "https://coello.one/resources/sleep-checklist.pdf"
-        }
+        "deepDive": {
+          "label": "Read deep dive",
+          "href": "/hub/protocol/canvas"
+        },
+        "image": "/athletes/vertical/main-secondary-8.jpg",
+        "imageAlt": "Tattooed athlete preparing whole foods"
       },
       {
-        "key": "activity",
-        "label": "Activity",
-        "title": "Programming that flexes with art",
-        "description": "Layer performance with skin-first considerations across training blocks.",
+        "id": "mindset",
+        "code": "Protocol 03",
+        "title": "Endure",
+        "subtitle": "The Pain Tolerance Protocol",
+        "tagline": "Huberman friction & dopamine management",
+        "summary": "Tattoo chair discipline mirrors the last rep. Train your nervous system to crave friction, not stacked dopamine hits.",
+        "science": {
+          "title": "Friction equals focus",
+          "description": "Avoid layering stimulants. Single-source discomfort maintains dopamine sensitivity so effort stays rewarding."
+        },
+        "action": "Schedule silent sessions—no music, no pre-workout, phone on airplane mode—to remind the brain you can ride discomfort without reward spikes.",
+        "tlDr": [
+          "One silent lift per week",
+          "Cold exposure after hardest session",
+          "Journal the toughest set like a tattoo sit"
+        ],
+        "microDose": [
+          "Swap hype playlists for breath cadence",
+          "Use nasal breathing through burn sets",
+          "Anchor reframing phrases before big lifts"
+        ],
+        "deepDive": {
+          "label": "Read deep dive",
+          "href": "/hub/protocol/mindset"
+        },
+        "image": "/athletes/vertical/main-secondary-10.jpg",
+        "imageAlt": "Athlete focusing in dim studio"
+      },
+      {
+        "id": "asymmetric",
+        "code": "Protocol 04",
+        "title": "Charge",
+        "subtitle": "The Asymmetric Engine",
+        "tagline": "Unilateral loading & cross-education",
+        "summary": "Own asymmetry. Train one side to light up the other through neural cross-education while the tattoo heals.",
+        "science": {
+          "title": "Cross-education",
+          "description": "Unilateral work preserves strength on the resting limb via neural drive, keeping the one-sleeve silhouette powerful."
+        },
+        "action": "Stack single-arm rows, landmine presses, pistol progressions, and loaded carries that highlight the asymmetrical frame.",
+        "tlDr": [
+          "Two unilateral days per week",
+          "Pair strength sets with isometric holds",
+          "Finish with loaded carries on the ink side"
+        ],
+        "microDose": [
+          "Film asymmetry to track posture",
+          "Balance carries for 60 seconds per side",
+          "Light vibration on resting arm for priming"
+        ],
+        "deepDive": {
+          "label": "Read deep dive",
+          "href": "/hub/protocol/asymmetric"
+        },
         "image": "/athletes/vertical/main-secondary-7.jpg",
-        "imageAlt": "Athlete sprinting in asymmetrical top",
-        "focusPoints": [
-          "Alternate push/pull splits with mobility resets on days when tattoos are healing.",
-          "Use contrast training (heavy + plyo) twice per week to keep the nervous system sharp without over-rubbing sleeves.",
-          "Schedule UV-free indoor sessions 48 hours post-ink to maintain pigment integrity."
-        ],
-        "highlights": [
-          {
-            "title": "Contrast blocks",
-            "description": "Pair trap-bar deadlifts with sled pushes for power without abrasion."
-          },
-          {
-            "title": "Coaching intel",
-            "description": "Resident coaches drop weekly cues inside the Coello Discord."
-          }
-        ],
-        "resources": [
-          {
-            "label": "Video · Laura's asymmetry session",
-            "type": "video",
-            "href": "https://www.youtube.com/watch?v=mgHz0YLq5z8",
-            "description": "Full-body routine demonstrating sleeve ventilation checkpoints."
-          },
-          {
-            "label": "Program · 4-week hybrid plan",
-            "type": "program",
-            "href": "https://coello.one/programs/hybrid.pdf",
-            "description": "Downloadable block alternating strength, conditioning, and skill days."
-          }
-        ],
-        "cta": {
-          "label": "Join the Coello Discord",
-          "href": "https://discord.gg/coello"
-        }
+        "imageAlt": "Athlete training single-arm row"
       }
-    ],
-    "commitment": {
-      "title": "Always-on experimentation",
-      "description": "The hub updates monthly with lab data, pro interviews, and recovery experiments. Save your favorite resources and tell us what to build next."
+    ]
+  },
+  "coelloCutTraining": {
+    "hero": {
+      "kicker": "5% WORK · 95% LIFE",
+      "title": "The Gym is the Stimulus. The Lifestyle is the Engine.",
+      "description": "We train to send a signal—\"build armor\"—not to erase calories. Appetite, hormones, and stress management deliver the real fat loss. This page is your protocol for sending the correct signal, then living in a way that lets the body respond."
+    },
+    "manifesto": {
+      "headline": "You Cannot Out-Train Your Fork.",
+      "subheading": "Strength work is a signal, not a calorie eraser. We lift to send a message—build armor—then live to let that message land.",
+      "bulletPoints": [
+        {
+          "title": "Signal First",
+          "description": "Training tells the body what to adapt to. Nervous-system friendly tension beats random sweat every time."
+        },
+        {
+          "title": "Lifestyle Drives Leanness",
+          "description": "Only a sliver of daily expenditure comes from lifting. Sleep, stress, and food quality dictate the actual recomposition."
+        },
+        {
+          "title": "Nature Resets Hormones",
+          "description": "Get outside weekly. Horizons flatten cortisol, sunlight wakes the endocrine system, and boredom fuels creativity."
+        }
+      ]
+    },
+    "planSelector": {
+      "kicker": "Program Architect",
+      "description": "Choose the archetype that matches your season. Each toggle instantly redraws the plan.",
+      "daysLabel": "Days"
+    },
+    "planDisplay": {
+      "daysPerWeekLabel": "Days Per Week",
+      "weeklySplitHeading": "Weekly Split",
+      "dayLabel": "Day"
+    },
+    "plans": {
+      "essentialist": {
+        "name": "The Essentialist",
+        "tagline": "Minimum Dose. Maximum Signal.",
+        "description": "Designed for the busy creative. Focus purely on the Big 3 lifts to ground the nervous system without exhaustion.",
+        "focus": ["Neural Drive", "Compound Efficiency", "Recovery"],
+        "split": [
+          { "label": "Full Body A (Squat)" },
+          { "label": "Rest" },
+          { "label": "Full Body B (Push)" },
+          { "label": "Rest" },
+          { "label": "Full Body C (Hinge)" },
+          { "label": "Hike", "isNature": true },
+          { "label": "Rest" }
+        ]
+      },
+      "architect": {
+        "name": "The Architect",
+        "tagline": "Symmetry and Structure.",
+        "description": "The gold standard for aesthetics. Balances heavy loading with adequate central nervous system recovery.",
+        "focus": ["Symmetry", "Hypertrophy", "Foundation"],
+        "split": [
+          { "label": "Upper Power" },
+          { "label": "Lower Power" },
+          { "label": "Rest" },
+          { "label": "Upper Hypertrophy" },
+          { "label": "Lower Hypertrophy" },
+          { "label": "Hike", "isNature": true },
+          { "label": "Rest" }
+        ]
+      },
+      "craftsman": {
+        "name": "The Craftsman",
+        "tagline": "Detail and Obsession.",
+        "description": "High volume for those who treat their body as the primary project. Includes isolation work for the Coello sleeve arm.",
+        "focus": ["Detail Work", "Volume", "Weak Point Training"],
+        "split": [
+          { "label": "Push" },
+          { "label": "Pull" },
+          { "label": "Legs" },
+          { "label": "Rest" },
+          { "label": "Upper Focus" },
+          { "label": "Lower Focus" },
+          { "label": "Hike", "isNature": true }
+        ]
+      }
+    },
+    "ritual": {
+      "title": "The Decompression",
+      "philosophy": "You tightened the muscle to break it. Now lengthen it to heal it.",
+      "cards": [
+        {
+          "id": "cardio",
+          "label": "Cardio",
+          "description": "20 mins Zone 2 Cardio (nasal breathing only). Heart rate 120-130 bpm."
+        },
+        {
+          "id": "stretch",
+          "label": "Stretch",
+          "description": "10 mins static holds. Focus on hip flexors and chest openers."
+        },
+        {
+          "id": "sundayService",
+          "label": "Sunday Service",
+          "description": "Weekly hike or nature walk is mandatory. Artificial light and concrete spike cortisol; horizons reset your biology."
+        }
+      ]
+    },
+    "living": {
+      "kicker": "Daily Living",
+      "title": "Living Component",
+      "description": "Mandatory weekly hike or nature walk. Artificial light, concrete, and doomscrolling spike cortisol; horizons reset your biology.",
+      "diet": "Eat food that ran, swam, or grew. If it has a barcode, interrogate it. Ferments, roots, and minerals keep the signal responsive."
     }
   },
   "sustainability": {

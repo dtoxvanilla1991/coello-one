@@ -1,92 +1,14 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import Image from "next/image";
-import { Button, Card, Flex, List, Tabs, Tag, Typography } from "antd";
-import type { EducationHubCopy, HubTab } from "@/types/pages";
+import { Button, Card, Flex, List, Modal, Tag, Typography } from "antd";
+import type { EducationHubCopy, ProtocolCardCopy } from "@/types/pages";
 import { useCurrentLocale } from "@/hooks/useCurrentLocale";
 import { trackEvent } from "@/utils/trackEvent";
 import BrandPageShell from "./BrandPageShell";
 
 const { Title, Paragraph, Text } = Typography;
-
-const renderTabContent = (tab: HubTab) => (
-  <Flex vertical gap={16}>
-    <Card className="border-gray-200">
-      <Flex gap={16} wrap>
-        <Flex vertical gap={12} className="min-w-60 flex-1">
-          <Title level={3} className="mb-0! text-2xl">
-            {tab.title}
-          </Title>
-          <Paragraph className="mb-0! text-gray-600">{tab.description}</Paragraph>
-          <List
-            header={<Text className="text-xs tracking-[0.3em] text-gray-500 uppercase">Focus</Text>}
-            dataSource={tab.focusPoints}
-            renderItem={(item) => (
-              <List.Item className="border-0 px-0">
-                <Paragraph className="mb-0! text-gray-700">{item}</Paragraph>
-              </List.Item>
-            )}
-          />
-        </Flex>
-        <Card className="border-gray-200 bg-black/90 text-white sm:max-w-xs">
-          <Image
-            src={tab.image}
-            alt={tab.imageAlt}
-            width={640}
-            height={420}
-            className="h-auto w-full rounded-md object-cover"
-            priority={tab.key === "health"}
-          />
-        </Card>
-      </Flex>
-    </Card>
-
-    <Flex gap={16} wrap>
-      {tab.highlights.map((highlight) => (
-        <Card key={highlight.title} className="w-full border-gray-200 md:w-[calc(50%-8px)]">
-          <Flex vertical gap={8}>
-            <Title level={4} className="mb-0! text-lg">
-              {highlight.title}
-            </Title>
-            <Paragraph className="mb-0! text-gray-600">{highlight.description}</Paragraph>
-          </Flex>
-        </Card>
-      ))}
-    </Flex>
-
-    <Card className="border-gray-200">
-      <List
-        header={
-          <Flex align="center" justify="space-between" wrap>
-            <Text className="text-xs tracking-[0.3em] text-gray-500 uppercase">Recursos</Text>
-            <Button type="link" href={tab.cta.href} className="px-0">
-              {tab.cta.label}
-            </Button>
-          </Flex>
-        }
-        dataSource={tab.resources}
-        renderItem={(resource) => (
-          <List.Item className="border-0 px-0">
-            <Flex vertical gap={4}>
-              <Tag className="w-fit border-gray-200 text-xs tracking-[0.2em] text-gray-500 uppercase">
-                {resource.type}
-              </Tag>
-              <Typography.Link
-                href={resource.href}
-                target="_blank"
-                rel="noreferrer"
-                className="text-base font-semibold"
-              >
-                {resource.label}
-              </Typography.Link>
-              <Paragraph className="mb-0! text-gray-600">{resource.description}</Paragraph>
-            </Flex>
-          </List.Item>
-        )}
-      />
-    </Card>
-  </Flex>
-);
 
 type EducationHubContentProps = {
   copy: EducationHubCopy;
@@ -94,35 +16,198 @@ type EducationHubContentProps = {
 
 export default function EducationHubContent({ copy }: EducationHubContentProps) {
   const locale = useCurrentLocale();
+  const [activeProtocol, setActiveProtocol] = useState<ProtocolCardCopy | null>(null);
 
-  const handleTabChange = (key: string) => {
+  const handleProtocolOpen = (protocol: ProtocolCardCopy) => {
+    setActiveProtocol(protocol);
     trackEvent(
-      "education_hub_tab_change",
-      { tabKey: key },
-      { locale, translationKey: `pages.educationHub.tabs.${key}` },
+      "education_hub_protocol_modal_open",
+      { protocolId: protocol.id },
+      { locale, translationKey: `pages.educationHub.protocols.${protocol.id}` },
     );
   };
 
+  const handleModalClose = () => {
+    setActiveProtocol(null);
+  };
+
+  const handleDeepDiveClick = (protocol: ProtocolCardCopy) => {
+    trackEvent(
+      "education_hub_protocol_deep_dive",
+      { protocolId: protocol.id },
+      { locale, translationKey: `pages.educationHub.protocols.${protocol.id}` },
+    );
+  };
+
+  const modalTitle = useMemo(() => {
+    if (!activeProtocol) {
+      return null;
+    }
+
+    return (
+      <Flex vertical gap={4}>
+        <Text className="text-xs tracking-[0.4em] text-gray-500 uppercase">{activeProtocol.code}</Text>
+        <Title level={4} className="mb-0! text-lg">
+          {copy.ui.modalTitlePrefix}: {activeProtocol.title}
+        </Title>
+      </Flex>
+    );
+  }, [activeProtocol, copy.ui.modalTitlePrefix]);
+
   return (
     <BrandPageShell hero={copy.hero}>
-      <Tabs
-        className="rounded-xl border border-gray-200 p-4"
-        destroyOnHidden
-        onChange={handleTabChange}
-        items={copy.tabs.map((tab) => ({
-          key: tab.key,
-          label: tab.label,
-          children: renderTabContent(tab),
-        }))}
-      />
-      <Card className="border-gray-200 bg-gray-50 text-gray-700">
-        <Flex vertical gap={8}>
-          <Title level={3} className="mb-0! text-2xl">
-            {copy.commitment.title}
-          </Title>
-          <Paragraph className="mb-0! text-gray-600">{copy.commitment.description}</Paragraph>
+      <Flex vertical gap={24} className="mt-6">
+        <Flex gap={16} wrap>
+          {copy.protocols.map((protocol) => (
+            <Card
+              key={protocol.id}
+              hoverable
+              className="w-full border-gray-200 bg-white/70 backdrop-blur lg:w-[calc(50%-8px)]"
+              actions={[
+                <Button
+                  key="protocol-cta"
+                  type="link"
+                  href={protocol.deepDive.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-semibold"
+                  onClick={() => handleDeepDiveClick(protocol)}
+                >
+                  {protocol.deepDive.label}
+                </Button>,
+              ]}
+            >
+              <Flex vertical gap={16}>
+                <Flex align="center" justify="space-between" wrap>
+                  <Tag className="border-gray-200 text-xs tracking-[0.3em] uppercase text-gray-600">
+                    {protocol.code}
+                  </Tag>
+                  <Button type="text" onClick={() => handleProtocolOpen(protocol)}>
+                    {copy.ui.openTlDrLabel}
+                  </Button>
+                </Flex>
+                <Flex vertical gap={4}>
+                  <Text className="text-xs uppercase tracking-[0.4em] text-gray-500">
+                    {protocol.subtitle}
+                  </Text>
+                  <Title level={3} className="mb-0! text-2xl">
+                    {protocol.title}
+                  </Title>
+                  <Paragraph className="mb-0! text-gray-600">{protocol.tagline}</Paragraph>
+                </Flex>
+                <Paragraph className="mb-0! text-base text-gray-700">{protocol.summary}</Paragraph>
+                <Card className="border-gray-200 bg-black text-white">
+                  <Image
+                    src={protocol.image}
+                    alt={protocol.imageAlt}
+                    width={640}
+                    height={420}
+                    className="h-auto w-full rounded-md object-cover"
+                    priority={protocol.id === copy.protocols[0].id}
+                  />
+                </Card>
+                <Flex vertical gap={4}>
+                  <Text className="text-xs tracking-[0.3em] text-gray-500 uppercase">
+                    {copy.ui.scienceLabel}
+                  </Text>
+                  <Title level={4} className="mb-0! text-lg">
+                    {protocol.science.title}
+                  </Title>
+                  <Paragraph className="mb-0! text-gray-600">{protocol.science.description}</Paragraph>
+                </Flex>
+                <Flex vertical gap={4}>
+                  <Text className="text-xs tracking-[0.3em] text-gray-500 uppercase">
+                    {copy.ui.actionLabel}
+                  </Text>
+                  <Paragraph className="mb-0! text-gray-700">{protocol.action}</Paragraph>
+                </Flex>
+              </Flex>
+            </Card>
+          ))}
         </Flex>
-      </Card>
+      </Flex>
+      <Modal
+        open={Boolean(activeProtocol)}
+        title={modalTitle}
+        onCancel={handleModalClose}
+        footer={
+          <Flex gap={12} wrap justify="space-between">
+            <Button onClick={handleModalClose}>{copy.ui.closeLabel}</Button>
+            {activeProtocol ? (
+              <Button
+                type="primary"
+                href={activeProtocol.deepDive.href}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => handleDeepDiveClick(activeProtocol)}
+              >
+                {activeProtocol.deepDive.label}
+              </Button>
+            ) : null}
+          </Flex>
+        }
+        destroyOnHidden
+        centered
+        width={720}
+      >
+        {activeProtocol ? (
+          <Flex vertical gap={16}>
+            <Card className="border-gray-200 bg-gray-50">
+              <Flex vertical gap={8}>
+                <Text className="text-xs tracking-[0.3em] text-gray-500 uppercase">
+                  {copy.ui.scienceLabel}
+                </Text>
+                <Title level={4} className="mb-0! text-lg">
+                  {activeProtocol.science.title}
+                </Title>
+                <Paragraph className="mb-0! text-gray-600">
+                  {activeProtocol.science.description}
+                </Paragraph>
+              </Flex>
+            </Card>
+            <Card className="border-gray-200">
+              <Flex vertical gap={8}>
+                <Text className="text-xs tracking-[0.3em] text-gray-500 uppercase">
+                  {copy.ui.actionLabel}
+                </Text>
+                <Paragraph className="mb-0! text-gray-700">{activeProtocol.action}</Paragraph>
+              </Flex>
+            </Card>
+            <Flex gap={16} wrap>
+              <Card className="w-full border-gray-200 bg-gray-50 md:w-[calc(50%-8px)]">
+                <Flex vertical gap={8}>
+                  <Text className="text-xs tracking-[0.3em] text-gray-500 uppercase">
+                    {copy.ui.tlDrHeading}
+                  </Text>
+                  <List
+                    dataSource={activeProtocol.tlDr}
+                    renderItem={(item) => (
+                      <List.Item className="border-0 px-0">
+                        <Paragraph className="mb-0! text-gray-700">{item}</Paragraph>
+                      </List.Item>
+                    )}
+                  />
+                </Flex>
+              </Card>
+              <Card className="w-full border-gray-200 md:w-[calc(50%-8px)]">
+                <Flex vertical gap={8}>
+                  <Text className="text-xs tracking-[0.3em] text-gray-500 uppercase">
+                    {copy.ui.microDoseHeading}
+                  </Text>
+                  <List
+                    dataSource={activeProtocol.microDose}
+                    renderItem={(item) => (
+                      <List.Item className="border-0 px-0">
+                        <Paragraph className="mb-0! text-gray-700">{item}</Paragraph>
+                      </List.Item>
+                    )}
+                  />
+                </Flex>
+              </Card>
+            </Flex>
+          </Flex>
+        ) : null}
+      </Modal>
     </BrandPageShell>
   );
 }

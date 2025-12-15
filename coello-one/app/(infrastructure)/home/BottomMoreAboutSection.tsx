@@ -1,10 +1,22 @@
 "use client";
 
-import { FC, useCallback, useState, type KeyboardEvent, type ReactNode } from "react";
+import {
+  FC,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type KeyboardEvent,
+  type ReactNode,
+} from "react";
 import { Card, Typography, Flex } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { routes, type RouteKey } from "@config/routes";
 import PromoSignupModal from "@/components/common/PromoSignupModal";
+import { useLocalePath } from "@/hooks/useLocalePath";
 
 const { Title, Text } = Typography;
 
@@ -17,43 +29,98 @@ type DataType = {
   icon?: ReactNode;
   image?: string;
   action?: CardAction;
+  routeKey?: RouteKey;
 };
 
 const data: DataType[] = [
-  { description: "Discord", title: "Coello One", text: "Hub" },
+  {
+    description: "Hub for athletes",
+    title: "Coello One",
+    text: "Blueprint",
+    routeKey: "blueprint",
+  },
   {
     description: "Email sign up",
     icon: <MailOutlined className="text-3xl" />,
     action: "email-signup",
   },
-  { description: "Coello Cut Training", image: "/coelloOneWhite.svg" },
+  {
+    description: "Coello Cut Training",
+    image: "/coelloOneWhite.svg",
+    routeKey: "coelloCutTraining",
+  },
 ];
 
 const BottomMoreAboutSection: React.FC = () => {
   const [isPromoModalOpen, setIsPromoModalOpen] = useState(false);
-
-  const handleOpenSignup = useCallback(() => {
-    setIsPromoModalOpen(true);
-  }, []);
+  const localePath = useLocalePath();
+  const router = useRouter();
+  const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const interactiveRouteKeys = useMemo(
+    () => data.filter((item): item is DataType & { routeKey: RouteKey } => Boolean(item.routeKey)).map((item) => item.routeKey),
+    [],
+  );
 
   const handleCloseSignup = useCallback(() => {
     setIsPromoModalOpen(false);
   }, []);
 
-  const handleCardKeyDown = useCallback(
-    (event: KeyboardEvent<HTMLDivElement>, action?: CardAction) => {
-      if (!action) {
+  const handleCardAction = useCallback(
+    (item: DataType) => {
+      if (item.action === "email-signup") {
+        setIsPromoModalOpen(true);
         return;
       }
 
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        if (action === "email-signup") {
-          handleOpenSignup();
-        }
+      if (item.routeKey) {
+        const targetRoute = localePath(routes[item.routeKey]);
+        router.push(targetRoute);
       }
     },
-    [handleOpenSignup],
+    [localePath, router],
+  );
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    interactiveRouteKeys.forEach((routeKey) => {
+      const node = cardRefs.current[routeKey];
+      if (!node) {
+        return;
+      }
+
+      const targetRoute = localePath(routes[routeKey]);
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              void router.prefetch(targetRoute);
+              obs.disconnect();
+            }
+          });
+        },
+        { rootMargin: "200px 0px" },
+      );
+
+      observer.observe(node);
+      observers.push(observer);
+    });
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+    };
+  }, [interactiveRouteKeys, localePath, router]);
+
+  const handleCardKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLDivElement>, item: DataType) => {
+      if (event.key !== "Enter" && event.key !== " ") {
+        return;
+      }
+
+      event.preventDefault();
+      handleCardAction(item);
+    },
+    [handleCardAction],
   );
 
   return (
@@ -67,30 +134,40 @@ const BottomMoreAboutSection: React.FC = () => {
         aria-label="Coello One highlights"
         className="hide-scrollbar flex snap-x snap-mandatory overflow-x-auto scroll-smooth"
       >
-        {data.map((item, index) => (
-          <Card
-            key={index}
-            role="listitem"
-            className={`min-w-44 snap-start bg-gray-200! ${item.action ? "cursor-pointer" : ""}`}
-            classNames={{ body: "p-2!" }}
-            cover={
-              <Flex
-                className="relative flex! h-28 bg-black text-white! uppercase"
-                justify="center"
-                align="center"
-                vertical
-              >
-                <CardContent {...item} />
-              </Flex>
-            }
-            hoverable
-            onClick={item.action === "email-signup" ? handleOpenSignup : undefined}
-            onKeyDown={(event) => handleCardKeyDown(event, item.action)}
-            tabIndex={item.action ? 0 : undefined}
-          >
-            <Card.Meta className="bg-gray-200 text-sm uppercase" description={item.description} />
-          </Card>
-        ))}
+        {data.map((item, index) => {
+          const isInteractive = Boolean(item.action || item.routeKey);
+          return (
+            <Card
+              key={index}
+              ref={
+                isInteractive && item.routeKey
+                  ? (node) => {
+                      cardRefs.current[item.routeKey] = node;
+                    }
+                  : undefined
+              }
+              role="listitem"
+              className={`min-w-44 snap-start bg-gray-200! ${isInteractive ? "cursor-pointer" : ""}`}
+              classNames={{ body: "p-2!" }}
+              cover={
+                <Flex
+                  className="relative flex! h-28 bg-black text-white! uppercase"
+                  justify="center"
+                  align="center"
+                  vertical
+                >
+                  <CardContent {...item} />
+                </Flex>
+              }
+              hoverable={isInteractive}
+              onClick={isInteractive ? () => handleCardAction(item) : undefined}
+              onKeyDown={isInteractive ? (event) => handleCardKeyDown(event, item) : undefined}
+              tabIndex={isInteractive ? 0 : undefined}
+            >
+              <Card.Meta className="bg-gray-200 text-sm uppercase" description={item.description} />
+            </Card>
+          );
+        })}
       </Flex>
       <PromoSignupModal
         open={isPromoModalOpen}

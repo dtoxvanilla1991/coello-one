@@ -250,6 +250,20 @@ const PRODUCT_SEEDS: ProductSeed[] = [
   },
 ];
 
+async function fetchLastInsertId(entity: string): Promise<number> {
+  const rows = (await db`SELECT LAST_INSERT_ID() AS lastInsertId`) as {
+    lastInsertId: number | bigint;
+  }[];
+  const lastInsertId = rows[0]?.lastInsertId;
+  const resolvedId = Number(lastInsertId ?? 0);
+
+  if (!Number.isFinite(resolvedId) || resolvedId <= 0) {
+    throw new Error(`Unable to determine ${entity} id after insert.`);
+  }
+
+  return resolvedId;
+}
+
 async function truncateTables() {
   console.log("🧹 Clearing relational tables...");
   await db`SET FOREIGN_KEY_CHECKS = 0`;
@@ -281,7 +295,7 @@ async function seedProduct(productSeed: ProductSeed) {
     includeInPopularFeed,
   } = productSeed.product;
 
-  const productInsert = (await db`
+  await db`
     INSERT INTO products (
       public_id,
       name,
@@ -311,9 +325,9 @@ async function seedProduct(productSeed: ProductSeed) {
       ${defaultColor},
       ${includeInPopularFeed ? 1 : 0}
     )
-  `) as unknown as { insertId: number };
+  `;
 
-  const productId = Number(productInsert.insertId);
+  const productId = await fetchLastInsertId("product");
 
   for (const media of productSeed.media) {
     await db`
@@ -324,7 +338,7 @@ async function seedProduct(productSeed: ProductSeed) {
 
   if (productSeed.variants) {
     for (const variant of productSeed.variants) {
-      const variantInsert = (await db`
+      await db`
         INSERT INTO product_variants (
           product_id,
           variant_gender,
@@ -338,9 +352,9 @@ async function seedProduct(productSeed: ProductSeed) {
           ${variant.defaultColorName},
           ${variant.isDefault ? 1 : 0}
         )
-      `) as unknown as { insertId: number };
+      `;
 
-      const variantId = Number(variantInsert.insertId);
+      const variantId = await fetchLastInsertId("product_variant");
 
       for (const color of variant.colors) {
         await db`

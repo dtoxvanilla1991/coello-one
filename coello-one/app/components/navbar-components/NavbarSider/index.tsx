@@ -8,12 +8,14 @@ import LanguageSelect from "./LanguageSelect";
 import { TabsComponent } from "./TabsComponent";
 import Menu from "./SideMenu";
 import SiderFooter from "./SiderFooter";
+import { usePathname } from "next/navigation";
 
 const { Sider } = Layout;
 const { Text } = Typography;
 
 export function NavbarSiderComponent() {
   const [collapsed, setCollapsed] = useAtom(siderCollapsedAtom);
+  const pathname = usePathname();
   // Locking main page scroll when sidebar is visible since it's an overlay
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
@@ -26,6 +28,10 @@ export function NavbarSiderComponent() {
       document.body.style.overflow = originalOverflow;
     };
   }, [collapsed]);
+
+  useEffect(() => {
+    setCollapsed(true);
+  }, [pathname, setCollapsed]);
 
   return (
     <Sider
