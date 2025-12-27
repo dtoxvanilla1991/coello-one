@@ -89,13 +89,13 @@ export default function DeliveryCalculator({ tiers, initialValues }: DeliveryCal
   const tierMap = useMemo(() => {
     return resolvedTiers.reduce<Record<string, DeliveryTier>>((acc, tier) => {
       const key = buildTierKey(tier.region, tier.service);
-      acc[key] = tier;
+      acc[key] = tier as DeliveryTier;
       return acc;
     }, {});
   }, [buildTierKey, resolvedTiers]);
 
   const availableServicesByRegion = useMemo(() => {
-    return resolvedTiers.reduce<Record<string, DeliveryTier["service"][]>>((acc, tier) => {
+    return resolvedTiers.reduce<Record<string, string[]>>((acc, tier) => {
       const current = acc[tier.region] ?? [];
       if (!current.includes(tier.service)) {
         current.push(tier.service);

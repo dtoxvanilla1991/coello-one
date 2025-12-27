@@ -32,7 +32,7 @@ export function DeliveryInformationContent({
 
   return (
     <Flex vertical gap={24} className="md:gap-8">
-      <DeliveryCalculator tiers={resolvedTiers} />
+      <DeliveryCalculator tiers={resolvedTiers as DeliveryTier[]} />
 
       <Card className="border-gray-200" classNames={{ body: "p-4 md:p-6" }}>
         <Flex vertical gap={16}>
@@ -42,7 +42,7 @@ export function DeliveryInformationContent({
           <Paragraph className="mb-0! text-sm text-gray-600 md:text-base">
             {deliveryCopy.sections.speedsDescription}
           </Paragraph>
-          <DeliveryMatrixTable tiers={resolvedTiers} columnCopy={deliveryCopy.matrixColumns} />
+          <DeliveryMatrixTable tiers={resolvedTiers as DeliveryTier[]} columnCopy={deliveryCopy.matrixColumns} />
         </Flex>
       </Card>
 

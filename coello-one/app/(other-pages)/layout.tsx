@@ -7,7 +7,7 @@ import { ArrowLeftOutlined } from "@ant-design/icons";
 import { usePathname, useRouter } from "next/navigation";
 import { routes } from "config/routes";
 
-const ignoreBackButtonRoutes = [routes.accessDenied, routes.notFound];
+const ignoreBackButtonRoutes: string[] = [routes.accessDenied, routes.notFound];
 
 export default function OtherPagesLayout({ children }: { children: React.ReactNode }) {
   const { back } = useRouter();

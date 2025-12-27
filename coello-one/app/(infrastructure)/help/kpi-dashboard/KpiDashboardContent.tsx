@@ -89,7 +89,7 @@ export default function KpiDashboardContent() {
   const recentRows = useMemo<RecentEventRow[]>(
     () =>
       recentEvents.map((event) => {
-        const mapping = eventStatusMap[event.event];
+        const mapping = (eventStatusMap as Record<string, { label: string; status: string }>)[event.event];
         const label = mapping?.label ?? event.event;
         const status = mapping?.status ?? fallbackStatus;
         const color = EVENT_STATUS_COLORS[event.event] ?? "gray";

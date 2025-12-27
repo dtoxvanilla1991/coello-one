@@ -136,13 +136,14 @@ const BottomMoreAboutSection: React.FC = () => {
       >
         {data.map((item, index) => {
           const isInteractive = Boolean(item.action || item.routeKey);
+          const routeKey = item.routeKey;
           return (
             <Card
               key={index}
               ref={
-                isInteractive && item.routeKey
+                isInteractive && routeKey
                   ? (node) => {
-                      cardRefs.current[item.routeKey] = node;
+                      cardRefs.current[routeKey] = node;
                     }
                   : undefined
               }

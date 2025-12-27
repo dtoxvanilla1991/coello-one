@@ -19,6 +19,7 @@
     "@ant-design/cssinjs": "^2.0.1",
     "@ant-design/nextjs-registry": "^1.1.0",
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
+    "@hookform/resolvers": "^5.2.2",
     "antd": "^5.27.6",
     "drizzle-orm": "^0.44.7",
     "jotai": "^2.15.0",
