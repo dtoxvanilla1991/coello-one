@@ -46,7 +46,7 @@ const SalesBlock: FC = () => {
       <Text className="mb-5 text-base text-white!">
         Drop code extra10 and thank us with a tagged photo in the gym
       </Text>
-      <Space direction="vertical" className="w-1/2">
+      <Space orientation="vertical" className="w-1/2">
         <Button
           className="w-full uppercase hover:bg-white! hover:text-black!"
           size="large"

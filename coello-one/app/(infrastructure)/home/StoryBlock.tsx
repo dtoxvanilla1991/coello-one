@@ -18,7 +18,7 @@ const StoryBlock: React.FC = () => {
   );
   return (
     <Space
-      direction="vertical"
+      orientation="vertical"
       size="small"
       className="flex w-full bg-gray-200 p-4"
       role="list"
@@ -40,7 +40,7 @@ interface BrandListingProps {
 
 const BrandListing: React.FC<BrandListingProps> = ({ paragraph, title }) => {
   return (
-    <Space.Compact direction="vertical" className="w-full" role="listitem">
+    <Space.Compact orientation="vertical" className="w-full" role="listitem">
       <Title level={5} className="uppercase">
         {title}
       </Title>

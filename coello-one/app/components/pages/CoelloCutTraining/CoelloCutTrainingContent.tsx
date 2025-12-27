@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, Divider, Flex, List, Typography } from "antd";
+import { Card, Divider, Flex, Typography } from "antd";
 import PlanSelector from "@/components/training/PlanSelector";
 import TheRitual from "@/components/training/TheRitual";
 import { useTranslations } from "@/localization/useTranslations";
@@ -35,19 +35,16 @@ export default function CoelloCutTrainingContent() {
           </Title>
           <Paragraph className="m-0 text-neutral-300">{copy.manifesto.subheading}</Paragraph>
           <Divider className="my-2 border-neutral-800" />
-          <List
-            itemLayout="vertical"
-            split={false}
-            dataSource={copy.manifesto.bulletPoints}
-            renderItem={(item) => (
-              <List.Item className="px-0">
+          <Flex vertical gap={12} role="list">
+            {copy.manifesto.bulletPoints.map((item) => (
+              <div key={item.title} role="listitem">
                 <Title level={4} className="mb-1 text-base font-semibold text-white">
                   {item.title}
                 </Title>
                 <Paragraph className="m-0 text-sm text-neutral-300">{item.description}</Paragraph>
-              </List.Item>
-            )}
-          />
+              </div>
+            ))}
+          </Flex>
         </Flex>
       </Card>
 

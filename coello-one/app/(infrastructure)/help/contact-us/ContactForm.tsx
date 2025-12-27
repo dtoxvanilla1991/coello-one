@@ -129,7 +129,7 @@ export default function ContactForm({
           Our concierge team responds within minutes between 08:00 and 00:00 GMT. Choose your
           preferred channel and we will pick up from there.
         </Paragraph>
-        {error ? <Alert type="error" showIcon message={error} className="border-red-200" /> : null}
+        {error ? <Alert type="error" showIcon title={error} className="border-red-200" /> : null}
         <Form<ContactFormValues>
           form={form}
           layout="vertical"

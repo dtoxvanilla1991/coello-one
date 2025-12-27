@@ -2,7 +2,7 @@
 
 import { useCallback, useMemo } from "react";
 import Image from "next/image";
-import { Button, Card, Flex, List, Space, Typography, Row, Col, Tag } from "antd";
+import { Button, Card, Flex, Space, Typography, Row, Col, Tag } from "antd";
 import { useSetAtom } from "jotai";
 import { ProductDetailShell } from "@/components/product/ProductDetailShell";
 import { incrementCartAtom } from "@/store/cartStore";
@@ -71,8 +71,8 @@ export default function ResistanceBands() {
           />
         </Col>
         <Col xs={24} md={12}>
-          <Space direction="vertical" size={24} className="w-full px-4 md:px-0">
-            <Space direction="vertical" size={8}>
+          <Space orientation="vertical" size={24} className="w-full px-4 md:px-0">
+            <Space orientation="vertical" size={8}>
               <Title level={2} className="tracking-wide uppercase">
                 {RESISTANCE_BANDS_NAME}
               </Title>
@@ -87,16 +87,14 @@ export default function ResistanceBands() {
             </Paragraph>
 
             <Card variant="borderless" className="bg-gray-950!">
-              <Space direction="vertical" size={16} className="w-full">
+              <Space orientation="vertical" size={16} className="w-full">
                 <Text strong className="text-xs text-gray-400 uppercase">
                   Strength guide
                 </Text>
-                <List<ResistanceStrengthLevel>
-                  itemLayout="vertical"
-                  dataSource={Array.from(RESISTANCE_BANDS_STRENGTH_LEVELS)}
-                  renderItem={(item) => (
-                    <List.Item key={item.key} className="border-0! px-0!">
-                      <Space direction="vertical" size={4} className="w-full">
+                <Flex vertical gap={8} role="list">
+                  {Array.from(RESISTANCE_BANDS_STRENGTH_LEVELS).map((item: ResistanceStrengthLevel) => (
+                    <div key={item.key} role="listitem">
+                      <Space orientation="vertical" size={4} className="w-full">
                         <Space size={8} align="center">
                           <Tag color="magenta" className="uppercase">
                             {item.badge}
@@ -105,26 +103,24 @@ export default function ResistanceBands() {
                         </Space>
                         <Text className="text-sm text-gray-200">{item.focus}</Text>
                       </Space>
-                    </List.Item>
-                  )}
-                />
+                    </div>
+                  ))}
+                </Flex>
               </Space>
             </Card>
 
             <Card variant="borderless" className="bg-gray-950!">
-              <Space direction="vertical" size={12} className="w-full">
+              <Space orientation="vertical" size={12} className="w-full">
                 <Text strong className="text-xs text-gray-400 uppercase">
                   What&apos;s in the bag
                 </Text>
-                <List<string>
-                  itemLayout="horizontal"
-                  dataSource={Array.from(RESISTANCE_BANDS_BAG_CONTENTS)}
-                  renderItem={(item, index) => (
-                    <List.Item key={index} className="border-0! px-0!">
+                <Flex vertical gap={4} role="list">
+                  {Array.from(RESISTANCE_BANDS_BAG_CONTENTS).map((item: string, index: number) => (
+                    <div key={index} role="listitem">
                       <Text className="text-sm text-gray-200">{item}</Text>
-                    </List.Item>
-                  )}
-                />
+                    </div>
+                  ))}
+                </Flex>
               </Space>
             </Card>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
-import { Space, List, Typography } from "antd";
+import { Flex, Space, Typography } from "antd";
 import Link from "next/link";
 import { useLocalePath } from "@/hooks/useLocalePath";
 import { DEFAULT_SIZE, PRODUCT_NAME_SLUG } from "../(products)/one-sleeve-classic/constants";
@@ -65,7 +65,7 @@ const BrandListings: React.FC = () => {
   );
 
   return (
-    <Space direction="vertical" size="small" className="flex w-full p-4">
+    <Space orientation="vertical" size="small" className="flex w-full p-4">
       <BrandListing data={womensLine} title="Women's line" resolveHref={resolveHref} />
       <BrandListing data={mensLine} title="Men's line" resolveHref={resolveHref} />
     </Space>
@@ -82,17 +82,19 @@ type BrandListingProps = {
 
 const BrandListing: React.FC<BrandListingProps> = ({ data, title, resolveHref }) => {
   return (
-    <Space.Compact direction="vertical" className="w-full" role="group">
+    <Space.Compact orientation="vertical" className="w-full" role="group">
       <Title level={5} className="uppercase">
         {title}
       </Title>
-      <List
+      <Flex
+        vertical
+        gap={6}
         aria-label={`${title} links`}
-        dataSource={data}
-        split={false}
         className="text-xs!"
-        renderItem={(item) => (
-          <List.Item className="py-1.5!">
+        role="list"
+      >
+        {data.map((item) => (
+          <div key={item.analyticsId} className="py-1.5" role="listitem">
             <Link
               href={resolveHref(item)}
               className="hover:underline"
@@ -110,9 +112,9 @@ const BrandListing: React.FC<BrandListingProps> = ({ data, title, resolveHref })
             >
               {item.text}
             </Link>
-          </List.Item>
-        )}
-      />
+          </div>
+        ))}
+      </Flex>
     </Space.Compact>
   );
 };

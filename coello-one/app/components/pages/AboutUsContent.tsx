@@ -97,7 +97,7 @@ export default function AboutUsContent({ copy, ctaHref }: AboutUsContentProps) {
             className="max-w-3xl"
             items={copy.timeline.milestones.map((milestone) => ({
               color: "black",
-              children: (
+              content: (
                 <Flex vertical gap={4}>
                   <Text className="text-xs font-semibold tracking-[0.3em] text-gray-500 uppercase">
                     {milestone.year}

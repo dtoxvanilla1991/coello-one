@@ -171,7 +171,7 @@ export default function FAQContent({ categories, initialQuery = "" }: FAQContent
                 items={renderCollapseItems(category)}
                 bordered={false}
                 onChange={handleCollapseChange}
-                expandIconPosition="end"
+                expandIconPlacement="end"
               />
             </Flex>
           </Card>

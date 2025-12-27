@@ -183,7 +183,7 @@ export default function DeliveryCalculator({ tiers, initialValues }: DeliveryCal
           <Paragraph className="mb-0! text-gray-600">{calculatorCopy.subtitle}</Paragraph>
         </Flex>
         {validationError ? (
-          <Alert type="error" showIcon message={validationError} className="border-red-200" />
+          <Alert type="error" showIcon title={validationError} className="border-red-200" />
         ) : null}
         <Form<FormValues>
           form={form}

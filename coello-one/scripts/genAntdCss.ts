@@ -1,12 +1,9 @@
 import path from "node:path";
-import { createCache, extractStyle } from "@ant-design/cssinjs";
+import { extractStyle } from "@ant-design/static-style-extract";
 
 const generateAntdCss = async (): Promise<void> => {
-  const cache = createCache();
-
-  const cssText = extractStyle(cache, {
-    plain: true,
-  });
+  // Extract all antd component styles as static CSS (antd v6 compatible)
+  const cssText = extractStyle();
 
   const outputPath = path.join(process.cwd(), "public", "antd.min.css");
   const outputFile = Bun.file(outputPath);

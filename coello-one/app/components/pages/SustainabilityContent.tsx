@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Card, Flex, List, Statistic, Tag, Timeline, Typography } from "antd";
+import { Button, Card, Flex, Statistic, Tag, Timeline, Typography } from "antd";
 import type { SustainabilityCopy } from "@/types/pages";
 import { useCurrentLocale } from "@/hooks/useCurrentLocale";
 import { trackEvent } from "@/utils/trackEvent";
@@ -52,7 +52,7 @@ export default function SustainabilityContent({ copy }: SustainabilityContentPro
                   </Text>
                 }
                 value={metric.value}
-                valueStyle={{ fontSize: 32, fontWeight: 600 }}
+                styles={{ content: { fontSize: 32, fontWeight: 600 } }}
               />
             </Card>
           ))}
@@ -64,14 +64,13 @@ export default function SustainabilityContent({ copy }: SustainabilityContentPro
           <Title level={3} className="mb-0! text-2xl">
             {copy.materials.title}
           </Title>
-          <List
-            dataSource={copy.materials.items}
-            renderItem={(item) => (
-              <List.Item className="border-0 px-0">
+          <Flex vertical gap={4} role="list">
+            {copy.materials.items.map((item) => (
+              <div key={item} role="listitem">
                 <Paragraph className="mb-0! text-gray-600">{item}</Paragraph>
-              </List.Item>
-            )}
-          />
+              </div>
+            ))}
+          </Flex>
         </Flex>
       </Card>
 
@@ -94,7 +93,7 @@ export default function SustainabilityContent({ copy }: SustainabilityContentPro
           <Timeline
             items={copy.roadmap.steps.map((step) => ({
               color: "black",
-              children: (
+              content: (
                 <Flex vertical gap={4}>
                   <Text className="text-xs tracking-[0.3em] text-gray-500 uppercase">
                     {step.year}

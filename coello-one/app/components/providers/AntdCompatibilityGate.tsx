@@ -1,10 +1,10 @@
 "use client";
 
-import "@ant-design/v5-patch-for-react-19";
 import type { PropsWithChildren } from "react";
 
 /**
- * Ensures Ant Design applies its React 19 compatibility patch before client logic runs.
+ * Ensures Ant Design styles are properly initialized in client context (antd v6).
+ * No longer requires React 19 patch as v6 has native support.
  */
 export function AntdCompatibilityGate({ children }: PropsWithChildren) {
   return children;

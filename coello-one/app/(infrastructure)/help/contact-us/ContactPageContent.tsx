@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, Flex, List, Tag, Typography } from "antd";
+import { Card, Flex, Tag, Typography } from "antd";
 import ContactForm from "./ContactForm";
 
 const { Title, Paragraph, Text, Link } = Typography;
@@ -75,18 +75,17 @@ export default function ContactPageContent({ faqHref }: ContactPageContentProps)
           <Title level={4} className="mb-0! text-lg font-semibold">
             Response standards
           </Title>
-          <List
-            dataSource={[
+          <Flex vertical gap={8} role="list">
+            {[
               "Chat: under 2 minutes during staffed hours",
               "Email: within 4 business hours",
               "VIP members: priority routing with optional video styling sessions",
-            ]}
-            renderItem={(item) => (
-              <List.Item className="px-0">
+            ].map((item) => (
+              <div key={item} role="listitem">
                 <Paragraph className="mb-0! text-gray-600">{item}</Paragraph>
-              </List.Item>
-            )}
-          />
+              </div>
+            ))}
+          </Flex>
           <Text className="text-sm text-gray-500">
             Need instant answers? Browse the{" "}
             <Link href={faqHref} className="font-semibold text-gray-900">

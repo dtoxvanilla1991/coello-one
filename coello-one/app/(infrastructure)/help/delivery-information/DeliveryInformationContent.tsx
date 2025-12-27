@@ -78,9 +78,9 @@ export function DeliveryInformationContent({
             {deliveryCopy.sections.packingTitle}
           </Title>
           <Timeline
-            mode={screens.md ? "alternate" : "left"}
+            mode={screens.md ? "alternate" : "start"}
             items={resolvedPackingSteps.map((step) => ({
-              children: (
+              content: (
                 <Flex vertical gap={4}>
                   <Title level={4} className="mb-0! text-base font-semibold">
                     {step.title}

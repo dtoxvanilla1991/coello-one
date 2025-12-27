@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, Collapse, Flex, List, Statistic, Timeline, Typography } from "antd";
+import { Card, Collapse, Flex, Statistic, Timeline, Typography } from "antd";
 import type { CollapseProps } from "antd";
 import { RETURN_FAQ, RETURN_HIGHLIGHTS, RETURN_STEPS } from "./constants";
 
@@ -59,7 +59,7 @@ export default function ReturnsPolicyContent() {
               <Statistic
                 title="Refunds land in"
                 value="3-5 days"
-                valueStyle={{ fontSize: "1.5rem" }}
+                styles={{ content: { fontSize: "1.5rem" } }}
               />
               <Text className="text-sm text-gray-500">
                 from the moment the warehouse scans your sleeve
@@ -69,7 +69,7 @@ export default function ReturnsPolicyContent() {
               <Statistic
                 title="Credit issued"
                 value="Instantly"
-                valueStyle={{ fontSize: "1.5rem" }}
+                styles={{ content: { fontSize: "1.5rem" } }}
               />
               <Text className="text-sm text-gray-500">
                 usable in checkout as soon as you confirm
@@ -79,7 +79,7 @@ export default function ReturnsPolicyContent() {
               <Statistic
                 title="Exchange prep"
                 value="Under 24h"
-                valueStyle={{ fontSize: "1.5rem" }}
+                styles={{ content: { fontSize: "1.5rem" } }}
               />
               <Text className="text-sm text-gray-500">
                 replacement sleeves pulled as soon as you request
@@ -96,7 +96,7 @@ export default function ReturnsPolicyContent() {
           </Title>
           <Timeline
             items={RETURN_STEPS.map((step) => ({
-              children: (
+              content: (
                 <Flex vertical gap={4}>
                   <Title level={4} className="mb-0! text-base font-semibold">
                     {step.title}
@@ -114,14 +114,13 @@ export default function ReturnsPolicyContent() {
           <Title level={3} className="mb-0! text-2xl">
             Eligibility checklist
           </Title>
-          <List
-            dataSource={eligibilityChecklist}
-            renderItem={(item) => (
-              <List.Item className="px-0">
+          <Flex vertical gap={8} role="list">
+            {eligibilityChecklist.map((item) => (
+              <div key={item} role="listitem">
                 <Text className="text-gray-600">{item}</Text>
-              </List.Item>
-            )}
-          />
+              </div>
+            ))}
+          </Flex>
         </Flex>
       </Card>
 

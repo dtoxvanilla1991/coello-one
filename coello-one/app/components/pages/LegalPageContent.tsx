@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, Flex, List, Typography } from "antd";
+import { Card, Divider, Flex, Typography } from "antd";
 import type { LegalPageCopy } from "@/types/legal";
 
 const { Title, Paragraph, Text, Link } = Typography;
@@ -23,17 +23,13 @@ export default function LegalPageContent({ copy }: LegalPageContentProps) {
           <Paragraph className="mb-0! text-base text-gray-600 md:text-lg">
             {copy.hero.subtitle}
           </Paragraph>
-          <List
-            className="mt-2"
-            size="small"
-            split={false}
-            dataSource={copy.hero.summary}
-            renderItem={(item) => (
-              <List.Item className="px-0!">
+          <Flex vertical gap={4} className="mt-2" role="list">
+            {copy.hero.summary.map((item) => (
+              <div key={item} role="listitem">
                 <Paragraph className="mb-0! text-sm text-gray-600 md:text-base">{item}</Paragraph>
-              </List.Item>
-            )}
-          />
+              </div>
+            ))}
+          </Flex>
         </Flex>
       </Card>
 
@@ -55,21 +51,18 @@ export default function LegalPageContent({ copy }: LegalPageContentProps) {
                     {section.listTitle}
                   </Text>
                 ) : null}
-                <List
-                  split={false}
-                  className="bg-gray-50"
-                  dataSource={section.listItems}
-                  renderItem={(item) => (
-                    <List.Item className="px-4 py-3">
+                <Flex vertical className="bg-gray-50" role="list">
+                  {section.listItems.map((item) => (
+                    <div key={item.title} className="px-4 py-3" role="listitem">
                       <Flex vertical gap={4}>
                         <Text className="text-sm font-semibold text-gray-900">{item.title}</Text>
                         <Paragraph className="mb-0! text-sm text-gray-600 md:text-base">
                           {item.description}
                         </Paragraph>
                       </Flex>
-                    </List.Item>
-                  )}
-                />
+                    </div>
+                  ))}
+                </Flex>
               </Flex>
             ) : null}
           </Flex>
@@ -84,12 +77,10 @@ export default function LegalPageContent({ copy }: LegalPageContentProps) {
           <Paragraph className="mb-0! text-base text-gray-600">
             {copy.contact.description}
           </Paragraph>
-          <List
-            split
-            dataSource={copy.contact.channels}
-            renderItem={(channel) => (
-              <List.Item className="px-0!">
-                <Flex vertical gap={4} className="w-full">
+          <Flex vertical role="list">
+            {copy.contact.channels.map((channel, index) => (
+              <div key={channel.label} role="listitem">
+                <Flex vertical gap={4} className="w-full py-3">
                   <Text className="text-xs font-semibold tracking-[0.3em] text-gray-500 uppercase">
                     {channel.label}
                   </Text>
@@ -101,9 +92,10 @@ export default function LegalPageContent({ copy }: LegalPageContentProps) {
                     <Text className="text-base font-semibold text-gray-900">{channel.value}</Text>
                   )}
                 </Flex>
-              </List.Item>
-            )}
-          />
+                {index < copy.contact.channels.length - 1 && <Divider className="my-0" />}
+              </div>
+            ))}
+          </Flex>
         </Flex>
       </Card>
     </Flex>

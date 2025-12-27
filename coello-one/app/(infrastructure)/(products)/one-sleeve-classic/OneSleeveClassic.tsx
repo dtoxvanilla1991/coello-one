@@ -338,7 +338,7 @@ const OneSleeveClassic: React.FC = () => {
     <ProductDetailShell>
       <Row gutter={[32, 32]}>
         <Col xs={24} md={14}>
-          <Space direction="vertical" className="w-full">
+          <Space orientation="vertical" className="w-full">
             <Flex ref={mainImageRef} className="relative aspect-square w-full">
               <Image
                 src={mainImage}
@@ -381,7 +381,7 @@ const OneSleeveClassic: React.FC = () => {
           </Space>
         </Col>
         <Col xs={24} md={10} className="md:pl-8!">
-          <Space direction="vertical" size="large" className="w-full px-4 pb-10 md:px-8">
+          <Space orientation="vertical" size="large" className="w-full px-4 pb-10 md:px-8">
             <Title level={2} className="tracking-wider uppercase">
               {product.name}
             </Title>

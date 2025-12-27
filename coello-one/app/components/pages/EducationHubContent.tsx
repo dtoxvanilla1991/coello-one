@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
-import { Button, Card, Flex, List, Modal, Tag, Typography } from "antd";
+import { Button, Card, Flex, Modal, Tag, Typography } from "antd";
 import type { EducationHubCopy, ProtocolCardCopy } from "@/types/pages";
 import { useCurrentLocale } from "@/hooks/useCurrentLocale";
 import { trackEvent } from "@/utils/trackEvent";
@@ -179,14 +179,13 @@ export default function EducationHubContent({ copy }: EducationHubContentProps) 
                   <Text className="text-xs tracking-[0.3em] text-gray-500 uppercase">
                     {copy.ui.tlDrHeading}
                   </Text>
-                  <List
-                    dataSource={activeProtocol.tlDr}
-                    renderItem={(item) => (
-                      <List.Item className="border-0 px-0">
+                  <Flex vertical gap={4} role="list">
+                    {activeProtocol.tlDr.map((item) => (
+                      <div key={item} role="listitem">
                         <Paragraph className="mb-0! text-gray-700">{item}</Paragraph>
-                      </List.Item>
-                    )}
-                  />
+                      </div>
+                    ))}
+                  </Flex>
                 </Flex>
               </Card>
               <Card className="w-full border-gray-200 md:w-[calc(50%-8px)]">
@@ -194,14 +193,13 @@ export default function EducationHubContent({ copy }: EducationHubContentProps) 
                   <Text className="text-xs tracking-[0.3em] text-gray-500 uppercase">
                     {copy.ui.microDoseHeading}
                   </Text>
-                  <List
-                    dataSource={activeProtocol.microDose}
-                    renderItem={(item) => (
-                      <List.Item className="border-0 px-0">
+                  <Flex vertical gap={4} role="list">
+                    {activeProtocol.microDose.map((item) => (
+                      <div key={item} role="listitem">
                         <Paragraph className="mb-0! text-gray-700">{item}</Paragraph>
-                      </List.Item>
-                    )}
-                  />
+                      </div>
+                    ))}
+                  </Flex>
                 </Flex>
               </Card>
             </Flex>

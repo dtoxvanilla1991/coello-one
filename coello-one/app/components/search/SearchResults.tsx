@@ -126,7 +126,7 @@ export function SearchResults({ query = "" }: SearchResultsProps) {
 
   return (
     <section className="px-4 py-8 md:px-8">
-      <Space direction="vertical" size={24} className="w-full">
+      <Space orientation="vertical" size={24} className="w-full">
         <div>
           <Title level={2} className="tracking-wide uppercase">
             Search results
@@ -158,7 +158,7 @@ export function SearchResults({ query = "" }: SearchResultsProps) {
                   </div>
                 }
               >
-                <Space direction="vertical" size={12} className="w-full px-4 pt-2 pb-4">
+                <Space orientation="vertical" size={12} className="w-full px-4 pt-2 pb-4">
                   <Title level={4} className="m-0! text-lg!">
                     {item.name}
                   </Title>

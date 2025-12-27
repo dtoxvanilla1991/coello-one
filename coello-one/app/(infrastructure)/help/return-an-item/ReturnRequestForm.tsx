@@ -139,7 +139,7 @@ export default function ReturnRequestForm({
           submissions instantly.
         </Paragraph>
         {submissionError ? (
-          <Alert type="error" showIcon message={submissionError} className="border-red-200" />
+          <Alert type="error" showIcon title={submissionError} className="border-red-200" />
         ) : null}
         <Form<ReturnFormValues>
           form={form}

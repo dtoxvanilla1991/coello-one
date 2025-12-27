@@ -1,4 +1,3 @@
-import "@ant-design/v5-patch-for-react-19";
 import "./globals.css";
 import type { Metadata } from "next";
 import { ConfigProvider } from "antd";
@@ -62,7 +61,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             }}
           >
             <AntdCompatibilityGate>
-              <AntdRegistry>{children}</AntdRegistry>
+              <AntdRegistry layer>{children}</AntdRegistry>
             </AntdCompatibilityGate>
           </ConfigProvider>
         </LocaleProvider>

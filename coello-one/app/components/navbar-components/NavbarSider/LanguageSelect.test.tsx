@@ -42,11 +42,11 @@ describe("LanguageSelect", () => {
   it("posts the locale change and refreshes the router", async () => {
     render(<LanguageSelect />);
 
-    const [selector] = screen.getAllByLabelText("Language selector");
-    const dropdownTrigger = selector.querySelector(".ant-select-selector");
-    expect(dropdownTrigger).toBeTruthy();
+    // In antd v6, use combobox role to interact with Select
+    const selectCombobox = screen.getByRole("combobox", { name: "Language selector" });
+    expect(selectCombobox).toBeTruthy();
 
-    fireEvent.mouseDown(dropdownTrigger as Element);
+    fireEvent.mouseDown(selectCombobox);
 
     const spanishOption = await screen.findByTitle("ES");
     fireEvent.click(spanishOption);
@@ -71,11 +71,11 @@ describe("LanguageSelect", () => {
 
     render(<LanguageSelect />);
 
-    const [selector] = screen.getAllByLabelText("Language selector");
-    const dropdownTrigger = selector.querySelector(".ant-select-selector");
-    expect(dropdownTrigger).toBeTruthy();
+    // In antd v6, use combobox role to interact with Select
+    const selectCombobox = screen.getByRole("combobox", { name: "Language selector" });
+    expect(selectCombobox).toBeTruthy();
 
-    fireEvent.mouseDown(dropdownTrigger as Element);
+    fireEvent.mouseDown(selectCombobox);
 
     const spanishOption = await screen.findByTitle("ES");
     fireEvent.click(spanishOption);

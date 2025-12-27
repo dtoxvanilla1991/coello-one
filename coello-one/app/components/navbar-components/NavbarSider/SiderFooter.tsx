@@ -1,4 +1,4 @@
-import { List, Space, Typography } from "antd";
+import { Flex, Space, Typography } from "antd";
 import Link from "next/link";
 import { useCallback, useMemo, type FC } from "react";
 import { routes } from "@config/routes";
@@ -24,14 +24,13 @@ const SiderFooter: FC = () => {
   );
 
   return (
-    <Space direction="vertical" size="small" className="flex w-full bg-gray-200 p-4">
+    <Space orientation="vertical" size="small" className="flex w-full bg-gray-200 p-4">
       <Text strong className="uppercase">
         More
       </Text>
-      <List
-        dataSource={data}
-        renderItem={(item) => (
-          <List.Item className="py-1.5!">
+      <Flex vertical gap={6} className="text-xs!" role="list">
+        {data.map((item) => (
+          <div key={item.text} className="py-1.5" role="listitem">
             <Link
               href={item.href}
               className="text-gray-600 hover:underline"
@@ -39,11 +38,9 @@ const SiderFooter: FC = () => {
             >
               {item.text}
             </Link>
-          </List.Item>
-        )}
-        split={false}
-        className="text-xs!"
-      />
+          </div>
+        ))}
+      </Flex>
     </Space>
   );
 };

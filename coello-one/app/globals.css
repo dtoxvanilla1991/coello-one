@@ -1,3 +1,6 @@
+/* Layer order: Tailwind's theme/base → antd → Tailwind's components/utilities */
+@layer theme, base, antd, components, utilities;
+
 @import "tailwindcss";
 
 :root {

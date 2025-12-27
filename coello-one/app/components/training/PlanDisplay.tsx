@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, Flex, List, Space, Tag, Typography } from "antd";
+import { Card, Flex, Space, Tag, Typography } from "antd";
 import { EnvironmentOutlined, StarOutlined } from "@ant-design/icons";
 import { useTranslations } from "@/localization/useTranslations";
 import type { TrainingPlan } from "@config/training-plans";
@@ -28,7 +28,7 @@ export default function PlanDisplay({ plan }: PlanDisplayProps) {
     >
       <Flex vertical gap={16}>
         <Flex align="center" justify="space-between" wrap>
-          <Space direction="vertical" size={0} className="text-neutral-200">
+          <Space orientation="vertical" size={0} className="text-neutral-200">
             <Text className="text-xs uppercase tracking-[0.3em] text-neutral-500">
               {plan.daysPerWeek} {planDisplayCopy.daysPerWeekLabel}
             </Text>
@@ -51,11 +51,12 @@ export default function PlanDisplay({ plan }: PlanDisplayProps) {
         <Title level={4} className="m-0 text-sm uppercase tracking-[0.3em] text-neutral-500">
           {planDisplayCopy.weeklySplitHeading}
         </Title>
-        <List
-          grid={{ gutter: 12, xs: 1, sm: 2, md: 3 }}
-          dataSource={planCopy.split}
-          renderItem={(day, index) => (
-            <List.Item>
+        <div
+          className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3"
+          role="list"
+        >
+          {planCopy.split.map((day, index) => (
+            <div key={day.label} role="listitem">
               <Card
                 className={`border-neutral-800 ${
                   day.isNature
@@ -74,9 +75,9 @@ export default function PlanDisplay({ plan }: PlanDisplayProps) {
                   </Flex>
                 </Flex>
               </Card>
-            </List.Item>
-          )}
-        />
+            </div>
+          ))}
+        </div>
       </Flex>
     </Card>
   );

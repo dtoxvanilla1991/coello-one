@@ -85,9 +85,9 @@ export default function InternationalOrdersContent({
             {timeline.title}
           </Title>
           <Timeline
-            mode="left"
+            mode="start"
             items={timeline.steps.map((step) => ({
-              children: (
+              content: (
                 <Flex vertical gap={4}>
                   <Title level={4} className="mb-0! text-base font-semibold">
                     {step.title}
@@ -95,8 +95,7 @@ export default function InternationalOrdersContent({
                   <Paragraph className="mb-0! text-gray-600">{step.description}</Paragraph>
                 </Flex>
               ),
-            }))}
-          />
+            }))}/>
         </Flex>
       </Card>
 
