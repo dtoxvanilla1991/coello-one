@@ -12,7 +12,7 @@ const ignoreBackButtonRoutes: string[] = [routes.accessDenied, routes.notFound];
 export default function OtherPagesLayout({ children }: { children: React.ReactNode }) {
   const { back } = useRouter();
   const pathName = usePathname();
-  const notIn = !ignoreBackButtonRoutes.includes(pathName);
+  const notIn = !ignoreBackButtonRoutes.includes(pathName ?? "");
   return (
     <div className="flex min-h-screen flex-col bg-[#F8FAFC] dark:bg-gray-50">
       {/* sticky top header  */}

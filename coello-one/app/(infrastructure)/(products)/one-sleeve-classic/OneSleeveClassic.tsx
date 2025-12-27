@@ -192,7 +192,7 @@ const OneSleeveClassic: React.FC = () => {
     }
 
     const queryString = params.toString();
-    router.replace(queryString ? `${pathname}?${queryString}` : pathname, {
+    router.replace(queryString ? `${pathname}?${queryString}` : (pathname ?? "/"), {
       scroll: false,
     });
   }, [selectedGender, selectedColor.name, selectedSize, searchParams, router, pathname]);
