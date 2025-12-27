@@ -2,9 +2,10 @@ import { createMenuOption, createMenuTitle, MenuItem } from "@/components/Menu/h
 import Menu from "@components/Menu";
 
 const items: MenuItem[] = [
-  createMenuTitle("Trending", "/trending", [
-    createMenuOption("Best Sellers", "/collections/best-sellers/men"),
-  ]),
+  // Trending section to be added in the future
+  // createMenuTitle("Trending", "/trending", [
+  //   createMenuOption("Best Sellers", "/collections/best-sellers/men"),
+  // ]),
   createMenuTitle("Products", "/products", [
     createMenuOption("Passion model", "/products/passion-model"),
     createMenuOption("Power model", "/products/power-model"),

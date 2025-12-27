@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { ConfigProvider } from "antd";
 import enGB from "antd/locale/en_GB";
 import esES from "antd/locale/es_ES";
@@ -30,7 +31,15 @@ export const metadata: Metadata = {
   alternates: LANGUAGE_ALTERNATES,
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <Suspense fallback={<LocaleLoadingShell />}>
+      <LocaleAwareRootLayout>{children}</LocaleAwareRootLayout>
+    </Suspense>
+  );
+}
+
+async function LocaleAwareRootLayout({ children }: { children: React.ReactNode }) {
   const locale = await getRequestLocale();
   const antdLocale = ANTD_LOCALES[locale] ?? enGB;
 
@@ -61,7 +70,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             }}
           >
             <AntdCompatibilityGate>
-              <AntdRegistry layer>{children}</AntdRegistry>
+              <Suspense fallback={null}>
+                <AntdRegistry layer>{children}</AntdRegistry>
+              </Suspense>
             </AntdCompatibilityGate>
           </ConfigProvider>
         </LocaleProvider>
@@ -69,3 +80,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     </html>
   );
 }
+
+function LocaleLoadingShell() {
+  return (
+    <html lang="en-GB">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <div />
+      </body>
+    </html>
+  );
+}
+
+export const __TEST_LOCALE_LAYOUT__ = LocaleAwareRootLayout;

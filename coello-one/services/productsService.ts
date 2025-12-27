@@ -1,5 +1,6 @@
 "use server";
 
+import { cacheLife, cacheTag } from "next/cache";
 import { SQL, sql } from "bun";
 import { db } from "@config/db";
 import {
@@ -13,6 +14,10 @@ import { createPopularFallbackProducts } from "../app/(infrastructure)/home/popu
 
 const CACHE_DB_PATH = Bun.env.PRODUCT_CACHE_DB_PATH ?? ":memory:";
 const CACHE_TTL_MS = Number(Bun.env.PRODUCT_CACHE_TTL_MS ?? 5 * 60 * 1000);
+const IS_NEXT_RUNTIME = typeof process !== "undefined" && Boolean(process.env.NEXT_RUNTIME);
+const CACHE_LIFE_SECONDS = Math.max(5, Math.floor(CACHE_TTL_MS / 1000));
+const CACHE_STALE_SECONDS = Math.max(5, Math.floor(CACHE_LIFE_SECONDS * 0.2));
+const CACHE_EXPIRE_SECONDS = Math.max(CACHE_LIFE_SECONDS, CACHE_LIFE_SECONDS * 6);
 const PRODUCT_CACHE_DEBUG = Bun.env.PRODUCT_CACHE_DEBUG === "true";
 
 const CACHE_TABLE = "product_cache";
@@ -538,6 +543,25 @@ function debugLog(event: string, context: Record<string, unknown>): void {
   console.debug(`[productsService:${event}]`, context);
 }
 
+function configureNextCacheControls(category: string): void {
+  if (!IS_NEXT_RUNTIME) {
+    return;
+  }
+
+  try {
+    cacheLife({
+      stale: CACHE_STALE_SECONDS,
+      revalidate: CACHE_LIFE_SECONDS,
+      expire: CACHE_EXPIRE_SECONDS,
+    });
+
+    cacheTag("products");
+    cacheTag("products", `category:${category}`);
+  } catch (error) {
+    debugLog("next_cache_configuration_error", { category, error });
+  }
+}
+
 function emitCacheAnalytics(
   event: "product_cache_hit" | "product_cache_miss" | "product_cache_fallback",
   payload: Record<string, unknown>,
@@ -591,9 +615,11 @@ export async function fetchProducts(
   options: FetchProductsOptions = {},
   internalOptions: FetchProductsInternalOptions = {},
 ): Promise<ProductServiceResult> {
+  "use cache";
   const { skipAnalytics = false } = internalOptions;
-  const category = options.category ?? "all";
-  const cacheKey = buildCacheKey(options);
+  const category = (options.category ?? "all").toLowerCase();
+  configureNextCacheControls(category);
+  const cacheKey = buildCacheKey({ category });
   const cacheRow = await readCache(cacheKey);
   const cachedProducts = parseCachePayload(cacheRow);
   const isCacheHit = Boolean(cacheRow && cachedProducts);

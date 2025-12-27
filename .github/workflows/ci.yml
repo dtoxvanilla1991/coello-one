@@ -13,6 +13,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
+env:
+  NODE_VERSION: 24.12.0
+  BUN_VERSION: 1.2.21
+
 jobs:
   test:
     name: Test (Bun)
@@ -24,10 +28,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Cache Bun toolchain
+        uses: actions/cache@v4
+        with:
+          path: $HOME/.bun
+          key: ${{ runner.os }}-bun-${{ env.BUN_VERSION }}
+          restore-keys: ${{ runner.os }}-bun-
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: 1.2.21
+          bun-version: ${{ env.BUN_VERSION }}
 
       - name: Bun version
         run: bun --version
@@ -126,10 +142,22 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
       # --- FRONTEND SCAN (Coello One / Bun) ---
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Cache Bun toolchain
+        uses: actions/cache@v4
+        with:
+          path: $HOME/.bun
+          key: ${{ runner.os }}-bun-${{ env.BUN_VERSION }}
+          restore-keys: ${{ runner.os }}-bun-
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: 1.2.21
+          bun-version: ${{ env.BUN_VERSION }}
 
       - name: Generate Scan Lockfile (Frontend)
         working-directory: coello-one

@@ -41,7 +41,7 @@ const hubCopy: EducationHubCopy = {
       microDose: ["Shots", "Photos"],
       deepDive: {
         label: "Read deep dive",
-        href: "https://example.com/recovery",
+        href: "#recovery",
       },
       image: "/athletes/vertical/main-secondary-4.jpg",
       imageAlt: "Recovery",
@@ -62,7 +62,7 @@ const hubCopy: EducationHubCopy = {
       microDose: ["Bone broth"],
       deepDive: {
         label: "Canvas guide",
-        href: "https://example.com/canvas",
+        href: "#canvas",
       },
       image: "/athletes/vertical/main-secondary-8.jpg",
       imageAlt: "Canvas",

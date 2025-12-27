@@ -45,9 +45,7 @@ export default function ReturnAnItemContent({ contactHref }: ReturnAnItemContent
             orientation="vertical"
             items={steps.map((step) => ({
               title: <Text className="font-semibold text-gray-900">{step.title}</Text>,
-              description: (
-                <Paragraph className="mb-0! text-gray-600">{step.description}</Paragraph>
-              ),
+              content: <Paragraph className="mb-0! text-gray-600">{step.description}</Paragraph>,
             }))}
           />
         </Flex>
