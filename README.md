@@ -54,9 +54,9 @@ Welcome to Coello.
 
 Below are some screenshots illustrating key parts of the application.
 
-![Home Page](<img width="396" height="835" alt="image" src="https://github.com/user-attachments/assets/65ec917c-badc-4e72-a542-d93811c9d6f9" />)
-![Product Page](<img width="396" height="834" alt="image" src="https://github.com/user-attachments/assets/db7c1398-9d6f-46a9-a0cc-93dcdd3a2a71" />)
-![Wishlist Page](<img width="396" height="808" alt="image" src="https://github.com/user-attachments/assets/c4163229-b420-4d0b-ad80-d6ff65db9580" />)
+![Home Page](https://github.com/user-attachments/assets/65ec917c-badc-4e72-a542-d93811c9d6f9)
+![Product Page](https://github.com/user-attachments/assets/db7c1398-9d6f-46a9-a0cc-93dcdd3a2a71)
+![Wishlist Page](https://github.com/user-attachments/assets/c4163229-b420-4d0b-ad80-d6ff65db9580)
 
 App is still in development. Once MVP is completed, more core screenshots will be added and the app will be deployed to Vercel.
 
