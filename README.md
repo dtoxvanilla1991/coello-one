@@ -12,7 +12,7 @@
   <p align="center">
     <br />
     <a href="https://github.com/dtoxvanilla1991/coello-one"><strong>Explore the docs »</strong></a>
-  </p> -->
+  </p>
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -62,86 +62,67 @@ App is still in development. Once MVP is completed, more core screenshots will b
 
 ## Built With
 
-Frameworks/libraries/languages used:
+Frameworks, libraries, and languages currently in play:
 
-- [Next.js v15](https://nextjs.org/)
-- [Next.js' Turbopack for Dev](https://nextjs.org/docs/app/api-reference/turbopack)
-- [Ant Design](https://ant.design/)
-- [Node.js](https://nodejs.org/en/)
-- [Bun](https://bun.sh/)
-- [Flask v3](https://flask.palletsprojects.com/en/stable/)
-- [Tailwind v4](https://tailwindcss.com/)
-- [Typescript v5](https://www.typescriptlang.org/)
-- [Atomic Jotai](https://jotai.org/)
-- [React Hook Form](https://react-hook-form.com/)
-- [Zod](https://zod.dev/)
-- [Prettier](https://prettier.io/)
-- [Eslint v9](https://eslint.org/)
+- [Next.js 16.0.3](https://nextjs.org/) with the App Router
+- [React 19.2.x](https://react.dev/) and the latest concurrent features
+- [Bun ≥ 1.2.21](https://bun.sh/) as the runtime, package manager, and test runner
+- [Ant Design](https://ant.design/) components styled with [Tailwind CSS v4 syntax](https://tailwindcss.com/)
+- [TypeScript 5.x](https://www.typescriptlang.org/) across the monorepo
+- [Flask 3.x](https://flask.palletsprojects.com/en/stable/) on Python 3.11 for the backend APIs
+- [Jotai](https://jotai.org/) atoms for shared state
+- [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/) for typed form validation
+- [Drizzle ORM](https://orm.drizzle.team/) for schema-managed persistence
+- [ESLint 9](https://eslint.org/) and [Prettier](https://prettier.io/) for linting/formatting enforcement
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Getting Started
 
-To get a local copy up and running follow these simple steps after downloading the files from the Github.
+The repository is a two-headed monorepo: the Next.js frontend lives in `coello-one/` (running on Bun) and the Flask API resides in `flask-server/` (Python 3.11). Install Bun ≥ 1.2.21 and Python 3.11 before you begin.
 
-## Prerequisites
-
-### Backend (Flask)
-
-1. **Install dependencies:**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate        # On macOS/Linux
-   pip install -r requirements.txt
-   ```
-
-_Optional:_ install formatting tooling with `pip install -r requirements-dev.txt` to enable local Black runs.
-
-2. **Run the Flask server** — `python app.py`
-
-3. The backend runs by default at http://localhost:3500.
-
-### Frontend (Next.js)
-
-#### Bun
-
-This project uses Bun package manager. If you do not have it, run this in your terminal using Homebrew to install Bun globally:
+### One-command bootstrap
 
 ```bash
-brew tap oven-sh/bun
-brew install bun
+make setup
 ```
 
-Or using an official script:
+`make setup` installs frontend dependencies, hooks, and backend tooling in a single pass.
+
+### Manual setup (if you prefer the long way)
+
+**Frontend (Next.js + Bun)**
 
 ```bash
-curl -fsSL https://bun.sh/install | bash
+cd coello-one
+bun install
+bun dev            # Next.js dev server (Turbopack)
+bun run build      # production build
+bun run lint       # zero-warning ESLint policy
+bun run test       # Bun-powered unit + integration tests
+bun run verify:locales   # ensures en-GB ↔ es-ES parity
 ```
 
-1. **Install dependencies**
-   `bun install`
+**Backend (Flask)**
 
-2. **Start the Next.js development server**
-   - 🔥 `bun start` - run development server
-   - 🔧 `bun run dev` - run development server
-   - 🔧 `bun run build` - build web app for production
+```bash
+cd flask-server
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt          # or make install for cached lockfiles
+python app.py                            # serves on http://localhost:3500
+```
 
-3. Open your browser at http://localhost:3000.
+Use `pip install -r requirements-dev.txt` if you also want local Black/Ruff tooling.
 
 ### Repository Tooling
 
-- Run `make setup` after cloning to install git hooks, frontend dependencies, and backend tooling in one step.
-- Manual setup alternative: `bun install` (root hooks), `cd coello-one && bun install`, and `cd flask-server && make install` (uses pip-tools to compile cached lockfiles before installation).
-- Prettier checks live behind `cd coello-one && bun run format`; use `format:fix` to write changes.
-- Backend formatting uses Black: `cd flask-server && make format-check` (or `make format`).
-- Backend env status helper: `make backend-status` (shows git ignored state for the managed `.venv`).
-- Backend dependency guard: `make backend-ci` (runs pip-compile dry-runs to ensure cached lockfiles are current).
-- Backend dependency upgrade: `make backend-upgrade` (rebuilds lockfiles with `pip-compile --upgrade`).
-- Backend linting: `make backend-lint` (runs Ruff checks; `make backend-lint-fix` applies autofixes).
-- CI enforces both checks (`bun run format` and `python -m black --check .`) to prevent drift across services.
-- Run `cd coello-one && bun run verify:locales` before opening a PR that adds or edits copy to ensure every locale ships the same keyset.
-- Knowledge workflow: use Context7 for every documentation or code lookup and capture the retrieved snippet/links in Serena before editing so future agents can trace decisions.
-- Tailwind syntax governance: before touching any Tailwind utility classes, pull the latest Tailwind CSS guidance through Context7, cite the snippet in Serena, and only ship utilities that match the newest syntax (currently v4). If a required feature isn’t available, escalate a Tailwind upgrade instead of reverting to legacy syntax.
+- `make setup` wires up git hooks, Bun deps, and backend tooling; rerun it after pulling new hook logic.
+- `bun run lint`, `bun run test`, and `bun run format` (or `format:fix`) enforce the zero-warning policy before every PR.
+- `bun run verify:locales` is mandatory whenever user-facing copy changes to keep en-GB and es-ES in lockstep.
+- Backend helpers live under `flask-server/`: `make format-check`, `make backend-status`, `make backend-ci`, `make backend-upgrade`, and `make backend-lint(-fix)` keep the Python side healthy.
+- `bun audit --audit-level=high` must pass before proposing dependency upgrades; capture the report in Serena for reviewers.
+- Knowledge workflow: every doc or code lookup flows through Context7, and the supporting snippet IDs are logged in Serena alongside your plan + outcome notes.
+- Tailwind governance: only ship v4 utilities vetted via the latest Tailwind guidance surfaced through Context7; request an upgrade if a needed utility is missing instead of backsliding to legacy syntax.
 
 ### Testing Mandate
 
@@ -152,25 +133,20 @@ curl -fsSL https://bun.sh/install | bash
 
 ## Implemented Features
 
-- Semantic Search
-- SSR for SEO and bundle js size optimizations
-- Internationalization for US, GB and ES
-- Easy and slick user purchase journey
-- Data Storage
-- A11y features (semantic HTML structure, ARIA attributes, ATL tags etc.)
-- Various optimizations (lazy loading, code splitting, tree shaking, etc.)
+- Locale-aware Next.js App Router experience with enforced `/[locale]` routing, sticky navigation, and SSR-first rendering for top Core Web Vitals.
+- Semantic product + training search that blends server-side relevance scoring with responsive client hydration via Bun.
+- Jotai-powered bag and checkout flows instrumented through a central analytics adapter (`trackEvent`) for deterministic telemetry.
+- Comprehensive localization pipeline (`verify:locales`, `useTranslations`) that keeps en-GB and es-ES copy perfectly aligned.
+- Accessibility-first Ant Design implementations with Tailwind v4 utilities, focus handling, and motion tuned for mobile.
+- Bun-native tooling (tests, formatting, Drizzle migrations) shared across the monorepo to keep backend and frontend in sync.
 
 ## Ideas for Future Features
 
-- Add Storybook for more effective building and maintenance of the custom UI components and pages in isolation (since the app mainly uses Ant Design component);
-- CI/CD using Github Actions;
-- Add unit tests using Jest, including edge cases;
-- Add e2e tests using Cypress and Argos Screenshots;
-- Add more graceful and "smart" error handling, providing the user with more information about the error and the development team with more information about the error;
-- Move assets to Cloudinary (that hosts with on AWS and optimizes them for all devices) for maximum performance;
-- Using dependency injection for better code scalability & testability;
-- Logging & monitoring using FullStory;
-- Crash/Error reports using Sentry;
+- AI sleeve goal-specific Trainer: from a mood board or text prompt.
+- Intelligent fit + training insights: blend wearable inputs with LLM coaching to recommend sizing, recovery routines, and training blocks.
+- Generative personalization engine that rewrites on-site copy and CTAs per locale, behavior, and campaign intent while tracking KPIs.
+- Real-time AI observability guardrails that watch analytics streams for anomalies and open incidents before humans notice.
+- Mixed-reality try-on powered by computer vision + on-device segmentation to preview one-sleeve looks in AR.
 
 ## Contact
 

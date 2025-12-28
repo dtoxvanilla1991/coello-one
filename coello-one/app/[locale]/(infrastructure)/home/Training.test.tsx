@@ -5,16 +5,16 @@ import { describe, it, expect } from "bun:test";
 describe("Training", () => {
   it("should render the training section", () => {
     render(<Training />);
-    expect(screen.getByRole("region", { name: /Our athletes workouts/i })).toBeTruthy();
+    expect(screen.getByRole("region", { name: /Our athletes' workouts/i })).toBeTruthy();
   });
 
   it("should render the title", () => {
     render(<Training />);
     const heading = screen.getByRole("heading", {
       level: 4,
-      name: /Our athletes workouts/i,
+      name: /Our athletes' workouts/i,
     });
-    expect(heading.textContent).toBe("Our athletes workouts");
+    expect(heading.textContent).toBe("Our athletes' workouts");
   });
 
   it("should render 3 cards", () => {

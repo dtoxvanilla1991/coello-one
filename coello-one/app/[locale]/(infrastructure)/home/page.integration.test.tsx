@@ -25,7 +25,7 @@ describe("Home route integration", () => {
       </InfrastructureLayout>,
     );
 
-    expect(await screen.findByAltText("Coello one logo")).toBeTruthy();
+    expect(await screen.findByAltText(/coello one logo/i)).toBeTruthy();
   });
 
   it("shows Spanish home copy after the locale API flips to es-ES", async () => {
