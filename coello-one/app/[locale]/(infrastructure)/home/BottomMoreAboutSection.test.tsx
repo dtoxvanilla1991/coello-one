@@ -2,12 +2,18 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "bun:test";
 import BottomMoreAboutSection from "./BottomMoreAboutSection";
 import { clickWithAct } from "@test-utils/clickWithAct";
+import { getTestTranslations } from "@test-utils/translations";
+
+const HOME_COPY = getTestTranslations("home");
+const BOTTOM_MORE_COPY = HOME_COPY.bottomMoreAbout;
+const EMAIL_CARD_DESCRIPTION =
+  BOTTOM_MORE_COPY.cards.find((card) => card.id === "email")?.description ?? "Email sign up";
 
 describe("BottomMoreAboutSection", () => {
   it("should render the bottom more about section", () => {
     render(<BottomMoreAboutSection />);
     const region = screen.getByRole("region", {
-      name: /More about Coello One/i,
+      name: BOTTOM_MORE_COPY.title,
     });
     expect(region).toBeTruthy();
   });
@@ -16,9 +22,9 @@ describe("BottomMoreAboutSection", () => {
     render(<BottomMoreAboutSection />);
     const heading = screen.getByRole("heading", {
       level: 5,
-      name: /More about Coello One/i,
+      name: BOTTOM_MORE_COPY.title,
     });
-    expect(heading.textContent).toBe("More about Coello One");
+    expect(heading.textContent).toBe(BOTTOM_MORE_COPY.title);
   });
 
   it("should render 3 cards", () => {
@@ -30,7 +36,7 @@ describe("BottomMoreAboutSection", () => {
   it("opens the promo signup modal from the email card", async () => {
     render(<BottomMoreAboutSection />);
 
-    const emailCardLabel = screen.getByText(/Email sign up/i);
+    const emailCardLabel = screen.getByText(EMAIL_CARD_DESCRIPTION);
     const interactiveCard = emailCardLabel.closest('[role="listitem"]');
     expect(interactiveCard).toBeTruthy();
 

@@ -104,6 +104,7 @@ Personas live in [`AGENTS.md`](../AGENTS.md). Before executing any task, determi
 - Run `bun run test` and `bun run lint` before sharing work.
 - Prefer behavior-driven assertions over snapshots.
 - Reuse shared helpers: `@test-utils/navigation`, `@test-utils/trackEventMock`, `@test-utils/clickWithAct`, and the mocks defined in `test-setup.ts`.
+- Pull localized copy via `getTestTranslations()` (`test-utils/translations.ts`) so assertions stay aligned with the canonical dictionaries even as Content revises wording.
 - `config/footerLinks.smoke.test.ts` and `config/db.smoke.test.ts` remain in the suite—enable them via env vars (`FOOTER_LINKS_BASE_URL`, etc.) when needed.
 - Olaf’s mandate: flakiness is unacceptable. Stabilize brittle specs immediately.
 

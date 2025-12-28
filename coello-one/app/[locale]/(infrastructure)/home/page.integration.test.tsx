@@ -5,6 +5,10 @@ import { setNavigationState } from "@test-utils/navigation";
 import { POST as setLanguage } from "../api/set-language/route";
 import { LocaleProvider } from "@/localization/LocaleProvider";
 import { MainBanner } from "./MainBanner";
+import { getTestTranslations } from "@test-utils/translations";
+
+const HOME_ES_COPY = getTestTranslations("home", "es-ES");
+const MAIN_BANNER_ES = HOME_ES_COPY.mainBanner;
 
 const buildRequest = (body: unknown) =>
   new Request("http://localhost/api/set-language", {
@@ -41,7 +45,7 @@ describe("Home route integration", () => {
       </LocaleProvider>,
     );
 
-    expect(await screen.findByText("AHORA TU HISTORIA RESALTA.")).toBeTruthy();
-    expect(screen.getByRole("button", { name: /comprar ahora/i })).toBeTruthy();
+    expect(await screen.findByText(MAIN_BANNER_ES.headline)).toBeTruthy();
+    expect(screen.getByRole("button", { name: MAIN_BANNER_ES.ctaLabel })).toBeTruthy();
   });
 });
