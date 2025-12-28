@@ -10,7 +10,7 @@ import {
   type ProductGender,
 } from "@/types/products";
 import { trackEvent } from "@/utils/trackEvent";
-import { createPopularFallbackProducts } from "../app/(infrastructure)/home/popularCuratedData";
+import { createPopularFallbackProducts } from "@/[locale]/(infrastructure)/home/popularCuratedData";
 
 const CACHE_DB_PATH = Bun.env.PRODUCT_CACHE_DB_PATH ?? ":memory:";
 const CACHE_TTL_MS = Number(Bun.env.PRODUCT_CACHE_TTL_MS ?? 5 * 60 * 1000);
@@ -611,14 +611,22 @@ type FetchProductsInternalOptions = {
   skipAnalytics?: boolean;
 };
 
-export async function fetchProducts(
+type FetchProductsRuntimeOptions = {
+  enableNextCacheDirectives: boolean;
+};
+
+async function runFetchProducts(
   options: FetchProductsOptions = {},
   internalOptions: FetchProductsInternalOptions = {},
+  runtimeOptions: FetchProductsRuntimeOptions,
 ): Promise<ProductServiceResult> {
-  "use cache";
   const { skipAnalytics = false } = internalOptions;
   const category = (options.category ?? "all").toLowerCase();
-  configureNextCacheControls(category);
+
+  if (runtimeOptions.enableNextCacheDirectives) {
+    configureNextCacheControls(category);
+  }
+
   const cacheKey = buildCacheKey({ category });
   const cacheRow = await readCache(cacheKey);
   const cachedProducts = parseCachePayload(cacheRow);
@@ -815,6 +823,21 @@ export async function fetchProducts(
   }
 }
 
+export async function fetchProducts(
+  options: FetchProductsOptions = {},
+  internalOptions: FetchProductsInternalOptions = {},
+): Promise<ProductServiceResult> {
+  "use cache";
+  return runFetchProducts(options, internalOptions, { enableNextCacheDirectives: true });
+}
+
+async function fetchProductsWithoutNextCache(
+  options: FetchProductsOptions = {},
+  internalOptions: FetchProductsInternalOptions = {},
+) {
+  return runFetchProducts(options, internalOptions, { enableNextCacheDirectives: false });
+}
+
 export async function primeProductCache(): Promise<void> {
   if (isPrimingCache) {
     return;
@@ -824,7 +847,7 @@ export async function primeProductCache(): Promise<void> {
 
   await Promise.allSettled(
     cacheWarmupCategories.map((category) =>
-      fetchProducts({ category }, { skipAnalytics: true })
+      fetchProductsWithoutNextCache({ category }, { skipAnalytics: true })
         .then((result) => {
           debugLog("warmup_success", {
             category,

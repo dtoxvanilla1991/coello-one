@@ -35,11 +35,7 @@ export default function NotFound() {
         </Text>
 
         <Link href="/">
-          <Button
-            type="primary"
-            size="large"
-            className="mt-8 h-12 px-4 xl:h-14 xl:px-6"
-          >
+          <Button type="primary" size="large" className="mt-8 h-12 px-4 xl:h-14 xl:px-6">
             <HomeOutlined className="mr-1.5 text-lg" />
             {copy.buttonLabel}
           </Button>

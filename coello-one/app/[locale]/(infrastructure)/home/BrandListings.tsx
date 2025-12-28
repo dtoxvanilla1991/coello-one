@@ -86,13 +86,7 @@ const BrandListing: React.FC<BrandListingProps> = ({ data, title, resolveHref })
       <Title level={5} className="uppercase">
         {title}
       </Title>
-      <Flex
-        vertical
-        gap={6}
-        aria-label={`${title} links`}
-        className="text-xs!"
-        role="list"
-      >
+      <Flex vertical gap={6} aria-label={`${title} links`} className="text-xs!" role="list">
         {data.map((item) => (
           <div key={item.analyticsId} className="py-1.5" role="listitem">
             <Link

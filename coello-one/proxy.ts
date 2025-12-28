@@ -2,9 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   DEFAULT_LOCALE,
   SUPPORTED_LOCALES,
-  type SupportedLocale,
-  getLocaleFromHost,
+  addLocaleToPathname,
+  extractLocaleFromPathname,
   isSupportedLocale,
+  type SupportedLocale,
 } from "@config/i18n";
 
 /**
@@ -61,25 +62,12 @@ function mapTagToLocale(tag?: string): SupportedLocale | null {
   return null;
 }
 
-/**
- * Determines locale from request using domain → cookie → Accept-Language chain.
- */
-function getLocaleFromRequest(request: NextRequest): SupportedLocale {
-  const host = request.headers.get("host");
-
-  // 1. Domain-based detection (primary for Coello's multi-domain setup)
-  const hostLocale = getLocaleFromHost(host);
-  if (hostLocale) {
-    return hostLocale;
-  }
-
-  // 2. Cookie-based preference
+function getPreferredLocale(request: NextRequest): SupportedLocale {
   const localeCookie = request.cookies.get("NEXT_LOCALE")?.value;
   if (localeCookie && isSupportedLocale(localeCookie)) {
     return localeCookie;
   }
 
-  // 3. Accept-Language negotiation
   const acceptLanguageLocale = matchAcceptLanguage(request.headers.get("accept-language"));
   if (acceptLanguageLocale) {
     return acceptLanguageLocale;
@@ -90,37 +78,22 @@ function getLocaleFromRequest(request: NextRequest): SupportedLocale {
 
 const PUBLIC_FILE = /\.(.*)$/;
 
-/**
- * App Router Proxy for locale detection.
- *
- * Sets x-locale header for server components to read via getRequestLocale().
- * Does NOT redirect to /{locale}/ paths since Coello uses domain-based routing.
- */
-export function proxy(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+function shouldBypassPath(pathname: string): boolean {
+  return pathname.startsWith("/_next") || pathname.startsWith("/api") || PUBLIC_FILE.test(pathname);
+}
 
-  // Skip internal paths, API routes, and static files
-  if (
-    pathname.startsWith("/_next") ||
-    pathname.startsWith("/api") ||
-    PUBLIC_FILE.test(pathname)
-  ) {
-    return NextResponse.next();
-  }
-
-  // Detect locale and pass it via header
-  const locale = getLocaleFromRequest(request);
-
-  // Clone response and add locale header for server components
-  const response = NextResponse.next();
+function applyLocaleArtifacts(
+  response: NextResponse,
+  request: NextRequest,
+  locale: SupportedLocale,
+) {
   response.headers.set("x-locale", locale);
 
-  // Set/refresh NEXT_LOCALE cookie for sticky preference
   const existingCookie = request.cookies.get("NEXT_LOCALE")?.value;
   if (existingCookie !== locale) {
     response.cookies.set("NEXT_LOCALE", locale, {
       path: "/",
-      maxAge: 60 * 60 * 24 * 365, // 1 year
+      maxAge: 60 * 60 * 24 * 365,
       sameSite: "lax",
     });
   }
@@ -128,9 +101,31 @@ export function proxy(request: NextRequest) {
   return response;
 }
 
+export function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  if (shouldBypassPath(pathname)) {
+    return NextResponse.next();
+  }
+
+  const pathLocale = extractLocaleFromPathname(pathname);
+
+  if (pathLocale) {
+    return applyLocaleArtifacts(NextResponse.next(), request, pathLocale);
+  }
+
+  const preferredLocale = getPreferredLocale(request);
+  const targetUrl = request.nextUrl.clone();
+  targetUrl.pathname = addLocaleToPathname(preferredLocale, pathname);
+
+  return applyLocaleArtifacts(NextResponse.redirect(targetUrl), request, preferredLocale);
+}
+
 export const config = {
   matcher: [
     // Match all paths except static files and internal paths
     "/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)",
+    // Explicitly include the root path so "/" gets localized
+    "/",
   ],
 };

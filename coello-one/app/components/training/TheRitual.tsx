@@ -18,7 +18,10 @@ export default function TheRitual() {
   const ritualCopy = pagesCopy.coelloCutTraining.ritual;
 
   return (
-    <Card className="border-neutral-800 bg-neutral-900 text-neutral-200" classNames={{ body: "p-6 md:p-8" }}>
+    <Card
+      className="border-neutral-800 bg-neutral-900 text-neutral-200"
+      classNames={{ body: "p-6 md:p-8" }}
+    >
       <Flex vertical gap={16}>
         <Title level={2} className="m-0 text-2xl text-white">
           {ritualCopy.title}
@@ -29,14 +32,14 @@ export default function TheRitual() {
             <Flex
               key={card.id}
               vertical
-              className={`flex-1 min-w-[200px] rounded-xl border border-neutral-800 p-4 ${
+              className={`min-w-[200px] flex-1 rounded-xl border border-neutral-800 p-4 ${
                 card.id === "sundayService" ? "bg-emerald-900/30" : "bg-neutral-950/40"
               }`}
               gap={8}
             >
               <Flex align="center" gap={8}>
                 {ritualIcons[card.id] ?? <FireOutlined />}
-                <Text className="text-sm uppercase tracking-[0.3em] text-neutral-400">
+                <Text className="text-sm tracking-[0.3em] text-neutral-400 uppercase">
                   {card.label}
                 </Text>
               </Flex>

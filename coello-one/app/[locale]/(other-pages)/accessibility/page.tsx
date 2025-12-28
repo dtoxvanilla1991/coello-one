@@ -6,5 +6,11 @@ export default async function AccessibilityStatement() {
   const locale = await getRequestLocale();
   const copy = getNamespaceCopy(locale, "systemPages").accessibility;
 
-  return <AccessibilityContent title={copy.title} paragraphs={copy.paragraphs} />;
+  return (
+    <AccessibilityContent
+      title={copy.title}
+      paragraphs={copy.paragraphs}
+      ariaLabel={copy.ariaLabel}
+    />
+  );
 }

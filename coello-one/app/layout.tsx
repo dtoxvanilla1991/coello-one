@@ -10,7 +10,7 @@ import { AntdCompatibilityGate } from "@/components/providers/AntdCompatibilityG
 import { LocaleProvider } from "@/localization/LocaleProvider";
 import { getRequestLocale } from "@/localization/getRequestLocale";
 import type { SupportedLocale } from "@config/i18n";
-import { PRODUCTION_LANGUAGE_ALTERNATES } from "@config/i18n";
+import { LANGUAGE_ALTERNATES } from "@config/i18n";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
@@ -23,12 +23,10 @@ const ANTD_LOCALES: Record<SupportedLocale, typeof enGB> = {
   "es-ES": esES,
 };
 
-const LANGUAGE_ALTERNATES: Metadata["alternates"] = {
-  languages: PRODUCTION_LANGUAGE_ALTERNATES,
-};
-
 export const metadata: Metadata = {
-  alternates: LANGUAGE_ALTERNATES,
+  alternates: {
+    languages: LANGUAGE_ALTERNATES,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

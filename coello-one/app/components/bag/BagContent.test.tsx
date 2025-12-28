@@ -5,6 +5,7 @@ import type { CartItem } from "@/store/cartStore";
 import { cartItemsAtom } from "@/store/cartStore";
 import { resetNavigationMocks, routerMocks } from "@test-utils/navigation";
 import { trackEventMock } from "@test-utils/trackEventMock";
+import { DEFAULT_LOCALE } from "@config/i18n";
 
 const { BagContent } = await import("./BagContent");
 
@@ -77,7 +78,7 @@ describe("BagContent", () => {
 
     fireEvent.click(screen.getByRole("button", { name: /continue shopping/i }));
 
-    expect(routerMocks.push).toHaveBeenCalledWith("/");
+    expect(routerMocks.push).toHaveBeenCalledWith(`/${DEFAULT_LOCALE}`);
   });
 
   it("tracks checkout attempts with the aggregated totals", () => {
@@ -107,6 +108,6 @@ describe("BagContent", () => {
       total: 98.5,
       itemCount: 2,
     });
-    expect(routerMocks.push).toHaveBeenCalledWith("/checkout");
+    expect(routerMocks.push).toHaveBeenCalledWith(`/${DEFAULT_LOCALE}/checkout`);
   });
 });

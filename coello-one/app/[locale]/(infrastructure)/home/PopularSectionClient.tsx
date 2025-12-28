@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button, Card, Empty, Flex, Space, Typography } from "antd";
 import { useProductCollections } from "@/hooks/useProductCollections";
 import { useLocalePath } from "@/hooks/useLocalePath";
+import { useCurrentLocale } from "@/hooks/useCurrentLocale";
 import { trackEvent } from "@/utils/trackEvent";
 import { createPopularFallbackProducts } from "./popularCuratedData";
 import { DEFAULT_SIZE } from "../(products)/one-sleeve-classic/constants";
@@ -14,6 +15,7 @@ import type {
   ProductCollectionConfig,
   ProductSummary,
 } from "@/types/products";
+import { useTranslations } from "@/localization/useTranslations";
 
 const { Title, Text } = Typography;
 
@@ -24,9 +26,15 @@ type PopularSectionClientProps = {
 
 export default function PopularSectionClient({ products, cache }: PopularSectionClientProps) {
   const withLocalePath = useLocalePath();
+  const locale = useCurrentLocale();
+  const copy = useTranslations("home").popularSection;
   const currencyFormatter = useMemo(
-    () => new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }),
-    [],
+    () =>
+      new Intl.NumberFormat(locale ?? "en-GB", {
+        style: "currency",
+        currency: "GBP",
+      }),
+    [locale],
   );
 
   const { displayProducts, isFallback } = useMemo(() => {
@@ -57,28 +65,22 @@ export default function PopularSectionClient({ products, cache }: PopularSection
     return basePath;
   };
 
-  const collections = useMemo<ProductCollectionConfig[]>(
-    () => [
-      {
-        key: "all",
-        label: "All",
-        analyticsId: "popular-filter-all",
-      },
-      {
-        key: "women",
-        label: "Women",
-        analyticsId: "popular-filter-women",
-        filter: (product) => product.gender === "Women",
-      },
-      {
-        key: "men",
-        label: "Men",
-        analyticsId: "popular-filter-men",
-        filter: (product) => product.gender === "Men",
-      },
-    ],
-    [],
-  );
+  const collections = useMemo<ProductCollectionConfig[]>(() => {
+    return copy.filters.map((filter) => {
+      const config: ProductCollectionConfig = {
+        key: filter.key,
+        label: filter.label,
+        analyticsId: filter.analyticsId,
+        ariaLabel: filter.ariaLabel,
+      };
+
+      if (filter.gender) {
+        config.filter = (product) => product.gender === filter.gender;
+      }
+
+      return config;
+    });
+  }, [copy.filters]);
 
   const {
     collections: availableCollections,
@@ -120,7 +122,7 @@ export default function PopularSectionClient({ products, cache }: PopularSection
       aria-labelledby="popular-section-title"
     >
       <Title level={3} className="mb-0! text-white! uppercase" id="popular-section-title">
-        Popular right now
+        {copy.title}
       </Title>
       <Space size={16}>
         {availableCollections.map((collection) => {
@@ -138,11 +140,7 @@ export default function PopularSectionClient({ products, cache }: PopularSection
               data-analytics-id={collection.analyticsId}
               onClick={() => setActiveCollection(collection.key)}
               aria-pressed={isActive}
-              aria-label={
-                collection.key === "all"
-                  ? "Show all popular items"
-                  : `Show popular ${collection.label.toLowerCase()} items`
-              }
+              aria-label={collection.ariaLabel ?? collection.label}
             >
               {collection.label}
             </Button>
@@ -152,15 +150,13 @@ export default function PopularSectionClient({ products, cache }: PopularSection
       <Flex
         gap={16}
         role="list"
-        aria-label="Popular products"
+        aria-label={copy.aria.list}
         className="hide-scrollbar snap-x snap-mandatory overflow-x-auto scroll-smooth"
       >
         {filteredProducts.length === 0 ? (
           <Empty
             className="min-w-full text-white!"
-            description={
-              <Text className="text-white!">No popular products yet. Check back soon.</Text>
-            }
+            description={<Text className="text-white!">{copy.emptyState.description}</Text>}
           />
         ) : (
           filteredProducts.map((product, index) => {
@@ -172,7 +168,7 @@ export default function PopularSectionClient({ products, cache }: PopularSection
                 className="min-w-72 snap-start"
                 variant="borderless"
                 role="article"
-                aria-label={`Popular product ${product.name}`}
+                aria-label={copy.aria.productCard.replace("{productName}", product.name)}
                 hoverable
                 cover={
                   <Flex className="relative h-[400px]">
@@ -195,7 +191,7 @@ export default function PopularSectionClient({ products, cache }: PopularSection
                       data-analytics-id={`popular-browse-${(product.category ?? "popular").toLowerCase()}`}
                       onClick={() => handleBrowseClick(product, href)}
                     >
-                      Browse options
+                      {copy.actions.browse}
                     </Button>
                   </Link>,
                 ]}

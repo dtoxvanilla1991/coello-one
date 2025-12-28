@@ -92,19 +92,21 @@ export default function ResistanceBands() {
                   Strength guide
                 </Text>
                 <Flex vertical gap={8} role="list">
-                  {Array.from(RESISTANCE_BANDS_STRENGTH_LEVELS).map((item: ResistanceStrengthLevel) => (
-                    <div key={item.key} role="listitem">
-                      <Space orientation="vertical" size={4} className="w-full">
-                        <Space size={8} align="center">
-                          <Tag color="magenta" className="uppercase">
-                            {item.badge}
-                          </Tag>
-                          <Text className="text-sm text-gray-300">{item.resistance}</Text>
+                  {Array.from(RESISTANCE_BANDS_STRENGTH_LEVELS).map(
+                    (item: ResistanceStrengthLevel) => (
+                      <div key={item.key} role="listitem">
+                        <Space orientation="vertical" size={4} className="w-full">
+                          <Space size={8} align="center">
+                            <Tag color="magenta" className="uppercase">
+                              {item.badge}
+                            </Tag>
+                            <Text className="text-sm text-gray-300">{item.resistance}</Text>
+                          </Space>
+                          <Text className="text-sm text-gray-200">{item.focus}</Text>
                         </Space>
-                        <Text className="text-sm text-gray-200">{item.focus}</Text>
-                      </Space>
-                    </div>
-                  ))}
+                      </div>
+                    ),
+                  )}
                 </Flex>
               </Space>
             </Card>

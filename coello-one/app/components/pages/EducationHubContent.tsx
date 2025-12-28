@@ -46,7 +46,9 @@ export default function EducationHubContent({ copy }: EducationHubContentProps) 
 
     return (
       <Flex vertical gap={4}>
-        <Text className="text-xs tracking-[0.4em] text-gray-500 uppercase">{activeProtocol.code}</Text>
+        <Text className="text-xs tracking-[0.4em] text-gray-500 uppercase">
+          {activeProtocol.code}
+        </Text>
         <Title level={4} className="mb-0! text-lg">
           {copy.ui.modalTitlePrefix}: {activeProtocol.title}
         </Title>
@@ -79,7 +81,7 @@ export default function EducationHubContent({ copy }: EducationHubContentProps) 
             >
               <Flex vertical gap={16}>
                 <Flex align="center" justify="space-between" wrap>
-                  <Tag className="border-gray-200 text-xs tracking-[0.3em] uppercase text-gray-600">
+                  <Tag className="border-gray-200 text-xs tracking-[0.3em] text-gray-600 uppercase">
                     {protocol.code}
                   </Tag>
                   <Button type="text" onClick={() => handleProtocolOpen(protocol)}>
@@ -87,7 +89,7 @@ export default function EducationHubContent({ copy }: EducationHubContentProps) 
                   </Button>
                 </Flex>
                 <Flex vertical gap={4}>
-                  <Text className="text-xs uppercase tracking-[0.4em] text-gray-500">
+                  <Text className="text-xs tracking-[0.4em] text-gray-500 uppercase">
                     {protocol.subtitle}
                   </Text>
                   <Title level={3} className="mb-0! text-2xl">
@@ -113,7 +115,9 @@ export default function EducationHubContent({ copy }: EducationHubContentProps) 
                   <Title level={4} className="mb-0! text-lg">
                     {protocol.science.title}
                   </Title>
-                  <Paragraph className="mb-0! text-gray-600">{protocol.science.description}</Paragraph>
+                  <Paragraph className="mb-0! text-gray-600">
+                    {protocol.science.description}
+                  </Paragraph>
                 </Flex>
                 <Flex vertical gap={4}>
                   <Text className="text-xs tracking-[0.3em] text-gray-500 uppercase">

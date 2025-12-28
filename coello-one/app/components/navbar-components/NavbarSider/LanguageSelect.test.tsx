@@ -34,12 +34,12 @@ afterAll(() => {
 beforeEach(() => {
   resetNavigationMocks();
   fetchSpy.mockClear();
-  routerMocks.refresh.mockClear();
+  routerMocks.replace.mockClear();
   trackEventMock.mockClear();
 });
 
 describe("LanguageSelect", () => {
-  it("posts the locale change and refreshes the router", async () => {
+  it("posts the locale change and navigates to the selected locale path", async () => {
     render(<LanguageSelect />);
 
     // In antd v6, use combobox role to interact with Select
@@ -53,7 +53,7 @@ describe("LanguageSelect", () => {
 
     await waitFor(() => {
       expect(fetchSpy).toHaveBeenCalledWith(
-        "/api/set-language",
+        "/es-ES/api/set-language",
         expect.objectContaining({
           method: "POST",
           body: JSON.stringify({ locale: "es-ES" }),
@@ -61,7 +61,9 @@ describe("LanguageSelect", () => {
       );
     });
 
-    expect(routerMocks.refresh).toHaveBeenCalled();
+    await waitFor(() => {
+      expect(routerMocks.replace).toHaveBeenCalledWith("/es-ES");
+    });
   });
 
   it("notifies the shopper when the locale update fails", async () => {
@@ -84,7 +86,7 @@ describe("LanguageSelect", () => {
       expect(screen.getByText(/Unable to switch language/i)).toBeTruthy();
     });
 
-    expect(routerMocks.refresh).not.toHaveBeenCalled();
+    expect(routerMocks.replace).not.toHaveBeenCalled();
     expect(trackEventMock).toHaveBeenCalledWith("locale_switch_failed", {
       locale: "es-ES",
       reason: "Locale update failed with status 503",

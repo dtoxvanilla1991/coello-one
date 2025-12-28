@@ -17,48 +17,50 @@ import { useRouter } from "next/navigation";
 import { routes, type RouteKey } from "@config/routes";
 import PromoSignupModal from "@/components/common/PromoSignupModal";
 import { useLocalePath } from "@/hooks/useLocalePath";
+import { useTranslations } from "@/localization/useTranslations";
 
 const { Title, Text } = Typography;
 
 type CardAction = "email-signup";
 
-type DataType = {
+type CardCopy = {
+  id: string;
   description: string;
   title?: string;
   text?: string;
-  icon?: ReactNode;
-  image?: string;
   action?: CardAction;
   routeKey?: RouteKey;
+  imageAlt?: string;
 };
 
-const data: DataType[] = [
-  {
-    description: "Hub for athletes",
-    title: "Coello One",
-    text: "Blueprint",
-    routeKey: "blueprint",
-  },
-  {
-    description: "Email sign up",
-    icon: <MailOutlined className="text-3xl" />,
-    action: "email-signup",
-  },
-  {
-    description: "Coello Cut Training",
-    image: "/coelloOneWhite.svg",
-    routeKey: "coelloCutTraining",
-  },
-];
+type CardData = CardCopy & {
+  icon?: ReactNode;
+  image?: string;
+};
+
+const CARD_VISUALS: Record<string, Pick<CardData, "icon" | "image">> = {
+  email: { icon: <MailOutlined className="text-3xl" /> },
+  training: { image: "/coelloOneWhite.svg" },
+};
 
 const BottomMoreAboutSection: React.FC = () => {
   const [isPromoModalOpen, setIsPromoModalOpen] = useState(false);
+  const copy = useTranslations("home").bottomMoreAbout;
   const localePath = useLocalePath();
   const router = useRouter();
   const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const cards = useMemo<CardData[]>(() => {
+    return copy.cards.map((card) => ({
+      ...card,
+      ...(CARD_VISUALS[card.id] ?? {}),
+    }));
+  }, [copy.cards]);
   const interactiveRouteKeys = useMemo(
-    () => data.filter((item): item is DataType & { routeKey: RouteKey } => Boolean(item.routeKey)).map((item) => item.routeKey),
-    [],
+    () =>
+      cards
+        .filter((item): item is CardData & { routeKey: RouteKey } => Boolean(item.routeKey))
+        .map((item) => item.routeKey),
+    [cards],
   );
 
   const handleCloseSignup = useCallback(() => {
@@ -66,7 +68,7 @@ const BottomMoreAboutSection: React.FC = () => {
   }, []);
 
   const handleCardAction = useCallback(
-    (item: DataType) => {
+    (item: CardData) => {
       if (item.action === "email-signup") {
         setIsPromoModalOpen(true);
         return;
@@ -112,7 +114,7 @@ const BottomMoreAboutSection: React.FC = () => {
   }, [interactiveRouteKeys, localePath, router]);
 
   const handleCardKeyDown = useCallback(
-    (event: KeyboardEvent<HTMLDivElement>, item: DataType) => {
+    (event: KeyboardEvent<HTMLDivElement>, item: CardData) => {
       if (event.key !== "Enter" && event.key !== " ") {
         return;
       }
@@ -126,15 +128,15 @@ const BottomMoreAboutSection: React.FC = () => {
   return (
     <section aria-labelledby="bottom-more-about-title" className="flex flex-col p-4 pr-0 pb-6">
       <Title id="bottom-more-about-title" level={5} className="mb-4 uppercase">
-        More about Coello One
+        {copy.title}
       </Title>
       <Flex
         gap={16}
         role="list"
-        aria-label="Coello One highlights"
+        aria-label={copy.ariaLabel}
         className="hide-scrollbar flex snap-x snap-mandatory overflow-x-auto scroll-smooth"
       >
-        {data.map((item, index) => {
+        {cards.map((item, index) => {
           const isInteractive = Boolean(item.action || item.routeKey);
           const routeKey = item.routeKey;
           return (
@@ -179,9 +181,9 @@ const BottomMoreAboutSection: React.FC = () => {
   );
 };
 
-const CardContent: FC<DataType> = ({ title, text, icon, image }) => {
+const CardContent: FC<CardData> = ({ title, text, icon, image, imageAlt }) => {
   if (image) {
-    return <Image src={image} alt="Coello One" fill className="object-contain" />;
+    return <Image src={image} alt={imageAlt ?? title ?? ""} fill className="object-contain" />;
   } else if (icon) {
     return icon;
   }

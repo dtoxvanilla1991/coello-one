@@ -1,15 +1,28 @@
 "use client";
 
-/**
- * Returns a helper that ensures paths are normalized with a single leading slash.
- * Domain routing now determines the active locale, so we no longer prefix segments manually.
- */
-export function useLocalePath() {
-  return (path: string) => {
-    if (!path) {
-      return "/";
-    }
+import { useCallback } from "react";
+import { addLocaleToPathname, isSupportedLocale } from "@config/i18n";
+import { useCurrentLocale } from "./useCurrentLocale";
 
-    return path.startsWith("/") ? path : `/${path}`;
-  };
+function normalizePath(path?: string | null): string {
+  if (!path) {
+    return "/";
+  }
+
+  return path.startsWith("/") ? path : `/${path}`;
+}
+
+export function useLocalePath() {
+  const locale = useCurrentLocale();
+
+  return useCallback(
+    (path: string) => {
+      if (!locale || !isSupportedLocale(locale)) {
+        return normalizePath(path);
+      }
+
+      return addLocaleToPathname(locale, path);
+    },
+    [locale],
+  );
 }

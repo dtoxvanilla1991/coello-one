@@ -5,12 +5,12 @@ import Image from "next/image";
 import { Card, Button, Typography, Flex } from "antd";
 import { trackEvent } from "@/utils/trackEvent";
 import ComingSoonOverlay from "@/components/common/ComingSoonOverlay";
+import { useTranslations } from "@/localization/useTranslations";
 
 const { Title } = Typography;
 
-const data = [{ title: "Lifting" }, { title: "Cardio" }, { title: "Yoga" }];
-
 const Training: FC = () => {
+  const copy = useTranslations("home").training;
   return (
     <Flex
       className="p-4! pr-0! pb-8!"
@@ -19,17 +19,17 @@ const Training: FC = () => {
       aria-labelledby="training-section-title"
     >
       <Title level={4} className="mb-4! uppercase" id="training-section-title">
-        Our athletes workouts
+        {copy.title}
       </Title>
       <Flex
         gap={16}
         role="list"
-        aria-label="Training plans"
+        aria-label={copy.ariaLabel}
         className="hide-scrollbar snap-x snap-mandatory overflow-x-auto scroll-smooth"
       >
-        {data.map((item, index) => (
+        {copy.cards.map((item, index) => (
           <Card
-            key={index}
+            key={item.id}
             className="min-w-72 snap-start opacity-60"
             role="listitem"
             cover={
@@ -46,13 +46,13 @@ const Training: FC = () => {
             }
             actions={[
               <Button
-                key={`${item.title}-cta`}
+                key={`${item.id}-cta`}
                 className="uppercase"
-                data-analytics-id={`training-plan-${item.title.toLowerCase()}`}
+                data-analytics-id={item.analyticsId}
                 onClick={() => trackEvent("training_plan_click", { plan: item.title })}
                 disabled
               >
-                View weekly plan
+                {copy.buttonLabel}
               </Button>,
             ]}
           >

@@ -14,9 +14,12 @@ export default function CoelloCutTrainingContent() {
 
   return (
     <Flex vertical gap={24} className="w-full max-w-5xl px-4 py-8 md:px-0">
-      <Card className="border-neutral-800 bg-neutral-950/80 text-neutral-100" classNames={{ body: "p-6 md:p-8" }}>
+      <Card
+        className="border-neutral-800 bg-neutral-950/80 text-neutral-100"
+        classNames={{ body: "p-6 md:p-8" }}
+      >
         <Flex vertical gap={12}>
-          <Text className="text-xs uppercase tracking-[0.3em] text-emerald-300">
+          <Text className="text-xs tracking-[0.3em] text-emerald-300 uppercase">
             {copy.hero.kicker}
           </Text>
           <Title level={1} className="m-0 text-3xl text-white md:text-5xl">
@@ -28,7 +31,10 @@ export default function CoelloCutTrainingContent() {
         </Flex>
       </Card>
 
-      <Card className="border-neutral-800 bg-neutral-900 text-neutral-200" classNames={{ body: "p-6 md:p-8" }}>
+      <Card
+        className="border-neutral-800 bg-neutral-900 text-neutral-200"
+        classNames={{ body: "p-6 md:p-8" }}
+      >
         <Flex vertical gap={16}>
           <Title level={2} className="m-0 text-2xl text-white">
             {copy.manifesto.headline}
@@ -51,22 +57,24 @@ export default function CoelloCutTrainingContent() {
       <PlanSelector />
 
       <Flex gap={16} wrap className="flex-col md:flex-row">
-        <Flex className="flex-1 min-w-[280px]" vertical>
+        <Flex className="min-w-[280px] flex-1" vertical>
           <TheRitual />
         </Flex>
-        <Flex className="flex-1 min-w-[280px]" vertical>
+        <Flex className="min-w-[280px] flex-1" vertical>
           <Card
             className="h-full border-neutral-800 bg-neutral-900 text-neutral-200"
             classNames={{ body: "p-6 md:p-8" }}
           >
             <Flex vertical gap={12}>
-              <Text className="text-xs uppercase tracking-[0.3em] text-emerald-300">
+              <Text className="text-xs tracking-[0.3em] text-emerald-300 uppercase">
                 {copy.living.kicker}
               </Text>
               <Title level={3} className="m-0 text-xl text-white">
                 {copy.living.title}
               </Title>
-              <Paragraph className="m-0 text-sm text-neutral-300">{copy.living.description}</Paragraph>
+              <Paragraph className="m-0 text-sm text-neutral-300">
+                {copy.living.description}
+              </Paragraph>
               <Divider className="my-3 border-neutral-800" />
               <Paragraph className="m-0 text-sm text-neutral-200">{copy.living.diet}</Paragraph>
             </Flex>

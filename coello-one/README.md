@@ -6,11 +6,11 @@ The Coello One monorepo powers the one-sleeve apparel experience across a **Next
 
 ## Repository Overview
 
-| Area | Path | Notes |
-| --- | --- | --- |
-| Frontend | `coello-one/` | Next.js App Router (React 19) running on Bun |
-| Backend | `flask-server/` | Flask API + CLI utilities |
-| Shared Config | `config/`, `scripts/`, `app/localization/` | Centralized data, tooling, and translations |
+| Area          | Path                                       | Notes                                        |
+| ------------- | ------------------------------------------ | -------------------------------------------- |
+| Frontend      | `coello-one/`                              | Next.js App Router (React 19) running on Bun |
+| Backend       | `flask-server/`                            | Flask API + CLI utilities                    |
+| Shared Config | `config/`, `scripts/`, `app/localization/` | Centralized data, tooling, and translations  |
 
 Always `cd` into the correct directory before running commands. Frontend scripts assume Bun; backend scripts assume Python/Make.
 
@@ -34,12 +34,10 @@ Match these versions when referencing documentation or adding integrations.
 
 1. **Bootstrap in one step:** `make setup` (installs Bun deps, Flask tooling, Husky hooks).
 2. **Manual installs (if needed):**
-
    - Frontend: `cd coello-one && bun install`
    - Backend tooling: `pip install -r flask-server/requirements-dev.txt`
 
 3. **Common scripts (run inside `coello-one/`):**
-
    - `bun dev` – Next.js dev server (Turbopack)
    - `bun run build` – production build
    - `bun run lint` – ESLint with zero-warning policy
@@ -137,25 +135,13 @@ Personas live in [`AGENTS.md`](../AGENTS.md). Before executing any task, determi
 
 ## Appendix
 
-### Locale Domain Configuration
+### Locale Routing
 
-Manage locale routing through env variables (`NEXT_PUBLIC_PRODUCTION_DOMAIN_LOCALES`, `NEXT_PUBLIC_LOCAL_DOMAIN_LOCALES`). Example payload:
-
-```json
-[
-  {
-    "domain": "coelloone.uk",
-    "defaultLocale": "en-GB",
-    "locales": ["en-GB"]
-  },
-  {
-    "domain": "localhost.co",
-    "defaultLocale": "es-ES",
-    "locales": ["es-ES"],
-    "http": true
-  }
-]
-```
+- App Router locales live under `app/[locale]/…`; every route is prefixed with `/en-GB` or `/es-ES`.
+- `proxy.ts` enforces locale segments, sets the `NEXT_LOCALE` cookie, and writes the `x-locale` header consumed by `getRequestLocale()`.
+- Client navigation must run through `useLocalePath()` to guarantee locale-prefixed links.
+- Metadata alternates are sourced from `LANGUAGE_ALTERNATES` in `config/i18n.ts`.
+- No environment variables are required for locale detection anymore—remove any stale domain configs in local `.env` files.
 
 ### Shared Testing Helpers
 

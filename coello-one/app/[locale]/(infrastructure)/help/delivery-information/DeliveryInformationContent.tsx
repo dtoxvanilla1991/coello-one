@@ -42,7 +42,10 @@ export function DeliveryInformationContent({
           <Paragraph className="mb-0! text-sm text-gray-600 md:text-base">
             {deliveryCopy.sections.speedsDescription}
           </Paragraph>
-          <DeliveryMatrixTable tiers={resolvedTiers as DeliveryTier[]} columnCopy={deliveryCopy.matrixColumns} />
+          <DeliveryMatrixTable
+            tiers={resolvedTiers as DeliveryTier[]}
+            columnCopy={deliveryCopy.matrixColumns}
+          />
         </Flex>
       </Card>
 

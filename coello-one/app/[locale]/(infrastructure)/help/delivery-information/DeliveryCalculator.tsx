@@ -84,7 +84,10 @@ export default function DeliveryCalculator({ tiers, initialValues }: DeliveryCal
     [calculatorCopy.serviceRequired, calculatorCopy.validationError, regionOptions, serviceOptions],
   );
 
-  const buildTierKey = useCallback((region: string, service: string) => `${region}::${service}`, []);
+  const buildTierKey = useCallback(
+    (region: string, service: string) => `${region}::${service}`,
+    [],
+  );
 
   const tierMap = useMemo(() => {
     return resolvedTiers.reduce<Record<string, DeliveryTier>>((acc, tier) => {

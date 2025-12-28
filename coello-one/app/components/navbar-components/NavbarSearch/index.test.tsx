@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, mock } from "bun:test";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { resetNavigationMocks, routerMocks } from "@test-utils/navigation";
+import { DEFAULT_LOCALE } from "@config/i18n";
 
 const { NavbarSearch } = await import("./index");
 
@@ -20,7 +21,7 @@ describe("NavbarSearch", () => {
     const searchButton = screen.getByRole("button", { name: /search/i });
     fireEvent.click(searchButton);
 
-    expect(routerMocks.push).toHaveBeenCalledWith("/search?query=gray%20sleeve");
+    expect(routerMocks.push).toHaveBeenCalledWith(`/${DEFAULT_LOCALE}/search?query=gray%20sleeve`);
     expect(handleClose.mock.calls.length).toBeGreaterThan(0);
   });
 
@@ -35,7 +36,7 @@ describe("NavbarSearch", () => {
     const searchButton = screen.getByRole("button", { name: /search/i });
     fireEvent.click(searchButton);
 
-    expect(routerMocks.push).toHaveBeenCalledWith("/search");
+    expect(routerMocks.push).toHaveBeenCalledWith(`/${DEFAULT_LOCALE}/search`);
     expect(handleClose.mock.calls.length).toBeGreaterThan(0);
   });
 

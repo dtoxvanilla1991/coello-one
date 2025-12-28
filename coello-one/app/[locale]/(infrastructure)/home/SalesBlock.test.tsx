@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it } from "bun:test";
 import { resetNavigationMocks, routerMocks } from "@test-utils/navigation";
 import { trackEventMock } from "@test-utils/trackEventMock";
+import { DEFAULT_LOCALE } from "@config/i18n";
 
 const SalesBlock = (await import("./SalesBlock")).default;
 
@@ -51,7 +52,7 @@ describe("SalesBlock", () => {
 
     expect(trackEventMock).toHaveBeenCalledWith("sales_block_cta_click", { audience: "women" });
     expect(routerMocks.push).toHaveBeenCalledWith(
-      "/one-sleeve-classic?gender=female&size=M&color=mild+red",
+      `/${DEFAULT_LOCALE}/one-sleeve-classic?gender=female&size=M&color=mild+red`,
     );
   });
 
@@ -62,7 +63,7 @@ describe("SalesBlock", () => {
 
     expect(trackEventMock).toHaveBeenCalledWith("sales_block_cta_click", { audience: "men" });
     expect(routerMocks.push).toHaveBeenCalledWith(
-      "/one-sleeve-classic?gender=male&size=M&color=sea+blue",
+      `/${DEFAULT_LOCALE}/one-sleeve-classic?gender=male&size=M&color=sea+blue`,
     );
   });
 });

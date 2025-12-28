@@ -56,7 +56,8 @@ export function RecommendedExtrasCard({ items, onAddExtra }: RecommendedExtrasCa
                     <Flex vertical gap={2} className="min-w-[140px]">
                       {extra.highlightKey ? (
                         <Tag className="w-fit rounded-full! bg-amber-100! px-3 py-1 text-amber-700!">
-                          {(extrasCopy.highlights as Record<string, string>)[extra.highlightKey] ?? ""}
+                          {(extrasCopy.highlights as Record<string, string>)[extra.highlightKey] ??
+                            ""}
                         </Tag>
                       ) : null}
                       <Text strong>{extra.name}</Text>

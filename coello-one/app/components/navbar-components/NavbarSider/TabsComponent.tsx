@@ -1,90 +1,57 @@
+"use client";
+
 import type { TabsProps } from "antd";
 import { Tabs } from "antd";
 import TabsContent from "./TabsContent";
+import { useTranslations } from "@/localization/useTranslations";
 
 export type DataItem = {
-  modelVariant: string;
   image: string;
-  description: string;
+  imageAlt: string;
+  ctaLabel: string;
 };
 
-export type DataModel = Map<string, DataItem[]>;
+const TAB_MEDIA = {
+  women: [
+    { key: "passion", image: "/athletes/horizontal/main-secondary-h-1.jpg" },
+    { key: "power", image: "/athletes/horizontal/main-secondary-h-2.jpg" },
+    { key: "fire", image: "/athletes/horizontal/main-secondary-h-3.jpg" },
+  ],
+  men: [
+    { key: "fire", image: "/athletes/horizontal/main-secondary-h-4.jpg" },
+    { key: "passion", image: "/athletes/horizontal/main-secondary-h-5.jpg" },
+    { key: "power", image: "/athletes/horizontal/main-secondary-h-6.jpg" },
+  ],
+  accessories: [{ key: "bands", image: "/accessories/resistance-bands.png" }],
+} as const;
 
-const data: DataModel = new Map([
-  [
-    "women",
-    [
-      {
-        modelVariant: "Passion",
-        image: "/athletes/horizontal/main-secondary-h-1.jpg",
-        description: "Female athlete wearing Passion model",
-      },
-      {
-        modelVariant: "Power",
-        image: "/athletes/horizontal/main-secondary-h-2.jpg",
-        description: "Female athlete wearing Power model",
-      },
-      {
-        modelVariant: "Fire",
-        image: "/athletes/horizontal/main-secondary-h-3.jpg",
-        description: "Female athlete wearing Fire model",
-      },
-    ],
-  ],
-  [
-    "men",
-    [
-      {
-        modelVariant: "Fire",
-        image: "/athletes/horizontal/main-secondary-h-4.jpg",
-        description: "Male athlete wearing Fire model",
-      },
-      {
-        modelVariant: "Passion",
-        image: "/athletes/horizontal/main-secondary-h-5.jpg",
-        description: "Male athlete wearing Passion model",
-      },
-      {
-        modelVariant: "Power",
-        image: "/athletes/horizontal/main-secondary-h-6.jpg",
-        description: "Male athlete wearing Power model",
-      },
-    ],
-  ],
-  [
-    "accessories",
-    [
-      {
-        modelVariant: "Coello Bands",
-        image: "/accessories/resistance-bands.png",
-        description: "Coello resistance bands",
-      },
-    ],
-  ],
-]);
+const TAB_KEYS = Object.keys(TAB_MEDIA) as Array<keyof typeof TAB_MEDIA>;
 
 const onChange = (key: string) => {
   if (process.env.NODE_ENV !== "production") {
     console.log(key);
   }
 };
-const items: TabsProps["items"] = [
-  {
-    key: "1",
-    label: "WOMEN",
-    children: <TabsContent data={data.get("women") ?? []} />,
-  },
-  {
-    key: "2",
-    label: "MEN",
-    children: <TabsContent data={data.get("men") ?? []} />,
-  },
-  {
-    key: "3",
-    label: "ACCESSORIES",
-    children: <TabsContent data={data.get("accessories") ?? []} />,
-  },
-];
-export const TabsComponent: React.FC = () => (
-  <Tabs defaultActiveKey="1" items={items} onChange={onChange} centered />
-);
+
+export const TabsComponent: React.FC = () => {
+  const navigationCopy = useTranslations("navigation");
+  const tabsCopy = navigationCopy.sider.tabs;
+  const fallbackCta = tabsCopy.viewCta ?? "View";
+
+  const items: TabsProps["items"] = TAB_KEYS.map((tabKey, index) => {
+    const cardCopy = tabsCopy.cards?.[tabKey] as Record<string, { imageAlt: string }> | undefined;
+    const cards: DataItem[] = TAB_MEDIA[tabKey].map((card) => ({
+      image: card.image,
+      imageAlt: cardCopy?.[card.key]?.imageAlt ?? card.key,
+      ctaLabel: fallbackCta,
+    }));
+
+    return {
+      key: String(index + 1),
+      label: tabsCopy.labels?.[tabKey] ?? tabKey.toUpperCase(),
+      children: <TabsContent data={cards} />,
+    };
+  });
+
+  return <Tabs defaultActiveKey="1" items={items} onChange={onChange} centered />;
+};

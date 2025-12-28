@@ -5,7 +5,6 @@ import {
   DEFAULT_LOCALE,
   SUPPORTED_LOCALES,
   type SupportedLocale,
-  getLocaleFromHost,
   isSupportedLocale,
 } from "@config/i18n";
 
@@ -67,21 +66,14 @@ export async function getRequestLocale(): Promise<SupportedLocale> {
     return proxyLocale;
   }
 
-  // 2. Domain-based detection (fallback if proxy header missing)
-  const host = headerStore.get("host");
-  const hostLocale = getLocaleFromHost(host);
-  if (hostLocale) {
-    return hostLocale;
-  }
-
-  // 3. Cookie-based preference
+  // 2. Cookie-based preference
   const cookieStore = await cookies();
   const localeCookie = cookieStore.get("NEXT_LOCALE")?.value;
   if (localeCookie && isSupportedLocale(localeCookie)) {
     return localeCookie;
   }
 
-  // 4. Accept-Language negotiation
+  // 3. Accept-Language negotiation
   const acceptLanguageLocale = matchAcceptLanguage(headerStore.get("accept-language"));
   if (acceptLanguageLocale) {
     return acceptLanguageLocale;

@@ -1,0 +1,95 @@
+{
+  "navbar": {
+    "logoAlt": "Logotipo de Coello One",
+    "buttons": {
+      "toggleMenu": "Abrir o cerrar el menú de navegación",
+      "viewBag": "Ver bolsa",
+      "openSearch": "Abrir búsqueda"
+    },
+    "search": {
+      "regionLabel": "Buscar en el catálogo",
+      "placeholder": "Buscar Coello",
+      "submit": "Enviar búsqueda"
+    }
+  },
+  "sider": {
+    "ariaLabel": "Barra lateral de navegación",
+    "helperPrompt": "¿Cómo podemos ayudarte hoy?",
+    "languageSelectorAriaLabel": "Selector de idioma",
+    "languageSwitchError": "No se pudo cambiar el idioma. Revisa tu conexión e inténtalo de nuevo.",
+    "menu": {
+      "sections": {
+        "products": {
+          "title": "Productos",
+          "items": {
+            "passionModel": "Modelo Passion",
+            "powerModel": "Modelo Power",
+            "fireModel": "Modelo Fire"
+          }
+        },
+        "accessories": {
+          "title": "Accesorios",
+          "items": {
+            "resistanceBands": "Bandas de resistencia"
+          }
+        }
+      }
+    },
+    "tabs": {
+      "labels": {
+        "women": "MUJERES",
+        "men": "HOMBRES",
+        "accessories": "ACCESORIOS"
+      },
+      "cards": {
+        "women": {
+          "passion": { "imageAlt": "Atleta femenina usando el modelo Passion" },
+          "power": { "imageAlt": "Atleta femenina usando el modelo Power" },
+          "fire": { "imageAlt": "Atleta femenina usando el modelo Fire" }
+        },
+        "men": {
+          "fire": { "imageAlt": "Atleta masculino usando el modelo Fire" },
+          "passion": { "imageAlt": "Atleta masculino usando el modelo Passion" },
+          "power": { "imageAlt": "Atleta masculino usando el modelo Power" }
+        },
+        "accessories": {
+          "bands": { "imageAlt": "Bandas de resistencia Coello" }
+        }
+      },
+      "viewCta": "Ver"
+    },
+    "footer": {
+      "title": "Más",
+      "links": {
+        "accessibility": "Declaración de accesibilidad",
+        "blueprint": "Coello One Blueprint",
+        "help": "Ayuda"
+      }
+    }
+  },
+  "footerMenu": {
+    "ariaLabel": "Enlaces rápidos del pie de página",
+    "groups": {
+      "help": {
+        "title": "Ayuda",
+        "links": {
+          "faq": "Preguntas frecuentes",
+          "delivery": "Información de entrega",
+          "returnsPolicy": "Política de devoluciones",
+          "returnItem": "Devolver un artículo",
+          "contact": "Contáctanos",
+          "ordersInternational": "Pedidos internacionales"
+        }
+      },
+      "pages": {
+        "title": "Páginas",
+        "links": {
+          "about": "Sobre nosotros",
+          "discounts": "Descuentos",
+          "blueprint": "Blueprint de Coello One",
+          "sustainability": "Sostenibilidad"
+        }
+      }
+    }
+  }
+}

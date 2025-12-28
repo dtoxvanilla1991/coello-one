@@ -22,7 +22,7 @@ const StoryBlock: React.FC = () => {
       size="small"
       className="flex w-full bg-gray-200 p-4"
       role="list"
-      aria-label="Coello story highlights"
+      aria-label={copy.ariaLabel}
     >
       {listings.map((listing) => (
         <BrandListing key={listing.title} paragraph={listing.paragraph} title={listing.title} />

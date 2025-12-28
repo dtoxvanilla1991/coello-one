@@ -161,6 +161,9 @@ mock.module("next/headers", () => ({
       if (normalized === "accept-language") {
         return requestLocaleHeaderState.acceptLanguage ?? null;
       }
+      if (normalized === "x-locale") {
+        return requestLocaleHeaderState.locale ?? null;
+      }
       return null;
     },
   }),

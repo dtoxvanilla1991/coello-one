@@ -72,5 +72,6 @@ export interface ProductCollectionConfig {
   key: string;
   label: string;
   analyticsId: string;
+  ariaLabel?: string;
   filter?: (product: ProductSummary) => boolean;
 }

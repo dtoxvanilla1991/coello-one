@@ -10,13 +10,7 @@ export default function LegalLinks() {
   return (
     <Row className="px-4 pb-2" justify="center">
       <Col span={24}>
-        <Flex
-          gap={8}
-          justify="center"
-          wrap
-          aria-label={legalCopy.navigation.ariaLabel}
-          role="list"
-        >
+        <Flex gap={8} justify="center" wrap aria-label={legalCopy.navigation.ariaLabel} role="list">
           {legalCopy.navigation.links.map((item) => (
             <div key={item.id} className="p-1" role="listitem">
               <Link

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "bun:test";
 import { render, screen } from "@testing-library/react";
+import { SUPPORTED_LOCALES } from "@config/i18n";
 import { SearchResults } from "./SearchResults";
 
 describe("SearchResults", () => {
@@ -10,10 +11,14 @@ describe("SearchResults", () => {
     const ctaButtons = screen.getAllByRole("link", { name: /view product/i });
     expect(ctaButtons.length).toBe(3);
 
+    const localizedProductPattern = new RegExp(
+      `^/(?:${SUPPORTED_LOCALES.join("|")})/one-sleeve-classic`,
+    );
+
     ctaButtons.forEach((link) => {
       const href = link.getAttribute("href");
       expect(href).toBeTruthy();
-      expect(href).toMatch(/^\/one-sleeve-classic/);
+      expect(href).toMatch(localizedProductPattern);
     });
 
     const targetUrls = ctaButtons

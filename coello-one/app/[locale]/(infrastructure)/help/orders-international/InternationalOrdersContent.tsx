@@ -95,7 +95,8 @@ export default function InternationalOrdersContent({
                   <Paragraph className="mb-0! text-gray-600">{step.description}</Paragraph>
                 </Flex>
               ),
-            }))}/>
+            }))}
+          />
         </Flex>
       </Card>
 

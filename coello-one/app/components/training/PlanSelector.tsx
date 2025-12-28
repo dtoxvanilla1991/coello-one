@@ -56,7 +56,7 @@ export default function PlanSelector({ plans = TRAINING_PLANS }: PlanSelectorPro
         return {
           label: (
             <Flex vertical gap={2} className="text-left">
-              <Text className="text-[10px] uppercase tracking-[0.3em] text-neutral-500">
+              <Text className="text-[10px] tracking-[0.3em] text-neutral-500 uppercase">
                 {plan.daysPerWeek} {coelloCopy.planSelector.daysLabel}
               </Text>
               <Text className="text-sm font-semibold text-neutral-100">
@@ -91,10 +91,13 @@ export default function PlanSelector({ plans = TRAINING_PLANS }: PlanSelectorPro
   const backgroundSrc = PLAN_ARTWORKS[renderedPlanId];
 
   return (
-    <Card className="border-neutral-800 bg-neutral-900 text-neutral-200" classNames={{ body: "p-6 md:p-8" }}>
+    <Card
+      className="border-neutral-800 bg-neutral-900 text-neutral-200"
+      classNames={{ body: "p-6 md:p-8" }}
+    >
       <Flex vertical gap={16}>
         <Flex vertical gap={8}>
-          <Text className="text-xs uppercase tracking-[0.3em] text-neutral-500">
+          <Text className="text-xs tracking-[0.3em] text-neutral-500 uppercase">
             {coelloCopy.planSelector.kicker}
           </Text>
           <Paragraph className="m-0 text-neutral-300">
@@ -126,7 +129,9 @@ export default function PlanSelector({ plans = TRAINING_PLANS }: PlanSelectorPro
           ) : null}
           <Flex
             className={`relative w-full transition-all duration-300 ease-out ${
-              isTransitioning ? "translate-y-3 opacity-40 blur-sm" : "translate-y-0 opacity-100 blur-0"
+              isTransitioning
+                ? "translate-y-3 opacity-40 blur-sm"
+                : "blur-0 translate-y-0 opacity-100"
             }`}
           >
             {renderedPlan ? <PlanDisplay plan={renderedPlan} /> : null}

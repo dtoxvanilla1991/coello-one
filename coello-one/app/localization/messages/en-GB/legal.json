@@ -33,9 +33,18 @@
         ],
         "listTitle": "Ordering checklist",
         "listItems": [
-          { "title": "Age & residency", "description": "You must be 16+ and legally able to enter a binding contract in your territory." },
-          { "title": "Account identity", "description": "One verified account per athlete; duplicate accounts may be merged to protect launch fairness." },
-          { "title": "Communication", "description": "Keep an active email and SMS number on file so we can deliver confirmations and delivery alerts." }
+          {
+            "title": "Age & residency",
+            "description": "You must be 16+ and legally able to enter a binding contract in your territory."
+          },
+          {
+            "title": "Account identity",
+            "description": "One verified account per athlete; duplicate accounts may be merged to protect launch fairness."
+          },
+          {
+            "title": "Communication",
+            "description": "Keep an active email and SMS number on file so we can deliver confirmations and delivery alerts."
+          }
         ]
       },
       {
@@ -47,9 +56,18 @@
         ],
         "listTitle": "Accepted tenders",
         "listItems": [
-          { "title": "Cards & wallets", "description": "Visa, Mastercard, Amex, Apple Pay, Google Pay, and Klarna (where available)." },
-          { "title": "Currency lock", "description": "The currency shown at checkout is the amount billed; your bank may add conversion fees." },
-          { "title": "Fraud monitoring", "description": "We partner with global risk tools that mirror Adidas/Nike safeguards; mismatched info can trigger manual review." }
+          {
+            "title": "Cards & wallets",
+            "description": "Visa, Mastercard, Amex, Apple Pay, Google Pay, and Klarna (where available)."
+          },
+          {
+            "title": "Currency lock",
+            "description": "The currency shown at checkout is the amount billed; your bank may add conversion fees."
+          },
+          {
+            "title": "Fraud monitoring",
+            "description": "We partner with global risk tools that mirror Adidas/Nike safeguards; mismatched info can trigger manual review."
+          }
         ]
       },
       {
@@ -61,9 +79,18 @@
         ],
         "listTitle": "Fulfillment promises",
         "listItems": [
-          { "title": "Tracking", "description": "Every shipment receives a tracking link once the label prints." },
-          { "title": "Signature", "description": "Orders over £300/€300 require signature or ID verification to mirror premium-brand loss prevention." },
-          { "title": "Split shipments", "description": "We may split orders to keep timelines tight; you are only charged once shipping completes." }
+          {
+            "title": "Tracking",
+            "description": "Every shipment receives a tracking link once the label prints."
+          },
+          {
+            "title": "Signature",
+            "description": "Orders over £300/€300 require signature or ID verification to mirror premium-brand loss prevention."
+          },
+          {
+            "title": "Split shipments",
+            "description": "We may split orders to keep timelines tight; you are only charged once shipping completes."
+          }
         ]
       },
       {
@@ -75,9 +102,18 @@
         ],
         "listTitle": "What to expect",
         "listItems": [
-          { "title": "Return shipping", "description": "Complimentary within the EU/UK; international athletes receive a prepaid label deducted from the refund." },
-          { "title": "Refund timing", "description": "Funds return within 5–10 business days after our quality inspection clears." },
-          { "title": "Residency limits", "description": "We cannot reimburse duties or taxes; consult your customs office for local recovery options." }
+          {
+            "title": "Return shipping",
+            "description": "Complimentary within the EU/UK; international athletes receive a prepaid label deducted from the refund."
+          },
+          {
+            "title": "Refund timing",
+            "description": "Funds return within 5–10 business days after our quality inspection clears."
+          },
+          {
+            "title": "Residency limits",
+            "description": "We cannot reimburse duties or taxes; consult your customs office for local recovery options."
+          }
         ]
       },
       {
@@ -86,7 +122,8 @@
         "paragraphs": [
           "Coello One is not liable for indirect or consequential damages beyond the value of the product purchased, except where consumer law in your market provides additional mandatory rights.",
           "Events beyond our reasonable control (force majeure) may delay performance; we will resume obligations immediately after such events.",
-          "These terms are governed by the laws of Spain, and disputes may be brought before the courts of Barcelona or your local consumer court where required." ]
+          "These terms are governed by the laws of Spain, and disputes may be brought before the courts of Barcelona or your local consumer court where required."
+        ]
       }
     ],
     "contact": {
@@ -122,10 +159,22 @@
         ],
         "listTitle": "Categories",
         "listItems": [
-          { "title": "Account data", "description": "Name, email, password hashes, locale, marketing preferences." },
-          { "title": "Order data", "description": "Shipping addresses, billing tokens, VAT IDs, fulfillment history." },
-          { "title": "Engagement data", "description": "Device identifiers, cookie IDs, session analytics, and creative submissions." },
-          { "title": "Support data", "description": "Concierge transcripts, repair photos, athlete council applications." }
+          {
+            "title": "Account data",
+            "description": "Name, email, password hashes, locale, marketing preferences."
+          },
+          {
+            "title": "Order data",
+            "description": "Shipping addresses, billing tokens, VAT IDs, fulfillment history."
+          },
+          {
+            "title": "Engagement data",
+            "description": "Device identifiers, cookie IDs, session analytics, and creative submissions."
+          },
+          {
+            "title": "Support data",
+            "description": "Concierge transcripts, repair photos, athlete council applications."
+          }
         ]
       },
       {
@@ -137,9 +186,18 @@
         ],
         "listTitle": "Core purposes",
         "listItems": [
-          { "title": "Commerce", "description": "Process payments, shipping, returns, and warranty cases." },
-          { "title": "Experience", "description": "Localize content, remember preferences, and measure campaign performance." },
-          { "title": "Safety", "description": "Detect abuse, protect intellectual property, and maintain service reliability." }
+          {
+            "title": "Commerce",
+            "description": "Process payments, shipping, returns, and warranty cases."
+          },
+          {
+            "title": "Experience",
+            "description": "Localize content, remember preferences, and measure campaign performance."
+          },
+          {
+            "title": "Safety",
+            "description": "Detect abuse, protect intellectual property, and maintain service reliability."
+          }
         ]
       },
       {
@@ -151,9 +209,18 @@
         ],
         "listTitle": "Key partners",
         "listItems": [
-          { "title": "Payments", "description": "Stripe, Adyen, or Klarna store sensitive card data on our behalf." },
-          { "title": "Fulfillment", "description": "DHL, UPS, and Correos receive delivery details only." },
-          { "title": "Analytics", "description": "Privacy-respecting platforms (PostHog, Segment) help us improve the product." }
+          {
+            "title": "Payments",
+            "description": "Stripe, Adyen, or Klarna store sensitive card data on our behalf."
+          },
+          {
+            "title": "Fulfillment",
+            "description": "DHL, UPS, and Correos receive delivery details only."
+          },
+          {
+            "title": "Analytics",
+            "description": "Privacy-respecting platforms (PostHog, Segment) help us improve the product."
+          }
         ]
       },
       {
@@ -161,12 +228,22 @@
         "title": "Your rights",
         "paragraphs": [
           "Depending on your residency, you may access, correct, delete, restrict, or port your data. We respond within 30 days, faster when feasible.",
-          "You can opt out of marketing at any time, withdraw consent for optional processing, or lodge a complaint with your local authority." ],
+          "You can opt out of marketing at any time, withdraw consent for optional processing, or lodge a complaint with your local authority."
+        ],
         "listTitle": "How to act",
         "listItems": [
-          { "title": "Self-service", "description": "Update preferences inside your account dashboard." },
-          { "title": "Concierge", "description": "Email us to action complex requests; we will verify identity before proceeding." },
-          { "title": "Supervisory body", "description": "Contact the Spanish Data Protection Agency (AEPD) or your local regulator." }
+          {
+            "title": "Self-service",
+            "description": "Update preferences inside your account dashboard."
+          },
+          {
+            "title": "Concierge",
+            "description": "Email us to action complex requests; we will verify identity before proceeding."
+          },
+          {
+            "title": "Supervisory body",
+            "description": "Contact the Spanish Data Protection Agency (AEPD) or your local regulator."
+          }
         ]
       },
       {
@@ -174,7 +251,8 @@
         "title": "Security & retention",
         "paragraphs": [
           "Data is encrypted in transit and at rest. Access is limited to trained team members and approved vendors.",
-          "We retain account and order data for seven years to meet tax requirements, then anonymize or delete. Support media is purged after 24 months unless a repair case stays open." ]
+          "We retain account and order data for seven years to meet tax requirements, then anonymize or delete. Support media is purged after 24 months unless a repair case stays open."
+        ]
       }
     ],
     "contact": {
@@ -206,19 +284,30 @@
         "title": "Access & accounts",
         "paragraphs": [
           "You may browse freely, but certain features require an account. Keep credentials confidential and notify us immediately of unauthorized use.",
-          "We may suspend or terminate accounts that violate these terms, harm other athletes, or compromise security." ]
+          "We may suspend or terminate accounts that violate these terms, harm other athletes, or compromise security."
+        ]
       },
       {
         "id": "acceptable-use",
         "title": "Acceptable use",
         "paragraphs": [
           "You agree not to misuse the site, interfere with infrastructure, mine data, or upload malicious code.",
-          "We enforce a zero-tolerance policy for hate speech, harassment, or imagery that conflicts with our athlete-safe ethos." ],
+          "We enforce a zero-tolerance policy for hate speech, harassment, or imagery that conflicts with our athlete-safe ethos."
+        ],
         "listTitle": "Prohibited behavior",
         "listItems": [
-          { "title": "Automation abuse", "description": "Bots that scrape, resell, or bypass launch queues." },
-          { "title": "Security probing", "description": "Reverse engineering, vulnerability scanning, or credential stuffing." },
-          { "title": "Community harm", "description": "Posting defamatory, discriminatory, or infringing content." }
+          {
+            "title": "Automation abuse",
+            "description": "Bots that scrape, resell, or bypass launch queues."
+          },
+          {
+            "title": "Security probing",
+            "description": "Reverse engineering, vulnerability scanning, or credential stuffing."
+          },
+          {
+            "title": "Community harm",
+            "description": "Posting defamatory, discriminatory, or infringing content."
+          }
         ]
       },
       {
@@ -226,21 +315,24 @@
         "title": "Community contributions",
         "paragraphs": [
           "By submitting stories, reviews, or artwork, you grant Coello a non-exclusive, worldwide, royalty-free license to use that content for marketing, product development, and community programming.",
-          "You represent that you own or control the rights to anything you submit and that it does not infringe third-party rights." ]
+          "You represent that you own or control the rights to anything you submit and that it does not infringe third-party rights."
+        ]
       },
       {
         "id": "ip",
         "title": "Intellectual property",
         "paragraphs": [
           "All trademarks, graphics, copy, and code on this site belong to Coello One or its licensors. Inspired-by references to other brands do not imply affiliation.",
-          "You may not reuse, modify, or distribute site assets without written permission." ]
+          "You may not reuse, modify, or distribute site assets without written permission."
+        ]
       },
       {
         "id": "service",
         "title": "Service updates & disclaimers",
         "paragraphs": [
           "We may modify or discontinue features without notice to keep pace with creative experiments or compliance updates.",
-          "The site is provided \"as is\" to the fullest extent permitted by law; we disclaim implied warranties except where consumer statutes forbid such disclaimers." ]
+          "The site is provided \"as is\" to the fullest extent permitted by law; we disclaim implied warranties except where consumer statutes forbid such disclaimers."
+        ]
       }
     ],
     "contact": {
@@ -263,7 +355,8 @@
       "summary": [
         "Explains the cookies and pixels we rely on.",
         "Details how you can control preferences from any device.",
-        "Clarifies when third-party ad tech is involved and how we vet it." ]
+        "Clarifies when third-party ad tech is involved and how we vet it."
+      ]
     },
     "sections": [
       {
@@ -271,19 +364,33 @@
         "title": "What are cookies?",
         "paragraphs": [
           "Cookies are small files stored on your device to remember settings, keep sessions secure, and tailor content.",
-          "We also use equivalent technologies such as local storage, SDK events, and server-side tracking where it improves performance." ]
+          "We also use equivalent technologies such as local storage, SDK events, and server-side tracking where it improves performance."
+        ]
       },
       {
         "id": "types",
         "title": "Types of cookies we use",
         "paragraphs": [
-          "We categorize cookies similarly to Gymshark, Adidas, and Nike to keep consent dialogs familiar." ],
+          "We categorize cookies similarly to Gymshark, Adidas, and Nike to keep consent dialogs familiar."
+        ],
         "listTitle": "Categories",
         "listItems": [
-          { "title": "Essential", "description": "Required for checkout, authentication, and load balancing." },
-          { "title": "Performance", "description": "Help us measure traffic, debug issues, and benchmark component speed." },
-          { "title": "Functional", "description": "Store locale, bag contents, and accessibility preferences." },
-          { "title": "Marketing", "description": "Support opt-in campaigns, creator collaborations, or retargeting." }
+          {
+            "title": "Essential",
+            "description": "Required for checkout, authentication, and load balancing."
+          },
+          {
+            "title": "Performance",
+            "description": "Help us measure traffic, debug issues, and benchmark component speed."
+          },
+          {
+            "title": "Functional",
+            "description": "Store locale, bag contents, and accessibility preferences."
+          },
+          {
+            "title": "Marketing",
+            "description": "Support opt-in campaigns, creator collaborations, or retargeting."
+          }
         ]
       },
       {
@@ -291,12 +398,22 @@
         "title": "Managing preferences",
         "paragraphs": [
           "You can adjust cookie settings through our banner, your browser, or system-level controls. Revoking consent disables non-essential cookies while keeping the site usable.",
-          "Within the EU/UK we honor Global Privacy Control signals and IAB TCF strings where supported." ],
+          "Within the EU/UK we honor Global Privacy Control signals and IAB TCF strings where supported."
+        ],
         "listTitle": "Control options",
         "listItems": [
-          { "title": "Banner", "description": "Use the \"Manage preferences\" link to toggle categories at any time." },
-          { "title": "Browser", "description": "Clear caches/cookies or use private browsing to reset identifiers." },
-          { "title": "Device", "description": "Limit ad tracking in iOS/Android settings; we respect those choices." }
+          {
+            "title": "Banner",
+            "description": "Use the \"Manage preferences\" link to toggle categories at any time."
+          },
+          {
+            "title": "Browser",
+            "description": "Clear caches/cookies or use private browsing to reset identifiers."
+          },
+          {
+            "title": "Device",
+            "description": "Limit ad tracking in iOS/Android settings; we respect those choices."
+          }
         ]
       },
       {
@@ -304,14 +421,16 @@
         "title": "Advertising & analytics",
         "paragraphs": [
           "We currently partner with PostHog, Google Analytics 4 (consent mode), and Meta Pixels for opted-in campaigns.",
-          "Each partner contractually agrees to process data only on our behalf and provide regional opt-outs." ]
+          "Each partner contractually agrees to process data only on our behalf and provide regional opt-outs."
+        ]
       },
       {
         "id": "updates",
         "title": "Policy updates",
         "paragraphs": [
           "We review this policy quarterly or whenever we add a new vendor. Material changes trigger an on-site banner and email notice.",
-          "Continuing to use the site after updates signals acceptance of the revised policy." ]
+          "Continuing to use the site after updates signals acceptance of the revised policy."
+        ]
       }
     ],
     "contact": {

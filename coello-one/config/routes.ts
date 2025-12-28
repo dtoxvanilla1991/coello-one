@@ -34,37 +34,34 @@ export function buildLocaleRoute(routeKey: RouteKey): string {
 }
 
 type FooterLink = {
-  label: string;
+  key: string;
   route: RouteKey;
 };
 
 export type FooterLinkGroup = {
-  title: string;
   key: string;
   links: readonly FooterLink[];
 };
 
 export const footerLinkGroups = [
   {
-    title: "Help",
     key: "help",
     links: [
-      { label: "FAQ", route: "helpFaq" },
-      { label: "Delivery Information", route: "helpDeliveryInformation" },
-      { label: "Returns Policy", route: "helpReturnsPolicy" },
-      { label: "Return An Item", route: "helpReturnAnItem" },
-      { label: "Contact Us", route: "helpContactUs" },
-      { label: "Orders International", route: "helpOrdersInternational" },
+      { key: "faq", route: "helpFaq" },
+      { key: "delivery", route: "helpDeliveryInformation" },
+      { key: "returnsPolicy", route: "helpReturnsPolicy" },
+      { key: "returnItem", route: "helpReturnAnItem" },
+      { key: "contact", route: "helpContactUs" },
+      { key: "ordersInternational", route: "helpOrdersInternational" },
     ],
   },
   {
-    title: "Pages",
     key: "pages",
     links: [
-      { label: "About Us", route: "about" },
-      { label: "Discounts", route: "discounts" },
-      { label: "Coello One Blueprint", route: "blueprint" },
-      { label: "Sustainability", route: "sustainability" },
+      { key: "about", route: "about" },
+      { key: "discounts", route: "discounts" },
+      { key: "blueprint", route: "blueprint" },
+      { key: "sustainability", route: "sustainability" },
     ],
   },
   // phase 2

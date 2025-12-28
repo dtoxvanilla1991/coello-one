@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, mock } from "bun:test";
-import { createPopularFallbackProducts } from "@/(infrastructure)/home/popularCuratedData";
+import { createPopularFallbackProducts } from "@/[locale]/(infrastructure)/home/popularCuratedData";
 
 const variantRows: MockVariantRow[] = [];
 const accessoryRows: MockAccessoryRow[] = [];

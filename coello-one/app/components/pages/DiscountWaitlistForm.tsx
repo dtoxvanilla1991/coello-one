@@ -117,9 +117,7 @@ export default function DiscountWaitlistForm({
       {copy.description ? (
         <Paragraph className="-mt-1 mb-2 text-sm text-gray-600">{copy.description}</Paragraph>
       ) : null}
-      {errorMessage ? (
-        <Alert type="error" title={errorMessage} showIcon className="mb-2" />
-      ) : null}
+      {errorMessage ? <Alert type="error" title={errorMessage} showIcon className="mb-2" /> : null}
       <Button
         type="primary"
         size="large"

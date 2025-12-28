@@ -12,8 +12,8 @@ beforeEach(() => {
 });
 
 describe("getRequestLocale", () => {
-  it("prefers domain-level locale mappings over cookies or headers", async () => {
-    requestLocaleHeaderState.host = "coelloone.co";
+  it("prefers the proxy-provided locale header over other hints", async () => {
+    requestLocaleHeaderState.locale = "es-ES";
     requestLocaleCookieState.NEXT_LOCALE = "en-GB";
     requestLocaleHeaderState.acceptLanguage = "en-GB";
 
@@ -21,8 +21,7 @@ describe("getRequestLocale", () => {
     expect(locale).toBe("es-ES");
   });
 
-  it("uses NEXT_LOCALE cookie when host is not mapped", async () => {
-    requestLocaleHeaderState.host = "preview.coello.test";
+  it("uses NEXT_LOCALE cookie when the proxy header is missing", async () => {
     requestLocaleCookieState.NEXT_LOCALE = "es-ES";
 
     const locale = await getRequestLocale();

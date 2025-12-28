@@ -13,7 +13,7 @@ const TabsContent: FC<TabsContentProps> = ({ data }) => {
       {data.map((item, index) => (
         <div className="relative h-56 min-w-72" key={index}>
           <Image
-            alt={item.description}
+            alt={item.imageAlt}
             src={item.image}
             sizes="(max-width: 640px) 100vw, 640px"
             fill
@@ -24,7 +24,7 @@ const TabsContent: FC<TabsContentProps> = ({ data }) => {
             size="middle"
             className="absolute! bottom-4 left-4 px-8! font-medium! uppercase"
           >
-            View
+            {item.ctaLabel}
           </Button>
         </div>
       ))}

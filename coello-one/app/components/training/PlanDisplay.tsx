@@ -29,7 +29,7 @@ export default function PlanDisplay({ plan }: PlanDisplayProps) {
       <Flex vertical gap={16}>
         <Flex align="center" justify="space-between" wrap>
           <Space orientation="vertical" size={0} className="text-neutral-200">
-            <Text className="text-xs uppercase tracking-[0.3em] text-neutral-500">
+            <Text className="text-xs tracking-[0.3em] text-neutral-500 uppercase">
               {plan.daysPerWeek} {planDisplayCopy.daysPerWeekLabel}
             </Text>
             <Title level={2} className="m-0 text-3xl text-white">
@@ -48,13 +48,10 @@ export default function PlanDisplay({ plan }: PlanDisplayProps) {
             </Tag>
           ))}
         </Flex>
-        <Title level={4} className="m-0 text-sm uppercase tracking-[0.3em] text-neutral-500">
+        <Title level={4} className="m-0 text-sm tracking-[0.3em] text-neutral-500 uppercase">
           {planDisplayCopy.weeklySplitHeading}
         </Title>
-        <div
-          className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3"
-          role="list"
-        >
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3" role="list">
           {planCopy.split.map((day, index) => (
             <div key={day.label} role="listitem">
               <Card
@@ -66,7 +63,7 @@ export default function PlanDisplay({ plan }: PlanDisplayProps) {
                 classNames={{ body: "p-4" }}
               >
                 <Flex vertical gap={4}>
-                  <Text className="text-xs font-mono uppercase tracking-wide text-neutral-500">
+                  <Text className="font-mono text-xs tracking-wide text-neutral-500 uppercase">
                     {planDisplayCopy.dayLabel} {index + 1}
                   </Text>
                   <Flex align="center" gap={6}>

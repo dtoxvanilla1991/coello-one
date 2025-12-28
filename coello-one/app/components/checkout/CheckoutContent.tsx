@@ -29,6 +29,7 @@ import { useRouter } from "next/navigation";
 import { buildLocaleRoute } from "@config/routes";
 import { useTranslations } from "@/localization/useTranslations";
 import { useCurrentLocale } from "@/hooks/useCurrentLocale";
+import { useLocalePath } from "@/hooks/useLocalePath";
 import { trackEvent } from "@/utils/trackEvent";
 import type { CheckoutFormValues } from "./types";
 import { COUNTRY_OPTIONS, EXPRESS_METHODS, FORMAT_PRICE, PAYMENT_OPTIONS } from "./constants";
@@ -42,10 +43,11 @@ export function CheckoutContent() {
   const total = useAtomValue(cartTotalAtom);
   const router = useRouter();
   const locale = useCurrentLocale();
+  const withLocalePath = useLocalePath();
   const checkoutCopy = useTranslations("checkout");
   const { hero, express, contact, delivery, payment, remember, orderSummary, cta, messages } =
     checkoutCopy;
-  const bagRoute = buildLocaleRoute("bag");
+  const bagRoute = withLocalePath(buildLocaleRoute("bag"));
 
   const itemCount = useMemo(() => items.reduce((count, item) => count + item.quantity, 0), [items]);
 
