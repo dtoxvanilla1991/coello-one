@@ -3,7 +3,12 @@ import { cleanup } from "@testing-library/react";
 import * as matchers from "@testing-library/jest-dom/matchers";
 import type { AnchorHTMLAttributes, ImgHTMLAttributes, ReactNode } from "react";
 import { expect, afterEach, afterAll, mock } from "bun:test";
-import { getNavigationState, resetNavigationMocks, routerMocks } from "./test-utils/navigation";
+import {
+  getNavigationState,
+  resetNavigationMocks,
+  routerMocks,
+  subscribeToNavigationUpdates,
+} from "./test-utils/navigation";
 import {
   requestLocaleHeaderState,
   requestLocaleCookieState,
@@ -44,7 +49,7 @@ if (typeof nativeFetch === "function") {
 }
 
 const ReactModule = await import("react");
-const createElement = ReactModule.createElement;
+const { createElement, useSyncExternalStore } = ReactModule;
 
 // Repair Testing Library's screen export now that a DOM exists.
 const domTestingLibrary = await import("@testing-library/dom");
@@ -182,9 +187,24 @@ mock.module("next/navigation", () => ({
   __esModule: true,
   useServerInsertedHTML: () => {},
   useRouter: () => routerMocks,
-  usePathname: () => getNavigationState().pathname,
-  useSearchParams: () => new URLSearchParams(getNavigationState().searchParams),
-  useParams: () => ({ ...getNavigationState().params }),
+  usePathname: () =>
+    useSyncExternalStore(
+      subscribeToNavigationUpdates,
+      () => getNavigationState().pathname,
+      () => getNavigationState().pathname,
+    ),
+  useSearchParams: () =>
+    useSyncExternalStore(
+      subscribeToNavigationUpdates,
+      () => new URLSearchParams(getNavigationState().searchParams),
+      () => new URLSearchParams(getNavigationState().searchParams),
+    ),
+  useParams: () =>
+    useSyncExternalStore(
+      subscribeToNavigationUpdates,
+      () => ({ ...getNavigationState().params }),
+      () => ({ ...getNavigationState().params }),
+    ),
   useSelectedLayoutSegment: () => null,
   useSelectedLayoutSegments: () => [],
   notFound: () => {
