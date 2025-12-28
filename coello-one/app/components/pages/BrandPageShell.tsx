@@ -46,7 +46,7 @@ export default function BrandPageShell({ hero, children }: BrandPageShellProps) 
                       </Text>
                     }
                     value={stat.value}
-                    valueStyle={{ fontSize: 28, fontWeight: 600 }}
+                    styles={{ content: { fontSize: 28, fontWeight: 600 } }}
                   />
                 </Card>
               ))}

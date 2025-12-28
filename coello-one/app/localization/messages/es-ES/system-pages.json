@@ -70,6 +70,7 @@
   },
   "accessibility": {
     "title": "Compromiso de accesibilidad de Coello One",
+    "ariaLabel": "Secciones de la declaración de accesibilidad",
     "paragraphs": [
       "Coello One se compromete a hacer este sitio accesible al mayor público posible. Probamos y actualizamos con regularidad y aspiramos a cumplir WCAG 2.1 nivel AA siempre que sea viable.",
       "Si detectas una barrera de accesibilidad, escríbenos a coello.one@gmail.com con la URL y una breve descripción. Responderemos con alternativas y priorizaremos la corrección cuando sea posible.",

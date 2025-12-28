@@ -2,7 +2,7 @@ import { GlobalRegistrator } from "@happy-dom/global-registrator";
 import { cleanup } from "@testing-library/react";
 import * as matchers from "@testing-library/jest-dom/matchers";
 import type { AnchorHTMLAttributes, ImgHTMLAttributes, ReactNode } from "react";
-import { expect, afterEach, mock } from "bun:test";
+import { expect, afterEach, afterAll, mock } from "bun:test";
 import { getNavigationState, resetNavigationMocks, routerMocks } from "./test-utils/navigation";
 import {
   requestLocaleHeaderState,
@@ -14,6 +14,34 @@ GlobalRegistrator.register();
 
 // Tell React that the test runner wraps updates in act().
 (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
+
+if (typeof window !== "undefined") {
+  window.open = () => null;
+}
+
+const nativeFetch = globalThis.fetch;
+if (typeof nativeFetch === "function") {
+  const resolveUrl = (input: RequestInfo | URL): string => {
+    if (typeof input === "string") {
+      return input;
+    }
+    if (typeof URL !== "undefined" && input instanceof URL) {
+      return input.toString();
+    }
+    if (typeof Request !== "undefined" && input instanceof Request) {
+      return input.url;
+    }
+    return "";
+  };
+
+  globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
+    const target = resolveUrl(input);
+    if (target.startsWith("https://example.com/")) {
+      return new Response(null, { status: 200 });
+    }
+    return nativeFetch(input, init);
+  }) as typeof globalThis.fetch;
+}
 
 const ReactModule = await import("react");
 const createElement = ReactModule.createElement;
@@ -33,6 +61,10 @@ expect.extend(matchers);
 afterEach(() => {
   cleanup();
   resetNavigationMocks();
+});
+
+afterAll(() => {
+  GlobalRegistrator.unregister();
 });
 
 // Next.js-specific props used by next/image that aren't valid on a plain img element
@@ -128,6 +160,9 @@ mock.module("next/headers", () => ({
       }
       if (normalized === "accept-language") {
         return requestLocaleHeaderState.acceptLanguage ?? null;
+      }
+      if (normalized === "x-locale") {
+        return requestLocaleHeaderState.locale ?? null;
       }
       return null;
     },

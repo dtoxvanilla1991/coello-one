@@ -58,7 +58,7 @@ export function BagSummaryColumn({ subtotal, shipping, total, onCheckout }: BagS
           <Divider className="my-2" />
           <Flex justify="space-between" align="center">
             <Text className="text-base font-semibold uppercase">{summaryCopy.total}</Text>
-            <Space direction="vertical" size={0} className="text-right">
+            <Space orientation="vertical" size={0} className="text-right">
               <Text className="text-lg font-semibold">{formatPrice.format(total)}</Text>
               <Text className="text-xs text-gray-500">{summaryCopy.taxes}</Text>
             </Space>

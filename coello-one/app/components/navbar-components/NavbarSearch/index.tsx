@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { Button, Input, InputRef, Space } from "antd";
 import type { KeyboardEvent } from "react";
 import { useRouter } from "next/navigation";
 import { buildLocaleRoute } from "@config/routes";
 import { SearchOutlined } from "@ant-design/icons";
+import { useLocalePath } from "@/hooks/useLocalePath";
+import { useTranslations } from "@/localization/useTranslations";
 
 interface NavbarSearchProps {
   searchVisible: boolean;
@@ -15,7 +17,10 @@ interface NavbarSearchProps {
 export function NavbarSearch({ searchVisible, onClose }: NavbarSearchProps) {
   const searchRef = useRef<InputRef | null>(null);
   const router = useRouter();
-  const baseRoute = buildLocaleRoute("search");
+  const withLocalePath = useLocalePath();
+  const baseRoute = useMemo(() => withLocalePath(buildLocaleRoute("search")), [withLocalePath]);
+  const navigationCopy = useTranslations("navigation");
+  const navbarCopy = navigationCopy.navbar;
 
   useEffect(() => {
     if (!searchVisible) {
@@ -70,12 +75,12 @@ export function NavbarSearch({ searchVisible, onClose }: NavbarSearchProps) {
         searchVisible ? "flex!" : "hidden!"
       } mx-auto w-11/12 max-w-xl overflow-hidden rounded-full! shadow-none!`}
       size="large"
-      aria-label="Search catalog"
+      aria-label={navbarCopy.search.regionLabel}
       role="search"
     >
       <Input
         ref={searchRef}
-        placeholder="Search Coello"
+        placeholder={navbarCopy.search.placeholder}
         className="border-0! bg-transparent! shadow-none! focus:border-0! focus:ring-0!"
         allowClear
         type="search"
@@ -88,7 +93,7 @@ export function NavbarSearch({ searchVisible, onClose }: NavbarSearchProps) {
         type="text"
         icon={<SearchOutlined className="text-xl" />}
         className="h-full! rounded-full! bg-transparent!"
-        aria-label="Submit search"
+        aria-label={navbarCopy.search.submit}
         onMouseDown={(event) => event.preventDefault()}
         onClick={handleButtonClick}
       />

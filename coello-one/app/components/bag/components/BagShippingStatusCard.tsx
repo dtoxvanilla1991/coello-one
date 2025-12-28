@@ -41,7 +41,7 @@ export function BagShippingStatusCard({
           status="active"
           showInfo={false}
           strokeColor="#047857"
-          trailColor="#bbf7d0"
+          railColor="#bbf7d0"
           className="rounded-full!"
         />
       </Flex>

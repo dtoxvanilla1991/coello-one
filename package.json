@@ -9,6 +9,10 @@
     "format:backend": "cd flask-server && python -m black --check .",
     "format:backend:fix": "cd flask-server && python -m black ."
   },
+  "engines": {
+    "node": ">=24.12.0",
+    "bun": ">=1.2.21"
+  },
   "devDependencies": {
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6"

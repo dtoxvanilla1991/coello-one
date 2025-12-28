@@ -12,7 +12,7 @@ export function BagReservationAlert() {
     <Alert
       showIcon
       type="info"
-      message={
+      title={
         <Flex vertical gap={4}>
           <Text strong>{reservationCopy.title}</Text>
           <Text>{reservationCopy.body}</Text>

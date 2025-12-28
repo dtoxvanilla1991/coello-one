@@ -29,7 +29,7 @@ const NavBarBagDrawer: React.FC<NavBarBagDrawerProps> = ({ showBag, handleShowBa
         image={<EmptyBagIcon />}
         styles={{ image: { marginBottom: 0 } }}
       >
-        <Space direction="vertical">
+        <Space orientation="vertical">
           <Button type="primary" className="w-full">
             <Text className="text-white! uppercase" strong>
               Shop men

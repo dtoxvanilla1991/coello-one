@@ -110,7 +110,7 @@
       },
       {
         "title": "Inteligencia de entrenamiento",
-        "description": "Micro guías mensuales del Coello Education Hub enfocadas en piel en recuperación y semanas de alto volumen."
+        "description": "Micro guías mensuales del Coello One Blueprint enfocadas en piel en recuperación y semanas de alto volumen."
       }
     ],
     "privacy": {
@@ -138,142 +138,249 @@
   },
   "educationHub": {
     "metadata": {
-      "title": "Coello Education Hub",
-      "description": "Inteligencia sobre salud, sueño y actividad para atletas que también son lienzos."
+      "title": "Hub Coello One",
+      "description": "Micro protocolos científicos para atletas que llevan su historia en la piel."
     },
     "hero": {
-      "kicker": "Education Hub",
-      "title": "Entrena mejor, recupera más rápido, deja que el arte respire.",
-      "description": "Alterna entre Salud, Sueño y Actividad con guías creadas junto a preparadores físicos, especialistas en recuperación y el consejo de atletas de Laura."
+      "kicker": "Los Protocolos Coello",
+      "title": "Cuatro algoritmos para cuerpos que también son lienzos.",
+      "description": "Pasa el cursor para la misión, toca para el TL;DR y guarda el ritual antes de la próxima sesión."
     },
-    "tabs": [
+    "ui": {
+      "modalTitlePrefix": "TL;DR del protocolo",
+      "openTlDrLabel": "Abrir TL;DR",
+      "closeLabel": "Cerrar protocolo",
+      "scienceLabel": "Ciencia",
+      "actionLabel": "Acción",
+      "tlDrHeading": "TL;DR",
+      "microDoseHeading": "Rituales microdosis"
+    },
+    "protocols": [
       {
-        "key": "health",
-        "label": "Salud",
-        "title": "Bases de la nutrición",
-        "description": "Diseña rituales diarios que nutren la piel y sostienen el rendimiento.",
-        "image": "/athletes/vertical/main-secondary-4.jpg",
-        "imageAlt": "Atleta hidratándose después del entrenamiento",
-        "focusPoints": [
-          "Hidrátate con 35 ml por kg de peso corporal y suma electrolitos cuando la sesión supere 60 minutos.",
-          "Prioriza 30 g de proteína dentro de los 30 minutos posteriores para acelerar la reparación.",
-          "Vitamina D y omega 3 ayudan a mantener la viveza del tatuaje y reducen la inflamación."
+        "id": "recovery",
+        "code": "Protocolo 01",
+        "title": "Repair",
+        "subtitle": "Protocolo de Recuperación",
+        "tagline": "Anclaje circadiano y depuración glinfática",
+        "summary": "El sueño profundo es el laboratorio del pigmento. Cronometra la luz para que el cortisol se dispare pronto y la melatonina llegue cuando la reparación tisular es máxima.",
+        "science": {
+          "title": "Dormir para la saturación",
+          "description": "La fase de ondas lentas libera hormona de crecimiento que vuelve a sellar la elasticidad de la piel y mantiene la tinta nítida."
+        },
+        "action": "Ancla tu reloj con 10k lux dentro de los 20 minutos de despertar, luego bloquea la luz del lado tatuado y enfría la habitación para cerrar el ciclo 14 horas después.",
+        "tlDr": [
+          "3 minutos de luz solar directa por la mañana",
+          "Cero pantallas después de las 22:00",
+          "Stack de 10 mg de glicina + magnesio"
         ],
-        "highlights": [
-          {
-            "title": "Comidas de micro recuperación",
-            "description": "Llena el plato con pigmentos intensos—frutos rojos, hojas verdes, cítricos—para mantener el brillo de la piel."
-          },
-          {
-            "title": "Hidratación sin fricción",
-            "description": "Lleva botellas térmicas del lado tatuado para evitar que la tinta se degrade con el sol."
-          }
+        "microDose": [
+          "Mide la luz en lux, no en intuición",
+          "Habita una habitación a 18 °C",
+          "Respira con piernas arriba 5 minutos antes de dormir"
         ],
-        "resources": [
-          {
-            "label": "YouTube · Protocolo de movilidad + combustible",
-            "type": "video",
-            "href": "https://www.youtube.com/watch?v=UItWltVZZmE",
-            "description": "Rutina guiada de 20 minutos que combina movilidad dinámica con recordatorios de nutrición."
-          },
-          {
-            "label": "Descarga · Plantilla de nutrición Coello",
-            "type": "program",
-            "href": "https://coello.one/resources/fueling-template.pdf",
-            "description": "Plan imprimible de macros e hidratación probado en nuestra residencia."
-          }
-        ],
-        "cta": {
-          "label": "Ver la guía completa de nutrición",
-          "href": "https://coello.one/blog/fueling"
-        }
+        "deepDive": {
+          "label": "Leer el deep dive",
+          "href": "/hub/protocol/recovery"
+        },
+        "image": "/athletes/vertical/main-secondary-5.jpg",
+        "imageAlt": "Atleta respirando junto a la ventana"
       },
       {
-        "key": "sleep",
-        "label": "Sueño",
-        "title": "Duerme como si importara",
-        "description": "Protege las horas donde ocurre la adaptación y la reparación de la tinta.",
-        "image": "/athletes/horizontal/main-secondary-h-4.jpg",
-        "imageAlt": "Atleta descansando en un estudio tenue",
-        "focusPoints": [
-          "Apunta a 7,5–9 horas con horarios consistentes incluso en giras.",
-          "Crea rituales: sauna infrarroja o ducha caliente, magnesio glicinato, paneles blackout del lado tatuado.",
-          "Controla HRV y pulso en reposo para decidir cuándo bajar la intensidad."
+        "id": "canvas",
+        "code": "Protocolo 02",
+        "title": "Preserve",
+        "subtitle": "Preservación del lienzo",
+        "tagline": "Nutrición dérmica y anti-glicación",
+        "summary": "Come como si poseyeras una galería. El azúcar endurece el colágeno y difumina la tinta, así que cada plato debe proteger el lienzo.",
+        "science": {
+          "title": "Nutrición dérmica",
+          "description": "Los productos avanzados de glicación (AGEs) se pegan al colágeno, amarilleando la piel y suavizando los bordes del tatuaje."
+        },
+        "action": "Cicla platos bajos en glicación y carga precursores de colágeno—vitamina C, cobre, glicina—para mantener el trazo definido.",
+        "tlDr": [
+          "Elimina azúcar añadido en días de entrenamiento",
+          "2 g de glicina + vitamina C antes de cada comida",
+          "Cocción sin quemar para reducir AGEs"
         ],
-        "highlights": [
-          {
-            "title": "Disciplina de luz",
-            "description": "Cambia el scroll por respiraciones con lentes bloqueadores de azul."
-          },
-          {
-            "title": "Tejidos amigables",
-            "description": "Duerme con fibras de eucalipto transpirables para reducir la fricción."
-          }
+        "microDose": [
+          "Cambia salsas caramelizadas por cítricos",
+          "Toma shots de caldo de hueso post-ink",
+          "Registra fotos semanales de hidratación"
         ],
-        "resources": [
-          {
-            "label": "Podcast · Profundidad en recuperación",
-            "type": "audio",
-            "href": "https://www.youtube.com/watch?v=RrwC6KqAZNo",
-            "description": "La científica del sueño Kristen Holmes comparte rutinas amigas del HRV."
-          },
-          {
-            "label": "Guía · Kit de sueño para viajes",
-            "type": "article",
-            "href": "https://coello.one/blog/sleep-kit",
-            "description": "Los cinco básicos que Laura lleva a cada gira larga."
-          }
-        ],
-        "cta": {
-          "label": "Descargar checklist de sueño",
-          "href": "https://coello.one/resources/sleep-checklist.pdf"
-        }
+        "deepDive": {
+          "label": "Leer el deep dive",
+          "href": "/hub/protocol/canvas"
+        },
+        "image": "/athletes/vertical/main-secondary-8.jpg",
+        "imageAlt": "Atleta tatuada preparando comida real"
       },
       {
-        "key": "activity",
-        "label": "Actividad",
-        "title": "Programación que respeta el arte",
-        "description": "Combina rendimiento con cuidado de la piel en cada bloque de entrenamiento.",
+        "id": "mindset",
+        "code": "Protocolo 03",
+        "title": "Endure",
+        "subtitle": "Protocolo de tolerancia al dolor",
+        "tagline": "Fricción Huberman y gestión de dopamina",
+        "summary": "La disciplina de la silla de tatuaje es igual al último rep. Entrena al sistema nervioso para desear fricción sin apilar dopamina.",
+        "science": {
+          "title": "La fricción es enfoque",
+          "description": "Evita superponer estimulantes. Una sola fuente de incomodidad mantiene sensible la dopamina y hace que el esfuerzo siga siendo gratificante."
+        },
+        "action": "Agenda sesiones en silencio—sin música, sin pre-entreno, teléfono en modo avión—para recordarle al cerebro que puedes sostener el esfuerzo sin picos de recompensa.",
+        "tlDr": [
+          "Un entrenamiento en silencio por semana",
+          "Exposición al frío tras la sesión más dura",
+          "Escribe la serie más difícil como si fuera una cita de tatuaje"
+        ],
+        "microDose": [
+          "Cambia playlists por cadencia respiratoria",
+          "Respira por la nariz en las series con ardor",
+          "Repite frases de reencuadre antes de los levantamientos"
+        ],
+        "deepDive": {
+          "label": "Leer el deep dive",
+          "href": "/hub/protocol/mindset"
+        },
+        "image": "/athletes/vertical/main-secondary-10.jpg",
+        "imageAlt": "Atleta concentrada en estudio oscuro"
+      },
+      {
+        "id": "asymmetric",
+        "code": "Protocolo 04",
+        "title": "Charge",
+        "subtitle": "Motor asimétrico",
+        "tagline": "Carga unilateral y cross-education",
+        "summary": "Abraza la asimetría. Entrena un lado para encender el otro mediante educación cruzada mientras la tinta cicatriza.",
+        "science": {
+          "title": "Cross-education",
+          "description": "El trabajo unilateral conserva fuerza en el miembro en reposo a través del drive neural, manteniendo poderosa la silueta de una sola manga."
+        },
+        "action": "Apila remos a una mano, landmine press, pistols y cargadas que destaquen el marco asimétrico.",
+        "tlDr": [
+          "Dos días unilaterales por semana",
+          "Une fuerza con isométricos",
+          "Termina con cargadas en el lado tatuado"
+        ],
+        "microDose": [
+          "Graba la postura para medir asimetría",
+          "Mantén cargadas 60 segundos por lado",
+          "Vibración ligera en el brazo en reposo para priming"
+        ],
+        "deepDive": {
+          "label": "Leer el deep dive",
+          "href": "/hub/protocol/asymmetric"
+        },
         "image": "/athletes/vertical/main-secondary-7.jpg",
-        "imageAlt": "Atleta sprintando con top asimétrico",
-        "focusPoints": [
-          "Alterna rutinas push/pull con sesiones de movilidad en días de curación de tatuajes.",
-          "Incluye contrast training dos veces por semana para mantener el sistema nervioso alerta sin rozar la manga.",
-          "Programa sesiones indoor sin UV durante 48 horas posteriores a un tatuaje para cuidar el pigmento."
-        ],
-        "highlights": [
-          {
-            "title": "Bloques de contraste",
-            "description": "Combina peso muerto con empujes de trineo para potencia sin abrasión."
-          },
-          {
-            "title": "Inteligencia de coaches",
-            "description": "Lxs coaches residentes comparten tips semanales en el Discord de Coello."
-          }
-        ],
-        "resources": [
-          {
-            "label": "Video · Sesión asimétrica de Laura",
-            "type": "video",
-            "href": "https://www.youtube.com/watch?v=mgHz0YLq5z8",
-            "description": "Rutina de cuerpo completo que muestra puntos de ventilación de la manga."
-          },
-          {
-            "label": "Programa · Plan híbrido de 4 semanas",
-            "type": "program",
-            "href": "https://coello.one/programs/hybrid.pdf",
-            "description": "Bloque descargable que alterna fuerza, conditioning y skill days."
-          }
-        ],
-        "cta": {
-          "label": "Únete al Discord de Coello",
-          "href": "https://discord.gg/coello"
-        }
+        "imageAlt": "Atleta entrenando con remo unilateral"
       }
-    ],
-    "commitment": {
-      "title": "Experimentación constante",
-      "description": "El hub se actualiza cada mes con datos del laboratorio, entrevistas y experimentos de recuperación. Guarda tus recursos favoritos y cuéntanos qué construir."
+    ]
+  },
+  "coelloCutTraining": {
+    "hero": {
+      "kicker": "5% TRABAJO · 95% VIDA",
+      "title": "El gimnasio es el estímulo. El estilo de vida es el motor.",
+      "description": "Entrenamos para enviar una señal—\"crear armadura\"—no para borrar calorías. El apetito, las hormonas y la gestión del estrés entregan la verdadera pérdida de grasa. Esta página es tu protocolo para enviar la señal correcta y luego vivir de un modo que permita la respuesta del cuerpo."
+    },
+    "manifesto": {
+      "headline": "No puedes entrenar más que tu tenedor.",
+      "subheading": "El trabajo de fuerza es una señal, no un borrador de calorías. Levantamos para mandar el mensaje—crear armadura—y luego vivimos para que ese mensaje aterrice.",
+      "bulletPoints": [
+        {
+          "title": "Primero la señal",
+          "description": "El entrenamiento le dice al cuerpo a qué adaptarse. La tensión amable con el sistema nervioso supera cualquier sudor aleatorio."
+        },
+        {
+          "title": "El estilo de vida define la definición",
+          "description": "Solo una fracción del gasto diario viene del gimnasio. El sueño, el estrés y la calidad de la comida mandan en la recomposición real."
+        },
+        {
+          "title": "La naturaleza reinicia hormonas",
+          "description": "Sal cada semana. El horizonte aplana el cortisol, el sol despierta el sistema endocrino y el aburrimiento alimenta la creatividad."
+        }
+      ]
+    },
+    "planSelector": {
+      "kicker": "Arquitecto del programa",
+      "description": "Elige el arquetipo que refleja tu temporada. Cada cambio redibuja el plan al instante.",
+      "daysLabel": "Días"
+    },
+    "planDisplay": {
+      "daysPerWeekLabel": "Días por semana",
+      "weeklySplitHeading": "División semanal",
+      "dayLabel": "Día"
+    },
+    "plans": {
+      "essentialist": {
+        "name": "The Essentialist",
+        "tagline": "Dosis mínima. Señal máxima.",
+        "description": "Diseñado para la persona creativa sin tiempo. Golpea únicamente los tres grandes para asentar el sistema nervioso sin agotarlo.",
+        "focus": ["Impulso neural", "Eficiencia en compuestos", "Recuperación"],
+        "split": [
+          { "label": "Cuerpo completo A (Sentadilla)" },
+          { "label": "Descanso" },
+          { "label": "Cuerpo completo B (Empuje)" },
+          { "label": "Descanso" },
+          { "label": "Cuerpo completo C (Bisagra)" },
+          { "label": "Caminata / Naturaleza", "isNature": true },
+          { "label": "Descanso" }
+        ]
+      },
+      "architect": {
+        "name": "The Architect",
+        "tagline": "Simetría y estructura.",
+        "description": "El estándar dorado de la estética. Equilibra cargas pesadas con la recuperación que requiere tu sistema nervioso central.",
+        "focus": ["Simetría", "Hipertrofia", "Fundamento"],
+        "split": [
+          { "label": "Potencia tren superior" },
+          { "label": "Potencia tren inferior" },
+          { "label": "Descanso" },
+          { "label": "Hipertrofia tren superior" },
+          { "label": "Hipertrofia tren inferior" },
+          { "label": "Caminata / Sendero", "isNature": true },
+          { "label": "Descanso" }
+        ]
+      },
+      "craftsman": {
+        "name": "The Craftsman",
+        "tagline": "Detalle y obsesión.",
+        "description": "Alto volumen para quien trata su cuerpo como el proyecto principal. Incluye trabajo de aislamiento para honrar la manga Coello.",
+        "focus": ["Trabajo de detalle", "Volumen", "Puntos débiles"],
+        "split": [
+          { "label": "Empuje (Pecho / Hombros)" },
+          { "label": "Jalada (Espalda / Bíceps)" },
+          { "label": "Piernas (Fuerza)" },
+          { "label": "Descanso / Sauna" },
+          { "label": "Detalle tren superior" },
+          { "label": "Detalle tren inferior" },
+          { "label": "Caminata / Inmersión en naturaleza", "isNature": true }
+        ]
+      }
+    },
+    "ritual": {
+      "title": "La descompresión",
+      "philosophy": "Tensionaste el músculo para romperlo. Ahora alárgalo para curarlo.",
+      "cards": [
+        {
+          "id": "cardio",
+          "label": "Cardio",
+          "description": "20 min de cardio en zona 2 (solo respiración nasal). Frecuencia cardiaca 120-130 lpm."
+        },
+        {
+          "id": "stretch",
+          "label": "Estiramiento",
+          "description": "10 min de estiramientos estáticos. Enfócate en flexores de cadera y aperturas de pecho."
+        },
+        {
+          "id": "sundayService",
+          "label": "Servicio dominical",
+          "description": "Una caminata o paseo en naturaleza semanal es obligatorio. La luz artificial y el concreto elevan el cortisol; los horizontes reinician tu biología."
+        }
+      ]
+    },
+    "living": {
+      "kicker": "Vida diaria",
+      "title": "Componente vital",
+      "description": "Caminata o paseo en naturaleza obligatorio cada semana. La luz artificial, el concreto y el doomscrolling disparan el cortisol; los horizontes reinician tu biología.",
+      "diet": "Come alimentos que corrieron, nadaron o crecieron. Si tiene código de barras, cuestiónalo. Fermentos, raíces y minerales mantienen la señal receptiva."
     }
   },
   "sustainability": {

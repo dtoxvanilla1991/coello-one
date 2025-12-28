@@ -29,6 +29,7 @@ import { useRouter } from "next/navigation";
 import { buildLocaleRoute } from "@config/routes";
 import { useTranslations } from "@/localization/useTranslations";
 import { useCurrentLocale } from "@/hooks/useCurrentLocale";
+import { useLocalePath } from "@/hooks/useLocalePath";
 import { trackEvent } from "@/utils/trackEvent";
 import type { CheckoutFormValues } from "./types";
 import { COUNTRY_OPTIONS, EXPRESS_METHODS, FORMAT_PRICE, PAYMENT_OPTIONS } from "./constants";
@@ -42,10 +43,11 @@ export function CheckoutContent() {
   const total = useAtomValue(cartTotalAtom);
   const router = useRouter();
   const locale = useCurrentLocale();
+  const withLocalePath = useLocalePath();
   const checkoutCopy = useTranslations("checkout");
   const { hero, express, contact, delivery, payment, remember, orderSummary, cta, messages } =
     checkoutCopy;
-  const bagRoute = buildLocaleRoute("bag");
+  const bagRoute = withLocalePath(buildLocaleRoute("bag"));
 
   const itemCount = useMemo(() => items.reduce((count, item) => count + item.quantity, 0), [items]);
 
@@ -143,7 +145,7 @@ export function CheckoutContent() {
           </Card>
 
           <Form layout="vertical" initialValues={initialValues} onFinish={handlePlaceOrder}>
-            <Space direction="vertical" size={16} className="w-full">
+            <Space orientation="vertical" size={16} className="w-full">
               <Card className="rounded-2xl! border border-gray-200!">
                 <Flex vertical gap={16}>
                   <Flex justify="space-between" align="center">
@@ -173,7 +175,7 @@ export function CheckoutContent() {
                   </Title>
                   <Form.Item name="deliveryMethod">
                     <Radio.Group className="w-full">
-                      <Space direction="vertical" size={12} className="w-full">
+                      <Space orientation="vertical" size={12} className="w-full">
                         <Radio value="home">{delivery.home}</Radio>
                         <Radio value="pickup">{delivery.pickup}</Radio>
                       </Space>
@@ -245,7 +247,7 @@ export function CheckoutContent() {
                   <Text className="text-xs text-gray-500">{payment.helper}</Text>
                   <Form.Item name="paymentMethod">
                     <Radio.Group className="w-full">
-                      <Space direction="vertical" size={12} className="w-full">
+                      <Space orientation="vertical" size={12} className="w-full">
                         {PAYMENT_OPTIONS.map((option) => (
                           <Radio key={option.value} value={option.value}>
                             {option.label}
@@ -257,7 +259,7 @@ export function CheckoutContent() {
                   <Alert
                     type="warning"
                     showIcon
-                    message={payment.alert}
+                    title={payment.alert}
                     className="rounded-xl! border border-amber-200! bg-amber-50!"
                   />
                 </Flex>
@@ -336,7 +338,7 @@ export function CheckoutContent() {
                   <Alert
                     type="info"
                     showIcon
-                    message={orderSummary.empty}
+                    title={orderSummary.empty}
                     className="rounded-xl! border border-gray-200!"
                   />
                 )}

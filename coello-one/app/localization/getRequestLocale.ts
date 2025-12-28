@@ -5,7 +5,6 @@ import {
   DEFAULT_LOCALE,
   SUPPORTED_LOCALES,
   type SupportedLocale,
-  getLocaleFromHost,
   isSupportedLocale,
 } from "@config/i18n";
 
@@ -60,19 +59,21 @@ function mapTagToLocale(tag?: string): SupportedLocale | null {
 
 export async function getRequestLocale(): Promise<SupportedLocale> {
   const headerStore = await headers();
-  const host = headerStore.get("host");
-  const hostLocale = getLocaleFromHost(host);
 
-  if (hostLocale) {
-    return hostLocale;
+  // 1. Check x-locale header set by proxy.ts (fastest path)
+  const proxyLocale = headerStore.get("x-locale");
+  if (proxyLocale && isSupportedLocale(proxyLocale)) {
+    return proxyLocale;
   }
 
+  // 2. Cookie-based preference
   const cookieStore = await cookies();
   const localeCookie = cookieStore.get("NEXT_LOCALE")?.value;
   if (localeCookie && isSupportedLocale(localeCookie)) {
     return localeCookie;
   }
 
+  // 3. Accept-Language negotiation
   const acceptLanguageLocale = matchAcceptLanguage(headerStore.get("accept-language"));
   if (acceptLanguageLocale) {
     return acceptLanguageLocale;

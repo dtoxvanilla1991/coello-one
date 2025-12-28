@@ -49,7 +49,7 @@ export default function MenuComponent({
 
   return (
     <Menu
-      selectedKeys={[pathname]}
+      selectedKeys={pathname ? [pathname] : []}
       items={localizedItems}
       onClick={handleMenuClick}
       className="border-r-0! px-0!"

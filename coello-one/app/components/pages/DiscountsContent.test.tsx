@@ -2,6 +2,7 @@ import { describe, expect, it } from "bun:test";
 import { render, screen } from "@testing-library/react";
 import type { DiscountsCopy } from "@/types/pages";
 import DiscountsContent from "./DiscountsContent";
+import { clickWithAct } from "@test-utils/clickWithAct";
 
 const mockCopy: DiscountsCopy = {
   metadata: {
@@ -52,10 +53,13 @@ describe("DiscountsContent", () => {
     expect(screen.getByText(/Point one/i)).toBeTruthy();
   });
 
-  it("integration: surfaces the waitlist form input", () => {
+  it("integration: opens the waitlist modal when CTA is clicked", async () => {
     render(<DiscountsContent copy={mockCopy} />);
 
-    expect(screen.getByPlaceholderText(/you@email.com/i)).toBeTruthy();
-    expect(screen.getByText(/Promise/i)).toBeTruthy();
+    const cta = screen.getByRole("button", { name: /Join/i });
+    await clickWithAct(cta);
+
+    expect(await screen.findByPlaceholderText(/you@email.com/i)).toBeTruthy();
+    expect(screen.getAllByText(/Promise/i).length).toBeGreaterThan(0);
   });
 });

@@ -1,38 +1,38 @@
 import { describe, expect, it } from "bun:test";
-import { buildLocaleAlternateMap, getLocaleFromHost, type DomainLocaleConfig } from "./i18n";
-
-const MOCK_DOMAIN_LOCALES: DomainLocaleConfig[] = [
-  {
-    domain: "coelloone.preview",
-    defaultLocale: "en-GB",
-    locales: ["en-GB", "es-ES"],
-  },
-  {
-    domain: "localhost.preview:3000",
-    defaultLocale: "es-ES",
-    http: true,
-  },
-];
+import {
+  LANGUAGE_ALTERNATES,
+  addLocaleToPathname,
+  extractLocaleFromPathname,
+  normalizeLocale,
+  stripLocaleFromPathname,
+} from "./i18n";
 
 describe("i18n config", () => {
-  it("builds locale alternates for every configured domain", () => {
-    const alternates = buildLocaleAlternateMap(MOCK_DOMAIN_LOCALES);
-
-    expect(alternates["en-GB"]).toBe("https://coelloone.preview");
-    expect(alternates["es-ES"]).toBe("https://coelloone.preview");
+  it("extracts locale segments from localized pathnames", () => {
+    expect(extractLocaleFromPathname("/en-GB/bag")).toBe("en-GB");
+    expect(extractLocaleFromPathname("/es-ES")).toBe("es-ES");
+    expect(extractLocaleFromPathname("/unknown")).toBeNull();
   });
 
-  it("respects the http flag when constructing absolute URLs", () => {
-    const httpAlternates = buildLocaleAlternateMap([
-      { domain: "localhost.preview:3000", defaultLocale: "es-ES", http: true },
-    ]);
-
-    expect(httpAlternates["es-ES"]).toBe("http://localhost.preview:3000");
+  it("strips locale prefixes when requested", () => {
+    expect(stripLocaleFromPathname("/en-GB/bag")).toBe("/bag");
+    expect(stripLocaleFromPathname("/es-ES")).toBe("/");
+    expect(stripLocaleFromPathname("/bag")).toBe("/bag");
   });
 
-  it("maps hosts to locales based on the merged domain config", () => {
-    expect(getLocaleFromHost("coelloone.co")).toBe("es-ES");
-    expect(getLocaleFromHost("coelloone.uk")).toBe("en-GB");
-    expect(getLocaleFromHost("localhost")).toBeNull();
+  it("adds locale prefixes safely", () => {
+    expect(addLocaleToPathname("en-GB", "/bag")).toBe("/en-GB/bag");
+    expect(addLocaleToPathname("es-ES", "/")).toBe("/es-ES");
+    expect(addLocaleToPathname("en-GB", "/en-GB/bag")).toBe("/en-GB/bag");
+  });
+
+  it("normalizes locale values", () => {
+    expect(normalizeLocale("es-ES")).toBe("es-ES");
+    expect(normalizeLocale(undefined)).toBe("en-GB");
+  });
+
+  it("builds metadata alternates for every supported locale", () => {
+    expect(LANGUAGE_ALTERNATES["en-GB"]).toBe("/en-GB");
+    expect(LANGUAGE_ALTERNATES["es-ES"]).toBe("/es-ES");
   });
 });

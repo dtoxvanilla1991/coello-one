@@ -6,6 +6,7 @@ import { cartItemsAtom } from "@/store/cartStore";
 import { resetNavigationMocks, routerMocks } from "@test-utils/navigation";
 import { trackEventMock } from "@test-utils/trackEventMock";
 import { clickWithAct } from "@test-utils/clickWithAct";
+import { DEFAULT_LOCALE } from "@config/i18n";
 
 const { CheckoutContent } = await import("./CheckoutContent");
 
@@ -118,6 +119,6 @@ describe("CheckoutContent", () => {
 
     await clickWithAct(screen.getByRole("button", { name: /back to bag/i }));
 
-    expect(routerMocks.push).toHaveBeenCalledWith("/bag");
+    expect(routerMocks.push).toHaveBeenCalledWith(`/${DEFAULT_LOCALE}/bag`);
   });
 });

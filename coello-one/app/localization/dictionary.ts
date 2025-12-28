@@ -13,6 +13,8 @@ import systemPagesEnGb from "./messages/en-GB/system-pages.json" assert { type: 
 import accessoriesEnGb from "./messages/en-GB/accessories.json" assert { type: "json" };
 import welcomeEnGb from "./messages/en-GB/welcome.json" assert { type: "json" };
 import pagesEnGb from "./messages/en-GB/pages.json" assert { type: "json" };
+import legalEnGb from "./messages/en-GB/legal.json" assert { type: "json" };
+import navigationEnGb from "./messages/en-GB/navigation.json" assert { type: "json" };
 import homeEsEs from "./messages/es-ES/home.json" assert { type: "json" };
 import bagEsEs from "./messages/es-ES/bag.json" assert { type: "json" };
 import checkoutEsEs from "./messages/es-ES/checkout.json" assert { type: "json" };
@@ -27,6 +29,8 @@ import systemPagesEsEs from "./messages/es-ES/system-pages.json" assert { type: 
 import accessoriesEsEs from "./messages/es-ES/accessories.json" assert { type: "json" };
 import welcomeEsEs from "./messages/es-ES/welcome.json" assert { type: "json" };
 import pagesEsEs from "./messages/es-ES/pages.json" assert { type: "json" };
+import legalEsEs from "./messages/es-ES/legal.json" assert { type: "json" };
+import navigationEsEs from "./messages/es-ES/navigation.json" assert { type: "json" };
 import { DEFAULT_LOCALE, normalizeLocale } from "./config";
 
 const translations = {
@@ -45,6 +49,8 @@ const translations = {
     accessories: accessoriesEnGb,
     welcome: welcomeEnGb,
     pages: pagesEnGb,
+    legal: legalEnGb,
+    navigation: navigationEnGb,
   },
   "es-ES": {
     home: homeEsEs,
@@ -61,6 +67,8 @@ const translations = {
     accessories: accessoriesEsEs,
     welcome: welcomeEsEs,
     pages: pagesEsEs,
+    legal: legalEsEs,
+    navigation: navigationEsEs,
   },
 } as const;
 

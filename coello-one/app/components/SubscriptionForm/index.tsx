@@ -60,7 +60,7 @@ const SubscriptionForm = () => {
     return (
       <div className="mx-auto max-w-[480px] p-4">
         <Alert
-          message="Subscription Activated!"
+          title="Subscription Activated!"
           description={
             <>
               Thank you for subscribing! Please check your email for a confirmation link.

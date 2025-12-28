@@ -1,207 +1,165 @@
-re## Technical Stack
+# Coello One (Monorepo) 🗺️
 
-- **Frontend**: Next.js 15.1.3 with React 19
-- **Styling**: Tailwind CSS + Ant Design
-- **State Management**: Jotai
-- **Forms**: React Hook Form with Zod validation
-- **Package Manager**: Bun
-- **Backend**: Flask (Python)
+The Coello One monorepo powers the one-sleeve apparel experience across a **Next.js frontend** (Bun runtime) and a **Flask backend**. This document is the **single source of truth** for every AI assistant and contributor—keep it open while working and treat every section as mandatory.
 
-## Product Principles
+---
 
-- **Golden rule:** Always design, implement, and test mobile-first. Validate the smallest breakpoint before scaling layouts to tablet and desktop.
+## Repository Overview
 
-### Design Leadership
+| Area          | Path                                       | Notes                                        |
+| ------------- | ------------------------------------------ | -------------------------------------------- |
+| Frontend      | `coello-one/`                              | Next.js App Router (React 19) running on Bun |
+| Backend       | `flask-server/`                            | Flask API + CLI utilities                    |
+| Shared Config | `config/`, `scripts/`, `app/localization/` | Centralized data, tooling, and translations  |
 
-- **Chief Designer:** Laura Gomez — globally celebrated experiential designer leading Coello's visual and interaction language. Treat Laura's direction as canonical when aligning layouts, motion, and tone. She used to be Chief designer for GymShark, Adidas and Nike, Tesla and OpenAI companies in the past and has 40+ years experience in design with many globally recognized design awards.
+Always `cd` into the correct directory before running commands. Frontend scripts assume Bun; backend scripts assume Python/Make.
 
-## Testing Guidelines
+---
 
-- **Shared test utilities:** Always review `test-setup.ts` before creating or updating any tests to reuse existing mocks and prevent duplication.
+## Tech Stack & Version Pins
 
-## Development Setup
+- **Next.js:** `16.0.3`
+- **React:** `19.2.x`
+- **Styling:** Tailwind CSS + Ant Design
+- **State:** Jotai atoms (`store/`)
+- **Forms:** React Hook Form + Zod
+- **Package Manager:** Bun `>= 1.2.21` (pinned in CI)
+- **Backend:** Flask (Python 3.11)
 
-```bash
-# Install dependencies
-bun install
+Match these versions when referencing documentation or adding integrations.
 
-# Start development server
-bun dev
-```
+---
 
-### Formatting & Hooks
+## Setup & Tooling
 
-- Prefer `make setup` at the repo root to install hooks, frontend dependencies, and backend tooling in one command.
-- `bun run format` (inside `coello-one/`) verifies Prettier with Tailwind sorting; `bun run format:fix` applies updates.
-- Flask formatting lives in `flask-server/`; run `make format-check` (or `make format`) after installing dev tooling with `pip install -r requirements-dev.txt`.
-- Server-side IO rule: Next.js API routes, Route Handlers, and other server functions must use Bun's `Bun.file`/`Bun.write` APIs instead of Node's `fs` module.
-- Root hooks format staged frontend files with Prettier and staged Python with Black.
+1. **Bootstrap in one step:** `make setup` (installs Bun deps, Flask tooling, Husky hooks).
+2. **Manual installs (if needed):**
+   - Frontend: `cd coello-one && bun install`
+   - Backend tooling: `pip install -r flask-server/requirements-dev.txt`
+
+3. **Common scripts (run inside `coello-one/`):**
+   - `bun dev` – Next.js dev server (Turbopack)
+   - `bun run build` – production build
+   - `bun run lint` – ESLint with zero-warning policy
+   - `bun run test` – Bun tests (auto-preloads `test-setup.ts`)
+   - `bun run format` / `bun run format:fix` – Prettier + Tailwind sorting
+   - `bun run verify:locales` – ensure namespace parity across locales
+
+4. **Formatting hooks:** staged TS/TSX files auto-format with Prettier; staged Python files auto-format with Black. Resolve hook output before committing.
+
+---
 
 ## AI Operations Handbook
 
-### Core Engagement Rules
+### 1. Core Mandates
 
-- Treat this document as the single source of truth for Coello AI collaborators; keep it open when planning work.
-- Default to Serena MCP for task orchestration and document key decisions in the journal.
-- Pair Context7 with Serena on every task: use Context7 for repository/document lookups and cite its snippets in Serena notes before modifying code or docs; fall back to manual reads only when Context7 is exhausted.
-- Approach every request through the Chief Advisory Team lens (CTO, Chief Designer, Business Logic Architect, Data Analyst, Senior Full-Stack Engineer) and surface a `[Chief's Insight]` with risks or upgrades.
-- Build and validate the handheld experience first; only expand to tablet/desktop once the smallest breakpoint feels polished.
+- **Mobile-first always:** design, implement, and test the handheld experience before tablet/desktop.
+- **Context7 + Serena:** fetch context via Context7, cite snippet IDs in Serena notes, and log plans/outcomes inside Serena prior to editing.
+- **No rogue packages:** never add, remove, or modify `package.json` / `bun.lock` entries without explicit user authorization.
+- **Icon policy:** only Ant Design Icons are allowed. Third-party icon packs or ad-hoc SVG imports are verboten without approval.
+- **Copy parity:** every new or modified user-facing string must land in both en-GB and es-ES localization files before the work is considered complete.
+- **Bun-native:** use `Bun.file`, `Bun.write`, `Bun.SQL`, `Bun.secrets`, and Bun YAML helpers for server-side work. Node `fs` and legacy `bun:sqlite` APIs are banned.
+- **Testing doctrine:** every method or behavior needs both unit **and** integration coverage unless a `// TEST-WAIVER: reason` comment (plus Serena note) documents the exception.
+- **Chief’s Insight:** respond to each request through the Chief Advisory Team lens and surface a `[Chief's Insight]` section that critiques risk and suggests upgrades.
 
-### UX & Styling Standards
+### 2. Persona Protocol
 
-- Favor Ant Design components and Tailwind utilities; note any exceptions inline and in Serena.
-- Do not render native HTML tags directly; compose layouts from Ant Design primitives (e.g. `Flex`, `Space`, `Typography`). Log any unavoidable exceptions in Serena before implementation.
-- Keep the primary header background white and maintain sticky visibility where required (see `app/components/navbar-components/Navbar`).
-- Wrap catalog detail pages with `ProductDetailShell` to inherit responsive paddings and max-width constraints.
-- Use Tailwind’s canonical important syntax (`utility!`) for overrides; if linting disagrees, coordinate the rule update rather than toggling back to legacy prefixes.
+Personas live in [`AGENTS.md`](../AGENTS.md). Before executing any task, determine which persona (Laura, Olaf, or Yuriy) best fits the work and adopt that voice automatically—switch personas as scopes change without waiting for user direction.
 
-### Localization & Copy Guidelines
+### 3. Interaction Workflow
 
-- Store all user-facing copy in `app/localization/messages/<locale>/<namespace>.json`; keep namespaces aligned across locales via `bun run verify:locales`.
-- Fetch text through `useTranslations(namespace)` (client) or `getNamespaceCopy(locale, namespace)` (server) instead of embedding literals; rely on `formatMessage` for placeholder substitution.
-- When emitting analytics for localized CTAs, pass `locale`, `translationKey`, and (when relevant) `translationVariant` through the third `trackEvent` argument so funnel reports stay traceable.
-- New translation entries must be documented in Serena with the Context7 snippet ID used to source or review the copy; mention any pending reviewer (e.g., Laura) in the same note.
+1. Read this README in full before every work session.
+2. Use Context7 for all code/doc lookups, cite snippet IDs in Serena, and only fall back to manual reads when Context7 cannot surface the file.
+3. Plan edits with Serena MCP tools (symbol overviews, searches) prior to touching files.
+4. Apply changes via project-safe tooling (`apply_patch`, Bun scripts, etc.) and keep diffs minimal.
+5. Document outcomes, open questions, and exceptions back in Serena.
 
-#### Locale Domain Configuration
+**Pre-flight Serena checklist (must be logged before making edits):**
 
-- Configure hostname → locale routing through environment variables so Growth can launch microsites without shipping code:
-  - `NEXT_PUBLIC_PRODUCTION_DOMAIN_LOCALES`
-  - `NEXT_PUBLIC_LOCAL_DOMAIN_LOCALES`
-- Each variable accepts a JSON array of Next.js domain locale objects (see `config/i18n.ts`). Example:
+- Confirm “README digested” and note the specific section(s) you are operating under.
+- Record which Chief persona you have activated and why it matches the task.
+- Outline the initial plan of attack (files to inspect, tools to run) so reviewers can trace intent vs. execution.
+- Capture blockers or assumptions so new contributors can resume the thread without rework.
 
-```json
-[
-  {
-    "domain": "coelloone.uk",
-    "defaultLocale": "en-GB",
-    "locales": ["en-GB"]
-  },
-  {
-    "domain": "localhost.co",
-    "defaultLocale": "es-ES",
-    "locales": ["es-ES"],
-    "http": true
-  }
-]
-```
+### 4. UX & Styling Standards
 
-- Local entries should set `http: true` so Next.js serves them over HTTP. Production hosts omit the flag and default to HTTPS.
+- Compose UI exclusively with Ant Design or sanctioned Next.js primitives (e.g., `Flex`, `Typography`, `Activity`). Native HTML tags require a documented Serena exception.
+- Maintain the primary header with a white background and sticky behavior.
+- Product detail pages must wrap content with `ProductDetailShell` for consistent responsive gutters.
+- Tailwind rules:
+  - Prefer utilities over bespoke CSS.
+  - Use the canonical important syntax (`utility!`).
+  - Query Context7 for Tailwind docs before introducing new utilities and cite the snippet in Serena.
+- Motion: favor purposeful transitions validated on mobile first (Laura’s standard).
 
-### Navigation & Routing
+### 5. Localization & Copy
 
-- Use `buildLocaleRoute` from `config/routes` to construct locale-aware paths (e.g. bag, search, home).
-- Prefer Next.js router helpers (`useRouter`, `useParams`, `usePathname`) and keep locale defaults consistent with the route builder.
-- Bag interactions should push the Gymshark-inspired flow at `/[locale]/bag`; search overlays route to `/[locale]/search?query=`.
+- Store copy in `app/localization/messages/<locale>/<namespace>.json`.
+- Access copy via `useTranslations(namespace)` (client) or `getNamespaceCopy(locale, namespace)` (server). Avoid inline literals.
+- After editing copy, update both en-GB and es-ES files and run `bun run verify:locales`.
+- When emitting analytics for localized CTAs, pass `locale`, `translationKey`, and optional `translationVariant` to `trackEvent` as metadata.
 
-### State, Data, and Stores
+### 6. Testing & QA Doctrine
 
-- Use the Jotai atoms in `store/` (`cartStore`, `siderStore`) instead of creating ad-hoc state containers.
-- When augmenting analytics, extend `utils/analyticsAdapter.ts` and `utils/trackEvent.ts` so telemetry stays centralized.
-- Validate every boundary payload (network responses, persisted state, user input) with shared Zod schemas before consuming it anywhere in the app.
+- Run `bun run test` and `bun run lint` before sharing work.
+- Prefer behavior-driven assertions over snapshots.
+- Reuse shared helpers: `@test-utils/navigation`, `@test-utils/trackEventMock`, `@test-utils/clickWithAct`, and the mocks defined in `test-setup.ts`.
+- Pull localized copy via `getTestTranslations()` (`test-utils/translations.ts`) so assertions stay aligned with the canonical dictionaries even as Content revises wording.
+- `config/footerLinks.smoke.test.ts` and `config/db.smoke.test.ts` remain in the suite—enable them via env vars (`FOOTER_LINKS_BASE_URL`, etc.) when needed.
+- Olaf’s mandate: flakiness is unacceptable. Stabilize brittle specs immediately.
 
-### Bun Runtime Guidelines (Bun v1.2.21)
+### 7. Bun Runtime & Server Rules
 
-#### Bun.SQL (Mandatory)
+- Use `Bun.SQL` tagged template literals for all SQL. Never call `db.query()` / `db.prepare()` from `bun:sqlite`.
+- Prefer Bun’s YAML loader (`Bun.YAML.parse`) and `Bun.secrets` for config + credential handling.
+- Run `bun audit --audit-level=high` before proposing dependency upgrades and document the audit in Serena.
 
-When writing server-side code involving SQLite or any SQL database, you must:
+### 8. State, Data, and Analytics
 
-1. **Use the `Bun.SQL` API** – rely on the unified tagged template literal syntax introduced in Bun v1.2.21.
-2. **Avoid legacy `bun:sqlite` APIs** – `db.query()`, `db.prepare()`, `db.run()`, and `statement.all()` are banned in this codebase.
-3. **Let Bun handle parameterization** – never build SQL strings manually; use tagged literals for automatic escaping.
+- Leverage Jotai atoms in `store/` (`cartStore`, `siderStore`) instead of creating new global stores.
+- Centralize telemetry through `utils/analyticsAdapter.ts` and `utils/trackEvent.ts`; include `subtotal`, `shipping`, `total`, and `itemCount` when tracking cart milestones.
+- Advocate for measurement hooks whenever a new UX flow launches and log proposed KPIs in Serena.
 
-```typescript
-// ✅ Correct
-import { SQL } from "bun";
+### 9. Navigation & Layout Rules
 
-const db = new SQL(":memory:");
-const [{ total }] = await db`
-  SELECT COUNT(*) AS total
-  FROM products
-  WHERE category = ${category}
-`;
-```
+- Use helpers in `config/routes.ts` to build locale-aware paths (bag, search, home, etc.).
+- Search overlays route to `/[locale]/search?query=…`; bag flows live at `/[locale]/bag`.
+- Keep the Navbar sticky, ensure language selectors respect locale defaults, and wrap catalog detail pages with `ProductDetailShell`.
 
-```typescript
-// ❌ Incorrect
-import { Database } from "bun:sqlite";
-const db = new Database("mydb.sqlite");
-const query = db.query("SELECT * FROM users WHERE id = $id");
-const user = query.get({ $id: userId });
-```
+### 10. Documentation & Communication
 
-#### Built-in YAML Support
+- Log significant architecture or UX decisions in Serena and cross-link to the relevant PR.
+- Update this README when rules evolve—other instruction files (e.g., `.github/copilot-instructions.md`) simply point back here.
+- When exceptions occur (native HTML, missing tests, etc.), record the rationale plus remediation plan in Serena before committing code.
 
-- Prefer Bun’s native YAML integrations (`import config from "./config.yaml";` or `Bun.YAML.parse`) instead of third-party parsers like `js-yaml`.
-- Keep YAML-Backed config co-located with TypeScript types and ensure schemas validate the parsed payload before use.
+---
 
-#### Secrets & Credentials
+## Appendix
 
-- Use `Bun.secrets` to read/write sensitive values during local tooling or CLI tasks. This routes through Keychain (macOS), libsecret (Linux), or Windows Credential Manager, keeping secrets off disk.
-- Document any non-Bun credential storage (e.g., cloud secret managers) in Serena and justify the exception.
+### Locale Routing
 
-#### Tooling & Supply Chain
+- App Router locales live under `app/[locale]/…`; every route is prefixed with `/en-GB` or `/es-ES`.
+- `proxy.ts` enforces locale segments, sets the `NEXT_LOCALE` cookie, and writes the `x-locale` header consumed by `getRequestLocale()`.
+- Client navigation must run through `useLocalePath()` to guarantee locale-prefixed links.
+- Metadata alternates are sourced from `LANGUAGE_ALTERNATES` in `config/i18n.ts`.
+- No environment variables are required for locale detection anymore—remove any stale domain configs in local `.env` files.
 
-- Run `bun audit --audit-level=high` before shipping meaningful dependency changes; the Bun 1.2.21 audit filters help surface critical issues fast.
-- Security scanners can now hook directly into `bun install`. If you add one (e.g., Socket’s scanner), record the config in Serena and update CI accordingly.
-- Prefer `bun install --lockfile-only` in CI-generated environments that only need an updated `bun.lock` without downloading tarballs.
-
-#### Operational Notes
-
-- `postMessage`/`structuredClone` improvements in Bun 1.2.21 make worker-based data passing far cheaper—lean on workers for heavy transforms when needed.
-- Keep Bun pinned to ≥1.2.21 (see `.github/workflows/ci.yml`) to guarantee access to these runtime guarantees.
-
-### React 19.2 Toolkit
-
-- Prefer `<Activity>` over conditional mounts when you need to toggle visibility but keep background work alive for instant resumes.
-- Split side-effect callbacks out of `useEffect` using `useEffectEvent` so dependency arrays stay accurate and reconnections don’t thrash.
-- Reach for the new cache-aware server APIs—`cacheSignal`, `prerender`, and `resume`—whenever you need deduped data fetching, pre-render persistence, or resumable streaming.
-
-### Testing & Quality Gates
-
-- Run unit tests with Bun (`bun test`) and lint with `bun run lint` before shipping changes.
-- All tests automatically load `test-setup.ts`; never recreate Next.js mocks locally.
-- Reuse the shared navigation helpers from `test-utils/navigation`:
+### Shared Testing Helpers
 
 ```ts
 import { resetNavigationMocks, routerMocks, setNavigationState } from "@test-utils/navigation";
-
-beforeEach(() => {
-  resetNavigationMocks();
-  setNavigationState({
-    locale: "en-GB",
-    pathname: "/en-GB/search",
-    searchParams: new URLSearchParams("query=one+sleeve"),
-  });
-});
-
-it("routes to the locale bag", () => {
-  routerMocks.push.mockResolvedValueOnce();
-  // render and assert
-});
+import { trackEventMock } from "@test-utils/trackEventMock";
+import { clickWithAct } from "@test-utils/clickWithAct";
 ```
 
-- Prefer React Testing Library for component assertions and lean on Jotai’s `Provider` when stateful atoms are involved.
+- Call `resetNavigationMocks()` + `setNavigationState()` in `beforeEach`.
+- Reset `trackEventMock` between tests.
+- Wrap user interactions with `clickWithAct` to keep Ant Design forms synchronized.
 
-#### Shared Testing Helpers
+### Observability Quick Reference
 
-- `@test-utils/trackEventMock`: import this mock to assert telemetry payloads; call `trackEventMock.mockReset()` inside `beforeEach` hooks so parallel specs stay isolated.
-- `@test-utils/clickWithAct`: wrap `fireEvent.click` calls with this helper to automatically run interactions inside `act()`—it keeps Ant Design form updates synchronous without repeating boilerplate.
+- `scripts/verifyTranslations.ts` – guarantees localization parity.
+- `reports/junit-report.xml` – Bun test output for CI parsers.
+- `product-cache.sqlite` – hydrated via Bun-native scripts; never mutate manually.
 
-#### Footer Smoke Test
-
-- `config/footerLinks.smoke.test.ts` walks every footer link and asserts a 200 response. Set `FOOTER_LINKS_BASE_URL` (for example, `http://127.0.0.1:3000`) in CI to enable the check; when the variable is absent the suite is skipped locally so you can iterate without launching the dev server first.
-
-### Analytics & Experimentation
-
-- Track key funnel events with `trackEvent`; include subtotal, shipping, total, and itemCount when instrumenting cart milestones.
-- Advocate for measurement hooks whenever shipping new UI flows; note planned KPIs in Serena before implementation.
-
-### Accessibility & Content
-
-- Maintain semantic Ant Design components, provide descriptive `alt` text for all `next/image` assets, and keep CTA copy actionable.
-- Verify cross-locale content when adjusting copy or routes; default locales live under `app/[locale]/`.
-
-### Documentation & Communication
-
-- Record major architectural or UX decisions in Serena’s journal and cross-link to the relevant PR.
-- Update this handbook when rules evolve; have `AGENTS.md` and `.github/copilot-instructions.md` point here instead of duplicating guidance.
+Following this handbook keeps every contributor aligned with Coello’s standards, voice, and delivery quality. Deviations require explicit approval and documentation.

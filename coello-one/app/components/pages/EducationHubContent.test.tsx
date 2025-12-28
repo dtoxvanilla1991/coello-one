@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "bun:test";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { clickWithAct } from "@test-utils/clickWithAct";
 import { trackEventMock } from "@test-utils/trackEventMock";
 import type { EducationHubCopy } from "@/types/pages";
@@ -13,58 +13,61 @@ const hubCopy: EducationHubCopy = {
   hero: {
     kicker: "Hub",
     title: "Train smarter",
-    description: "Switch tabs",
+    description: "Protocol stack",
   },
-  tabs: [
+  ui: {
+    modalTitlePrefix: "Protocol TL;DR",
+    openTlDrLabel: "Open TL;DR",
+    closeLabel: "Close",
+    scienceLabel: "Science",
+    actionLabel: "Action",
+    tlDrHeading: "TL;DR",
+    microDoseHeading: "Microdose",
+  },
+  protocols: [
     {
-      key: "health",
-      label: "Health",
-      title: "Fuel",
-      description: "Fuel copy",
-      image: "/athletes/vertical/main-secondary-4.jpg",
-      imageAlt: "Fuel image",
-      focusPoints: ["Hydrate"],
-      highlights: [{ title: "Meals", description: "Colorful" }],
-      resources: [
-        {
-          label: "Fuel guide",
-          type: "video",
-          href: "https://example.com/fuel",
-          description: "Video",
-        },
-      ],
-      cta: {
-        label: "View fuel guide",
-        href: "https://example.com",
+      id: "recovery",
+      code: "Protocol 01",
+      title: "Repair",
+      subtitle: "Recovery",
+      tagline: "Circadian",
+      summary: "Sleep lab",
+      science: {
+        title: "Slow wave",
+        description: "GH release",
       },
+      action: "Anchor light",
+      tlDr: ["Light", "Dark"],
+      microDose: ["Shots", "Photos"],
+      deepDive: {
+        label: "Read deep dive",
+        href: "#recovery",
+      },
+      image: "/athletes/vertical/main-secondary-4.jpg",
+      imageAlt: "Recovery",
     },
     {
-      key: "activity",
-      label: "Activity",
-      title: "Program",
-      description: "Programming",
-      image: "/athletes/vertical/main-secondary-7.jpg",
-      imageAlt: "Activity image",
-      focusPoints: ["Contrast"],
-      highlights: [{ title: "Blocks", description: "Contrast" }],
-      resources: [
-        {
-          label: "Hybrid plan",
-          type: "program",
-          href: "https://example.com/program",
-          description: "PDF",
-        },
-      ],
-      cta: {
-        label: "View program",
-        href: "https://example.com/program",
+      id: "canvas",
+      code: "Protocol 02",
+      title: "Preserve",
+      subtitle: "Canvas",
+      tagline: "Dermal",
+      summary: "Protect ink",
+      science: {
+        title: "AGEs",
+        description: "Collagen",
       },
+      action: "Cycle meals",
+      tlDr: ["No sugar"],
+      microDose: ["Bone broth"],
+      deepDive: {
+        label: "Canvas guide",
+        href: "#canvas",
+      },
+      image: "/athletes/vertical/main-secondary-8.jpg",
+      imageAlt: "Canvas",
     },
   ],
-  commitment: {
-    title: "Commitment",
-    description: "We refresh the hub monthly.",
-  },
 };
 
 describe("EducationHubContent", () => {
@@ -72,33 +75,48 @@ describe("EducationHubContent", () => {
     trackEventMock.mockReset();
   });
 
-  it("unit: renders the first tab content by default", () => {
+  it("unit: renders protocol cards with summary content", () => {
     render(<EducationHubContent copy={hubCopy} />);
 
-    expect(screen.getByText(/Fuel copy/i)).toBeTruthy();
-    expect(screen.getByText(/Hydrate/i)).toBeTruthy();
+    expect(screen.getByText(/Repair/i)).toBeTruthy();
+    expect(screen.getByText(/Sleep lab/i)).toBeTruthy();
+    expect(screen.getByText(/Dermal/i)).toBeTruthy();
   });
 
-  it("integration: switches content when a new tab is selected", async () => {
+  it("integration: opens TL;DR modal for a protocol", async () => {
     render(<EducationHubContent copy={hubCopy} />);
 
-    await clickWithAct(screen.getByRole("tab", { name: /Activity/i }));
+    await clickWithAct(screen.getAllByRole("button", { name: /Open TL;DR/i })[0]);
 
-    expect(await screen.findByText(/Programming/i)).toBeTruthy();
-    expect(screen.getByText(/Hybrid plan/i)).toBeTruthy();
+    const modal = await screen.findByRole("dialog");
+    expect(within(modal).getByText(/Slow wave/i)).toBeTruthy();
+    expect(within(modal).getByText(/Dark/i)).toBeTruthy();
   });
 
-  it("integration: tracks tab change events", async () => {
+  it("integration: tracks modal open and deep dive clicks", async () => {
     render(<EducationHubContent copy={hubCopy} />);
 
-    await clickWithAct(screen.getByRole("tab", { name: /Activity/i }));
+    const tlDrButton = screen.getAllByRole("button", { name: /Open TL;DR/i })[0];
+    await clickWithAct(tlDrButton);
 
     expect(trackEventMock).toHaveBeenCalledWith(
-      "education_hub_tab_change",
-      { tabKey: "activity" },
+      "education_hub_protocol_modal_open",
+      { protocolId: "recovery" },
       expect.objectContaining({
         locale: "en-GB",
-        translationKey: "pages.educationHub.tabs.activity",
+        translationKey: "pages.educationHub.protocols.recovery",
+      }),
+    );
+
+    const deepDiveLink = screen.getAllByRole("link", { name: /Read deep dive/i })[0];
+    await clickWithAct(deepDiveLink);
+
+    expect(trackEventMock).toHaveBeenCalledWith(
+      "education_hub_protocol_deep_dive",
+      { protocolId: "recovery" },
+      expect.objectContaining({
+        locale: "en-GB",
+        translationKey: "pages.educationHub.protocols.recovery",
       }),
     );
   });

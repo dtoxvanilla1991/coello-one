@@ -70,6 +70,7 @@
   },
   "accessibility": {
     "title": "Coello One’s commitment to accessibility",
+    "ariaLabel": "Accessibility statement sections",
     "paragraphs": [
       "Coello One is committed to making this website accessible to the widest possible audience. We regularly test and update the site and aim to conform to WCAG 2.1 Level AA where feasible.",
       "If you encounter an accessibility barrier, please contact us at coello.one@gmail.com with the page URL and a brief description of the issue. We will respond with alternatives and prioritize fixes whenever possible.",

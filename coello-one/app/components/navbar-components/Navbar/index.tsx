@@ -15,6 +15,8 @@ import { cartCountAtom } from "@/store/cartStore";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { buildLocaleRoute } from "@config/routes";
+import { useLocalePath } from "@/hooks/useLocalePath";
+import { useTranslations } from "@/localization/useTranslations";
 
 const { Header } = Layout;
 
@@ -24,10 +26,14 @@ export function Navbar() {
 
   const [searchVisible, setSearchVisible] = useState<boolean>(false);
   const router = useRouter();
-  const homeHref = buildLocaleRoute("home");
+  const withLocalePath = useLocalePath();
+  const homeHref = withLocalePath(buildLocaleRoute("home"));
+  const bagHref = withLocalePath(buildLocaleRoute("bag"));
+  const navigationCopy = useTranslations("navigation");
+  const navbarCopy = navigationCopy.navbar;
 
   const toggleSearch = () => setSearchVisible((prev) => !prev);
-  const navigateToBag = () => router.push(buildLocaleRoute("bag"));
+  const navigateToBag = () => router.push(bagHref);
 
   const visibilityClass = searchVisible ? "hidden!" : "block!";
 
@@ -39,7 +45,7 @@ export function Navbar() {
         icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         onClick={() => setCollapsed((prev) => !prev)}
         className="text-lg"
-        aria-label="Toggle navigation menu"
+        aria-label={navbarCopy.buttons.toggleMenu}
       />
       <Flex className={visibilityClass} justify="center" align="center">
         <Link href={homeHref} className="ml-2 block pt-1">
@@ -47,7 +53,7 @@ export function Navbar() {
             src="/coelloLogo.png"
             width={150}
             height={50}
-            alt="Coello one logo"
+            alt={navbarCopy.logoAlt}
             className="w-auto"
             priority
           />
@@ -67,7 +73,7 @@ export function Navbar() {
             icon={<ShoppingOutlined className="text-2xl" />}
             className={visibilityClass}
             onClick={navigateToBag}
-            aria-label="View bag"
+            aria-label={navbarCopy.buttons.viewBag}
           />
         </Badge>
         <Button
@@ -76,7 +82,7 @@ export function Navbar() {
           icon={<SearchOutlined className="text-2xl" />}
           className={visibilityClass}
           onClick={toggleSearch}
-          aria-label="Open search"
+          aria-label={navbarCopy.buttons.openSearch}
         />
       </Space>
       <NavbarSearch searchVisible={searchVisible} onClose={toggleSearch} />

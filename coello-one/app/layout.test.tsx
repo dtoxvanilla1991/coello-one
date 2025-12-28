@@ -1,7 +1,7 @@
 import { beforeEach, describe, it, expect } from "bun:test";
 import { resetRequestLocaleState } from "@test-utils/requestLocaleState";
 
-const { default: RootLayout } = await import("./layout");
+const { __TEST_LOCALE_LAYOUT__ } = await import("./layout");
 
 beforeEach(() => {
   resetRequestLocaleState();
@@ -9,7 +9,7 @@ beforeEach(() => {
 
 describe("RootLayout", () => {
   it("renders the locale shell with font utilities in test environments", async () => {
-    const tree = await RootLayout({
+    const tree = await __TEST_LOCALE_LAYOUT__({
       children: <div data-testid="child">Hello World</div>,
     });
 

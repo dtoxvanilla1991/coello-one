@@ -8,12 +8,17 @@ import LanguageSelect from "./LanguageSelect";
 import { TabsComponent } from "./TabsComponent";
 import Menu from "./SideMenu";
 import SiderFooter from "./SiderFooter";
+import { usePathname } from "next/navigation";
+import { useTranslations } from "@/localization/useTranslations";
 
 const { Sider } = Layout;
 const { Text } = Typography;
 
 export function NavbarSiderComponent() {
   const [collapsed, setCollapsed] = useAtom(siderCollapsedAtom);
+  const pathname = usePathname();
+  const navigationCopy = useTranslations("navigation");
+  const siderCopy = navigationCopy.sider;
   // Locking main page scroll when sidebar is visible since it's an overlay
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
@@ -27,9 +32,13 @@ export function NavbarSiderComponent() {
     };
   }, [collapsed]);
 
+  useEffect(() => {
+    setCollapsed(true);
+  }, [pathname, setCollapsed]);
+
   return (
     <Sider
-      aria-label="Navigation Sidebar"
+      aria-label={siderCopy.ariaLabel ?? "Navigation Sidebar"}
       role="navigation"
       className={`/* fill viewport below navbar */ /* making sure user can scroll within sidebar */ absolute! top-14 left-0 z-50! h-[calc(100vh-56px)] w-full overflow-y-auto bg-white pt-4! transition-transform! duration-300 ease-in-out ${collapsed ? "-translate-x-full!" : "translate-x-0!"}`}
       theme="light"
@@ -44,7 +53,7 @@ export function NavbarSiderComponent() {
         <Space size="large" align="center" className="w-full">
           <LanguageSelect />
           <Text className="uppercase" disabled>
-            How can we help you today?
+            {siderCopy.helperPrompt ?? "How can we help you today?"}
           </Text>
         </Space>
         <TabsComponent />

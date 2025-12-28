@@ -4,6 +4,7 @@ import { Provider, createStore } from "jotai";
 import { cartItemsAtom } from "@/store/cartStore";
 import type { CartItem } from "@/store/cartStore";
 import { resetNavigationMocks, routerMocks } from "@test-utils/navigation";
+import { DEFAULT_LOCALE } from "@config/i18n";
 
 const { Navbar } = await import("./index");
 
@@ -51,6 +52,6 @@ describe("Navbar", () => {
 
     fireEvent.click(screen.getByRole("button", { name: /view bag/i }));
 
-    expect(routerMocks.push).toHaveBeenCalledWith("/bag");
+    expect(routerMocks.push).toHaveBeenCalledWith(`/${DEFAULT_LOCALE}/bag`);
   });
 });

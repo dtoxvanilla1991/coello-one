@@ -1,0 +1,95 @@
+{
+  "navbar": {
+    "logoAlt": "Coello One logo",
+    "buttons": {
+      "toggleMenu": "Toggle navigation menu",
+      "viewBag": "View bag",
+      "openSearch": "Open search"
+    },
+    "search": {
+      "regionLabel": "Search catalog",
+      "placeholder": "Search Coello",
+      "submit": "Submit search"
+    }
+  },
+  "sider": {
+    "ariaLabel": "Navigation Sidebar",
+    "helperPrompt": "How can we help you today?",
+    "languageSelectorAriaLabel": "Language selector",
+    "languageSwitchError": "Unable to switch language. Check your connection and try again.",
+    "menu": {
+      "sections": {
+        "products": {
+          "title": "Products",
+          "items": {
+            "passionModel": "Passion model",
+            "powerModel": "Power model",
+            "fireModel": "Fire model"
+          }
+        },
+        "accessories": {
+          "title": "Accessories",
+          "items": {
+            "resistanceBands": "Resistance Bands"
+          }
+        }
+      }
+    },
+    "tabs": {
+      "labels": {
+        "women": "WOMEN",
+        "men": "MEN",
+        "accessories": "ACCESSORIES"
+      },
+      "cards": {
+        "women": {
+          "passion": { "imageAlt": "Female athlete wearing Passion model" },
+          "power": { "imageAlt": "Female athlete wearing Power model" },
+          "fire": { "imageAlt": "Female athlete wearing Fire model" }
+        },
+        "men": {
+          "fire": { "imageAlt": "Male athlete wearing Fire model" },
+          "passion": { "imageAlt": "Male athlete wearing Passion model" },
+          "power": { "imageAlt": "Male athlete wearing Power model" }
+        },
+        "accessories": {
+          "bands": { "imageAlt": "Coello resistance bands" }
+        }
+      },
+      "viewCta": "View"
+    },
+    "footer": {
+      "title": "More",
+      "links": {
+        "accessibility": "Accessibility Statement",
+        "blueprint": "Coello One Blueprint",
+        "help": "Help"
+      }
+    }
+  },
+  "footerMenu": {
+    "ariaLabel": "Footer quick links",
+    "groups": {
+      "help": {
+        "title": "Help",
+        "links": {
+          "faq": "FAQ",
+          "delivery": "Delivery Information",
+          "returnsPolicy": "Returns Policy",
+          "returnItem": "Return An Item",
+          "contact": "Contact Us",
+          "ordersInternational": "Orders International"
+        }
+      },
+      "pages": {
+        "title": "Pages",
+        "links": {
+          "about": "About Us",
+          "discounts": "Discounts",
+          "blueprint": "Coello One Blueprint",
+          "sustainability": "Sustainability"
+        }
+      }
+    }
+  }
+}

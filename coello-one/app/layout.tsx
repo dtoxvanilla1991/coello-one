@@ -1,6 +1,6 @@
-import "@ant-design/v5-patch-for-react-19";
 import "./globals.css";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { ConfigProvider } from "antd";
 import enGB from "antd/locale/en_GB";
 import esES from "antd/locale/es_ES";
@@ -10,7 +10,7 @@ import { AntdCompatibilityGate } from "@/components/providers/AntdCompatibilityG
 import { LocaleProvider } from "@/localization/LocaleProvider";
 import { getRequestLocale } from "@/localization/getRequestLocale";
 import type { SupportedLocale } from "@config/i18n";
-import { PRODUCTION_LANGUAGE_ALTERNATES } from "@config/i18n";
+import { LANGUAGE_ALTERNATES } from "@config/i18n";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
@@ -23,15 +23,21 @@ const ANTD_LOCALES: Record<SupportedLocale, typeof enGB> = {
   "es-ES": esES,
 };
 
-const LANGUAGE_ALTERNATES: Metadata["alternates"] = {
-  languages: PRODUCTION_LANGUAGE_ALTERNATES,
-};
-
 export const metadata: Metadata = {
-  alternates: LANGUAGE_ALTERNATES,
+  alternates: {
+    languages: LANGUAGE_ALTERNATES,
+  },
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <Suspense fallback={<LocaleLoadingShell />}>
+      <LocaleAwareRootLayout>{children}</LocaleAwareRootLayout>
+    </Suspense>
+  );
+}
+
+async function LocaleAwareRootLayout({ children }: { children: React.ReactNode }) {
   const locale = await getRequestLocale();
   const antdLocale = ANTD_LOCALES[locale] ?? enGB;
 
@@ -62,7 +68,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             }}
           >
             <AntdCompatibilityGate>
-              <AntdRegistry>{children}</AntdRegistry>
+              <Suspense fallback={null}>
+                <AntdRegistry layer>{children}</AntdRegistry>
+              </Suspense>
             </AntdCompatibilityGate>
           </ConfigProvider>
         </LocaleProvider>
@@ -70,3 +78,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     </html>
   );
 }
+
+function LocaleLoadingShell() {
+  return (
+    <html lang="en-GB">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <div />
+      </body>
+    </html>
+  );
+}
+
+export const __TEST_LOCALE_LAYOUT__ = LocaleAwareRootLayout;

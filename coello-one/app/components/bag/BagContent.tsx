@@ -18,6 +18,7 @@ import { buildLocaleRoute } from "@config/routes";
 import { useTranslations } from "@/localization/useTranslations";
 import { formatMessage } from "@/localization/formatMessage";
 import { useCurrentLocale } from "@/hooks/useCurrentLocale";
+import { useLocalePath } from "@/hooks/useLocalePath";
 import { trackEvent } from "@/utils/trackEvent";
 import { formatPrice } from "./constants";
 import type { ExtraItem, ViewMode } from "./types";
@@ -39,9 +40,10 @@ export function BagContent() {
   const addItem = useSetAtom(addCartItemAtom);
   const router = useRouter();
   const locale = useCurrentLocale();
+  const withLocalePath = useLocalePath();
   const bagCopy = useTranslations("bag");
-  const homeRoute = buildLocaleRoute("home");
-  const checkoutRoute = buildLocaleRoute("checkout");
+  const homeRoute = withLocalePath(buildLocaleRoute("home"));
+  const checkoutRoute = withLocalePath(buildLocaleRoute("checkout"));
 
   const itemCount = useMemo(() => items.reduce((count, item) => count + item.quantity, 0), [items]);
 
