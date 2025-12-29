@@ -42,7 +42,7 @@ describe("CheckoutContent", () => {
       {
         id: "osc-men-gray-m",
         name: "One Sleeve Classic",
-        image: "/athletes/vertical/main-secondary-1.jpg",
+        image: "/athletes/vertical/main-secondary-1.png",
         price: 45,
         quantity: 2,
         size: "M",
@@ -78,7 +78,7 @@ describe("CheckoutContent", () => {
       {
         id: "osc-men-gray-m",
         name: "One Sleeve Classic",
-        image: "/athletes/vertical/main-secondary-1.jpg",
+        image: "/athletes/vertical/main-secondary-1.png",
         price: 45,
         quantity: 1,
         size: "M",

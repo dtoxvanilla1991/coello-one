@@ -24,7 +24,7 @@ describe("Navbar", () => {
         {
           id: "osc-item",
           name: "One Sleeve Classic",
-          image: "/athletes/vertical/main-secondary-1.jpg",
+          image: "/athletes/vertical/main-secondary-1.png",
           price: 45,
           quantity: cartQuantity,
           size: "M",
