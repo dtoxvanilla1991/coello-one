@@ -1,36 +1,36 @@
 {
   "embedded": {
     "title": "Secure Stripe checkout",
+    "error": "Unable to load the secure checkout experience. Please try again.",
     "subtitle": "Complete your Coello Sleeve purchase without leaving the site.",
     "loading": "Preparing your payment session...",
-    "error": "Unable to load the secure checkout experience. Please try again.",
     "retry": "Retry checkout",
     "secureNote": "Stripe encrypts every transaction and calculates tax automatically.",
     "secureDescription": "We will confirm your delivery as soon as the payment succeeds."
   },
   "returnPage": {
-    "title": "Payment review",
-    "amountLabel": "Amount charged",
-    "customerLabel": "Receipt sent to",
-    "orderLabel": "Session reference",
-    "missingSession": "Open this page from the Stripe receipt so we can locate your order.",
-    "ctaPrimary": "View bag",
-    "ctaSecondary": "Back to shop",
     "success": {
       "badge": "Paid",
-      "body": "Payment confirmed. We will email your shipping confirmation shortly."
+      "body": "Payment confirmed. We'll email your receipt and confirm delivery shortly."
     },
     "processing": {
       "badge": "Processing",
-      "body": "Stripe is finalising your payment. Refresh this page in a few seconds."
+      "body": "Your payment is processing. This usually takes a few seconds."
     },
     "open": {
-      "badge": "Action needed",
-      "body": "Complete the embedded checkout to finish paying for your sleeve."
+      "badge": "Open",
+      "body": "We're waiting for Stripe to confirm your payment. This page will update automatically."
     },
     "error": {
-      "badge": "Not found",
-      "body": "We could not find this checkout session. Contact support if you were charged."
-    }
+      "badge": "Issue",
+      "body": "We couldn't confirm your payment yet. If you were charged, please contact support."
+    },
+    "title": "Payment review",
+    "missingSession": "Open this page from the Stripe receipt so we can locate your order.",
+    "amountLabel": "Amount charged",
+    "customerLabel": "Receipt sent to",
+    "orderLabel": "Order",
+    "ctaPrimary": "View bag",
+    "ctaSecondary": "Back to shop"
   }
 }

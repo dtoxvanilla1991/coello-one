@@ -1,13 +1,4 @@
 {
-  "navigation": {
-    "ariaLabel": "Políticas legales",
-    "links": [
-      { "id": "termsConditions", "label": "Términos y Condiciones", "href": "/terms-conditions" },
-      { "id": "privacyNotice", "label": "Aviso de Privacidad", "href": "/privacy-notice" },
-      { "id": "termsOfUse", "label": "Términos de Uso", "href": "/terms-of-use" },
-      { "id": "cookiePolicy", "label": "Política de Cookies", "href": "/cookie-policy" }
-    ]
-  },
   "termsConditions": {
     "metadata": {
       "title": "Términos y Condiciones",
@@ -138,6 +129,108 @@
       ]
     }
   },
+  "cookiePolicy": {
+    "metadata": {
+      "title": "Política de Cookies",
+      "description": "Cómo Coello One usa cookies y tecnologías similares."
+    },
+    "hero": {
+      "title": "Política de Cookies",
+      "subtitle": "Transparencia al nivel de las grandes marcas deportivas, adaptada a las experiencias de Coello.",
+      "updated": "Vigente desde el 24 de noviembre de 2025",
+      "summary": [
+        "Explica las cookies y píxeles que utilizamos.",
+        "Detalla cómo controlar tus preferencias desde cualquier dispositivo.",
+        "Aclara cuándo interviene tecnología publicitaria y cómo la evaluamos."
+      ]
+    },
+    "sections": [
+      {
+        "id": "overview",
+        "title": "¿Qué son las cookies?",
+        "paragraphs": [
+          "Son archivos pequeños almacenados en tu dispositivo para recordar ajustes, mantener sesiones seguras y personalizar contenido.",
+          "También usamos tecnologías equivalentes como local storage, eventos SDK y tracking server-side cuando mejora el rendimiento."
+        ]
+      },
+      {
+        "id": "types",
+        "title": "Tipos de cookies",
+        "paragraphs": [
+          "Clasificamos las cookies igual que Gymshark, Adidas y Nike para que los cuadros de consentimiento sean familiares."
+        ],
+        "listTitle": "Categorías",
+        "listItems": [
+          {
+            "title": "Esenciales",
+            "description": "Necesarias para checkout, autenticación y balanceo de carga."
+          },
+          {
+            "title": "Rendimiento",
+            "description": "Nos ayudan a medir tráfico, depurar errores y medir velocidad."
+          },
+          {
+            "title": "Funcionales",
+            "description": "Guardan locale, contenido del bolso y preferencias de accesibilidad."
+          },
+          {
+            "title": "Marketing",
+            "description": "Soportan campañas opt-in, colaboraciones con creadores o retargeting."
+          }
+        ]
+      },
+      {
+        "id": "controls",
+        "title": "Gestión de preferencias",
+        "paragraphs": [
+          "Puedes ajustar la configuración desde nuestro banner, el navegador o controles del sistema. Revocar el consentimiento desactiva las cookies no esenciales manteniendo el sitio operativo.",
+          "En la UE/Reino Unido respetamos señales Global Privacy Control e IAB TCF cuando existan."
+        ],
+        "listTitle": "Opciones de control",
+        "listItems": [
+          {
+            "title": "Banner",
+            "description": "Usa el enlace \"Gestionar preferencias\" para activar o desactivar categorías cuando quieras."
+          },
+          {
+            "title": "Navegador",
+            "description": "Limpia caché/cookies o usa navegación privada para reiniciar identificadores."
+          },
+          {
+            "title": "Dispositivo",
+            "description": "Limita el rastreo publicitario en iOS/Android; respetamos esas elecciones."
+          }
+        ]
+      },
+      {
+        "id": "ad-tech",
+        "title": "Publicidad y analítica",
+        "paragraphs": [
+          "Actualmente trabajamos con PostHog, Google Analytics 4 (consent mode) y Meta Pixels para campañas con consentimiento.",
+          "Cada socio se compromete contractualmente a procesar datos solo en nuestro nombre y ofrecer opt-outs regionales."
+        ]
+      },
+      {
+        "id": "updates",
+        "title": "Actualizaciones",
+        "paragraphs": [
+          "Revisamos esta política cada trimestre o cuando sumamos un nuevo vendor. Los cambios relevantes activan un banner y aviso por correo.",
+          "Seguir usando el sitio tras una actualización implica la aceptación de la versión revisada."
+        ]
+      }
+    ],
+    "contact": {
+      "title": "¿Dudas sobre cookies o consentimiento?",
+      "description": "Nuestro equipo de privacidad está disponible por correo para cualquier ajuste de consentimiento.",
+      "channels": [
+        {
+          "label": "Correo",
+          "value": "privacy@coello.one",
+          "href": "mailto:privacy@coello.one"
+        }
+      ]
+    }
+  },
   "privacyNotice": {
     "metadata": {
       "title": "Aviso de Privacidad",
@@ -244,7 +337,10 @@
             "title": "Concierge",
             "description": "Escríbenos para solicitudes complejas; verificaremos tu identidad antes de proceder."
           },
-          { "title": "Autoridad", "description": "Contacta a la AEPD o al regulador de tu país." }
+          {
+            "title": "Autoridad",
+            "description": "Contacta a la AEPD o al regulador de tu país."
+          }
         ]
       },
       {
@@ -260,7 +356,11 @@
       "title": "Preguntas de privacidad",
       "description": "Escríbenos para solicitudes de acceso, eliminación o auditorías de datos.",
       "channels": [
-        { "label": "Correo", "value": "privacy@coello.one", "href": "mailto:privacy@coello.one" }
+        {
+          "label": "Correo",
+          "value": "privacy@coello.one",
+          "href": "mailto:privacy@coello.one"
+        }
       ]
     }
   },
@@ -340,106 +440,37 @@
       "title": "¿Dudas sobre el uso?",
       "description": "Escríbenos para resolver la etiqueta de la plataforma o coordinar colaboraciones.",
       "channels": [
-        { "label": "Correo", "value": "support@coello.one", "href": "mailto:support@coello.one" }
+        {
+          "label": "Correo",
+          "value": "support@coello.one",
+          "href": "mailto:support@coello.one"
+        }
       ]
     }
   },
-  "cookiePolicy": {
-    "metadata": {
-      "title": "Política de Cookies",
-      "description": "Cómo Coello One usa cookies y tecnologías similares."
-    },
-    "hero": {
-      "title": "Política de Cookies",
-      "subtitle": "Transparencia al nivel de las grandes marcas deportivas, adaptada a las experiencias de Coello.",
-      "updated": "Vigente desde el 24 de noviembre de 2025",
-      "summary": [
-        "Explica las cookies y píxeles que utilizamos.",
-        "Detalla cómo controlar tus preferencias desde cualquier dispositivo.",
-        "Aclara cuándo interviene tecnología publicitaria y cómo la evaluamos."
-      ]
-    },
-    "sections": [
+  "navigation": {
+    "ariaLabel": "Políticas legales",
+    "links": [
       {
-        "id": "overview",
-        "title": "¿Qué son las cookies?",
-        "paragraphs": [
-          "Son archivos pequeños almacenados en tu dispositivo para recordar ajustes, mantener sesiones seguras y personalizar contenido.",
-          "También usamos tecnologías equivalentes como local storage, eventos SDK y tracking server-side cuando mejora el rendimiento."
-        ]
+        "id": "termsConditions",
+        "label": "Términos y Condiciones",
+        "href": "/terms-conditions"
       },
       {
-        "id": "types",
-        "title": "Tipos de cookies",
-        "paragraphs": [
-          "Clasificamos las cookies igual que Gymshark, Adidas y Nike para que los cuadros de consentimiento sean familiares."
-        ],
-        "listTitle": "Categorías",
-        "listItems": [
-          {
-            "title": "Esenciales",
-            "description": "Necesarias para checkout, autenticación y balanceo de carga."
-          },
-          {
-            "title": "Rendimiento",
-            "description": "Nos ayudan a medir tráfico, depurar errores y medir velocidad."
-          },
-          {
-            "title": "Funcionales",
-            "description": "Guardan locale, contenido del bolso y preferencias de accesibilidad."
-          },
-          {
-            "title": "Marketing",
-            "description": "Soportan campañas opt-in, colaboraciones con creadores o retargeting."
-          }
-        ]
+        "id": "privacyNotice",
+        "label": "Aviso de Privacidad",
+        "href": "/privacy-notice"
       },
       {
-        "id": "controls",
-        "title": "Gestión de preferencias",
-        "paragraphs": [
-          "Puedes ajustar la configuración desde nuestro banner, el navegador o controles del sistema. Revocar el consentimiento desactiva las cookies no esenciales manteniendo el sitio operativo.",
-          "En la UE/Reino Unido respetamos señales Global Privacy Control e IAB TCF cuando existan."
-        ],
-        "listTitle": "Opciones de control",
-        "listItems": [
-          {
-            "title": "Banner",
-            "description": "Usa el enlace \"Gestionar preferencias\" para activar o desactivar categorías cuando quieras."
-          },
-          {
-            "title": "Navegador",
-            "description": "Limpia caché/cookies o usa navegación privada para reiniciar identificadores."
-          },
-          {
-            "title": "Dispositivo",
-            "description": "Limita el rastreo publicitario en iOS/Android; respetamos esas elecciones."
-          }
-        ]
+        "id": "termsOfUse",
+        "label": "Términos de Uso",
+        "href": "/terms-of-use"
       },
       {
-        "id": "ad-tech",
-        "title": "Publicidad y analítica",
-        "paragraphs": [
-          "Actualmente trabajamos con PostHog, Google Analytics 4 (consent mode) y Meta Pixels para campañas con consentimiento.",
-          "Cada socio se compromete contractualmente a procesar datos solo en nuestro nombre y ofrecer opt-outs regionales."
-        ]
-      },
-      {
-        "id": "updates",
-        "title": "Actualizaciones",
-        "paragraphs": [
-          "Revisamos esta política cada trimestre o cuando sumamos un nuevo vendor. Los cambios relevantes activan un banner y aviso por correo.",
-          "Seguir usando el sitio tras una actualización implica la aceptación de la versión revisada."
-        ]
+        "id": "cookiePolicy",
+        "label": "Política de Cookies",
+        "href": "/cookie-policy"
       }
-    ],
-    "contact": {
-      "title": "¿Dudas sobre cookies o consentimiento?",
-      "description": "Nuestro equipo de privacidad está disponible por correo para cualquier ajuste de consentimiento.",
-      "channels": [
-        { "label": "Correo", "value": "privacy@coello.one", "href": "mailto:privacy@coello.one" }
-      ]
-    }
+    ]
   }
 }

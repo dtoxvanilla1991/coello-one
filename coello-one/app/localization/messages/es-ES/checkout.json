@@ -1,36 +1,36 @@
 {
   "embedded": {
     "title": "Checkout seguro con Stripe",
+    "error": "No se pudo cargar el checkout seguro. Intentalo de nuevo.",
     "subtitle": "Completa tu compra de Coello sin salir del sitio.",
     "loading": "Preparando tu sesion de pago...",
-    "error": "No se pudo cargar el checkout seguro. Intentalo de nuevo.",
     "retry": "Reintentar checkout",
     "secureNote": "Stripe cifra cada transaccion y calcula los impuestos automaticamente.",
     "secureDescription": "Confirmaremos el envio en cuanto el pago se complete."
   },
   "returnPage": {
-    "title": "Revision del pago",
-    "amountLabel": "Importe cobrado",
-    "customerLabel": "Recibo enviado a",
-    "orderLabel": "Referencia de la sesion",
-    "missingSession": "Abre esta pagina desde el recibo de Stripe para localizar tu pedido.",
-    "ctaPrimary": "Ver bolsa",
-    "ctaSecondary": "Seguir comprando",
     "success": {
       "badge": "Pagado",
-      "body": "Pago confirmado. Enviaremos la confirmacion de envio en breve."
+      "body": "Pago confirmado. Te enviaremos el recibo y confirmaremos la entrega en breve."
     },
     "processing": {
       "badge": "Procesando",
-      "body": "Stripe sigue confirmando tu pago. Actualiza la pagina en unos segundos."
+      "body": "Tu pago se está procesando. Normalmente tarda unos segundos."
     },
     "open": {
-      "badge": "Accion requerida",
-      "body": "Completa el checkout incrustado para finalizar el pago."
+      "badge": "Pendiente",
+      "body": "Estamos esperando la confirmación de Stripe. Esta página se actualizará automáticamente."
     },
     "error": {
-      "badge": "No encontrado",
-      "body": "No encontramos esta sesion de checkout. Contacta soporte si se realizo el cargo."
-    }
+      "badge": "Problema",
+      "body": "Aún no pudimos confirmar tu pago. Si te cobraron, por favor contacta con soporte."
+    },
+    "title": "Revision del pago",
+    "missingSession": "Abre esta pagina desde el recibo de Stripe para localizar tu pedido.",
+    "amountLabel": "Importe cobrado",
+    "customerLabel": "Recibo enviado a",
+    "orderLabel": "Pedido",
+    "ctaPrimary": "Ver bolsa",
+    "ctaSecondary": "Seguir comprando"
   }
 }

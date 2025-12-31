@@ -146,3 +146,35 @@ export const accessoryKitItemIdx = uniqueIndex("accessory_kit_item_unique").on(
   accessoryKitItems.productId,
   accessoryKitItems.sortOrder,
 );
+
+export const stripeOrders = mysqlTable("stripe_orders", {
+  id: serial("id").primaryKey(),
+  sessionId: varchar("session_id", { length: 255 }).notNull(),
+  status: varchar("status", { length: 32 }),
+  paymentStatus: varchar("payment_status", { length: 32 }),
+  currency: char("currency", { length: 3 }),
+  amountTotal: int("amount_total"),
+  customerEmail: varchar("customer_email", { length: 255 }),
+  locale: varchar("locale", { length: 16 }),
+  metadataJson: text("metadata_json"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow(),
+});
+
+export const stripeOrderSessionIdx = uniqueIndex("stripe_orders_session_id_unique").on(
+  stripeOrders.sessionId,
+);
+
+export const stripeOrderEvents = mysqlTable("stripe_order_events", {
+  id: serial("id").primaryKey(),
+  stripeEventId: varchar("stripe_event_id", { length: 255 }).notNull(),
+  sessionId: varchar("session_id", { length: 255 }),
+  eventType: varchar("event_type", { length: 255 }).notNull(),
+  stripeCreated: int("stripe_created").notNull(),
+  payloadJson: text("payload_json").notNull(),
+  receivedAt: timestamp("received_at").defaultNow(),
+});
+
+export const stripeOrderEventIdIdx = uniqueIndex("stripe_order_events_event_id_unique").on(
+  stripeOrderEvents.stripeEventId,
+);

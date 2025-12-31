@@ -45,6 +45,28 @@ Match these versions when referencing documentation or adding integrations.
    - `bun run format` / `bun run format:fix` – Prettier + Tailwind sorting
    - `bun run verify:locales` – ensure namespace parity across locales
 
+---
+
+## Stripe Webhooks (Local Development)
+
+To test Stripe webhooks locally, forward events from Stripe to the Next.js webhook route.
+
+1. **Install Stripe CLI**
+   - macOS: `brew install stripe/stripe-cli/stripe`
+   - Other platforms: follow Stripe’s official install instructions
+
+2. **Login**
+   - Run: `stripe login` (opens a browser to authorize)
+
+3. **Start the listener (tunnel events to localhost)**
+   - Run:
+     - `stripe listen --forward-to localhost:3000/api/stripe/webhook`
+
+4. **Set the webhook signing secret**
+   - Stripe CLI prints a value like: `whsec_...`
+   - Add it to `coello-one/.env.local`:
+     - `STRIPE_WEBHOOK_SECRET=whsec_...`
+
 4. **Formatting hooks:** staged TS/TSX files auto-format with Prettier; staged Python files auto-format with Black. Resolve hook output before committing.
 
 ---

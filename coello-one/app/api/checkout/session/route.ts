@@ -37,18 +37,46 @@ const EU_AND_UK_ALLOWED_COUNTRIES: Stripe.Checkout.SessionCreateParams.ShippingA
   "GB",
 ];
 
+function getCookieValue(cookieHeader: string | null, name: string): string | null {
+  if (!cookieHeader) return null;
+
+  const needle = `${name}=`;
+  const parts = cookieHeader.split(";");
+  for (const part of parts) {
+    const trimmed = part.trim();
+    if (trimmed.startsWith(needle)) {
+      return decodeURIComponent(trimmed.slice(needle.length));
+    }
+  }
+  return null;
+}
+
+function resolveLocaleForMetadata(request: NextRequest): string {
+  const headerLocale = request.headers.get("x-locale");
+  const cookieLocale = getCookieValue(request.headers.get("cookie"), "NEXT_LOCALE");
+  return headerLocale ?? cookieLocale ?? "en-GB";
+}
+
 function resolveReturnUrl(request: NextRequest): string {
-  const origin = request.headers.get("origin") ?? process.env.NEXT_PUBLIC_APP_URL ?? DEFAULT_RETURN_HOST;
+  const origin =
+    request.headers.get("origin") ?? process.env.NEXT_PUBLIC_APP_URL ?? DEFAULT_RETURN_HOST;
   const normalizedOrigin = origin.endsWith("/") ? origin.slice(0, -1) : origin;
   return `${normalizedOrigin}/return?session_id={CHECKOUT_SESSION_ID}`;
 }
 
 export async function POST(request: NextRequest) {
   try {
+    const locale = resolveLocaleForMetadata(request);
     const stripe = getStripeClient();
     const session = await stripe.checkout.sessions.create({
       ui_mode: "embedded",
       mode: "payment",
+      metadata: {
+        locale,
+        cartItemCount: "1",
+        cartSku_0: "one-sleeve-classic",
+        cartQty_0: "1",
+      },
       automatic_tax: { enabled: true },
       phone_number_collection: { enabled: true },
       shipping_address_collection: {

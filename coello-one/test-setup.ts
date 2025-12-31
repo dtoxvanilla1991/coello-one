@@ -17,6 +17,17 @@ import {
 // Register the DOM environment
 GlobalRegistrator.register();
 
+// Prevent tests from mutating the checked-in product cache DB.
+process.env.PRODUCT_CACHE_DB_PATH = ":memory:";
+process.env.PRODUCT_CACHE_TTL_MS = "-1";
+process.env.PRODUCT_CACHE_WARMUP = "false";
+(process.env as Record<string, string | undefined>).NODE_ENV = "test";
+
+(Bun.env as Record<string, string | undefined>).PRODUCT_CACHE_DB_PATH = ":memory:";
+(Bun.env as Record<string, string | undefined>).PRODUCT_CACHE_TTL_MS = "-1";
+(Bun.env as Record<string, string | undefined>).PRODUCT_CACHE_WARMUP = "false";
+(Bun.env as Record<string, string | undefined>).NODE_ENV = "test";
+
 // Tell React that the test runner wraps updates in act().
 (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 

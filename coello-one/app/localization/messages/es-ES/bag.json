@@ -1,13 +1,7 @@
 {
   "metadata": {
-    "title": "Bolsa | Coello One",
-    "description": "Revisa tus prendas de Coello One antes de finalizar la compra."
-  },
-  "header": {
-    "bagTitle": "Tu bolsa",
-    "wishlistTitle": "Lista de deseos",
-    "bagLabel": "Bolsa ({count})",
-    "wishlistLabel": "Lista"
+    "title": "Bolsa | Coello",
+    "description": "Revisa tu bolsa, ajusta cantidades y paga con seguridad."
   },
   "shippingStatus": {
     "qualifiedCopy": "Has desbloqueado envio express gratis",
@@ -15,32 +9,11 @@
     "qualifiedTooltip": "Disfruta del envio express gratuito en este pedido.",
     "progressTooltip": "El envio express se activa cuando el subtotal alcanza el umbral."
   },
-  "reservation": {
-    "title": "Tus prendas no estan reservadas",
-    "body": "Finaliza pronto para no perder tu seleccion."
-  },
-  "items": {
-    "continueShopping": "Seguir comprando",
-    "tag": "Favorito",
-    "fitMale": "Corte hombre",
-    "fitFemale": "Corte mujer",
-    "quantity": "Cant",
-    "sizeLabel": "Talla",
-    "remove": "Quitar"
-  },
-  "extras": {
-    "title": "Anade un detalle extra",
-    "description": "Incluye uno o mas articulos para conseguir envio gratuito.",
-    "add": "Anadir",
-    "added": "Anadido",
-    "highlights": {
-      "unlockFreeDelivery": "Anade para liberar el envio"
-    }
-  },
-  "empty": {
-    "title": "Tu bolsa esta vacia",
-    "description": "Explora la coleccion para sumar tu primera prenda.",
-    "cta": "Seguir comprando"
+  "header": {
+    "bagLabel": "Bolsa ({count})",
+    "wishlistLabel": "Lista",
+    "bagTitle": "Tu bolsa",
+    "wishlistTitle": "Lista de deseos"
   },
   "summary": {
     "discountTitle": "Codigo de descuento",
@@ -55,6 +28,33 @@
     "taxes": "Impuestos incluidos cuando aplique",
     "checkoutCta": "Pagar con seguridad",
     "accepted": "Aceptamos"
+  },
+  "items": {
+    "fitMale": "Corte hombre",
+    "fitFemale": "Corte mujer",
+    "tag": "Favorito",
+    "sizeLabel": "Talla",
+    "quantity": "Cant",
+    "remove": "Quitar",
+    "continueShopping": "Seguir comprando"
+  },
+  "extras": {
+    "title": "Anade un detalle extra",
+    "description": "Incluye uno o mas articulos para conseguir envio gratuito.",
+    "highlights": {
+      "unlockFreeDelivery": "Anade para liberar el envio"
+    },
+    "added": "Anadido",
+    "add": "Anadir"
+  },
+  "empty": {
+    "title": "Tu bolsa esta vacia",
+    "description": "Explora la coleccion para sumar tu primera prenda.",
+    "cta": "Seguir comprando"
+  },
+  "reservation": {
+    "title": "Tus prendas no estan reservadas",
+    "body": "Finaliza pronto para no perder tu seleccion."
   },
   "wishlist": {
     "title": "Guarda en la lista",

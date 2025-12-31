@@ -1,11 +1,4 @@
 {
-  "metadata": {
-    "title": "Pedidos internacionales | Ayuda Coello",
-    "description": "Descubre cómo Coello gestiona aranceles, divisas y tracking para tus pedidos internacionales de una sola manga."
-  },
-  "breadcrumbLabel": "Centro de ayuda",
-  "title": "Comprar desde el extranjero",
-  "description": "Creamos una red logística global para que tu One-Sleeve llegue rápido, asegurado y con impuestos liquidados.",
   "sections": {
     "fulfilment": {
       "title": "Red de fulfilment",
@@ -25,8 +18,6 @@
       ]
     },
     "currency": {
-      "title": "Cobertura de divisas",
-      "description": "Mostramos los precios en tu moneda y fijamos el tipo durante 30 minutos mientras finalizas la compra.",
       "table": {
         "columns": {
           "currency": "Divisa",
@@ -55,7 +46,9 @@
             "notes": "Convertimos automáticamente al finalizar la compra con tarifas bloqueadas durante 30 minutos."
           }
         ]
-      }
+      },
+      "title": "Cobertura de divisas",
+      "description": "Mostramos los precios en tu moneda y fijamos el tipo durante 30 minutos mientras finalizas la compra."
     },
     "timeline": {
       "title": "Tu línea de entrega",
@@ -96,5 +89,12 @@
         "trail": "y menciona “aduanas” en tu mensaje."
       }
     }
-  }
+  },
+  "metadata": {
+    "title": "Pedidos internacionales | Ayuda Coello",
+    "description": "Descubre cómo Coello gestiona aranceles, divisas y tracking para tus pedidos internacionales de una sola manga."
+  },
+  "title": "Comprar desde el extranjero",
+  "description": "Creamos una red logística global para que tu One-Sleeve llegue rápido, asegurado y con impuestos liquidados.",
+  "breadcrumbLabel": "Centro de ayuda"
 }

@@ -1,13 +1,4 @@
 {
-  "navigation": {
-    "ariaLabel": "Legal policies",
-    "links": [
-      { "id": "termsConditions", "label": "Terms & Conditions", "href": "/terms-conditions" },
-      { "id": "privacyNotice", "label": "Privacy Notice", "href": "/privacy-notice" },
-      { "id": "termsOfUse", "label": "Terms of Use", "href": "/terms-of-use" },
-      { "id": "cookiePolicy", "label": "Cookie Policy", "href": "/cookie-policy" }
-    ]
-  },
   "termsConditions": {
     "metadata": {
       "title": "Terms & Conditions",
@@ -130,7 +121,113 @@
       "title": "Need contract support?",
       "description": "Reach our concierge inbox for priority handling of any contractual questions.",
       "channels": [
-        { "label": "Email", "value": "coello.one@gmail.com", "href": "mailto:coello.one@gmail.com" }
+        {
+          "label": "Email",
+          "value": "coello.one@gmail.com",
+          "href": "mailto:coello.one@gmail.com"
+        }
+      ]
+    }
+  },
+  "cookiePolicy": {
+    "metadata": {
+      "title": "Cookie Policy",
+      "description": "How Coello One uses cookies and similar technologies."
+    },
+    "hero": {
+      "title": "Cookie Policy",
+      "subtitle": "Built with the same transparency benchmarks used by top global sports brands, adapted for Tailwind-powered Coello experiences.",
+      "updated": "Effective 24 November 2025",
+      "summary": [
+        "Explains the cookies and pixels we rely on.",
+        "Details how you can control preferences from any device.",
+        "Clarifies when third-party ad tech is involved and how we vet it."
+      ]
+    },
+    "sections": [
+      {
+        "id": "overview",
+        "title": "What are cookies?",
+        "paragraphs": [
+          "Cookies are small files stored on your device to remember settings, keep sessions secure, and tailor content.",
+          "We also use equivalent technologies such as local storage, SDK events, and server-side tracking where it improves performance."
+        ]
+      },
+      {
+        "id": "types",
+        "title": "Types of cookies we use",
+        "paragraphs": [
+          "We categorize cookies similarly to Gymshark, Adidas, and Nike to keep consent dialogs familiar."
+        ],
+        "listTitle": "Categories",
+        "listItems": [
+          {
+            "title": "Essential",
+            "description": "Required for checkout, authentication, and load balancing."
+          },
+          {
+            "title": "Performance",
+            "description": "Help us measure traffic, debug issues, and benchmark component speed."
+          },
+          {
+            "title": "Functional",
+            "description": "Store locale, bag contents, and accessibility preferences."
+          },
+          {
+            "title": "Marketing",
+            "description": "Support opt-in campaigns, creator collaborations, or retargeting."
+          }
+        ]
+      },
+      {
+        "id": "controls",
+        "title": "Managing preferences",
+        "paragraphs": [
+          "You can adjust cookie settings through our banner, your browser, or system-level controls. Revoking consent disables non-essential cookies while keeping the site usable.",
+          "Within the EU/UK we honor Global Privacy Control signals and IAB TCF strings where supported."
+        ],
+        "listTitle": "Control options",
+        "listItems": [
+          {
+            "title": "Banner",
+            "description": "Use the \"Manage preferences\" link to toggle categories at any time."
+          },
+          {
+            "title": "Browser",
+            "description": "Clear caches/cookies or use private browsing to reset identifiers."
+          },
+          {
+            "title": "Device",
+            "description": "Limit ad tracking in iOS/Android settings; we respect those choices."
+          }
+        ]
+      },
+      {
+        "id": "ad-tech",
+        "title": "Advertising & analytics",
+        "paragraphs": [
+          "We currently partner with PostHog, Google Analytics 4 (consent mode), and Meta Pixels for opted-in campaigns.",
+          "Each partner contractually agrees to process data only on our behalf and provide regional opt-outs."
+        ]
+      },
+      {
+        "id": "updates",
+        "title": "Policy updates",
+        "paragraphs": [
+          "We review this policy quarterly or whenever we add a new vendor. Material changes trigger an on-site banner and email notice.",
+          "Continuing to use the site after updates signals acceptance of the revised policy."
+        ]
+      }
+    ],
+    "contact": {
+      "title": "Cookie or consent questions",
+      "description": "Our privacy desk can help you tailor analytics without losing essential functionality.",
+      "channels": [
+        {
+          "label": "Email",
+          "value": "privacy@coello.one",
+          "href": "mailto:privacy@coello.one"
+        }
       ]
     }
   },
@@ -259,7 +356,11 @@
       "title": "Privacy questions",
       "description": "Reach our Data Protection desk for anything from subject access requests to partnership due diligence.",
       "channels": [
-        { "label": "Email", "value": "privacy@coello.one", "href": "mailto:privacy@coello.one" }
+        {
+          "label": "Email",
+          "value": "privacy@coello.one",
+          "href": "mailto:privacy@coello.one"
+        }
       ]
     }
   },
@@ -339,106 +440,37 @@
       "title": "Questions about usage?",
       "description": "Talk to our digital operations lead for clarifications on platform etiquette or collaborations.",
       "channels": [
-        { "label": "Email", "value": "support@coello.one", "href": "mailto:support@coello.one" }
+        {
+          "label": "Email",
+          "value": "support@coello.one",
+          "href": "mailto:support@coello.one"
+        }
       ]
     }
   },
-  "cookiePolicy": {
-    "metadata": {
-      "title": "Cookie Policy",
-      "description": "How Coello One uses cookies and similar technologies."
-    },
-    "hero": {
-      "title": "Cookie Policy",
-      "subtitle": "Built with the same transparency benchmarks used by top global sports brands, adapted for Tailwind-powered Coello experiences.",
-      "updated": "Effective 24 November 2025",
-      "summary": [
-        "Explains the cookies and pixels we rely on.",
-        "Details how you can control preferences from any device.",
-        "Clarifies when third-party ad tech is involved and how we vet it."
-      ]
-    },
-    "sections": [
+  "navigation": {
+    "ariaLabel": "Legal policies",
+    "links": [
       {
-        "id": "overview",
-        "title": "What are cookies?",
-        "paragraphs": [
-          "Cookies are small files stored on your device to remember settings, keep sessions secure, and tailor content.",
-          "We also use equivalent technologies such as local storage, SDK events, and server-side tracking where it improves performance."
-        ]
+        "id": "termsConditions",
+        "label": "Terms & Conditions",
+        "href": "/terms-conditions"
       },
       {
-        "id": "types",
-        "title": "Types of cookies we use",
-        "paragraphs": [
-          "We categorize cookies similarly to Gymshark, Adidas, and Nike to keep consent dialogs familiar."
-        ],
-        "listTitle": "Categories",
-        "listItems": [
-          {
-            "title": "Essential",
-            "description": "Required for checkout, authentication, and load balancing."
-          },
-          {
-            "title": "Performance",
-            "description": "Help us measure traffic, debug issues, and benchmark component speed."
-          },
-          {
-            "title": "Functional",
-            "description": "Store locale, bag contents, and accessibility preferences."
-          },
-          {
-            "title": "Marketing",
-            "description": "Support opt-in campaigns, creator collaborations, or retargeting."
-          }
-        ]
+        "id": "privacyNotice",
+        "label": "Privacy Notice",
+        "href": "/privacy-notice"
       },
       {
-        "id": "controls",
-        "title": "Managing preferences",
-        "paragraphs": [
-          "You can adjust cookie settings through our banner, your browser, or system-level controls. Revoking consent disables non-essential cookies while keeping the site usable.",
-          "Within the EU/UK we honor Global Privacy Control signals and IAB TCF strings where supported."
-        ],
-        "listTitle": "Control options",
-        "listItems": [
-          {
-            "title": "Banner",
-            "description": "Use the \"Manage preferences\" link to toggle categories at any time."
-          },
-          {
-            "title": "Browser",
-            "description": "Clear caches/cookies or use private browsing to reset identifiers."
-          },
-          {
-            "title": "Device",
-            "description": "Limit ad tracking in iOS/Android settings; we respect those choices."
-          }
-        ]
+        "id": "termsOfUse",
+        "label": "Terms of Use",
+        "href": "/terms-of-use"
       },
       {
-        "id": "ad-tech",
-        "title": "Advertising & analytics",
-        "paragraphs": [
-          "We currently partner with PostHog, Google Analytics 4 (consent mode), and Meta Pixels for opted-in campaigns.",
-          "Each partner contractually agrees to process data only on our behalf and provide regional opt-outs."
-        ]
-      },
-      {
-        "id": "updates",
-        "title": "Policy updates",
-        "paragraphs": [
-          "We review this policy quarterly or whenever we add a new vendor. Material changes trigger an on-site banner and email notice.",
-          "Continuing to use the site after updates signals acceptance of the revised policy."
-        ]
+        "id": "cookiePolicy",
+        "label": "Cookie Policy",
+        "href": "/cookie-policy"
       }
-    ],
-    "contact": {
-      "title": "Cookie or consent questions",
-      "description": "Our privacy desk can help you tailor analytics without losing essential functionality.",
-      "channels": [
-        { "label": "Email", "value": "privacy@coello.one", "href": "mailto:privacy@coello.one" }
-      ]
-    }
+    ]
   }
 }

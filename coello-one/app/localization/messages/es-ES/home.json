@@ -1,25 +1,11 @@
 {
   "mainBanner": {
     "headline": "AHORA TU HISTORIA RESALTA.",
-    "ctaLabel": "Comprar ahora",
     "ctaAnalyticsKey": "home.mainBanner.cta",
-    "ctaVariant": "primary"
-  },
-  "storyBlock": {
-    "ideaTitle": "Para quienes inspiran a otros",
-    "ideaBody": "Tu historia es el plano. Tu compromiso es la inspiración. Tú eres la razón por la que alguien empezará mañana.",
-    "spiritTitle": "Para quienes sintieron el dolor",
-    "spiritBody": "Te lo ganaste. Ese dolor fue real. Siempre será parte de ti; se forjó con persistencia, paciencia y sudor.",
-    "focusTitle": "Para quienes nunca se rinden",
-    "focusBody": "Conoces el muro y sabes cómo derribarlo. Esto es para la guerrera o el guerrero que nunca abandona: en la calle, en el gimnasio, a través del arte.",
-    "ariaLabel": "Momentos destacados de la historia Coello"
+    "ctaVariant": "primary",
+    "ctaLabel": "Comprar ahora"
   },
   "popularSection": {
-    "title": "Lo más popular ahora",
-    "aria": {
-      "list": "Productos populares",
-      "productCard": "Producto popular {productName}"
-    },
     "filters": [
       {
         "key": "all",
@@ -42,6 +28,11 @@
         "gender": "Men"
       }
     ],
+    "title": "Lo más popular ahora",
+    "aria": {
+      "list": "Productos populares",
+      "productCard": "Producto popular {productName}"
+    },
     "emptyState": {
       "description": "Todavía no hay productos populares. Vuelve pronto."
     },
@@ -49,19 +40,16 @@
       "browse": "Ver opciones"
     }
   },
-  "training": {
-    "title": "Entrenamientos de nuestros atletas",
-    "ariaLabel": "Planes de entrenamiento",
-    "buttonLabel": "Ver plan semanal",
-    "cards": [
-      { "id": "lifting", "title": "Fuerza", "analyticsId": "training-plan-lifting" },
-      { "id": "cardio", "title": "Cardio", "analyticsId": "training-plan-cardio" },
-      { "id": "yoga", "title": "Yoga", "analyticsId": "training-plan-yoga" }
-    ]
+  "storyBlock": {
+    "ideaTitle": "Para quienes inspiran a otros",
+    "ideaBody": "Tu historia es el plano. Tu compromiso es la inspiración. Tú eres la razón por la que alguien empezará mañana.",
+    "spiritTitle": "Para quienes sintieron el dolor",
+    "spiritBody": "Te lo ganaste. Ese dolor fue real. Siempre será parte de ti; se forjó con persistencia, paciencia y sudor.",
+    "focusTitle": "Para quienes nunca se rinden",
+    "focusBody": "Conoces el muro y sabes cómo derribarlo. Esto es para la guerrera o el guerrero que nunca abandona: en la calle, en el gimnasio, a través del arte.",
+    "ariaLabel": "Momentos destacados de la historia Coello"
   },
   "bottomMoreAbout": {
-    "title": "Más sobre Coello One",
-    "ariaLabel": "Aspectos destacados de Coello One",
     "cards": [
       {
         "id": "blueprint",
@@ -81,6 +69,30 @@
         "imageAlt": "Logotipo de Coello One",
         "routeKey": "coelloCutTraining"
       }
-    ]
+    ],
+    "title": "Más sobre Coello One",
+    "ariaLabel": "Aspectos destacados de Coello One"
+  },
+  "training": {
+    "title": "Entrenamientos de nuestros atletas",
+    "ariaLabel": "Planes de entrenamiento",
+    "cards": [
+      {
+        "id": "lifting",
+        "title": "Fuerza",
+        "analyticsId": "training-plan-lifting"
+      },
+      {
+        "id": "cardio",
+        "title": "Cardio",
+        "analyticsId": "training-plan-cardio"
+      },
+      {
+        "id": "yoga",
+        "title": "Yoga",
+        "analyticsId": "training-plan-yoga"
+      }
+    ],
+    "buttonLabel": "Ver plan semanal"
   }
 }

@@ -1,11 +1,10 @@
-import { Alert, Button, Card, Flex, Tag, Typography } from "antd";
-import type Stripe from "stripe";
-import { getCheckoutReturnState } from "./getCheckoutReturnState";
-import { getStripeClient } from "@utils/stripe";
+import { Alert, Button, Card, Flex, Typography } from "antd";
 import { getRequestLocale } from "@/localization/getRequestLocale";
 import { getNamespaceCopy } from "@/localization/dictionary";
 import { addLocaleToPathname } from "@config/i18n";
 import { buildLocaleRoute } from "@config/routes";
+import { getCheckoutOrderSnapshot } from "../api/stripe/webhook/persistStripeEvent";
+import { ReturnOrderStatusClient } from "./ReturnOrderStatusClient";
 
 const { Title, Text } = Typography;
 
@@ -17,13 +16,6 @@ type ReturnPageProps = {
 
 type StatusKey = "success" | "processing" | "open" | "error";
 
-const STATUS_BADGE_COLOR: Record<StatusKey, string> = {
-  success: "green",
-  processing: "gold",
-  open: "blue",
-  error: "red",
-};
-
 export default async function ReturnPage({ searchParams }: ReturnPageProps) {
   const locale = await getRequestLocale();
   const checkoutCopy = getNamespaceCopy(locale, "checkout");
@@ -32,25 +24,20 @@ export default async function ReturnPage({ searchParams }: ReturnPageProps) {
   const bagHref = addLocaleToPathname(locale, buildLocaleRoute("bag"));
   const browseHref = addLocaleToPathname(locale, buildLocaleRoute("home"));
 
-  let session: Stripe.Checkout.Session | null = null;
-
-  if (sessionId) {
-    try {
-      const stripe = getStripeClient();
-      session = await stripe.checkout.sessions.retrieve(sessionId, {
-        expand: ["customer_details"],
-      });
-    } catch (error) {
-      if (process.env.NODE_ENV !== "test") {
-        console.error("Unable to load checkout session", error);
-      }
-    }
-  }
-
-  const statusKey: StatusKey = sessionId ? getCheckoutReturnState(session) : "error";
-  const statusCopy = returnPage[statusKey];
   const showMissingSession = !sessionId;
-  const amountDisplay = formatAmount(locale, session?.currency, session?.amount_total);
+  const order = sessionId ? await getCheckoutOrderSnapshot(sessionId) : null;
+
+  const initialStatusKey: StatusKey = (() => {
+    if (!sessionId) return "error";
+    if (!order) return "open";
+    if (order.status === "complete") {
+      return order.paymentStatus === "paid" ? "success" : "processing";
+    }
+    if (order.status === "open") return "open";
+    return "error";
+  })();
+
+  const amountDisplay = formatAmount(locale, order?.currency, order?.amountTotal);
 
   return (
     <Flex vertical justify="center" align="center" className="min-h-screen bg-white px-4 py-16">
@@ -59,17 +46,16 @@ export default async function ReturnPage({ searchParams }: ReturnPageProps) {
           <Title level={2} className="m-0!">
             {returnPage.title}
           </Title>
-          <Flex gap={12} align="center">
-            <Tag color={STATUS_BADGE_COLOR[statusKey]}>{statusCopy.badge}</Tag>
-            {sessionId ? (
-              <Text className="text-xs text-gray-500">
-                {returnPage.orderLabel}: <strong>{sessionId}</strong>
-              </Text>
-            ) : null}
-          </Flex>
-          <Text className="text-base text-gray-600">
-            {showMissingSession ? returnPage.missingSession : statusCopy.body}
-          </Text>
+
+          {showMissingSession || !sessionId ? (
+            <Text className="text-base text-gray-600">{returnPage.missingSession}</Text>
+          ) : (
+            <ReturnOrderStatusClient
+              sessionId={sessionId}
+              returnCopy={returnPage}
+              initialStatusKey={initialStatusKey}
+            />
+          )}
           {amountDisplay ? (
             <Alert
               type="success"
@@ -78,11 +64,11 @@ export default async function ReturnPage({ searchParams }: ReturnPageProps) {
               className="rounded-xl! border border-emerald-200!"
             />
           ) : null}
-          {session?.customer_details?.email ? (
+          {order?.customerEmail ? (
             <Alert
               type="info"
               showIcon
-              title={`${returnPage.customerLabel}: ${session.customer_details.email}`}
+              title={`${returnPage.customerLabel}: ${order.customerEmail}`}
               className="rounded-xl! border border-blue-200!"
             />
           ) : null}

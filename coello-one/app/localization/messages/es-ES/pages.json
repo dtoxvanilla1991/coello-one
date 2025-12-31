@@ -1,124 +1,204 @@
 {
-  "about": {
-    "metadata": {
-      "title": "Acerca de Coello One",
-      "description": "Conoce la casa de una sola manga que celebra a lxs atletas que tratan su cuerpo como una galería."
-    },
+  "coelloCutTraining": {
     "hero": {
-      "kicker": "Acerca de Coello One",
-      "title": "Una sola manga. Toda tu historia a la vista.",
-      "description": "Te empoderamos para mostrar tu historia, una manga a la vez. Coello One fusiona diseño audaz con rendimiento técnico para que tu arte y tu atletismo nunca compitan.",
-      "highlightStats": [
-        { "label": "Horas de prototipo", "value": "3.200+" },
-        { "label": "Atletas testers", "value": "140" },
-        { "label": "Cobertura de tinta visible", "value": "92%" }
-      ]
+      "kicker": "5% TRABAJO · 95% VIDA",
+      "title": "El gimnasio es el estímulo. El estilo de vida es el motor.",
+      "description": "Entrenamos para enviar una señal—\"crear armadura\"—no para borrar calorías. El apetito, las hormonas y la gestión del estrés entregan la verdadera pérdida de grasa. Esta página es tu protocolo para enviar la señal correcta y luego vivir de un modo que permita la respuesta del cuerpo."
     },
-    "story": {
-      "title": "Creado para la audiencia más exigente",
-      "paragraphs": [
-        "Siempre vimos una desconexión. Pasas horas bajo la aguja para que tu historia viva en tu piel y después entrenas sin parar para terminar cubriéndola. En Coello creemos que tu arte y tu atletismo nacen del mismo fuego.",
-        "Nuestro diseño de una sola manga no es un truco. Es el marco que tu obra maestra merece: prendas técnicas afinadas para el rendimiento con un ajuste que celebra cómo elegiste expresarte.",
-        "Esta marca es para quienes conocen la paciencia de la silla del artista y el ardor de la última repetición. Somos una declaración tanto como una prenda."
-      ],
-      "quote": {
-        "text": "Tu arte y tu entrenamiento son prueba de persistencia. Nuestro trabajo es permitir que esa prueba se vea.",
-        "attribution": "Laura Gómez · Directora Creativa"
-      }
-    },
-    "pillars": [
-      {
-        "id": "craft",
-        "title": "Asimetría intencional",
-        "description": "El mapeo 3D mantiene la compresión donde necesitas estabilidad y libera el lado tatuado para que la tinta respire y siga vibrante.",
-        "statLabel": "Ciclos de prueba",
-        "statValue": "214"
-      },
-      {
-        "id": "performance",
-        "title": "Tejidos de alto rendimiento",
-        "description": "Hilados italianos que canalizan la humedad, micro malla de secado rápido y costuras termoselladas que acompañan cada levantamiento, zancada y golpe.",
-        "statLabel": "Innovaciones textiles",
-        "statValue": "4"
-      },
-      {
-        "id": "community",
-        "title": "Rituales construidos con la comunidad",
-        "description": "Co-creamos con atletas que también son lienzos—de muralistas a artistas de MMA—para que cada lanzamiento honre experiencias reales.",
-        "statLabel": "Laboratorios artísticos",
-        "statValue": "12"
-      }
-    ],
-    "timeline": {
-      "title": "Hitos que moldearon a Coello",
-      "milestones": [
+    "manifesto": {
+      "headline": "No puedes entrenar más que tu tenedor.",
+      "subheading": "El trabajo de fuerza es una señal, no un borrador de calorías. Levantamos para mandar el mensaje—crear armadura—y luego vivimos para que ese mensaje aterrice.",
+      "bulletPoints": [
         {
-          "year": "2019",
-          "title": "Observación",
-          "description": "Vimos a atletas de élite ocultar sus tatuajes durante el entrenamiento y trazamos la oportunidad ergonómica."
+          "title": "Primero la señal",
+          "description": "El entrenamiento le dice al cuerpo a qué adaptarse. La tensión amable con el sistema nervioso supera cualquier sudor aleatorio."
         },
         {
-          "year": "2020",
-          "title": "Primer laboratorio",
-          "description": "Construimos los primeros prototipos asimétricos junto a ilustradores y velocistas en Barcelona."
+          "title": "El estilo de vida define la definición",
+          "description": "Solo una fracción del gasto diario viene del gimnasio. El sueño, el estrés y la calidad de la comida mandan en la recomposición real."
         },
         {
-          "year": "2022",
-          "title": "Salto material",
-          "description": "Sellamos una receta textil que mantiene la tinta saturada hasta 3 ºC más fresca."
-        },
-        {
-          "year": "2024",
-          "title": "Lanzamiento comunitario",
-          "description": "Abrimos la One Sleeve Residency para que lxs atletas prototipen en vivo con el equipo de Laura."
-        },
-        {
-          "year": "2025",
-          "title": "Debut global",
-          "description": "Coello One se lanza internacionalmente con hubs educativos localizados y storytelling atlético."
+          "title": "La naturaleza reinicia hormonas",
+          "description": "Sal cada semana. El horizonte aplana el cortisol, el sol despierta el sistema endocrino y el aburrimiento alimenta la creatividad."
         }
       ]
     },
-    "cta": {
-      "label": "Descubre la One-Sleeve Classic",
-      "href": "/one-sleeve-classic"
+    "living": {
+      "kicker": "Vida diaria",
+      "title": "Componente vital",
+      "description": "Caminata o paseo en naturaleza obligatorio cada semana. La luz artificial, el concreto y el doomscrolling disparan el cortisol; los horizontes reinician tu biología.",
+      "diet": "Come alimentos que corrieron, nadaron o crecieron. Si tiene código de barras, cuestiónalo. Fermentos, raíces y minerales mantienen la señal receptiva."
+    },
+    "plans": {
+      "essentialist": {
+        "name": "The Essentialist",
+        "tagline": "Dosis mínima. Señal máxima.",
+        "description": "Diseñado para la persona creativa sin tiempo. Golpea únicamente los tres grandes para asentar el sistema nervioso sin agotarlo.",
+        "focus": [
+          "Impulso neural",
+          "Eficiencia en compuestos",
+          "Recuperación"
+        ],
+        "split": [
+          {
+            "label": "Cuerpo completo A (Sentadilla)"
+          },
+          {
+            "label": "Descanso"
+          },
+          {
+            "label": "Cuerpo completo B (Empuje)"
+          },
+          {
+            "label": "Descanso"
+          },
+          {
+            "label": "Cuerpo completo C (Bisagra)"
+          },
+          {
+            "label": "Caminata / Naturaleza",
+            "isNature": true
+          },
+          {
+            "label": "Descanso"
+          }
+        ]
+      },
+      "architect": {
+        "name": "The Architect",
+        "tagline": "Simetría y estructura.",
+        "description": "El estándar dorado de la estética. Equilibra cargas pesadas con la recuperación que requiere tu sistema nervioso central.",
+        "focus": [
+          "Simetría",
+          "Hipertrofia",
+          "Fundamento"
+        ],
+        "split": [
+          {
+            "label": "Potencia tren superior"
+          },
+          {
+            "label": "Potencia tren inferior"
+          },
+          {
+            "label": "Descanso"
+          },
+          {
+            "label": "Hipertrofia tren superior"
+          },
+          {
+            "label": "Hipertrofia tren inferior"
+          },
+          {
+            "label": "Caminata / Sendero",
+            "isNature": true
+          },
+          {
+            "label": "Descanso"
+          }
+        ]
+      },
+      "craftsman": {
+        "name": "The Craftsman",
+        "tagline": "Detalle y obsesión.",
+        "description": "Alto volumen para quien trata su cuerpo como el proyecto principal. Incluye trabajo de aislamiento para honrar la manga Coello.",
+        "focus": [
+          "Trabajo de detalle",
+          "Volumen",
+          "Puntos débiles"
+        ],
+        "split": [
+          {
+            "label": "Empuje (Pecho / Hombros)"
+          },
+          {
+            "label": "Jalada (Espalda / Bíceps)"
+          },
+          {
+            "label": "Piernas (Fuerza)"
+          },
+          {
+            "label": "Descanso / Sauna"
+          },
+          {
+            "label": "Detalle tren superior"
+          },
+          {
+            "label": "Detalle tren inferior"
+          },
+          {
+            "label": "Caminata / Inmersión en naturaleza",
+            "isNature": true
+          }
+        ]
+      }
+    },
+    "planDisplay": {
+      "daysPerWeekLabel": "Días por semana",
+      "weeklySplitHeading": "División semanal",
+      "dayLabel": "Día"
+    },
+    "planSelector": {
+      "daysLabel": "Días",
+      "kicker": "Arquitecto del programa",
+      "description": "Elige el arquetipo que refleja tu temporada. Cada cambio redibuja el plan al instante."
+    },
+    "ritual": {
+      "title": "La descompresión",
+      "philosophy": "Tensionaste el músculo para romperlo. Ahora alárgalo para curarlo.",
+      "cards": [
+        {
+          "id": "cardio",
+          "label": "Cardio",
+          "description": "20 min de cardio en zona 2 (solo respiración nasal). Frecuencia cardiaca 120-130 lpm."
+        },
+        {
+          "id": "stretch",
+          "label": "Estiramiento",
+          "description": "10 min de estiramientos estáticos. Enfócate en flexores de cadera y aperturas de pecho."
+        },
+        {
+          "id": "sundayService",
+          "label": "Servicio dominical",
+          "description": "Una caminata o paseo en naturaleza semanal es obligatorio. La luz artificial y el concreto elevan el cortisol; los horizontes reinician tu biología."
+        }
+      ]
     }
   },
   "discounts": {
     "metadata": {
-      "title": "Descuentos e ingresos VIP",
-      "description": "La lista de espera para lanzamientos que realmente importan."
+      "title": "Descuentos",
+      "description": "Reserva un código futuro y recibe el aviso cuando Coello abra una ventana de descuento."
     },
     "hero": {
-      "kicker": "Descuentos y drops",
-      "title": "No hacemos rebajas eternas. Planeamos recompensas precisas.",
-      "description": "Únete a la lista exclusiva para activar la próxima ventana promocional, estudios de color y residencias privadas."
+      "kicker": "Acceso a descuentos",
+      "title": "Reserva tu futuro código",
+      "description": "Recibe un aviso discreto en cuanto se active un descuento o lanzamiento privado."
     },
     "statusCard": {
-      "title": "Hoy no hay promos masivas",
-      "body": "Preferimos proteger la artesanía antes que bajar precios cada fin de semana. La siguiente oferta será limitada, intencional y se enviará primero a esta lista.",
-      "reminderLabel": "Lo que recibes"
+      "title": "Cómo funciona",
+      "body": "Los descuentos solo aparecen en ventanas cortas. Únete y te avisaremos cuando se abra una.",
+      "reminderLabel": "Próximo aviso"
     },
     "benefits": [
       {
-        "title": "Precios de lanzamiento",
-        "description": "Sé la primera persona en enterarte cuando haya un nuevo color o tejido y recibe un código único."
+        "title": "Señal temprana",
+        "description": "Sé el primero en enterarte cuando haya un código disponible."
       },
       {
-        "title": "Invitaciones a residencias",
-        "description": "Acceso prioritario a talleres virtuales con Laura y atletas invitados para co-diseñar futuros lanzamientos."
+        "title": "Sin spam",
+        "description": "Solo avisos con intención: drops reales o ventanas activas."
       },
       {
-        "title": "Inteligencia de entrenamiento",
-        "description": "Micro guías mensuales del Coello One Blueprint enfocadas en piel en recuperación y semanas de alto volumen."
+        "title": "Salir en un clic",
+        "description": "Cancela la suscripción cuando quieras con un solo clic."
       }
     ],
     "privacy": {
-      "title": "Nuestra promesa de privacidad",
+      "title": "Privacidad",
       "points": [
-        "Nada de spam: solo actualizaciones con propósito ligadas a drops o educación.",
-        "Los datos se quedan en Coello. Nunca venderemos ni compartiremos tu información.",
-        "Puedes salirte cuando quieras con un solo clic."
+        "Usamos tu correo solo para avisos de descuentos y lanzamientos de Coello.",
+        "Puedes darte de baja en cualquier momento."
       ]
     },
     "form": {
@@ -274,115 +354,6 @@
       }
     ]
   },
-  "coelloCutTraining": {
-    "hero": {
-      "kicker": "5% TRABAJO · 95% VIDA",
-      "title": "El gimnasio es el estímulo. El estilo de vida es el motor.",
-      "description": "Entrenamos para enviar una señal—\"crear armadura\"—no para borrar calorías. El apetito, las hormonas y la gestión del estrés entregan la verdadera pérdida de grasa. Esta página es tu protocolo para enviar la señal correcta y luego vivir de un modo que permita la respuesta del cuerpo."
-    },
-    "manifesto": {
-      "headline": "No puedes entrenar más que tu tenedor.",
-      "subheading": "El trabajo de fuerza es una señal, no un borrador de calorías. Levantamos para mandar el mensaje—crear armadura—y luego vivimos para que ese mensaje aterrice.",
-      "bulletPoints": [
-        {
-          "title": "Primero la señal",
-          "description": "El entrenamiento le dice al cuerpo a qué adaptarse. La tensión amable con el sistema nervioso supera cualquier sudor aleatorio."
-        },
-        {
-          "title": "El estilo de vida define la definición",
-          "description": "Solo una fracción del gasto diario viene del gimnasio. El sueño, el estrés y la calidad de la comida mandan en la recomposición real."
-        },
-        {
-          "title": "La naturaleza reinicia hormonas",
-          "description": "Sal cada semana. El horizonte aplana el cortisol, el sol despierta el sistema endocrino y el aburrimiento alimenta la creatividad."
-        }
-      ]
-    },
-    "planSelector": {
-      "kicker": "Arquitecto del programa",
-      "description": "Elige el arquetipo que refleja tu temporada. Cada cambio redibuja el plan al instante.",
-      "daysLabel": "Días"
-    },
-    "planDisplay": {
-      "daysPerWeekLabel": "Días por semana",
-      "weeklySplitHeading": "División semanal",
-      "dayLabel": "Día"
-    },
-    "plans": {
-      "essentialist": {
-        "name": "The Essentialist",
-        "tagline": "Dosis mínima. Señal máxima.",
-        "description": "Diseñado para la persona creativa sin tiempo. Golpea únicamente los tres grandes para asentar el sistema nervioso sin agotarlo.",
-        "focus": ["Impulso neural", "Eficiencia en compuestos", "Recuperación"],
-        "split": [
-          { "label": "Cuerpo completo A (Sentadilla)" },
-          { "label": "Descanso" },
-          { "label": "Cuerpo completo B (Empuje)" },
-          { "label": "Descanso" },
-          { "label": "Cuerpo completo C (Bisagra)" },
-          { "label": "Caminata / Naturaleza", "isNature": true },
-          { "label": "Descanso" }
-        ]
-      },
-      "architect": {
-        "name": "The Architect",
-        "tagline": "Simetría y estructura.",
-        "description": "El estándar dorado de la estética. Equilibra cargas pesadas con la recuperación que requiere tu sistema nervioso central.",
-        "focus": ["Simetría", "Hipertrofia", "Fundamento"],
-        "split": [
-          { "label": "Potencia tren superior" },
-          { "label": "Potencia tren inferior" },
-          { "label": "Descanso" },
-          { "label": "Hipertrofia tren superior" },
-          { "label": "Hipertrofia tren inferior" },
-          { "label": "Caminata / Sendero", "isNature": true },
-          { "label": "Descanso" }
-        ]
-      },
-      "craftsman": {
-        "name": "The Craftsman",
-        "tagline": "Detalle y obsesión.",
-        "description": "Alto volumen para quien trata su cuerpo como el proyecto principal. Incluye trabajo de aislamiento para honrar la manga Coello.",
-        "focus": ["Trabajo de detalle", "Volumen", "Puntos débiles"],
-        "split": [
-          { "label": "Empuje (Pecho / Hombros)" },
-          { "label": "Jalada (Espalda / Bíceps)" },
-          { "label": "Piernas (Fuerza)" },
-          { "label": "Descanso / Sauna" },
-          { "label": "Detalle tren superior" },
-          { "label": "Detalle tren inferior" },
-          { "label": "Caminata / Inmersión en naturaleza", "isNature": true }
-        ]
-      }
-    },
-    "ritual": {
-      "title": "La descompresión",
-      "philosophy": "Tensionaste el músculo para romperlo. Ahora alárgalo para curarlo.",
-      "cards": [
-        {
-          "id": "cardio",
-          "label": "Cardio",
-          "description": "20 min de cardio en zona 2 (solo respiración nasal). Frecuencia cardiaca 120-130 lpm."
-        },
-        {
-          "id": "stretch",
-          "label": "Estiramiento",
-          "description": "10 min de estiramientos estáticos. Enfócate en flexores de cadera y aperturas de pecho."
-        },
-        {
-          "id": "sundayService",
-          "label": "Servicio dominical",
-          "description": "Una caminata o paseo en naturaleza semanal es obligatorio. La luz artificial y el concreto elevan el cortisol; los horizontes reinician tu biología."
-        }
-      ]
-    },
-    "living": {
-      "kicker": "Vida diaria",
-      "title": "Componente vital",
-      "description": "Caminata o paseo en naturaleza obligatorio cada semana. La luz artificial, el concreto y el doomscrolling disparan el cortisol; los horizontes reinician tu biología.",
-      "diet": "Come alimentos que corrieron, nadaron o crecieron. Si tiene código de barras, cuestiónalo. Fermentos, raíces y minerales mantienen la señal receptiva."
-    }
-  },
   "sustainability": {
     "metadata": {
       "title": "Sostenibilidad",
@@ -411,9 +382,18 @@
       }
     ],
     "metrics": [
-      { "label": "Agua ahorrada por top", "value": "11 L" },
-      { "label": "Producción solar", "value": "82%" },
-      { "label": "Aliadxs locales", "value": "6" }
+      {
+        "label": "Agua ahorrada por top",
+        "value": "11 L"
+      },
+      {
+        "label": "Producción solar",
+        "value": "82%"
+      },
+      {
+        "label": "Aliadxs locales",
+        "value": "6"
+      }
     ],
     "materials": {
       "title": "Stack de materiales",
@@ -446,6 +426,89 @@
     "cta": {
       "label": "Lee el manifiesto de proveedores",
       "href": "https://coello.one/sustainability/manifesto"
+    }
+  },
+  "about": {
+    "metadata": {
+      "title": "Sobre Coello",
+      "description": "El origen detrás del uniforme de una manga—creado para atletas que convierten el cuerpo en arte."
+    },
+    "hero": {
+      "kicker": "Nuestra historia",
+      "title": "Una manga. Cero ruido.",
+      "description": "Coello es el uniforme para atletas tatuados: minimalista, intencional y diseñado para enmarcar el trabajo.",
+      "highlightStats": [
+        {
+          "label": "Rondas de prototipo",
+          "value": "30+"
+        },
+        {
+          "label": "Sesiones de ajuste",
+          "value": "100+"
+        },
+        {
+          "label": "Foco de manga",
+          "value": "1"
+        }
+      ]
+    },
+    "story": {
+      "title": "Origen",
+      "paragraphs": [
+        "Creamos Coello para el atleta que entrena con intención y lleva su historia en tinta.",
+        "El corte de una manga hace una sola cosa: poner el brazo—tu lienzo—al frente, sin distracciones."
+      ],
+      "quote": {
+        "text": "La ropa nunca debe competir con el trabajo.",
+        "attribution": "Coello Studio"
+      }
+    },
+    "pillars": [
+      {
+        "id": "precision",
+        "title": "Precisión",
+        "description": "Cortes y proporciones para que la manga se sienta inevitable, no un truco.",
+        "statLabel": "Iteraciones",
+        "statValue": "30+"
+      },
+      {
+        "id": "comfort",
+        "title": "Comodidad",
+        "description": "Elasticidad lista para entrenar y una silueta que se mueve contigo.",
+        "statLabel": "Uso",
+        "statValue": "Todo el día"
+      },
+      {
+        "id": "identity",
+        "title": "Identidad",
+        "description": "Marca mínima para que tus tatuajes, no nuestro logo, hablen.",
+        "statLabel": "Tamaño del logo",
+        "statValue": "Casi cero"
+      }
+    ],
+    "timeline": {
+      "title": "Línea de tiempo",
+      "milestones": [
+        {
+          "year": "2021",
+          "title": "Prototipo",
+          "description": "Nace la primera silueta de una manga—creada para enmarcar el brazo tatuado."
+        },
+        {
+          "year": "2023",
+          "title": "Refinar",
+          "description": "Ajuste, tejido y acabados evolucionan en sesiones de entrenamiento reales."
+        },
+        {
+          "year": "2025",
+          "title": "Lanzamiento",
+          "description": "Un uniforme para atletas que quieren que el arte lidere."
+        }
+      ]
+    },
+    "cta": {
+      "label": "Explora la One Sleeve",
+      "href": "/one-sleeve-classic"
     }
   }
 }
