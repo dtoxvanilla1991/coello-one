@@ -183,37 +183,50 @@ mock.module("next/headers", () => ({
 }));
 
 // Mock next/navigation hooks and functions using shared router state
-mock.module("next/navigation", () => ({
-  __esModule: true,
-  useServerInsertedHTML: () => {},
-  useRouter: () => routerMocks,
-  usePathname: () =>
-    useSyncExternalStore(
-      subscribeToNavigationUpdates,
-      () => getNavigationState().pathname,
-      () => getNavigationState().pathname,
-    ),
-  useSearchParams: () =>
-    useSyncExternalStore(
-      subscribeToNavigationUpdates,
-      () => new URLSearchParams(getNavigationState().searchParams),
-      () => new URLSearchParams(getNavigationState().searchParams),
-    ),
-  useParams: () =>
-    useSyncExternalStore(
-      subscribeToNavigationUpdates,
-      () => ({ ...getNavigationState().params }),
-      () => ({ ...getNavigationState().params }),
-    ),
-  useSelectedLayoutSegment: () => null,
-  useSelectedLayoutSegments: () => [],
-  notFound: () => {
-    throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
-  },
-  redirect: () => {
-    throw new Error("NEXT_REDIRECT");
-  },
-}));
+mock.module("next/navigation", () => {
+  const searchParamsCache = { key: "", snapshot: null as URLSearchParams | null };
+  const getCachedSearchParams = () => {
+    const nextKey = getNavigationState().searchParams.toString();
+    if (searchParamsCache.snapshot && searchParamsCache.key === nextKey) {
+      return searchParamsCache.snapshot;
+    }
+    searchParamsCache.key = nextKey;
+    searchParamsCache.snapshot = new URLSearchParams(nextKey);
+    return searchParamsCache.snapshot;
+  };
+
+  return {
+    __esModule: true,
+    useServerInsertedHTML: () => {},
+    useRouter: () => routerMocks,
+    usePathname: () =>
+      useSyncExternalStore(
+        subscribeToNavigationUpdates,
+        () => getNavigationState().pathname,
+        () => getNavigationState().pathname,
+      ),
+    useSearchParams: () =>
+      useSyncExternalStore(
+        subscribeToNavigationUpdates,
+        () => getCachedSearchParams(),
+        () => getCachedSearchParams(),
+      ),
+    useParams: () =>
+      useSyncExternalStore(
+        subscribeToNavigationUpdates,
+        () => ({ ...getNavigationState().params }),
+        () => ({ ...getNavigationState().params }),
+      ),
+    useSelectedLayoutSegment: () => null,
+    useSelectedLayoutSegments: () => [],
+    notFound: () => {
+      throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
+    },
+    redirect: () => {
+      throw new Error("NEXT_REDIRECT");
+    },
+  };
+});
 
 // Prevent server-only guard from throwing when server modules are imported in tests
 mock.module("server-only", () => ({}));

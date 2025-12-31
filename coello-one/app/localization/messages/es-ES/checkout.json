@@ -1,78 +1,36 @@
 {
-  "hero": {
-    "title": "Checkout",
-    "subtitleReady": "Revisa tus datos antes de confirmar.",
-    "subtitleEmpty": "Anade al menos un articulo para completar tu pedido.",
-    "backToBag": "Volver a la bolsa"
+  "embedded": {
+    "title": "Checkout seguro con Stripe",
+    "subtitle": "Completa tu compra de Coello sin salir del sitio.",
+    "loading": "Preparando tu sesion de pago...",
+    "error": "No se pudo cargar el checkout seguro. Intentalo de nuevo.",
+    "retry": "Reintentar checkout",
+    "secureNote": "Stripe cifra cada transaccion y calcula los impuestos automaticamente.",
+    "secureDescription": "Confirmaremos el envio en cuanto el pago se complete."
   },
-  "express": {
-    "title": "Checkout express",
-    "helper": "Continua al checkout seguro para ver mas metodos.",
-    "divider": "o"
-  },
-  "contact": {
-    "title": "Contacto",
-    "signIn": "Iniciar sesion",
-    "emailLabel": "Email",
-    "emailPlaceholder": "Email",
-    "emailError": "Introduce un email",
-    "optInLabel": "Marca para recibir lanzamientos y exclusivas.",
-    "privacy": "Consulta nuestra Politica de privacidad."
-  },
-  "delivery": {
-    "title": "Envio",
-    "home": "Envio a domicilio (seleccionado)",
-    "pickup": "Punto de recogida",
-    "countryLabel": "Pais/Region",
-    "countryError": "Selecciona un pais",
-    "firstNameLabel": "Nombre",
-    "firstNamePlaceholder": "Nombre",
-    "firstNameError": "Introduce el nombre",
-    "lastNameLabel": "Apellido",
-    "lastNamePlaceholder": "Apellido",
-    "lastNameError": "Introduce el apellido",
-    "addressLine1Label": "Direccion linea 1",
-    "addressLine1Placeholder": "Direccion linea 1",
-    "addressLine1Error": "Introduce la direccion",
-    "addressLine2Label": "Direccion linea 2",
-    "cityLabel": "Ciudad",
-    "cityPlaceholder": "Ciudad",
-    "cityError": "Introduce la ciudad",
-    "postcodeLabel": "Codigo postal",
-    "postcodePlaceholder": "Codigo postal",
-    "postcodeError": "Introduce el codigo postal",
-    "phoneLabel": "Telefono",
-    "phonePlaceholder": "Telefono"
-  },
-  "payment": {
-    "title": "Pago",
-    "helper": "Todas las transacciones son seguras y cifradas via Stripe.",
-    "alert": "Conecta tus claves de Stripe para pagos en vivo."
-  },
-  "remember": {
-    "title": "Recordarme",
-    "helper": "Guarda tu informacion para un checkout mas rapido con Coello.",
-    "on": "On",
-    "off": "Off"
-  },
-  "cta": {
-    "submit": "Finalizar pedido seguro"
-  },
-  "orderSummary": {
-    "title": "Resumen del pedido",
-    "empty": "Tu bolsa esta vacia. Anade articulos para ver el resumen.",
-    "discountPlaceholder": "Tarjeta regalo o codigo",
-    "discountApply": "Aplicar",
-    "referral": "Te recomendo un amigo?",
-    "subtotal": "Subtotal",
-    "shipping": "Envio",
-    "shippingFree": "Gratis",
-    "items": "Articulos",
-    "total": "Total",
-    "shippingPrompt": "Introduce tu direccion para ver las opciones disponibles."
-  },
-  "messages": {
-    "emptyWarning": "Anade un articulo antes de completar el checkout.",
-    "success": "Registro del checkout completado. Configura Stripe para finalizar."
+  "returnPage": {
+    "title": "Revision del pago",
+    "amountLabel": "Importe cobrado",
+    "customerLabel": "Recibo enviado a",
+    "orderLabel": "Referencia de la sesion",
+    "missingSession": "Abre esta pagina desde el recibo de Stripe para localizar tu pedido.",
+    "ctaPrimary": "Ver bolsa",
+    "ctaSecondary": "Seguir comprando",
+    "success": {
+      "badge": "Pagado",
+      "body": "Pago confirmado. Enviaremos la confirmacion de envio en breve."
+    },
+    "processing": {
+      "badge": "Procesando",
+      "body": "Stripe sigue confirmando tu pago. Actualiza la pagina en unos segundos."
+    },
+    "open": {
+      "badge": "Accion requerida",
+      "body": "Completa el checkout incrustado para finalizar el pago."
+    },
+    "error": {
+      "badge": "No encontrado",
+      "body": "No encontramos esta sesion de checkout. Contacta soporte si se realizo el cargo."
+    }
   }
 }

@@ -15,6 +15,7 @@ describe("localization dictionary", () => {
 
   it("returns Spanish checkout copy when requested", () => {
     const copy = getNamespaceCopy("es-ES", "checkout");
-    expect(copy.hero.subtitleEmpty).toContain("Anade al menos un articulo");
+    expect(copy.embedded.title).toBe("Checkout seguro con Stripe");
+    expect(copy.returnPage.success.badge).toBe("Pagado");
   });
 });
