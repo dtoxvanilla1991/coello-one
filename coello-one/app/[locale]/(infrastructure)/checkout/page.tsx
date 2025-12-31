@@ -1,5 +1,5 @@
-import { CheckoutContent } from "@/components/checkout/CheckoutContent";
+import { EmbeddedCheckoutExperience } from "@/components/checkout/EmbeddedCheckoutExperience";
 
 export default function CheckoutPage() {
-  return <CheckoutContent />;
+  return <EmbeddedCheckoutExperience />;
 }

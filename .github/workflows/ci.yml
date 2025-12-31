@@ -57,6 +57,15 @@ jobs:
       - name: Prettier check
         run: bun run format
 
+      - name: Verify locales
+        run: bun run verify:locales
+
+      - name: Verify Drizzle migration journal
+        run: bun scripts/verifyDrizzleJournal.ts
+
+      - name: Build
+        run: bun run build
+
       - name: Prepare reports directory
         run: mkdir -p reports
 

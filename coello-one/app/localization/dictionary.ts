@@ -32,6 +32,7 @@ import pagesEsEs from "./messages/es-ES/pages.json" assert { type: "json" };
 import legalEsEs from "./messages/es-ES/legal.json" assert { type: "json" };
 import navigationEsEs from "./messages/es-ES/navigation.json" assert { type: "json" };
 import { DEFAULT_LOCALE, normalizeLocale } from "./config";
+import { guardMissingKeys } from "./guardMissingKeys";
 
 const translations = {
   "en-GB": {
@@ -80,7 +81,7 @@ export function getNamespaceCopy<N extends TranslationNamespace>(
   namespace: N,
 ): TranslationNamespaces[N] {
   const normalized = normalizeLocale(locale);
-  return translations[normalized][namespace];
+  return guardMissingKeys(translations[normalized][namespace], namespace);
 }
 
 export function getLocaleDictionary(locale: SupportedLocale) {

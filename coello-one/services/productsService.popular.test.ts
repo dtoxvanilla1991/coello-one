@@ -126,7 +126,7 @@ function buildVariantRow({
     price_minor: 4500,
     currency_code: "GBP",
     category: "one-sleeve-classic",
-    hero_image: "/athletes/vertical/main-secondary-1.jpg",
+    hero_image: "/athletes/vertical/main-secondary-1.png",
     variant_gender: gender,
     color_public_id: id,
     color_name: color,

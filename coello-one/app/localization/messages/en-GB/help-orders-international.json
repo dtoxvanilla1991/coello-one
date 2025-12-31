@@ -1,11 +1,4 @@
 {
-  "metadata": {
-    "title": "International Orders | Coello Help",
-    "description": "Learn how Coello handles duties, currency conversion, and tracking for international one-sleeve orders."
-  },
-  "breadcrumbLabel": "Help Centre",
-  "title": "Ordering internationally",
-  "description": "We designed a global fulfilment network so your one-sleeve arrives fast, insured, and duty-paid.",
   "sections": {
     "fulfilment": {
       "title": "Fulfilment network",
@@ -25,8 +18,6 @@
       ]
     },
     "currency": {
-      "title": "Currency coverage",
-      "description": "We localise pricing in your currency and keep the rate locked for 30 minutes while you check out.",
       "table": {
         "columns": {
           "currency": "Currency",
@@ -55,7 +46,9 @@
             "notes": "Converted automatically at checkout with locked-in rates for 30 minutes."
           }
         ]
-      }
+      },
+      "title": "Currency coverage",
+      "description": "We localise pricing in your currency and keep the rate locked for 30 minutes while you check out."
     },
     "timeline": {
       "title": "Your journey timeline",
@@ -96,5 +89,12 @@
         "trail": "and mention customs in your message."
       }
     }
-  }
+  },
+  "metadata": {
+    "title": "International Orders | Coello Help",
+    "description": "Learn how Coello handles duties, currency conversion, and tracking for international one-sleeve orders."
+  },
+  "title": "Ordering internationally",
+  "description": "We designed a global fulfilment network so your one-sleeve arrives fast, insured, and duty-paid.",
+  "breadcrumbLabel": "Help Centre"
 }

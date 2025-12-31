@@ -79,7 +79,7 @@ const PRODUCT_SEEDS: ProductSeed[] = [
         "Signature asymmetrical top cut for artists in motion. Breathable panels, bonded seams, and sweat-wicking mesh keep sessions calm under spotlight heat.",
       priceMinor: 4500,
       currencyCode: GBP,
-      heroImage: "/athletes/vertical/main-secondary-1.jpg",
+      heroImage: "/athletes/vertical/main-secondary-1.png",
       defaultGender: "male",
       defaultSize: "M",
       defaultColor: "Stone Gray",
@@ -87,7 +87,7 @@ const PRODUCT_SEEDS: ProductSeed[] = [
     },
     media: [
       {
-        imageUrl: "/athletes/vertical/main-secondary-1.jpg",
+        imageUrl: "/athletes/vertical/main-secondary-1.png",
         altText: "One Sleeve Classic primary visual",
         sortOrder: 0,
       },

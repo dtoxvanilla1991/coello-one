@@ -1,22 +1,57 @@
 {
   "navbar": {
-    "logoAlt": "Coello One logo",
+    "search": {
+      "regionLabel": "Search catalog",
+      "placeholder": "Search Coello",
+      "submit": "Submit search"
+    },
     "buttons": {
       "toggleMenu": "Toggle navigation menu",
       "viewBag": "View bag",
       "openSearch": "Open search"
     },
-    "search": {
-      "regionLabel": "Search catalog",
-      "placeholder": "Search Coello",
-      "submit": "Submit search"
-    }
+    "logoAlt": "Coello One logo"
   },
   "sider": {
     "ariaLabel": "Navigation Sidebar",
     "helperPrompt": "How can we help you today?",
-    "languageSelectorAriaLabel": "Language selector",
-    "languageSwitchError": "Unable to switch language. Check your connection and try again.",
+    "tabs": {
+      "viewCta": "View",
+      "cards": {
+        "women": {
+          "passion": {
+            "imageAlt": "Female athlete wearing Passion model"
+          },
+          "power": {
+            "imageAlt": "Female athlete wearing Power model"
+          },
+          "fire": {
+            "imageAlt": "Female athlete wearing Fire model"
+          }
+        },
+        "men": {
+          "fire": {
+            "imageAlt": "Male athlete wearing Fire model"
+          },
+          "passion": {
+            "imageAlt": "Male athlete wearing Passion model"
+          },
+          "power": {
+            "imageAlt": "Male athlete wearing Power model"
+          }
+        },
+        "accessories": {
+          "bands": {
+            "imageAlt": "Coello resistance bands"
+          }
+        }
+      },
+      "labels": {
+        "women": "WOMEN",
+        "men": "MEN",
+        "accessories": "ACCESSORIES"
+      }
+    },
     "menu": {
       "sections": {
         "products": {
@@ -35,40 +70,18 @@
         }
       }
     },
-    "tabs": {
-      "labels": {
-        "women": "WOMEN",
-        "men": "MEN",
-        "accessories": "ACCESSORIES"
-      },
-      "cards": {
-        "women": {
-          "passion": { "imageAlt": "Female athlete wearing Passion model" },
-          "power": { "imageAlt": "Female athlete wearing Power model" },
-          "fire": { "imageAlt": "Female athlete wearing Fire model" }
-        },
-        "men": {
-          "fire": { "imageAlt": "Male athlete wearing Fire model" },
-          "passion": { "imageAlt": "Male athlete wearing Passion model" },
-          "power": { "imageAlt": "Male athlete wearing Power model" }
-        },
-        "accessories": {
-          "bands": { "imageAlt": "Coello resistance bands" }
-        }
-      },
-      "viewCta": "View"
-    },
+    "languageSwitchError": "Unable to switch language. Check your connection and try again.",
+    "languageSelectorAriaLabel": "Language selector",
     "footer": {
-      "title": "More",
       "links": {
         "accessibility": "Accessibility Statement",
         "blueprint": "Coello One Blueprint",
         "help": "Help"
-      }
+      },
+      "title": "More"
     }
   },
   "footerMenu": {
-    "ariaLabel": "Footer quick links",
     "groups": {
       "help": {
         "title": "Help",
@@ -90,6 +103,7 @@
           "sustainability": "Sustainability"
         }
       }
-    }
+    },
+    "ariaLabel": "Footer quick links"
   }
 }

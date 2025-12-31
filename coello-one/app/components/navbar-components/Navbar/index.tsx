@@ -10,7 +10,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { NavbarSearch } from "../NavbarSearch";
 import { useAtom, useAtomValue } from "jotai";
-import { siderCollapsedAtom } from "@/store/siderStore";
+import { siderCollapsedAtom, siderAnimatingAtom } from "@/store/siderStore";
 import { cartCountAtom } from "@/store/cartStore";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -23,6 +23,7 @@ const { Header } = Layout;
 export function Navbar() {
   const [collapsed, setCollapsed] = useAtom(siderCollapsedAtom);
   const cartCount = useAtomValue(cartCountAtom);
+  const isSiderAnimating = useAtomValue(siderAnimatingAtom);
 
   const [searchVisible, setSearchVisible] = useState<boolean>(false);
   const router = useRouter();
@@ -34,18 +35,29 @@ export function Navbar() {
 
   const toggleSearch = () => setSearchVisible((prev) => !prev);
   const navigateToBag = () => router.push(bagHref);
+  const handleToggleSider = () => {
+    if (isSiderAnimating) {
+      return;
+    }
+    setCollapsed((prev) => !prev);
+  };
 
   const visibilityClass = searchVisible ? "hidden!" : "block!";
 
   return (
-    <Header className="sticky top-0 z-50 flex items-center justify-between bg-white! px-4! shadow-sm">
+    <Header
+      className="sticky top-0 z-50 flex items-center justify-between bg-white! px-4! shadow-sm"
+      style={{ minHeight: "var(--navbar-height, 56px)" }}
+    >
       <Button
         type="text"
         size="large"
         icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-        onClick={() => setCollapsed((prev) => !prev)}
+        onClick={handleToggleSider}
         className="text-lg"
         aria-label={navbarCopy.buttons.toggleMenu}
+        disabled={isSiderAnimating}
+        aria-disabled={isSiderAnimating}
       />
       <Flex className={visibilityClass} justify="center" align="center">
         <Link href={homeHref} className="ml-2 block pt-1">

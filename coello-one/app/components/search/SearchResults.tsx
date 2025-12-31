@@ -33,7 +33,7 @@ export const searchCatalog: SearchCatalogItem[] = [
     description: "Asymmetrical compression sleeve engineered for upper-body days.",
     genderLabel: "Men's fit",
     price: 45,
-    image: "/athletes/vertical/main-secondary-1.jpg",
+    image: "/athletes/vertical/main-secondary-1.png",
     slug: "one-sleeve-classic",
     query: { gender: "male" },
     tags: ["men", "male", "classic", "one sleeve", "performance", "gray", "sea blue"],

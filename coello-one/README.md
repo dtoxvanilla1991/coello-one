@@ -45,6 +45,28 @@ Match these versions when referencing documentation or adding integrations.
    - `bun run format` / `bun run format:fix` – Prettier + Tailwind sorting
    - `bun run verify:locales` – ensure namespace parity across locales
 
+---
+
+## Stripe Webhooks (Local Development)
+
+To test Stripe webhooks locally, forward events from Stripe to the Next.js webhook route.
+
+1. **Install Stripe CLI**
+   - macOS: `brew install stripe/stripe-cli/stripe`
+   - Other platforms: follow Stripe’s official install instructions
+
+2. **Login**
+   - Run: `stripe login` (opens a browser to authorize)
+
+3. **Start the listener (tunnel events to localhost)**
+   - Run:
+     - `stripe listen --forward-to localhost:3000/api/stripe/webhook`
+
+4. **Set the webhook signing secret**
+   - Stripe CLI prints a value like: `whsec_...`
+   - Add it to `coello-one/.env.local`:
+     - `STRIPE_WEBHOOK_SECRET=whsec_...`
+
 4. **Formatting hooks:** staged TS/TSX files auto-format with Prettier; staged Python files auto-format with Black. Resolve hook output before committing.
 
 ---
@@ -97,6 +119,7 @@ Personas live in [`AGENTS.md`](../AGENTS.md). Before executing any task, determi
 - Store copy in `app/localization/messages/<locale>/<namespace>.json`.
 - Access copy via `useTranslations(namespace)` (client) or `getNamespaceCopy(locale, namespace)` (server). Avoid inline literals.
 - After editing copy, update both en-GB and es-ES files and run `bun run verify:locales`.
+- If the dev missing-key guard throws on an “optional” field, add the key explicitly as `null`/`""`/`false` rather than omitting it (e.g., code probes like `if (x.foo)` will still read `x.foo`).
 - When emitting analytics for localized CTAs, pass `locale`, `translationKey`, and optional `translationVariant` to `trackEvent` as metadata.
 
 ### 6. Testing & QA Doctrine

@@ -43,6 +43,11 @@ const CARD_VISUALS: Record<string, Pick<CardData, "icon" | "image">> = {
   training: { image: "/coelloOneWhite.svg" },
 };
 
+const isRouteKey = (value: string): value is RouteKey =>
+  Object.prototype.hasOwnProperty.call(routes, value);
+
+const isCardAction = (value: string): value is CardAction => value === "email-signup";
+
 const BottomMoreAboutSection: React.FC = () => {
   const [isPromoModalOpen, setIsPromoModalOpen] = useState(false);
   const copy = useTranslations("home").bottomMoreAbout;
@@ -52,6 +57,8 @@ const BottomMoreAboutSection: React.FC = () => {
   const cards = useMemo<CardData[]>(() => {
     return copy.cards.map((card) => ({
       ...card,
+      action: card.action && isCardAction(card.action) ? card.action : undefined,
+      routeKey: card.routeKey && isRouteKey(card.routeKey) ? card.routeKey : undefined,
       ...(CARD_VISUALS[card.id] ?? {}),
     }));
   }, [copy.cards]);

@@ -1,10 +1,14 @@
 import { describe, it, expect } from "bun:test";
-import { checkDbConnection } from "./db";
+import { loadLocalEnv } from "./loadLocalEnv";
+
+const REQUIRED_DB_KEYS = ["DB_HOST_DEV", "DB_USER_DEV", "DB_PASS_DEV", "DB_NAME_DEV"];
+
+await loadLocalEnv({ keys: REQUIRED_DB_KEYS });
+
+const { checkDbConnection } = await import("./db");
 
 const hasProdUrl = Boolean(process.env.DB_URL_PROD);
-const hasDevCredentials = ["DB_HOST_DEV", "DB_USER_DEV", "DB_PASS_DEV", "DB_NAME_DEV"].every(
-  (key) => Boolean(process.env[key]),
-);
+const hasDevCredentials = REQUIRED_DB_KEYS.every((key) => Boolean(process.env[key]));
 
 const describeDb = hasProdUrl || hasDevCredentials ? describe : describe.skip;
 

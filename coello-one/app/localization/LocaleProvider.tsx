@@ -1,7 +1,8 @@
 "use client";
 
-import type { ReactNode } from "react";
-import type { SupportedLocale } from "@config/i18n";
+import { useMemo, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
+import { extractLocaleFromPathname, normalizeLocale, type SupportedLocale } from "@config/i18n";
 import { LocaleContext } from "./LocaleContext";
 
 type LocaleProviderProps = {
@@ -10,5 +11,11 @@ type LocaleProviderProps = {
 };
 
 export function LocaleProvider({ value, children }: LocaleProviderProps) {
-  return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;
+  const pathname = usePathname();
+  const resolvedLocale = useMemo(() => {
+    const localeFromPath = pathname ? extractLocaleFromPathname(pathname) : null;
+    return normalizeLocale(localeFromPath ?? value);
+  }, [pathname, value]);
+
+  return <LocaleContext.Provider value={resolvedLocale}>{children}</LocaleContext.Provider>;
 }

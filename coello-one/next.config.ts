@@ -2,11 +2,9 @@ import path from "node:path";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  cacheComponents: true,
   turbopack: {
     root: __dirname,
-  },
-  experimental: {
-    cacheComponents: true,
   },
   async redirects() {
     return [

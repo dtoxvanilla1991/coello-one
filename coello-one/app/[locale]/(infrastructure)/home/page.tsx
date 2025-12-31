@@ -1,4 +1,5 @@
 import { metaObject } from "config/site.config";
+import { cacheLife } from "next/cache";
 import { MainBanner } from "./MainBanner";
 import { Featured } from "./Featured";
 import SalesBlock from "./SalesBlock";
@@ -15,7 +16,10 @@ export const metadata = {
   ...metaObject(),
 };
 
-export default function Home() {
+export default async function Home() {
+  "use cache";
+  cacheLife({ stale: 300, revalidate: 300, expire: 3600 });
+
   return (
     <>
       <MainBanner />

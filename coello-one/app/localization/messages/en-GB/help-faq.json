@@ -1,25 +1,4 @@
 {
-  "metadata": {
-    "title": "Help Centre FAQ | Coello",
-    "description": "Get answers to common Coello questions, from sleeve fit guidance to delivery speeds and returns policies."
-  },
-  "breadcrumbLabel": "Help Centre",
-  "title": "Help Centre FAQ",
-  "description": "Premium answers to the most-requested Coello questions, updated weekly by the concierge team.",
-  "search": {
-    "overline": "Search our knowledge base",
-    "title": "What can we help you find today?",
-    "description": "Explore trending questions or search for keywords such as returns portal.",
-    "placeholder": "Search the help centre",
-    "empty": "No answers found—try another keyword or reach us via Concierge chat."
-  },
-  "trendingTopics": [
-    "Sleeve fit guide",
-    "Same-day delivery zones",
-    "Returns portal login",
-    "Klarna repayments",
-    "Concierge membership"
-  ],
   "categories": [
     {
       "id": "orders",
@@ -34,7 +13,10 @@
             "Guest checkout confirmations include a tracking link—use the email lookup option if you misplaced it.",
             "For pre-orders, we notify you by email the moment your one-sleeve essential is ready to ship."
           ],
-          "tags": ["tracking", "account"]
+          "tags": [
+            "tracking",
+            "account"
+          ]
         },
         {
           "id": "payment-methods",
@@ -44,7 +26,10 @@
             "Buy now, pay later options are screened instantly—no extra forms required.",
             "All transactions leverage 3-D Secure and regional compliance protocols for maximum protection."
           ],
-          "tags": ["payments", "klarna"]
+          "tags": [
+            "payments",
+            "klarna"
+          ]
         },
         {
           "id": "order-changes",
@@ -54,7 +39,10 @@
             "If the window closes, contact Support with your order number—we will intercept the parcel where feasible.",
             "Made-to-measure pieces enter production immediately and cannot be modified once confirmed."
           ],
-          "tags": ["changes", "support"]
+          "tags": [
+            "changes",
+            "support"
+          ]
         }
       ]
     },
@@ -71,7 +59,10 @@
             "Express service prioritises morning dispatch with guaranteed evening delivery in metro hubs.",
             "Rural regions sometimes require an extra day—track events update at every depot hand-off."
           ],
-          "tags": ["shipping", "timelines"]
+          "tags": [
+            "shipping",
+            "timelines"
+          ]
         },
         {
           "id": "same-day",
@@ -81,7 +72,10 @@
             "Select Same Day at checkout to surface courier slots; couriers send SMS confirmation within 15 minutes.",
             "We are expanding the programme—join the newsletter for launch alerts in Manchester and Birmingham."
           ],
-          "tags": ["same-day", "courier"]
+          "tags": [
+            "same-day",
+            "courier"
+          ]
         },
         {
           "id": "delivery-security",
@@ -91,7 +85,10 @@
             "You can redirect to an InPost locker or DPD pickup point directly from the tracking portal.",
             "Signature release is optional—enable it in My Orders if you prefer contactless drop-offs."
           ],
-          "tags": ["security", "pickup"]
+          "tags": [
+            "security",
+            "pickup"
+          ]
         }
       ]
     },
@@ -108,7 +105,10 @@
             "Items must be unworn and include the detachable Coello sleeve seal and authenticity card.",
             "Bundle promotions can be partially returned; credits adjust automatically."
           ],
-          "tags": ["returns", "policy"]
+          "tags": [
+            "returns",
+            "policy"
+          ]
         },
         {
           "id": "exchange-sizes",
@@ -118,7 +118,10 @@
             "We reserve the replacement item for seven days while your original makes its way home.",
             "If the size sells out, we issue full refund or instant store credit per your preference."
           ],
-          "tags": ["exchange", "sizes"]
+          "tags": [
+            "exchange",
+            "sizes"
+          ]
         },
         {
           "id": "processing-times",
@@ -128,7 +131,10 @@
             "Store credit is issued instantly and emails within minutes.",
             "Klarna repayments update automatically; no extra action is required on your side."
           ],
-          "tags": ["refunds", "timing"]
+          "tags": [
+            "refunds",
+            "timing"
+          ]
         }
       ]
     },
@@ -145,7 +151,10 @@
             "One-click checkout stores secure payment tokens via PCI-DSS compliant vaulting.",
             "You can export all personal data from Account Settings in line with GDPR requirements."
           ],
-          "tags": ["account", "privacy"]
+          "tags": [
+            "account",
+            "privacy"
+          ]
         },
         {
           "id": "notifications",
@@ -155,7 +164,10 @@
             "SMS delivery updates are carrier-linked and can be paused without affecting email alerts.",
             "Ambassador programme invites are first-come-first-serve; respond within 48 hours to secure a slot."
           ],
-          "tags": ["notifications", "ambassador"]
+          "tags": [
+            "notifications",
+            "ambassador"
+          ]
         },
         {
           "id": "concierge",
@@ -165,9 +177,33 @@
             "Members unlock personalised training plans co-created with our pro athlete partners.",
             "Upgrade inside Account Settings > Membership—first month is complimentary for new members."
           ],
-          "tags": ["concierge", "membership"]
+          "tags": [
+            "concierge",
+            "membership"
+          ]
         }
       ]
     }
-  ]
+  ],
+  "search": {
+    "overline": "Search our knowledge base",
+    "title": "What can we help you find today?",
+    "description": "Explore trending questions or search for keywords such as returns portal.",
+    "placeholder": "Search the help centre",
+    "empty": "No answers found—try another keyword or reach us via Concierge chat."
+  },
+  "trendingTopics": [
+    "Sleeve fit guide",
+    "Same-day delivery zones",
+    "Returns portal login",
+    "Klarna repayments",
+    "Concierge membership"
+  ],
+  "metadata": {
+    "title": "Help Centre FAQ | Coello",
+    "description": "Get answers to common Coello questions, from sleeve fit guidance to delivery speeds and returns policies."
+  },
+  "title": "Help Centre FAQ",
+  "description": "Premium answers to the most-requested Coello questions, updated weekly by the concierge team.",
+  "breadcrumbLabel": "Help Centre"
 }

@@ -3,14 +3,6 @@
     "title": "Centro de ayuda de Coello",
     "description": "Explora plazos de entrega, devoluciones, canales de concierge y más dentro del centro de ayuda de Coello."
   },
-  "hero": {
-    "title": "Bienvenido al centro de ayuda de Coello",
-    "description": "Desde el ajuste de la manga hasta los aranceles, cubrimos cada detalle para que solo te ocupes de sentirte increíble."
-  },
-  "introCard": {
-    "title": "Soporte creado por concierge",
-    "description": "Nuestro hub de ayuda replica la experiencia premium de nuestras flagship: curada, proactiva y lista para varios idiomas. Empieza con las tarjetas o conecta con concierge cuando quieras."
-  },
   "quickLinks": [
     {
       "id": "faq",
@@ -45,11 +37,19 @@
       "ctaLabel": "Explorar"
     }
   ],
+  "hero": {
+    "title": "Bienvenido al centro de ayuda de Coello",
+    "description": "Desde el ajuste de la manga hasta los aranceles, cubrimos cada detalle para que solo te ocupes de sentirte increíble."
+  },
+  "introCard": {
+    "title": "Soporte creado por concierge",
+    "description": "Nuestro hub de ayuda replica la experiencia premium de nuestras flagship: curada, proactiva y lista para varios idiomas. Empieza con las tarjetas o conecta con concierge cuando quieras."
+  },
   "contactCard": {
-    "title": "¿Necesitas a un humano ahora?",
-    "description": "Nuestros estilistas concierge responden en menos de dos minutos entre 8:00 y medianoche GMT.",
-    "channelsLabel": "WhatsApp • iMessage • Email",
-    "buttonLabel": "Habla con nosotros",
+    "title": "Habla con concierge",
+    "description": "¿Necesitas algo específico? Te ayudamos con tallas, pedidos y dudas de entrega.",
+    "channelsLabel": "Contacto",
+    "buttonLabel": "Contáctanos",
     "buttonHref": "contact-us"
   }
 }

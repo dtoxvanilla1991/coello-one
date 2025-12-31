@@ -3,14 +3,6 @@
     "title": "Coello Help Centre",
     "description": "Explore delivery timelines, returns, concierge contact options, and more inside the Coello help centre."
   },
-  "hero": {
-    "title": "Welcome to the Coello Help Centre",
-    "description": "From sleeve fit to customs duties, we cover every detail so you can focus on feeling incredible."
-  },
-  "introCard": {
-    "title": "Concierge-crafted support",
-    "description": "Our help hub mirrors the premium experience in our flagship stores—curated, proactive, and multilingual-ready. Start with the tiles below or connect with our concierge team any time."
-  },
   "quickLinks": [
     {
       "id": "faq",
@@ -45,11 +37,19 @@
       "ctaLabel": "Explore"
     }
   ],
+  "hero": {
+    "title": "Welcome to the Coello Help Centre",
+    "description": "From sleeve fit to customs duties, we cover every detail so you can focus on feeling incredible."
+  },
+  "introCard": {
+    "title": "Concierge-crafted support",
+    "description": "Our help hub mirrors the premium experience in our flagship stores—curated, proactive, and multilingual-ready. Start with the tiles below or connect with our concierge team any time."
+  },
   "contactCard": {
-    "title": "Need a human right now?",
-    "description": "Our concierge stylists respond in under two minutes between 8am and midnight GMT.",
-    "channelsLabel": "WhatsApp • iMessage • Email",
-    "buttonLabel": "Speak with us",
+    "title": "Speak with concierge",
+    "description": "Need something specific? Our team can help with sizing, orders, and delivery questions.",
+    "channelsLabel": "Contact",
+    "buttonLabel": "Contact us",
     "buttonHref": "contact-us"
   }
 }
