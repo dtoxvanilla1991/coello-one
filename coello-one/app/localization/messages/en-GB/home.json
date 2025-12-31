@@ -63,7 +63,8 @@
       {
         "id": "email",
         "description": "Email sign up",
-        "action": "email-signup"
+        "action": "email-signup",
+        "routeKey": null
       },
       {
         "id": "training",
