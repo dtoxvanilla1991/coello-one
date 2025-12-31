@@ -11,7 +11,8 @@
         "key": "all",
         "label": "Todos",
         "ariaLabel": "Mostrar todos los artículos populares",
-        "analyticsId": "popular-filter-all"
+        "analyticsId": "popular-filter-all",
+        "gender": null
       },
       {
         "key": "women",
@@ -56,7 +57,8 @@
         "description": "Centro para atletas",
         "title": "Coello One",
         "text": "Blueprint",
-        "routeKey": "blueprint"
+        "routeKey": "blueprint",
+        "action": null
       },
       {
         "id": "email",
@@ -67,7 +69,8 @@
         "id": "training",
         "description": "Entrenamiento Coello Cut",
         "imageAlt": "Logotipo de Coello One",
-        "routeKey": "coelloCutTraining"
+        "routeKey": "coelloCutTraining",
+        "action": null
       }
     ],
     "title": "Más sobre Coello One",

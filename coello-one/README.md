@@ -119,6 +119,7 @@ Personas live in [`AGENTS.md`](../AGENTS.md). Before executing any task, determi
 - Store copy in `app/localization/messages/<locale>/<namespace>.json`.
 - Access copy via `useTranslations(namespace)` (client) or `getNamespaceCopy(locale, namespace)` (server). Avoid inline literals.
 - After editing copy, update both en-GB and es-ES files and run `bun run verify:locales`.
+- If the dev missing-key guard throws on an “optional” field, add the key explicitly as `null`/`""`/`false` rather than omitting it (e.g., code probes like `if (x.foo)` will still read `x.foo`).
 - When emitting analytics for localized CTAs, pass `locale`, `translationKey`, and optional `translationVariant` to `trackEvent` as metadata.
 
 ### 6. Testing & QA Doctrine
