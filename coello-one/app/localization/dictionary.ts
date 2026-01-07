@@ -15,6 +15,7 @@ import welcomeEnGb from "./messages/en-GB/welcome.json" assert { type: "json" };
 import pagesEnGb from "./messages/en-GB/pages.json" assert { type: "json" };
 import legalEnGb from "./messages/en-GB/legal.json" assert { type: "json" };
 import navigationEnGb from "./messages/en-GB/navigation.json" assert { type: "json" };
+import productEnGb from "./messages/en-GB/product.json" assert { type: "json" };
 import homeEsEs from "./messages/es-ES/home.json" assert { type: "json" };
 import bagEsEs from "./messages/es-ES/bag.json" assert { type: "json" };
 import checkoutEsEs from "./messages/es-ES/checkout.json" assert { type: "json" };
@@ -31,6 +32,7 @@ import welcomeEsEs from "./messages/es-ES/welcome.json" assert { type: "json" };
 import pagesEsEs from "./messages/es-ES/pages.json" assert { type: "json" };
 import legalEsEs from "./messages/es-ES/legal.json" assert { type: "json" };
 import navigationEsEs from "./messages/es-ES/navigation.json" assert { type: "json" };
+import productEsEs from "./messages/es-ES/product.json" assert { type: "json" };
 import { DEFAULT_LOCALE, normalizeLocale } from "./config";
 import { guardMissingKeys } from "./guardMissingKeys";
 
@@ -52,6 +54,7 @@ const translations = {
     pages: pagesEnGb,
     legal: legalEnGb,
     navigation: navigationEnGb,
+    product: productEnGb,
   },
   "es-ES": {
     home: homeEsEs,
@@ -70,6 +73,7 @@ const translations = {
     pages: pagesEsEs,
     legal: legalEsEs,
     navigation: navigationEsEs,
+    product: productEsEs,
   },
 } as const;
 

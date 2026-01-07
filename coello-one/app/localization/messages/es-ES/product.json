@@ -1,0 +1,8 @@
+{
+  "availability": {
+    "checkAvailability": "Comprobar disponibilidad",
+    "inStock": "En stock",
+    "lowStock": "Pocas unidades",
+    "outOfStock": "Agotado"
+  }
+}

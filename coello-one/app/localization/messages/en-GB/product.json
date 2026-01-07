@@ -1,0 +1,8 @@
+{
+  "availability": {
+    "checkAvailability": "Check availability",
+    "inStock": "In stock",
+    "lowStock": "Low stock",
+    "outOfStock": "Out of stock"
+  }
+}
