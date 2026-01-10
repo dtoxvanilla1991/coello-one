@@ -1,7 +1,7 @@
-import { afterEach, describe, expect, it, vi } from "bun:test";
+import { afterEach, describe, expect, it, mock, spyOn } from "bun:test";
 import { render, screen, waitFor } from "@testing-library/react";
 
-vi.mock("@/components/CheckoutForm", () => ({
+mock.module("@/components/CheckoutForm", () => ({
   CheckoutForm: ({ clientSecret }: { clientSecret: string }) => (
     <div data-testid="checkout-form">{clientSecret}</div>
   ),
@@ -11,11 +11,11 @@ const { EmbeddedCheckoutExperience } = await import("./EmbeddedCheckoutExperienc
 
 describe("EmbeddedCheckoutExperience", () => {
   afterEach(() => {
-    vi.restoreAllMocks();
+    mock.restore();
   });
 
   it("requests a client secret on mount", async () => {
-    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(
+    const fetchMock = spyOn(globalThis, "fetch").mockResolvedValue(
       new Response(JSON.stringify({ clientSecret: "cs_test" }), {
         status: 200,
         headers: { "Content-Type": "application/json" },
@@ -29,7 +29,7 @@ describe("EmbeddedCheckoutExperience", () => {
   });
 
   it("surfaces an error when the API call fails", async () => {
-    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(
+    const fetchMock = spyOn(globalThis, "fetch").mockResolvedValue(
       new Response(JSON.stringify({ error: "Server error" }), {
         status: 500,
         headers: { "Content-Type": "application/json" },
