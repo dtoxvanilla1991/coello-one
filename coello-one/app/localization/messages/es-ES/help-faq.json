@@ -1,25 +1,4 @@
 {
-  "metadata": {
-    "title": "FAQ del centro de ayuda | Coello",
-    "description": "Obtén respuestas a las preguntas habituales de Coello: ajuste de la manga, velocidades de entrega y políticas de devolución."
-  },
-  "breadcrumbLabel": "Centro de ayuda",
-  "title": "FAQ del centro de ayuda",
-  "description": "Respuestas premium a las preguntas más solicitadas, actualizadas cada semana por el equipo de concierge.",
-  "search": {
-    "overline": "Busca en nuestra base de conocimiento",
-    "title": "¿En qué podemos ayudarte hoy?",
-    "description": "Explora los temas en tendencia o busca palabras clave como portal de devoluciones.",
-    "placeholder": "Busca en el centro de ayuda",
-    "empty": "No encontramos resultados: prueba otra palabra clave o contáctanos por Concierge chat."
-  },
-  "trendingTopics": [
-    "Guía de ajuste de la manga",
-    "Zonas de entrega en el día",
-    "Acceso al portal de devoluciones",
-    "Pagos Klarna",
-    "Membresía concierge"
-  ],
   "categories": [
     {
       "id": "orders",
@@ -169,5 +148,26 @@
         }
       ]
     }
-  ]
+  ],
+  "search": {
+    "overline": "Busca en nuestra base de conocimiento",
+    "title": "¿En qué podemos ayudarte hoy?",
+    "description": "Explora los temas en tendencia o busca palabras clave como portal de devoluciones.",
+    "placeholder": "Busca en el centro de ayuda",
+    "empty": "No encontramos resultados: prueba otra palabra clave o contáctanos por Concierge chat."
+  },
+  "trendingTopics": [
+    "Guía de ajuste de la manga",
+    "Zonas de entrega en el día",
+    "Acceso al portal de devoluciones",
+    "Pagos Klarna",
+    "Membresía concierge"
+  ],
+  "metadata": {
+    "title": "FAQ del centro de ayuda | Coello",
+    "description": "Obtén respuestas a las preguntas habituales de Coello: ajuste de la manga, velocidades de entrega y políticas de devolución."
+  },
+  "title": "FAQ del centro de ayuda",
+  "description": "Respuestas premium a las preguntas más solicitadas, actualizadas cada semana por el equipo de concierge.",
+  "breadcrumbLabel": "Centro de ayuda"
 }

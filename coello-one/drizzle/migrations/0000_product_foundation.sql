@@ -1,3 +1,16 @@
+CREATE TABLE `products` (
+	`id` serial AUTO_INCREMENT NOT NULL,
+	`name` varchar(255) NOT NULL,
+	`slug` varchar(255) NOT NULL,
+	`description` text,
+	`price` int NOT NULL,
+	`image_url` varchar(512),
+	`created_at` timestamp DEFAULT (now()),
+	`updated_at` timestamp DEFAULT (now()) ON UPDATE now(),
+	CONSTRAINT `products_id` PRIMARY KEY(`id`),
+	CONSTRAINT `products_slug_unique` UNIQUE(`slug`)
+);
+--> statement-breakpoint
 CREATE TABLE `accessory_kit_items` (
 	`id` serial AUTO_INCREMENT NOT NULL,
 	`product_id` bigint unsigned NOT NULL,

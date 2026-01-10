@@ -35,6 +35,17 @@ const createDefaultNavigationState = (): NavigationState => ({
 });
 
 let navigationState: NavigationState = createDefaultNavigationState();
+type NavigationListener = () => void;
+const navigationListeners = new Set<NavigationListener>();
+
+const notifyNavigationListeners = () => {
+  navigationListeners.forEach((listener) => listener());
+};
+
+const subscribeToNavigationUpdates = (listener: NavigationListener) => {
+  navigationListeners.add(listener);
+  return () => navigationListeners.delete(listener);
+};
 
 const applyDefaultRouterImplementations = () => {
   routerMocks.push.mockImplementation(() => {});
@@ -49,6 +60,7 @@ const resetNavigationMocks = () => {
   Object.values(routerMocks).forEach((mockFn) => mockFn.mockReset());
   applyDefaultRouterImplementations();
   navigationState = createDefaultNavigationState();
+  notifyNavigationListeners();
 };
 
 const setNavigationState = (overrides: Partial<NavigationState>) => {
@@ -64,6 +76,7 @@ const setNavigationState = (overrides: Partial<NavigationState>) => {
         ? new URLSearchParams(overrides.searchParams)
         : navigationState.searchParams,
   };
+  notifyNavigationListeners();
 };
 
 const getNavigationState = (): NavigationState => ({
@@ -75,4 +88,10 @@ const getNavigationState = (): NavigationState => ({
 applyDefaultRouterImplementations();
 resetNavigationMocks();
 
-export { routerMocks, resetNavigationMocks, setNavigationState, getNavigationState };
+export {
+  routerMocks,
+  resetNavigationMocks,
+  setNavigationState,
+  getNavigationState,
+  subscribeToNavigationUpdates,
+};

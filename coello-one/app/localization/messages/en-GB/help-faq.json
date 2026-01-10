@@ -1,25 +1,4 @@
 {
-  "metadata": {
-    "title": "Help Centre FAQ | Coello",
-    "description": "Get answers to common Coello questions, from sleeve fit guidance to delivery speeds and returns policies."
-  },
-  "breadcrumbLabel": "Help Centre",
-  "title": "Help Centre FAQ",
-  "description": "Premium answers to the most-requested Coello questions, updated weekly by the concierge team.",
-  "search": {
-    "overline": "Search our knowledge base",
-    "title": "What can we help you find today?",
-    "description": "Explore trending questions or search for keywords such as returns portal.",
-    "placeholder": "Search the help centre",
-    "empty": "No answers found—try another keyword or reach us via Concierge chat."
-  },
-  "trendingTopics": [
-    "Sleeve fit guide",
-    "Same-day delivery zones",
-    "Returns portal login",
-    "Klarna repayments",
-    "Concierge membership"
-  ],
   "categories": [
     {
       "id": "orders",
@@ -169,5 +148,26 @@
         }
       ]
     }
-  ]
+  ],
+  "search": {
+    "overline": "Search our knowledge base",
+    "title": "What can we help you find today?",
+    "description": "Explore trending questions or search for keywords such as returns portal.",
+    "placeholder": "Search the help centre",
+    "empty": "No answers found—try another keyword or reach us via Concierge chat."
+  },
+  "trendingTopics": [
+    "Sleeve fit guide",
+    "Same-day delivery zones",
+    "Returns portal login",
+    "Klarna repayments",
+    "Concierge membership"
+  ],
+  "metadata": {
+    "title": "Help Centre FAQ | Coello",
+    "description": "Get answers to common Coello questions, from sleeve fit guidance to delivery speeds and returns policies."
+  },
+  "title": "Help Centre FAQ",
+  "description": "Premium answers to the most-requested Coello questions, updated weekly by the concierge team.",
+  "breadcrumbLabel": "Help Centre"
 }

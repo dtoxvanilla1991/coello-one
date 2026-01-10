@@ -1,78 +1,36 @@
 {
-  "hero": {
-    "title": "Checkout",
-    "subtitleReady": "Review your details before placing the order.",
-    "subtitleEmpty": "Add at least one item to complete your order.",
-    "backToBag": "Back to bag"
+  "embedded": {
+    "title": "Secure Stripe checkout",
+    "error": "Unable to load the secure checkout experience. Please try again.",
+    "subtitle": "Complete your Coello Sleeve purchase without leaving the site.",
+    "loading": "Preparing your payment session...",
+    "retry": "Retry checkout",
+    "secureNote": "Stripe encrypts every transaction and calculates tax automatically.",
+    "secureDescription": "We will confirm your delivery as soon as the payment succeeds."
   },
-  "express": {
-    "title": "Express checkout",
-    "helper": "Continue to secure checkout for additional payment methods.",
-    "divider": "or"
-  },
-  "contact": {
-    "title": "Contact",
-    "signIn": "Sign in",
-    "emailLabel": "Email",
-    "emailPlaceholder": "Email",
-    "emailError": "Enter an email",
-    "optInLabel": "Tick here to receive emails about launches and exclusives.",
-    "privacy": "View our Privacy Policy."
-  },
-  "delivery": {
-    "title": "Delivery",
-    "home": "Home Delivery (selected)",
-    "pickup": "Pickup Point",
-    "countryLabel": "Country/Region",
-    "countryError": "Select a country",
-    "firstNameLabel": "First name",
-    "firstNamePlaceholder": "First name",
-    "firstNameError": "Enter first name",
-    "lastNameLabel": "Last name",
-    "lastNamePlaceholder": "Last name",
-    "lastNameError": "Enter last name",
-    "addressLine1Label": "Address line 1",
-    "addressLine1Placeholder": "Address line 1",
-    "addressLine1Error": "Enter an address",
-    "addressLine2Label": "Address line 2",
-    "cityLabel": "City",
-    "cityPlaceholder": "City",
-    "cityError": "Enter a city",
-    "postcodeLabel": "Postcode",
-    "postcodePlaceholder": "Postcode",
-    "postcodeError": "Enter postcode",
-    "phoneLabel": "Phone",
-    "phonePlaceholder": "Phone"
-  },
-  "payment": {
-    "title": "Payment",
-    "helper": "All transactions are secure and encrypted via Stripe.",
-    "alert": "Connect your Stripe keys to process live payments."
-  },
-  "remember": {
-    "title": "Remember me",
-    "helper": "Save your information for a faster checkout with a Coello account.",
-    "on": "On",
-    "off": "Off"
-  },
-  "cta": {
-    "submit": "Place order securely"
-  },
-  "orderSummary": {
-    "title": "Order summary",
-    "empty": "Your bag is empty. Add items to see the order summary.",
-    "discountPlaceholder": "Gift card or discount code",
-    "discountApply": "Apply",
-    "referral": "Been referred by a friend?",
-    "subtotal": "Subtotal",
-    "shipping": "Shipping",
-    "shippingFree": "Free",
-    "items": "Items",
-    "total": "Total",
-    "shippingPrompt": "Enter your shipping address to view available methods."
-  },
-  "messages": {
-    "emptyWarning": "Add an item to your bag before completing checkout.",
-    "success": "Checkout submission captured. Configure Stripe to finish."
+  "returnPage": {
+    "success": {
+      "badge": "Paid",
+      "body": "Payment confirmed. We'll email your receipt and confirm delivery shortly."
+    },
+    "processing": {
+      "badge": "Processing",
+      "body": "Your payment is processing. This usually takes a few seconds."
+    },
+    "open": {
+      "badge": "Open",
+      "body": "We're waiting for Stripe to confirm your payment. This page will update automatically."
+    },
+    "error": {
+      "badge": "Issue",
+      "body": "We couldn't confirm your payment yet. If you were charged, please contact support."
+    },
+    "title": "Payment review",
+    "missingSession": "Open this page from the Stripe receipt so we can locate your order.",
+    "amountLabel": "Amount charged",
+    "customerLabel": "Receipt sent to",
+    "orderLabel": "Order",
+    "ctaPrimary": "View bag",
+    "ctaSecondary": "Back to shop"
   }
 }

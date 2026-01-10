@@ -28,7 +28,7 @@ export const cartSubtotalAtom = atom((get) =>
 );
 
 export const FLAT_SHIPPING_RATE = 8.5;
-export const FREE_SHIPPING_THRESHOLD = 150;
+export const FREE_SHIPPING_THRESHOLD = 45;
 
 export const cartShippingAtom = atom((get) => {
   const subtotal = get(cartSubtotalAtom);

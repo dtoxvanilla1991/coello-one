@@ -1,44 +1,22 @@
 {
-  "metadata": {
-    "title": "Información de entrega | Ayuda Coello",
-    "description": "Consulta velocidades de entrega, precios y socios de mensajería de Coello en Reino Unido, UE y Norteamérica."
-  },
-  "breadcrumbLabel": "Centro de ayuda",
-  "title": "Información de entrega",
-  "description": "Todo lo que necesitas saber sobre cortes de despacho, precios y cómo protegemos tus paquetes.",
   "calculator": {
+    "validationError": "Revisa los datos e inténtalo de nuevo.",
+    "serviceRequired": "Selecciona tu nivel de servicio.",
+    "combinationError": "Aún no enviamos esa combinación: elige otra opción.",
+    "complimentaryLabel": "Gratis",
+    "savingsLabel": "Ahorraste {amount} en envío con tu gasto.",
     "title": "Calculadora de envío",
     "subtitle": "Simula el coste en segundos. Los umbrales de gasto desbloquean la entrega gratuita automáticamente.",
     "regionLabel": "¿A dónde entregamos?",
     "serviceLabel": "Elige un servicio",
     "servicePlaceholder": "Selecciona la velocidad",
-    "serviceRequired": "Selecciona tu nivel de servicio.",
     "orderValueLabel": "Valor del pedido (moneda local)",
-    "orderValuePlaceholder": "Introduce el total",
     "orderValueRequired": "Introduce el total de tu pedido.",
+    "orderValuePlaceholder": "Introduce el total",
     "submitLabel": "Calcular envío",
-    "validationError": "Revisa los datos e inténtalo de nuevo.",
-    "combinationError": "Aún no enviamos esa combinación: elige otra opción.",
-    "complimentaryLabel": "Gratis",
     "resultTitle": "Tu envío es {amount}",
     "resultMeta": "{service} · {eta} · {cutoff}",
-    "savingsLabel": "Ahorraste {amount} en envío con tu gasto.",
-    "emptyPrompt": "Introduce tus datos y pulsa enviar para previsualizar el envío.",
-    "successTitle": "Cotización lista"
-  },
-  "sections": {
-    "speedsTitle": "Velocidades de un vistazo",
-    "speedsDescription": "El precio se ajusta según tu región en el checkout. Express y Same Day aparecen cuando tu código postal califica.",
-    "promisesTitle": "Lo que puedes esperar",
-    "packingTitle": "Del estudio a tu puerta",
-    "dutiesTitle": "Impuestos simplificados"
-  },
-  "matrixColumns": {
-    "region": "Región",
-    "service": "Servicio",
-    "eta": "Llegada estimada",
-    "cutoff": "Pide antes de",
-    "cost": "Costo"
+    "emptyPrompt": "Introduce tus datos y pulsa enviar para previsualizar el envío."
   },
   "tiers": [
     {
@@ -50,8 +28,8 @@
       "displayCost": "£4.95",
       "costValue": 4.95,
       "currency": "GBP",
-      "freeThreshold": "Gratis desde £150",
-      "freeThresholdValue": 150
+      "freeThreshold": "Gratis desde £45",
+      "freeThresholdValue": 45
     },
     {
       "id": "uk-express",
@@ -165,5 +143,26 @@
       "market": "Oriente Medio",
       "detail": "Calculamos IVA y aranceles en el checkout, así evitas sorpresas en la entrega."
     }
-  ]
+  ],
+  "sections": {
+    "speedsTitle": "Velocidades de un vistazo",
+    "speedsDescription": "El precio se ajusta según tu región en el checkout. Express y Same Day aparecen cuando tu código postal califica.",
+    "promisesTitle": "Lo que puedes esperar",
+    "packingTitle": "Del estudio a tu puerta",
+    "dutiesTitle": "Impuestos simplificados"
+  },
+  "matrixColumns": {
+    "region": "Región",
+    "service": "Servicio",
+    "eta": "Llegada estimada",
+    "cutoff": "Pide antes de",
+    "cost": "Costo"
+  },
+  "metadata": {
+    "title": "Información de entrega | Ayuda Coello",
+    "description": "Consulta velocidades de entrega, precios y socios de mensajería de Coello en Reino Unido, UE y Norteamérica."
+  },
+  "title": "Información de entrega",
+  "description": "Todo lo que necesitas saber sobre cortes de despacho, precios y cómo protegemos tus paquetes.",
+  "breadcrumbLabel": "Centro de ayuda"
 }

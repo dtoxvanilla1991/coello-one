@@ -1,44 +1,22 @@
 {
-  "metadata": {
-    "title": "Delivery Information | Coello Help",
-    "description": "View Coello delivery speeds, pricing, and courier partners across the UK, EU, and North America."
-  },
-  "breadcrumbLabel": "Help Centre",
-  "title": "Delivery information",
-  "description": "Everything you need to know about dispatch cut-offs, pricing, and how Coello keeps parcels secure.",
   "calculator": {
+    "validationError": "Please review the inputs and try again.",
+    "serviceRequired": "Select your service level.",
+    "combinationError": "We do not currently ship that combination—choose another option.",
+    "complimentaryLabel": "Complimentary",
+    "savingsLabel": "Saved {amount} shipping with your spend.",
     "title": "Delivery cost calculator",
     "subtitle": "Model your shipping charge in seconds. Spend thresholds unlock complimentary delivery automatically.",
     "regionLabel": "Where are we delivering?",
     "serviceLabel": "Choose a service",
     "servicePlaceholder": "Select delivery speed",
-    "serviceRequired": "Select your service level.",
     "orderValueLabel": "Order value (local currency)",
-    "orderValuePlaceholder": "Enter your order total",
     "orderValueRequired": "Enter your order total.",
+    "orderValuePlaceholder": "Enter your order total",
     "submitLabel": "Calculate shipping",
-    "validationError": "Please review the inputs and try again.",
-    "combinationError": "We do not currently ship that combination—choose another option.",
-    "complimentaryLabel": "Complimentary",
     "resultTitle": "Your shipping is {amount}",
     "resultMeta": "{service} · {eta} · {cutoff}",
-    "savingsLabel": "Saved {amount} shipping with your spend.",
-    "emptyPrompt": "Enter your details and tap submit to preview shipping.",
-    "successTitle": "Quote ready"
-  },
-  "sections": {
-    "speedsTitle": "Shipping speeds at a glance",
-    "speedsDescription": "Pricing auto-adjusts for your locale at checkout. Express and same-day options appear when your postcode qualifies.",
-    "promisesTitle": "What you can expect",
-    "packingTitle": "From studio to your door",
-    "dutiesTitle": "Duties and taxes, simplified"
-  },
-  "matrixColumns": {
-    "region": "Region",
-    "service": "Service",
-    "eta": "Estimated arrival",
-    "cutoff": "Order by",
-    "cost": "Cost"
+    "emptyPrompt": "Enter your details and tap submit to preview shipping."
   },
   "tiers": [
     {
@@ -50,8 +28,8 @@
       "displayCost": "£4.95",
       "costValue": 4.95,
       "currency": "GBP",
-      "freeThreshold": "Complimentary over £150",
-      "freeThresholdValue": 150
+      "freeThreshold": "Complimentary over £45",
+      "freeThresholdValue": 45
     },
     {
       "id": "uk-express",
@@ -165,5 +143,26 @@
       "market": "Middle East",
       "detail": "We pre-calculate VAT and duties at checkout, so there are no surprises at delivery."
     }
-  ]
+  ],
+  "sections": {
+    "speedsTitle": "Shipping speeds at a glance",
+    "speedsDescription": "Pricing auto-adjusts for your locale at checkout. Express and same-day options appear when your postcode qualifies.",
+    "promisesTitle": "What you can expect",
+    "packingTitle": "From studio to your door",
+    "dutiesTitle": "Duties and taxes, simplified"
+  },
+  "matrixColumns": {
+    "region": "Region",
+    "service": "Service",
+    "eta": "Estimated arrival",
+    "cutoff": "Order by",
+    "cost": "Cost"
+  },
+  "metadata": {
+    "title": "Delivery Information | Coello Help",
+    "description": "View Coello delivery speeds, pricing, and courier partners across the UK, EU, and North America."
+  },
+  "title": "Delivery information",
+  "description": "Everything you need to know about dispatch cut-offs, pricing, and how Coello keeps parcels secure.",
+  "breadcrumbLabel": "Help Centre"
 }

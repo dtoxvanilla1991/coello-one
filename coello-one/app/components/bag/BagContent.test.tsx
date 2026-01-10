@@ -42,7 +42,7 @@ describe("BagContent", () => {
       {
         id: "osc-men-gray-m",
         name: "One Sleeve Classic",
-        image: "/athletes/vertical/main-secondary-1.jpg",
+        image: "/athletes/vertical/main-secondary-1.png",
         price: 45,
         quantity: 2,
         size: "M",
@@ -68,9 +68,17 @@ describe("BagContent", () => {
     expect(summaryCard).toBeTruthy();
     const summaryRegion = summaryCard ? within(summaryCard as HTMLElement) : screen;
 
-    expect(summaryRegion.getByText("£135.00")).toBeTruthy();
-    expect(summaryRegion.getByText("£8.50")).toBeTruthy();
-    expect(summaryRegion.getByText("£143.50")).toBeTruthy();
+    const subtotalRow = summaryRegion.getByText("Subtotal").parentElement;
+    expect(subtotalRow).toBeTruthy();
+    expect(within(subtotalRow as HTMLElement).getByText("£135.00")).toBeTruthy();
+
+    const shippingRow = summaryRegion.getByText("Express shipping").parentElement;
+    expect(shippingRow).toBeTruthy();
+    expect(within(shippingRow as HTMLElement).getByText("Free")).toBeTruthy();
+
+    const totalRow = summaryRegion.getByText("Total").closest(".ant-flex");
+    expect(totalRow).toBeTruthy();
+    expect(within(totalRow as HTMLElement).getByText("£135.00")).toBeTruthy();
   });
 
   it("navigates back to the home route when Continue shopping is pressed", () => {
@@ -86,7 +94,7 @@ describe("BagContent", () => {
       {
         id: "osc-men-gray-m",
         name: "One Sleeve Classic",
-        image: "/athletes/vertical/main-secondary-1.jpg",
+        image: "/athletes/vertical/main-secondary-1.png",
         price: 45,
         quantity: 2,
         size: "M",
@@ -104,8 +112,8 @@ describe("BagContent", () => {
 
     expect(payload).toMatchObject({
       subtotal: 90,
-      shipping: 8.5,
-      total: 98.5,
+      shipping: 0,
+      total: 90,
       itemCount: 2,
     });
     expect(routerMocks.push).toHaveBeenCalledWith(`/${DEFAULT_LOCALE}/checkout`);

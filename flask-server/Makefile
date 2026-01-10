@@ -10,8 +10,8 @@ CACHE_REQ := $(CACHE_DIR)/requirements.txt
 CACHE_DEV_REQ := $(CACHE_DIR)/requirements-dev.txt
 PIP_COMPILE := "$(VENV_PYTHON)" -m piptools compile
 PIP_COMPILE_FLAGS ?=
-PIP_VERSION_SPEC ?= "pip<25"
-PIPTOOLS_VERSION ?= pip-tools==7.4.1
+PIP_VERSION_SPEC ?= "pip<26"
+PIPTOOLS_VERSION ?= pip-tools==7.5.2
 RUFF := "$(VENV_PYTHON)" -m ruff
 
 .PHONY: format format-check lint lint-fix venv install dev clean-venv pip-tools compile cache-clean ci-check upgrade
@@ -36,12 +36,12 @@ venv:
 			fi; \
 		fi; \
 	fi; \
-	"$(VENV_PYTHON)" -m pip install --upgrade $(PIP_VERSION_SPEC) >/dev/null
+	"$(VENV_PYTHON)" -m pip install --disable-pip-version-check --upgrade $(PIP_VERSION_SPEC) >/dev/null
 	@echo "[ok] Virtual environment ready at $(VENV)"
 
 pip-tools: venv
 	@echo "[info] Ensuring pip-tools is available"
-	@"$(VENV_PIP)" install $(PIPTOOLS_VERSION) >/dev/null
+	@"$(VENV_PIP)" --disable-pip-version-check install $(PIPTOOLS_VERSION) >/dev/null
 
 $(CACHE_REQ): requirements.in pip-tools
 	@mkdir -p "$(CACHE_DIR)"
@@ -55,8 +55,8 @@ $(CACHE_DEV_REQ): requirements-dev.in pip-tools $(CACHE_REQ)
 
 install: venv $(CACHE_REQ) $(CACHE_DEV_REQ)
 	@echo "[info] Installing backend dependencies"
-	@"$(VENV_PIP)" install -r "$(CACHE_REQ)" >/dev/null
-	@"$(VENV_PIP)" install -r "$(CACHE_DEV_REQ)" >/dev/null
+	@"$(VENV_PIP)" --disable-pip-version-check install -r "$(CACHE_REQ)" >/dev/null
+	@"$(VENV_PIP)" --disable-pip-version-check install -r "$(CACHE_DEV_REQ)" >/dev/null
 	@echo "[ok] Backend dependencies installed"
 
 compile: $(CACHE_REQ) $(CACHE_DEV_REQ)
@@ -80,13 +80,13 @@ upgrade: cache-clean
 ci-check: venv pip-tools
 	@echo "[info] Verifying compiled lockfiles are up to date"
 	@if [ -f "$(CACHE_REQ)" ]; then \
-		$(PIP_COMPILE) --resolver=backtracking --strip-extras --quiet --dry-run --output-file "$(CACHE_REQ)" requirements.in >/dev/null; \
+		$(PIP_COMPILE) $(PIP_COMPILE_FLAGS) --resolver=backtracking --strip-extras --quiet --dry-run --output-file "$(CACHE_REQ)" requirements.in >/dev/null; \
 	else \
 		echo "[warn] $(CACHE_REQ) is missing; run 'make backend' to generate it"; \
 		exit 1; \
 	fi
 	@if [ -f "$(CACHE_DEV_REQ)" ]; then \
-		$(PIP_COMPILE) --resolver=backtracking --strip-extras --quiet --dry-run --output-file "$(CACHE_DEV_REQ)" requirements-dev.in >/dev/null; \
+		$(PIP_COMPILE) $(PIP_COMPILE_FLAGS) --resolver=backtracking --strip-extras --quiet --dry-run --output-file "$(CACHE_DEV_REQ)" requirements-dev.in >/dev/null; \
 	else \
 		echo "[warn] $(CACHE_DEV_REQ) is missing; run 'make backend' to generate it"; \
 		exit 1; \

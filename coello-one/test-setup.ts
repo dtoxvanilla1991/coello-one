@@ -3,7 +3,12 @@ import { cleanup } from "@testing-library/react";
 import * as matchers from "@testing-library/jest-dom/matchers";
 import type { AnchorHTMLAttributes, ImgHTMLAttributes, ReactNode } from "react";
 import { expect, afterEach, afterAll, mock } from "bun:test";
-import { getNavigationState, resetNavigationMocks, routerMocks } from "./test-utils/navigation";
+import {
+  getNavigationState,
+  resetNavigationMocks,
+  routerMocks,
+  subscribeToNavigationUpdates,
+} from "./test-utils/navigation";
 import {
   requestLocaleHeaderState,
   requestLocaleCookieState,
@@ -11,6 +16,17 @@ import {
 
 // Register the DOM environment
 GlobalRegistrator.register();
+
+// Prevent tests from mutating the checked-in product cache DB.
+process.env.PRODUCT_CACHE_DB_PATH = ":memory:";
+process.env.PRODUCT_CACHE_TTL_MS = "-1";
+process.env.PRODUCT_CACHE_WARMUP = "false";
+(process.env as Record<string, string | undefined>).NODE_ENV = "test";
+
+(Bun.env as Record<string, string | undefined>).PRODUCT_CACHE_DB_PATH = ":memory:";
+(Bun.env as Record<string, string | undefined>).PRODUCT_CACHE_TTL_MS = "-1";
+(Bun.env as Record<string, string | undefined>).PRODUCT_CACHE_WARMUP = "false";
+(Bun.env as Record<string, string | undefined>).NODE_ENV = "test";
 
 // Tell React that the test runner wraps updates in act().
 (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
@@ -44,7 +60,7 @@ if (typeof nativeFetch === "function") {
 }
 
 const ReactModule = await import("react");
-const createElement = ReactModule.createElement;
+const { createElement, useSyncExternalStore } = ReactModule;
 
 // Repair Testing Library's screen export now that a DOM exists.
 const domTestingLibrary = await import("@testing-library/dom");
@@ -178,22 +194,50 @@ mock.module("next/headers", () => ({
 }));
 
 // Mock next/navigation hooks and functions using shared router state
-mock.module("next/navigation", () => ({
-  __esModule: true,
-  useServerInsertedHTML: () => {},
-  useRouter: () => routerMocks,
-  usePathname: () => getNavigationState().pathname,
-  useSearchParams: () => new URLSearchParams(getNavigationState().searchParams),
-  useParams: () => ({ ...getNavigationState().params }),
-  useSelectedLayoutSegment: () => null,
-  useSelectedLayoutSegments: () => [],
-  notFound: () => {
-    throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
-  },
-  redirect: () => {
-    throw new Error("NEXT_REDIRECT");
-  },
-}));
+mock.module("next/navigation", () => {
+  const searchParamsCache = { key: "", snapshot: null as URLSearchParams | null };
+  const getCachedSearchParams = () => {
+    const nextKey = getNavigationState().searchParams.toString();
+    if (searchParamsCache.snapshot && searchParamsCache.key === nextKey) {
+      return searchParamsCache.snapshot;
+    }
+    searchParamsCache.key = nextKey;
+    searchParamsCache.snapshot = new URLSearchParams(nextKey);
+    return searchParamsCache.snapshot;
+  };
+
+  return {
+    __esModule: true,
+    useServerInsertedHTML: () => {},
+    useRouter: () => routerMocks,
+    usePathname: () =>
+      useSyncExternalStore(
+        subscribeToNavigationUpdates,
+        () => getNavigationState().pathname,
+        () => getNavigationState().pathname,
+      ),
+    useSearchParams: () =>
+      useSyncExternalStore(
+        subscribeToNavigationUpdates,
+        () => getCachedSearchParams(),
+        () => getCachedSearchParams(),
+      ),
+    useParams: () =>
+      useSyncExternalStore(
+        subscribeToNavigationUpdates,
+        () => ({ ...getNavigationState().params }),
+        () => ({ ...getNavigationState().params }),
+      ),
+    useSelectedLayoutSegment: () => null,
+    useSelectedLayoutSegments: () => [],
+    notFound: () => {
+      throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
+    },
+    redirect: () => {
+      throw new Error("NEXT_REDIRECT");
+    },
+  };
+});
 
 // Prevent server-only guard from throwing when server modules are imported in tests
 mock.module("server-only", () => ({}));

@@ -1,124 +1,192 @@
 {
-  "about": {
-    "metadata": {
-      "title": "About Coello One",
-      "description": "Meet the one-sleeve performance house celebrating athletes who treat their bodies as galleries."
-    },
+  "coelloCutTraining": {
     "hero": {
-      "kicker": "About Coello One",
-      "title": "One sleeve. Every story on display.",
-      "description": "Empowering you to showcase your story—one sleeve at a time. Coello One fuses bold design with technical performance so your art and athleticism never have to compete.",
-      "highlightStats": [
-        { "label": "Prototype hours", "value": "3,200+" },
-        { "label": "Fit testers worldwide", "value": "140" },
-        { "label": "Visible ink coverage", "value": "92%" }
-      ]
+      "kicker": "5% WORK · 95% LIFE",
+      "title": "The Gym is the Stimulus. The Lifestyle is the Engine.",
+      "description": "We train to send a signal—\"build armor\"—not to erase calories. Appetite, hormones, and stress management deliver the real fat loss. This page is your protocol for sending the correct signal, then living in a way that lets the body respond."
     },
-    "story": {
-      "title": "Built for the niche-within-a-niche",
-      "paragraphs": [
-        "We always saw a disconnect. You commit hours under the needle so your story lives on your skin, then you grind through training only to cover it up. At Coello, we believe your art and your athleticism come from the same fire.",
-        "Our one-sleeve design is not a gimmick. It is the frame your masterpiece deserves—technical apparel tuned for performance, with a fit that finally celebrates the way you've chosen to express yourself.",
-        "This brand is for everyone who knows the patience of the artist's chair and the burn of the last rep. We are a statement as much as we are a garment."
-      ],
-      "quote": {
-        "text": "Both your art and your training are proof of persistence. Our job is to let that proof be seen.",
-        "attribution": "Laura Gomez · Chief Designer"
-      }
-    },
-    "pillars": [
-      {
-        "id": "craft",
-        "title": "Intentional asymmetry",
-        "description": "3D body mapping keeps compression where you need stability and releases the tattooed side so ink stays breathable and bright.",
-        "statLabel": "Proto cycles",
-        "statValue": "214"
-      },
-      {
-        "id": "performance",
-        "title": "Performance-grade fabrics",
-        "description": "Moisture-channeling Italian yarns, micro-wicking mesh, and bonded seams move with every lift, stride, and strike.",
-        "statLabel": "Fabric innovations",
-        "statValue": "4"
-      },
-      {
-        "id": "community",
-        "title": "Community-built rituals",
-        "description": "We co-create with athletes who are also canvases—from muralists to MMA artists—so every drop honors lived experience.",
-        "statLabel": "Artist labs",
-        "statValue": "12"
-      }
-    ],
-    "timeline": {
-      "title": "Milestones that shaped Coello",
-      "milestones": [
+    "manifesto": {
+      "headline": "You Cannot Out-Train Your Fork.",
+      "subheading": "Strength work is a signal, not a calorie eraser. We lift to send a message—build armor—then live to let that message land.",
+      "bulletPoints": [
         {
-          "year": "2019",
-          "title": "Observation",
-          "description": "Noticed elite athletes hiding tattoos mid-training and mapped the ergonomic gap."
+          "title": "Signal First",
+          "description": "Training tells the body what to adapt to. Nervous-system friendly tension beats random sweat every time."
         },
         {
-          "year": "2020",
-          "title": "First lab",
-          "description": "Built our first asymmetrical prototypes alongside illustrators and sprinters in Barcelona."
+          "title": "Lifestyle Drives Leanness",
+          "description": "Only a sliver of daily expenditure comes from lifting. Sleep, stress, and food quality dictate the actual recomposition."
         },
         {
-          "year": "2022",
-          "title": "Material breakthrough",
-          "description": "Locked a fabric recipe that keeps saturated ink tones cooler by up to 3ºC."
-        },
-        {
-          "year": "2024",
-          "title": "Community drop",
-          "description": "Opened the One Sleeve Residency so athletes can prototype live with Laura's team."
-        },
-        {
-          "year": "2025",
-          "title": "Global debut",
-          "description": "Coello One launches internationally with localized education hubs and athlete storytelling."
+          "title": "Nature Resets Hormones",
+          "description": "Get outside weekly. Horizons flatten cortisol, sunlight wakes the endocrine system, and boredom fuels creativity."
         }
       ]
     },
-    "cta": {
-      "label": "Explore the One-Sleeve Classic",
-      "href": "/one-sleeve-classic"
+    "living": {
+      "kicker": "Daily Living",
+      "title": "Living Component",
+      "description": "Mandatory weekly hike or nature walk. Artificial light, concrete, and doomscrolling spike cortisol; horizons reset your biology.",
+      "diet": "Eat food that ran, swam, or grew. If it has a barcode, interrogate it. Ferments, roots, and minerals keep the signal responsive."
+    },
+    "plans": {
+      "essentialist": {
+        "name": "The Essentialist",
+        "tagline": "Minimum Dose. Maximum Signal.",
+        "description": "Designed for the busy creative. Focus purely on the Big 3 lifts to ground the nervous system without exhaustion.",
+        "focus": ["Neural Drive", "Compound Efficiency", "Recovery"],
+        "split": [
+          {
+            "label": "Full Body A (Squat)"
+          },
+          {
+            "label": "Rest"
+          },
+          {
+            "label": "Full Body B (Push)"
+          },
+          {
+            "label": "Rest"
+          },
+          {
+            "label": "Full Body C (Hinge)"
+          },
+          {
+            "label": "Hike",
+            "isNature": true
+          },
+          {
+            "label": "Rest"
+          }
+        ]
+      },
+      "architect": {
+        "name": "The Architect",
+        "tagline": "Symmetry and Structure.",
+        "description": "The gold standard for aesthetics. Balances heavy loading with adequate central nervous system recovery.",
+        "focus": ["Symmetry", "Hypertrophy", "Foundation"],
+        "split": [
+          {
+            "label": "Upper Power"
+          },
+          {
+            "label": "Lower Power"
+          },
+          {
+            "label": "Rest"
+          },
+          {
+            "label": "Upper Hypertrophy"
+          },
+          {
+            "label": "Lower Hypertrophy"
+          },
+          {
+            "label": "Hike",
+            "isNature": true
+          },
+          {
+            "label": "Rest"
+          }
+        ]
+      },
+      "craftsman": {
+        "name": "The Craftsman",
+        "tagline": "Detail and Obsession.",
+        "description": "High volume for those who treat their body as the primary project. Includes isolation work for the Coello sleeve arm.",
+        "focus": ["Detail Work", "Volume", "Weak Point Training"],
+        "split": [
+          {
+            "label": "Push"
+          },
+          {
+            "label": "Pull"
+          },
+          {
+            "label": "Legs"
+          },
+          {
+            "label": "Rest"
+          },
+          {
+            "label": "Upper Focus"
+          },
+          {
+            "label": "Lower Focus"
+          },
+          {
+            "label": "Hike",
+            "isNature": true
+          }
+        ]
+      }
+    },
+    "planDisplay": {
+      "daysPerWeekLabel": "Days Per Week",
+      "weeklySplitHeading": "Weekly Split",
+      "dayLabel": "Day"
+    },
+    "planSelector": {
+      "daysLabel": "Days",
+      "kicker": "Program Architect",
+      "description": "Choose the archetype that matches your season. Each toggle instantly redraws the plan."
+    },
+    "ritual": {
+      "title": "The Decompression",
+      "philosophy": "You tightened the muscle to break it. Now lengthen it to heal it.",
+      "cards": [
+        {
+          "id": "cardio",
+          "label": "Cardio",
+          "description": "20 mins Zone 2 Cardio (nasal breathing only). Heart rate 120-130 bpm."
+        },
+        {
+          "id": "stretch",
+          "label": "Stretch",
+          "description": "10 mins static holds. Focus on hip flexors and chest openers."
+        },
+        {
+          "id": "sundayService",
+          "label": "Sunday Service",
+          "description": "Weekly hike or nature walk is mandatory. Artificial light and concrete spike cortisol; horizons reset your biology."
+        }
+      ]
     }
   },
   "discounts": {
     "metadata": {
-      "title": "Discounts & VIP access",
-      "description": "The waitlist for future drops that actually matter."
+      "title": "Discounts",
+      "description": "Reserve a future code and get notified when Coello opens a discount window."
     },
     "hero": {
-      "kicker": "Discounts & Drops",
-      "title": "We don't run endless sales. We plan precise rewards.",
-      "description": "Join the insider list to unlock the next promo window, exclusive color studies, and residency invites."
+      "kicker": "Discount Access",
+      "title": "Reserve your future code",
+      "description": "Get a quiet nudge the moment a discount or private launch goes live."
     },
     "statusCard": {
-      "title": "No blanket promos today",
-      "body": "We'd rather protect craftsmanship than slash prices every weekend. The next offer will be limited, intentional, and delivered directly to this list first.",
-      "reminderLabel": "What you get"
+      "title": "How it works",
+      "body": "We only run discounts in short windows. Join the list and we'll notify you when one opens.",
+      "reminderLabel": "Next notification"
     },
     "benefits": [
       {
-        "title": "Launch-window pricing",
-        "description": "Be the first to know when a new one-sleeve colorway or fabric update drops and receive a one-time code."
+        "title": "Early signal",
+        "description": "Be first to know when a code becomes available."
       },
       {
-        "title": "Residency invites",
-        "description": "Priority access to virtual workshops with Laura and guest athletes to co-design future releases."
+        "title": "No spam",
+        "description": "Only purposeful updates tied to a real drop or window."
       },
       {
-        "title": "Training intelligence",
-        "description": "Monthly micro-guides from the Coello One Blueprint tailored to recovering skin and high-output weeks."
+        "title": "One tap out",
+        "description": "Unsubscribe any time with a single click."
       }
     ],
     "privacy": {
-      "title": "Our privacy promise",
+      "title": "Privacy",
       "points": [
-        "No spam—just purposeful updates tied to drops or education.",
-        "Data stays with Coello. We will never sell, rent, or trade your contact details.",
-        "You can leave the list at any time with a single click."
+        "We use your email only for Coello discount and launch updates.",
+        "You can unsubscribe at any time."
       ]
     },
     "form": {
@@ -274,115 +342,6 @@
       }
     ]
   },
-  "coelloCutTraining": {
-    "hero": {
-      "kicker": "5% WORK · 95% LIFE",
-      "title": "The Gym is the Stimulus. The Lifestyle is the Engine.",
-      "description": "We train to send a signal—\"build armor\"—not to erase calories. Appetite, hormones, and stress management deliver the real fat loss. This page is your protocol for sending the correct signal, then living in a way that lets the body respond."
-    },
-    "manifesto": {
-      "headline": "You Cannot Out-Train Your Fork.",
-      "subheading": "Strength work is a signal, not a calorie eraser. We lift to send a message—build armor—then live to let that message land.",
-      "bulletPoints": [
-        {
-          "title": "Signal First",
-          "description": "Training tells the body what to adapt to. Nervous-system friendly tension beats random sweat every time."
-        },
-        {
-          "title": "Lifestyle Drives Leanness",
-          "description": "Only a sliver of daily expenditure comes from lifting. Sleep, stress, and food quality dictate the actual recomposition."
-        },
-        {
-          "title": "Nature Resets Hormones",
-          "description": "Get outside weekly. Horizons flatten cortisol, sunlight wakes the endocrine system, and boredom fuels creativity."
-        }
-      ]
-    },
-    "planSelector": {
-      "kicker": "Program Architect",
-      "description": "Choose the archetype that matches your season. Each toggle instantly redraws the plan.",
-      "daysLabel": "Days"
-    },
-    "planDisplay": {
-      "daysPerWeekLabel": "Days Per Week",
-      "weeklySplitHeading": "Weekly Split",
-      "dayLabel": "Day"
-    },
-    "plans": {
-      "essentialist": {
-        "name": "The Essentialist",
-        "tagline": "Minimum Dose. Maximum Signal.",
-        "description": "Designed for the busy creative. Focus purely on the Big 3 lifts to ground the nervous system without exhaustion.",
-        "focus": ["Neural Drive", "Compound Efficiency", "Recovery"],
-        "split": [
-          { "label": "Full Body A (Squat)" },
-          { "label": "Rest" },
-          { "label": "Full Body B (Push)" },
-          { "label": "Rest" },
-          { "label": "Full Body C (Hinge)" },
-          { "label": "Hike", "isNature": true },
-          { "label": "Rest" }
-        ]
-      },
-      "architect": {
-        "name": "The Architect",
-        "tagline": "Symmetry and Structure.",
-        "description": "The gold standard for aesthetics. Balances heavy loading with adequate central nervous system recovery.",
-        "focus": ["Symmetry", "Hypertrophy", "Foundation"],
-        "split": [
-          { "label": "Upper Power" },
-          { "label": "Lower Power" },
-          { "label": "Rest" },
-          { "label": "Upper Hypertrophy" },
-          { "label": "Lower Hypertrophy" },
-          { "label": "Hike", "isNature": true },
-          { "label": "Rest" }
-        ]
-      },
-      "craftsman": {
-        "name": "The Craftsman",
-        "tagline": "Detail and Obsession.",
-        "description": "High volume for those who treat their body as the primary project. Includes isolation work for the Coello sleeve arm.",
-        "focus": ["Detail Work", "Volume", "Weak Point Training"],
-        "split": [
-          { "label": "Push" },
-          { "label": "Pull" },
-          { "label": "Legs" },
-          { "label": "Rest" },
-          { "label": "Upper Focus" },
-          { "label": "Lower Focus" },
-          { "label": "Hike", "isNature": true }
-        ]
-      }
-    },
-    "ritual": {
-      "title": "The Decompression",
-      "philosophy": "You tightened the muscle to break it. Now lengthen it to heal it.",
-      "cards": [
-        {
-          "id": "cardio",
-          "label": "Cardio",
-          "description": "20 mins Zone 2 Cardio (nasal breathing only). Heart rate 120-130 bpm."
-        },
-        {
-          "id": "stretch",
-          "label": "Stretch",
-          "description": "10 mins static holds. Focus on hip flexors and chest openers."
-        },
-        {
-          "id": "sundayService",
-          "label": "Sunday Service",
-          "description": "Weekly hike or nature walk is mandatory. Artificial light and concrete spike cortisol; horizons reset your biology."
-        }
-      ]
-    },
-    "living": {
-      "kicker": "Daily Living",
-      "title": "Living Component",
-      "description": "Mandatory weekly hike or nature walk. Artificial light, concrete, and doomscrolling spike cortisol; horizons reset your biology.",
-      "diet": "Eat food that ran, swam, or grew. If it has a barcode, interrogate it. Ferments, roots, and minerals keep the signal responsive."
-    }
-  },
   "sustainability": {
     "metadata": {
       "title": "Sustainability",
@@ -411,9 +370,18 @@
       }
     ],
     "metrics": [
-      { "label": "Water saved per top", "value": "11 L" },
-      { "label": "Solar-powered production", "value": "82%" },
-      { "label": "Local partners", "value": "6" }
+      {
+        "label": "Water saved per top",
+        "value": "11 L"
+      },
+      {
+        "label": "Solar-powered production",
+        "value": "82%"
+      },
+      {
+        "label": "Local partners",
+        "value": "6"
+      }
     ],
     "materials": {
       "title": "Material stack",
@@ -446,6 +414,89 @@
     "cta": {
       "label": "Read the supplier manifesto",
       "href": "https://coello.one/sustainability/manifesto"
+    }
+  },
+  "about": {
+    "metadata": {
+      "title": "About Coello",
+      "description": "The origin story behind the one-sleeve uniform—built for athletes who treat their body as art."
+    },
+    "hero": {
+      "kicker": "Our Story",
+      "title": "One sleeve. Zero noise.",
+      "description": "Coello is the uniform for tattooed athletes: minimalist, intentional, and engineered to frame the work.",
+      "highlightStats": [
+        {
+          "label": "Prototype rounds",
+          "value": "30+"
+        },
+        {
+          "label": "Fit sessions",
+          "value": "100+"
+        },
+        {
+          "label": "Sleeve focus",
+          "value": "1"
+        }
+      ]
+    },
+    "story": {
+      "title": "Origin",
+      "paragraphs": [
+        "We built Coello for the athlete who trains with intent and wears their story in ink.",
+        "The one-sleeve cut does one job: spotlight the arm—your canvas—without distraction."
+      ],
+      "quote": {
+        "text": "Clothing should never compete with the work.",
+        "attribution": "Coello Studio"
+      }
+    },
+    "pillars": [
+      {
+        "id": "precision",
+        "title": "Precision",
+        "description": "Cuts and proportions tuned to make the sleeve feel inevitable, not gimmicky.",
+        "statLabel": "Iterations",
+        "statValue": "30+"
+      },
+      {
+        "id": "comfort",
+        "title": "Comfort",
+        "description": "Training-friendly stretch and a silhouette that moves with you.",
+        "statLabel": "Wear time",
+        "statValue": "All-day"
+      },
+      {
+        "id": "identity",
+        "title": "Identity",
+        "description": "Minimal branding so your tattoos, not our logo, stay loud.",
+        "statLabel": "Logo size",
+        "statValue": "Near-zero"
+      }
+    ],
+    "timeline": {
+      "title": "Timeline",
+      "milestones": [
+        {
+          "year": "2021",
+          "title": "Prototype",
+          "description": "The first one-sleeve silhouette lands—built to frame the tattooed arm."
+        },
+        {
+          "year": "2023",
+          "title": "Refine",
+          "description": "Fit, fabric, and finishes evolve through heavy training sessions."
+        },
+        {
+          "year": "2025",
+          "title": "Launch",
+          "description": "A uniform for athletes who want their art to lead."
+        }
+      ]
+    },
+    "cta": {
+      "label": "Explore the One Sleeve",
+      "href": "/one-sleeve-classic"
     }
   }
 }

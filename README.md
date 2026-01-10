@@ -64,7 +64,7 @@ App is still in development. Once MVP is completed, more core screenshots will b
 
 Frameworks, libraries, and languages currently in play:
 
-- [Next.js 16.0.3](https://nextjs.org/) with the App Router
+- [Next.js 16.1.1](https://nextjs.org/) with the App Router
 - [React 19.2.x](https://react.dev/) and the latest concurrent features
 - [Bun ≥ 1.2.21](https://bun.sh/) as the runtime, package manager, and test runner
 - [Ant Design](https://ant.design/) components styled with [Tailwind CSS v4 syntax](https://tailwindcss.com/)
@@ -156,7 +156,3 @@ Project Link: [Coello One App](https://github.com/dtoxvanilla1991/coello-one)
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/yuri-avdijevski
-
-```
-
-```

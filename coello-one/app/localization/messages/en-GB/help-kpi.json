@@ -1,52 +1,21 @@
 {
-  "metadata": {
-    "title": "Help KPI Dashboard | Coello Help",
-    "description": "Live analytics for contact and return flows so the concierge team can tune response speed."
-  },
-  "breadcrumbLabel": "Help Centre",
-  "title": "Help KPI dashboard",
-  "description": "Monitor conversions and response times for concierge and return flows in real time.",
   "content": {
     "hero": {
       "title": "Real-time health",
       "description": "Track how often members reach out, how quickly we respond, and whether friction appears in the flows.",
       "tracking": "Tracking {count} events this session."
     },
-    "cards": {
-      "contact": {
-        "title": "Concierge contact flow",
-        "stats": {
-          "attempts": "Attempts",
-          "completionRate": "Completion rate",
-          "errors": "Errors",
-          "avgResponse": "Avg response"
-        }
-      },
-      "returns": {
-        "title": "Returns flow",
-        "stats": {
-          "attempts": "Attempts",
-          "completionRate": "Completion rate",
-          "errors": "Errors",
-          "avgResponse": "Avg response"
-        }
-      }
-    },
     "table": {
-      "title": "Recent analytics feed",
-      "emptyDescription": "Submit a contact or return to populate analytics",
       "columns": {
         "event": "Event",
         "time": "Time",
         "status": "Status",
         "details": "Details"
-      }
+      },
+      "title": "Recent analytics feed",
+      "emptyDescription": "Submit a contact or return to populate analytics"
     },
     "eventStatus": {
-      "fallback": {
-        "label": "Event",
-        "status": "Event"
-      },
       "map": {
         "help_contact_request_attempt": {
           "label": "Contact concierge attempt",
@@ -72,10 +41,40 @@
           "label": "Return request error",
           "status": "Error"
         }
+      },
+      "fallback": {
+        "status": "Event"
       }
     },
     "summaries": {
       "none": "No payload"
+    },
+    "cards": {
+      "contact": {
+        "title": "Concierge contact flow",
+        "stats": {
+          "attempts": "Attempts",
+          "completionRate": "Completion rate",
+          "errors": "Errors",
+          "avgResponse": "Avg response"
+        }
+      },
+      "returns": {
+        "title": "Returns flow",
+        "stats": {
+          "attempts": "Attempts",
+          "completionRate": "Completion rate",
+          "errors": "Errors",
+          "avgResponse": "Avg response"
+        }
+      }
     }
-  }
+  },
+  "metadata": {
+    "title": "Help KPI Dashboard | Coello Help",
+    "description": "Live analytics for contact and return flows so the concierge team can tune response speed."
+  },
+  "title": "Help KPI dashboard",
+  "description": "Monitor conversions and response times for concierge and return flows in real time.",
+  "breadcrumbLabel": "Help Centre"
 }

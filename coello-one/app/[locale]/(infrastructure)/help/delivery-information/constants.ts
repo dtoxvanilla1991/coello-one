@@ -36,8 +36,8 @@ export const DELIVERY_MATRIX: DeliveryTier[] = [
     displayCost: "£4.95",
     costValue: 4.95,
     currency: "GBP",
-    freeThreshold: "Complimentary over £150",
-    freeThresholdValue: 150,
+    freeThreshold: "Complimentary over £45",
+    freeThresholdValue: 45,
   },
   {
     id: "uk-express",

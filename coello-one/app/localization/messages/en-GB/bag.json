@@ -1,13 +1,7 @@
 {
   "metadata": {
-    "title": "Bag | Coello One",
-    "description": "Review your selected Coello One pieces and get ready to checkout."
-  },
-  "header": {
-    "bagTitle": "Your bag",
-    "wishlistTitle": "Wishlist",
-    "bagLabel": "Bag ({count})",
-    "wishlistLabel": "Wishlist"
+    "title": "Bag | Coello",
+    "description": "Review your bag, adjust quantities, and checkout securely."
   },
   "shippingStatus": {
     "qualifiedCopy": "You have qualified for Free Express Shipping",
@@ -15,32 +9,11 @@
     "qualifiedTooltip": "Enjoy free express shipping on this order.",
     "progressTooltip": "Express shipping unlocks once your subtotal meets the free delivery threshold."
   },
-  "reservation": {
-    "title": "Your items are not reserved",
-    "body": "Checkout quickly to make sure you do not miss out."
-  },
-  "items": {
-    "continueShopping": "Continue shopping",
-    "tag": "Core favorite",
-    "fitMale": "Men's",
-    "fitFemale": "Women's",
-    "quantity": "Qty",
-    "sizeLabel": "Size",
-    "remove": "Remove"
-  },
-  "extras": {
-    "title": "Add a little extra",
-    "description": "Add one or more of these items to get free delivery.",
-    "add": "Add",
-    "added": "Added",
-    "highlights": {
-      "unlockFreeDelivery": "Add to unlock free delivery"
-    }
-  },
-  "empty": {
-    "title": "Your bag is empty",
-    "description": "Browse the collection to add your first piece.",
-    "cta": "Continue shopping"
+  "header": {
+    "bagLabel": "Bag ({count})",
+    "wishlistLabel": "Wishlist",
+    "bagTitle": "Your bag",
+    "wishlistTitle": "Wishlist"
   },
   "summary": {
     "discountTitle": "Discount code",
@@ -55,6 +28,33 @@
     "taxes": "Taxes included where applicable",
     "checkoutCta": "Checkout securely",
     "accepted": "We accept"
+  },
+  "items": {
+    "fitMale": "Men's",
+    "fitFemale": "Women's",
+    "tag": "Core favorite",
+    "sizeLabel": "Size",
+    "quantity": "Qty",
+    "remove": "Remove",
+    "continueShopping": "Continue shopping"
+  },
+  "extras": {
+    "title": "Add a little extra",
+    "description": "Add one or more of these items to get free delivery.",
+    "highlights": {
+      "unlockFreeDelivery": "Add to unlock free delivery"
+    },
+    "added": "Added",
+    "add": "Add"
+  },
+  "empty": {
+    "title": "Your bag is empty",
+    "description": "Browse the collection to add your first piece.",
+    "cta": "Continue shopping"
+  },
+  "reservation": {
+    "title": "Your items are not reserved",
+    "body": "Checkout quickly to make sure you do not miss out."
   },
   "wishlist": {
     "title": "Save to wishlist",

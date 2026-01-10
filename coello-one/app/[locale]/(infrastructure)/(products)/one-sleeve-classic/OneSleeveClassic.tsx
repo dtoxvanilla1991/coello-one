@@ -1,6 +1,6 @@
 "use client";
 
-import { useReducer, useEffect, useMemo, useRef, useState, useCallback } from "react";
+import { useReducer, useEffect, useMemo, useRef, useState } from "react";
 import { Button, Radio, Space, Typography, Row, Col, Flex, Modal, Table, Grid } from "antd";
 import {
   ShoppingCartOutlined,
@@ -16,6 +16,8 @@ import { useSetAtom } from "jotai";
 import { ProductDetailShell } from "@/components/product/ProductDetailShell";
 import { incrementCartAtom } from "@/store/cartStore";
 import type { Color, Gender, SizeGuideRow } from "./types";
+import { getLiveStock, type LiveStockResponse } from "./actions";
+import { useTranslations } from "@/localization/useTranslations";
 import {
   DEFAULT_COLOR_NAME,
   DEFAULT_GENDER,
@@ -27,7 +29,6 @@ import {
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
 
-const product = PRODUCT_DATA;
 const defaultGender = DEFAULT_GENDER;
 const defaultColorName = DEFAULT_COLOR_NAME;
 const defaultSize = DEFAULT_SIZE;
@@ -49,7 +50,13 @@ type Action =
   | { type: "SET_IMAGE"; payload: string }
   | { type: "HYDRATE"; payload: State };
 
-const defaultVariant = product.variants[defaultGender];
+type OneSleeveClassicProps = {
+  productData?: typeof PRODUCT_DATA;
+};
+
+const fallbackProduct = PRODUCT_DATA;
+
+const defaultVariant = fallbackProduct.variants[defaultGender];
 const defaultColor =
   defaultVariant.colors.find((color) => color.name === defaultColorName) ??
   defaultVariant.colors[0];
@@ -58,7 +65,7 @@ const initialState: State = {
   selectedGender: defaultGender,
   selectedColor: defaultColor,
   selectedSize: defaultSize,
-  mainImage: product.images[0],
+  mainImage: fallbackProduct.images[0],
 };
 
 function productReducer(state: State, action: Action): State {
@@ -92,7 +99,8 @@ function productReducer(state: State, action: Action): State {
   }
 }
 
-const OneSleeveClassic: React.FC = () => {
+const OneSleeveClassic: React.FC<OneSleeveClassicProps> = ({ productData }) => {
+  const product = productData ?? fallbackProduct;
   const [state, dispatch] = useReducer(productReducer, initialState);
   const { selectedGender, selectedColor, selectedSize, mainImage } = state;
   const productNameSlug = PRODUCT_NAME_SLUG;
@@ -105,8 +113,24 @@ const OneSleeveClassic: React.FC = () => {
   const hasHydratedFromQuery = useRef(false);
   const screens = useBreakpoint();
   const isMobile = !screens.md;
+  const productCopy = useTranslations("product");
+  const [liveStock, setLiveStock] = useState<LiveStockResponse | null>(null);
 
   const currentVariant = product.variants[selectedGender];
+
+  useEffect(() => {
+    let isActive = true;
+
+    void getLiveStock(productNameSlug).then((result) => {
+      if (isActive) {
+        setLiveStock(result);
+      }
+    });
+
+    return () => {
+      isActive = false;
+    };
+  }, [productNameSlug]);
 
   const sizeGuideColumns: ColumnsType<SizeGuideRow> = useMemo(
     () => [
@@ -164,7 +188,7 @@ const OneSleeveClassic: React.FC = () => {
       },
     });
     hasHydratedFromQuery.current = true;
-  }, [searchParams]);
+  }, [searchParams, product]);
 
   useEffect(() => {
     if (!hasHydratedFromQuery.current) {
@@ -197,27 +221,24 @@ const OneSleeveClassic: React.FC = () => {
     });
   }, [selectedGender, selectedColor.name, selectedSize, searchParams, router, pathname]);
 
-  const handleGenderChange = useCallback(
-    (gender: Gender) => {
-      const variant = product.variants[gender];
-      const fallbackColor =
-        variant.colors.find((color) => color.name === selectedColor.name) ??
-        variant.colors.find((color) => color.name === defaultColorName) ??
-        variant.colors[0];
+  const handleGenderChange = (gender: Gender) => {
+    const variant = product.variants[gender];
+    const fallbackColor =
+      variant.colors.find((color) => color.name === selectedColor.name) ??
+      variant.colors.find((color) => color.name === defaultColorName) ??
+      variant.colors[0];
 
-      dispatch({
-        type: "SET_GENDER",
-        payload: {
-          gender,
-          color: fallbackColor,
-          mainImage: product.images[0],
-        },
-      });
-    },
-    [selectedColor.name],
-  );
+    dispatch({
+      type: "SET_GENDER",
+      payload: {
+        gender,
+        color: fallbackColor,
+        mainImage: product.images[0],
+      },
+    });
+  };
 
-  const handleAddToBag = useCallback(() => {
+  const handleAddToBag = () => {
     const bagButton = document.getElementById("navbar-bag-button");
     const mainContainer = mainImageRef.current;
     const sourceImage = mainContainer?.querySelector("img");
@@ -291,7 +312,7 @@ const OneSleeveClassic: React.FC = () => {
     );
 
     animation.finished.catch(() => undefined).finally(finish);
-  }, [incrementCart, mainImage, selectedColor.name, selectedGender, selectedSize, productNameSlug]);
+  };
 
   const genderControl = (
     <Radio.Group
@@ -462,6 +483,11 @@ const OneSleeveClassic: React.FC = () => {
                   ))}
                 </Space>
               </Radio.Group>
+              <AvailabilityLabel
+                copy={productCopy.availability}
+                selectedSize={selectedSize}
+                liveStock={liveStock}
+              />
             </Flex>
 
             <Button
@@ -508,5 +534,42 @@ const OneSleeveClassic: React.FC = () => {
     </ProductDetailShell>
   );
 };
+
+type AvailabilityCopy = {
+  checkAvailability: string;
+  inStock: string;
+  lowStock: string;
+  outOfStock: string;
+};
+
+function AvailabilityLabel({
+  copy,
+  selectedSize,
+  liveStock,
+}: {
+  copy: AvailabilityCopy;
+  selectedSize: string;
+  liveStock: LiveStockResponse | null;
+}) {
+  const quantity = liveStock?.sizes[selectedSize];
+
+  if (typeof quantity !== "number") {
+    return <Text type="secondary">{copy.checkAvailability}</Text>;
+  }
+
+  if (quantity <= 0) {
+    return <Text type="danger">{copy.outOfStock}</Text>;
+  }
+
+  if (quantity < 5) {
+    return (
+      <Text type="warning" strong>
+        {copy.lowStock}
+      </Text>
+    );
+  }
+
+  return <Text type="success">{copy.inStock}</Text>;
+}
 
 export default OneSleeveClassic;
