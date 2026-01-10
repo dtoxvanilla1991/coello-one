@@ -40,17 +40,32 @@ beforeEach(() => {
 });
 
 describe("LanguageSelect", () => {
+  const openAndSelect = async (label: "EN" | "ES") => {
+    const selectCombobox = screen.getByRole("combobox", { name: /language selector/i });
+
+    await act(async () => {
+      fireEvent.mouseDown(selectCombobox);
+    });
+
+    const option = await screen.findByTitle(label);
+    const clickable = option.classList.contains("ant-select-item-option")
+      ? option
+      : option.closest(".ant-select-item-option");
+    if (!clickable) {
+      throw new Error(`Unable to find Ant Design option for ${label}`);
+    }
+
+    await act(async () => {
+      fireEvent.click(clickable);
+    });
+  };
+
   it("posts the locale change and navigates to the selected locale path", async () => {
     render(<LanguageSelect />);
 
-    // In antd v6, use combobox role to interact with Select
-    const selectCombobox = screen.getByRole("combobox", { name: "Language selector" });
-    expect(selectCombobox).toBeTruthy();
+    expect(screen.getByRole("combobox", { name: "Language selector" })).toBeTruthy();
 
-    fireEvent.mouseDown(selectCombobox);
-
-    const spanishOption = await screen.findByTitle("ES");
-    fireEvent.click(spanishOption);
+    await openAndSelect("ES");
 
     await waitFor(() => {
       expect(fetchSpy).toHaveBeenCalledWith(
@@ -74,17 +89,18 @@ describe("LanguageSelect", () => {
 
     render(<LanguageSelect />);
 
-    // In antd v6, use combobox role to interact with Select
-    const selectCombobox = screen.getByRole("combobox", { name: "Language selector" });
-    expect(selectCombobox).toBeTruthy();
+    expect(screen.getByRole("combobox", { name: "Language selector" })).toBeTruthy();
 
-    fireEvent.mouseDown(selectCombobox);
-
-    const spanishOption = await screen.findByTitle("ES");
-    fireEvent.click(spanishOption);
+    await openAndSelect("ES");
 
     await waitFor(() => {
-      expect(screen.getByText(/Unable to switch language/i)).toBeTruthy();
+      expect(
+        screen.getByText((_, node) => {
+          if (!(node instanceof HTMLElement)) return false;
+          if (node.tagName !== "SPAN") return false;
+          return node.textContent?.toLowerCase().includes("unable to switch language") ?? false;
+        }),
+      ).toBeTruthy();
     });
 
     expect(routerMocks.replace).not.toHaveBeenCalled();
@@ -109,10 +125,9 @@ describe("LanguageSelect", () => {
     );
 
     const selectCombobox = screen.getByRole("combobox", { name: "Language selector" });
-    fireEvent.mouseDown(selectCombobox);
+    expect(selectCombobox).toBeTruthy();
 
-    const spanishOption = await screen.findByTitle("ES");
-    fireEvent.click(spanishOption);
+    await openAndSelect("ES");
 
     await waitFor(() => {
       expect(routerMocks.replace).toHaveBeenCalledWith("/es-ES");

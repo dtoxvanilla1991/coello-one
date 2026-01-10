@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS variants (
 CREATE TABLE IF NOT EXISTS inventory_levels (
   variant_id INTEGER NOT NULL PRIMARY KEY,
   quantity_on_hand INTEGER NOT NULL DEFAULT 0 CHECK(quantity_on_hand >= 0),
-  quantity_reserved INTEGER NOT NULL DEFAULT 0 CHECK(quantity_reserved >= 0),
+    quantity_reserved INTEGER NOT NULL DEFAULT 0 CHECK(quantity_reserved >= 0 AND quantity_reserved <= quantity_on_hand),
   updated_at TEXT NOT NULL DEFAULT (datetime('now')),
   FOREIGN KEY (variant_id) REFERENCES variants(id) ON DELETE CASCADE
 );
@@ -261,7 +261,7 @@ def reserve_stock():
 
         new_reserved = reserved + qty
         update_reserved(db, variant_id, new_reserved)
-        insert_movement(db, variant_id, 0, "reserve", reference)
+        insert_movement(db, variant_id, -qty, "reserve", reference)
 
         db.execute("COMMIT")
         return jsonify(
@@ -272,10 +272,14 @@ def reserve_stock():
                 "available": max(0, on_hand - new_reserved),
             }
         )
-    except Exception:
+    except Exception as exc:
+        app.logger.exception(
+            "reserve_stock failed", extra={"slug": slug, "size": size, "quantity": quantity, "reference": reference}
+        )
         try:
             db.execute("ROLLBACK")
         except Exception:
+            # Best-effort rollback: ignore failures (connection may be closed or transaction already aborted).
             pass
         return jsonify({"error": "Reserve failed"}), 500
 
@@ -326,7 +330,7 @@ def release_stock():
 
         new_reserved = reserved - qty
         update_reserved(db, variant_id, new_reserved)
-        insert_movement(db, variant_id, 0, "release", reference)
+        insert_movement(db, variant_id, qty, "release", reference)
 
         db.execute("COMMIT")
         return jsonify(
@@ -337,10 +341,14 @@ def release_stock():
                 "available": max(0, on_hand - new_reserved),
             }
         )
-    except Exception:
+    except Exception as exc:
+        app.logger.exception(
+            "release_stock failed", extra={"slug": slug, "size": size, "quantity": quantity, "reference": reference}
+        )
         try:
             db.execute("ROLLBACK")
         except Exception:
+            # Best-effort rollback: ignore failures (connection may be closed or transaction already aborted).
             pass
         return jsonify({"error": "Release failed"}), 500
 

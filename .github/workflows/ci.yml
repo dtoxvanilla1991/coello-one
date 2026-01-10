@@ -124,13 +124,11 @@ jobs:
         image: mysql:8.0
         env:
           MYSQL_DATABASE: coello_test
-          MYSQL_USER: coello
-          MYSQL_PASSWORD: coello
-          MYSQL_ROOT_PASSWORD: root
+          MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
         ports:
           - 3306:3306
         options: >-
-          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -proot"
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=30
@@ -163,8 +161,8 @@ jobs:
           CI: true
           DB_SMOKE_TESTS: "1"
           DB_HOST_DEV: "127.0.0.1"
-          DB_USER_DEV: "coello"
-          DB_PASS_DEV: "coello"
+          DB_USER_DEV: "root"
+          DB_PASS_DEV: ""
           DB_NAME_DEV: "coello_test"
         run: bun test config/db.smoke.test.ts
 
