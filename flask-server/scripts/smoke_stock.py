@@ -58,7 +58,9 @@ def main() -> int:
         "reference": "smoke-test",
     }
 
-    status, reserved = request_json(f"{base_url}/api/stock/reserve", method="POST", payload=reserve_payload)
+    status, reserved = request_json(
+        f"{base_url}/api/stock/reserve", method="POST", payload=reserve_payload
+    )
     if status != 200:
         print(f"FAIL: POST /api/stock/reserve returned {status}: {reserved}")
         return 1
@@ -80,7 +82,9 @@ def main() -> int:
         "reference": "smoke-test",
     }
 
-    status, released = request_json(f"{base_url}/api/stock/release", method="POST", payload=release_payload)
+    status, released = request_json(
+        f"{base_url}/api/stock/release", method="POST", payload=release_payload
+    )
     if status != 200:
         print(f"FAIL: POST /api/stock/release returned {status}: {released}")
         return 1

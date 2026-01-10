@@ -18,7 +18,9 @@ const buildBlackCommand = (files) => {
   }
   const relativePaths = files.map((file) => relative("flask-server", file));
   const quoted = relativePaths.map((file) => `"${file}"`).join(" ");
-  return `cd flask-server && python -m black ${quoted}`;
+  // Ensure we use the repo-managed venv (../.venv) so pre-commit does not depend
+  // on a globally-installed Black.
+  return `cd flask-server && (test -x ../.venv/bin/python || make install) && ../.venv/bin/python -m black ${quoted}`;
 };
 
 export default {

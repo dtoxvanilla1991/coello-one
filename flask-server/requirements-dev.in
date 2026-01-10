@@ -1,4 +1,4 @@
 -r requirements.in
 black
-pip-tools==7.4.1
+pip-tools==7.5.2
 ruff

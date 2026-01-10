@@ -67,8 +67,8 @@ Running the steps manually from within `flask-server/` looks like this:
 ```bash
 rm -rf ../.venv
 "$(command -v python3)" -m venv ../.venv
-../.venv/bin/python -m pip install --upgrade "pip<25"
-../.venv/bin/python -m pip install pip-tools==7.4.1
+../.venv/bin/python -m pip install --upgrade "pip<26"
+../.venv/bin/python -m pip install pip-tools==7.5.2
 mkdir -p ../.cache/backend
 ../.venv/bin/python -m piptools compile --resolver=backtracking --strip-extras --output-file ../.cache/backend/requirements.txt requirements.in
 ../.venv/bin/python -m piptools compile --resolver=backtracking --strip-extras --output-file ../.cache/backend/requirements-dev.txt requirements-dev.in
