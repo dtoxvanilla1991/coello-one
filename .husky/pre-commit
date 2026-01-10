@@ -26,6 +26,11 @@ if [ -n "$PY_CHANGED" ]; then
 
   make backend-lint-fix
 
-  echo "[pre-commit] Checking backend formatting (Black)" >&2
-  make -C flask-server format-check
+  echo "[pre-commit] Checking backend formatting (Black, staged files)" >&2
+  (cd flask-server \
+    && (test -x ../.venv/bin/python || make install) \
+    && printf '%s\n' "$PY_CHANGED" \
+      | sed 's|^flask-server/||' \
+      | tr '\n' '\0' \
+      | xargs -0 ../.venv/bin/python -m black --check)
 fi

@@ -80,13 +80,13 @@ upgrade: cache-clean
 ci-check: venv pip-tools
 	@echo "[info] Verifying compiled lockfiles are up to date"
 	@if [ -f "$(CACHE_REQ)" ]; then \
-		$(PIP_COMPILE) --resolver=backtracking --strip-extras --quiet --dry-run --output-file "$(CACHE_REQ)" requirements.in >/dev/null; \
+		$(PIP_COMPILE) $(PIP_COMPILE_FLAGS) --resolver=backtracking --strip-extras --quiet --dry-run --output-file "$(CACHE_REQ)" requirements.in >/dev/null; \
 	else \
 		echo "[warn] $(CACHE_REQ) is missing; run 'make backend' to generate it"; \
 		exit 1; \
 	fi
 	@if [ -f "$(CACHE_DEV_REQ)" ]; then \
-		$(PIP_COMPILE) --resolver=backtracking --strip-extras --quiet --dry-run --output-file "$(CACHE_DEV_REQ)" requirements-dev.in >/dev/null; \
+		$(PIP_COMPILE) $(PIP_COMPILE_FLAGS) --resolver=backtracking --strip-extras --quiet --dry-run --output-file "$(CACHE_DEV_REQ)" requirements-dev.in >/dev/null; \
 	else \
 		echo "[warn] $(CACHE_DEV_REQ) is missing; run 'make backend' to generate it"; \
 		exit 1; \
