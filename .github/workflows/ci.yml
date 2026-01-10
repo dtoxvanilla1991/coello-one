@@ -72,7 +72,9 @@ jobs:
       - name: Run unit tests
         env:
           CI: true
-        run: bun test --reporter junit --reporter-outfile reports/junit-report.xml
+        # Bun 1.2.x does not reliably honor bunfig.toml [test].preload in CI.
+        # Explicit preload keeps CI consistent with local `bun run test`.
+        run: bun test --preload ./test-setup.ts --reporter junit --reporter-outfile reports/junit-report.xml
 
       - name: Upload test report
         if: always()
