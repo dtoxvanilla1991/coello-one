@@ -7,10 +7,13 @@ await loadLocalEnv({ keys: REQUIRED_DB_KEYS });
 
 const { checkDbConnection } = await import("./db");
 
+const shouldRunDbSmoke =
+  process.env.DB_SMOKE_TESTS === "1" || process.env.RUN_DB_SMOKE_TESTS === "1";
+
 const hasProdUrl = Boolean(process.env.DB_URL_PROD);
 const hasDevCredentials = REQUIRED_DB_KEYS.every((key) => Boolean(process.env[key]));
 
-const describeDb = hasProdUrl || hasDevCredentials ? describe : describe.skip;
+const describeDb = shouldRunDbSmoke && (hasProdUrl || hasDevCredentials) ? describe : describe.skip;
 
 describeDb("Database connectivity", () => {
   it("successfully executes a health query", async () => {

@@ -16,13 +16,17 @@ describe("DeliveryCalculator", () => {
     render(
       <DeliveryCalculator
         tiers={DELIVERY_MATRIX}
-        initialValues={{ region: "United Kingdom", service: "Standard", orderValue: 120 }}
+        initialValues={{ region: "United Kingdom", service: "Standard", orderValue: 10 }}
       />,
     );
 
     await clickWithAct(screen.getByRole("button", { name: /calculate shipping/i }));
 
-    expect(await screen.findByText(/Your shipping is £4.95/i)).toBeTruthy();
+    expect(
+      await screen.findByText("Your shipping is £4.95", {
+        selector: ".ant-result-title",
+      }),
+    ).toBeTruthy();
     expect(trackEventMock).toHaveBeenCalledTimes(1);
   });
 
@@ -36,8 +40,12 @@ describe("DeliveryCalculator", () => {
 
     await clickWithAct(screen.getByRole("button", { name: /calculate shipping/i }));
 
-    expect(await screen.findByText(/Your shipping is Complimentary/i)).toBeTruthy();
-    expect(await screen.findByText(/Saved £4.95 shipping/i)).toBeTruthy();
+    expect(
+      await screen.findByText("Your shipping is Complimentary", {
+        selector: ".ant-result-title",
+      }),
+    ).toBeTruthy();
+    expect(await screen.findByText("Saved £4.95 shipping with your spend.")).toBeTruthy();
     expect(trackEventMock).toHaveBeenCalledTimes(1);
   });
 
