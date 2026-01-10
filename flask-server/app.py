@@ -36,7 +36,9 @@ CREATE TABLE IF NOT EXISTS variants (
 CREATE TABLE IF NOT EXISTS inventory_levels (
   variant_id INTEGER NOT NULL PRIMARY KEY,
   quantity_on_hand INTEGER NOT NULL DEFAULT 0 CHECK(quantity_on_hand >= 0),
-    quantity_reserved INTEGER NOT NULL DEFAULT 0 CHECK(quantity_reserved >= 0 AND quantity_reserved <= quantity_on_hand),
+    quantity_reserved INTEGER NOT NULL DEFAULT 0 CHECK(
+        quantity_reserved >= 0 AND quantity_reserved <= quantity_on_hand
+    ),
   updated_at TEXT NOT NULL DEFAULT (datetime('now')),
   FOREIGN KEY (variant_id) REFERENCES variants(id) ON DELETE CASCADE
 );
@@ -272,9 +274,10 @@ def reserve_stock():
                 "available": max(0, on_hand - new_reserved),
             }
         )
-    except Exception as exc:
+    except Exception:
         app.logger.exception(
-            "reserve_stock failed", extra={"slug": slug, "size": size, "quantity": quantity, "reference": reference}
+            "reserve_stock failed",
+            extra={"slug": slug, "size": size, "quantity": quantity, "reference": reference},
         )
         try:
             db.execute("ROLLBACK")
@@ -341,9 +344,10 @@ def release_stock():
                 "available": max(0, on_hand - new_reserved),
             }
         )
-    except Exception as exc:
+    except Exception:
         app.logger.exception(
-            "release_stock failed", extra={"slug": slug, "size": size, "quantity": quantity, "reference": reference}
+            "release_stock failed",
+            extra={"slug": slug, "size": size, "quantity": quantity, "reference": reference},
         )
         try:
             db.execute("ROLLBACK")

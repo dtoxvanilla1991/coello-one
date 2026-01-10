@@ -18,7 +18,7 @@ Always `cd` into the correct directory before running commands. Frontend scripts
 
 ## Tech Stack & Version Pins
 
-- **Next.js:** `16.0.3`
+- **Next.js:** `16.1.1`
 - **React:** `19.2.x`
 - **Styling:** Tailwind CSS + Ant Design
 - **State:** Jotai atoms (`store/`)
