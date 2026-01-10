@@ -119,10 +119,7 @@ describe("LanguageSelect", () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByRole("combobox")).toHaveAttribute(
-        "aria-label",
-        "Selector de idioma",
-      );
+      expect(screen.getByRole("combobox")).toHaveAttribute("aria-label", "Selector de idioma");
     });
   });
 });

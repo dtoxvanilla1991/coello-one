@@ -18,10 +18,7 @@
     "ariaLabel": "Secciones de la declaración de accesibilidad"
   },
   "comingSoon": {
-    "title": [
-      "Nuestra web está en desarrollo.",
-      "Llegamos muy pronto."
-    ],
+    "title": ["Nuestra web está en desarrollo.", "Llegamos muy pronto."],
     "body": {
       "primary": "Perfeccionamos cada píxel antes de la siguiente revelación.",
       "secondary": "Únete a la lista o síguenos en Facebook para recibir la última actualización."
@@ -42,10 +39,7 @@
     }
   },
   "maintenance": {
-    "title": [
-      "Nuestra web está en construcción.",
-      "Gracias por la paciencia—volvemos pronto."
-    ],
+    "title": ["Nuestra web está en construcción.", "Gracias por la paciencia—volvemos pronto."],
     "body": {
       "primary": "Estamos dando los últimos retoques a la nueva experiencia.",
       "secondary": "Únete a la lista o síguenos en Facebook para enterarte primero."
@@ -54,10 +48,7 @@
     "imageAlt": "Ilustración de mantenimiento del sitio"
   },
   "accessDenied": {
-    "title": [
-      "Bienvenido a Coello One",
-      "La prenda definitiva."
-    ],
+    "title": ["Bienvenido a Coello One", "La prenda definitiva."],
     "body": {
       "primary": "Estamos actualizando las áreas seguras antes de reabrirlas.",
       "secondary": "Únete a la lista o síguenos para recibir las últimas noticias."
@@ -91,10 +82,7 @@
     }
   },
   "welcome": {
-    "title": [
-      "Bienvenido a Coello One",
-      "La prenda definitiva."
-    ],
+    "title": ["Bienvenido a Coello One", "La prenda definitiva."],
     "body": {
       "primary": "Llevamos horas afinando la experiencia que mereces.",
       "secondary": "Únete a nuestra lista o síguenos en Facebook para enterarte de cada novedad."

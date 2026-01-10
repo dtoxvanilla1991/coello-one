@@ -71,10 +71,7 @@ export function ReturnOrderStatusClient({
   const [events, setEvents] = useState<Array<{ type: string; created: number }>>([]);
 
   const statusCopy = returnCopy[statusKey];
-  const shouldPoll = useMemo(
-    () => statusKey === "open" || statusKey === "processing",
-    [statusKey],
-  );
+  const shouldPoll = useMemo(() => statusKey === "open" || statusKey === "processing", [statusKey]);
 
   useEffect(() => {
     if (!shouldPoll) {
@@ -90,10 +87,12 @@ export function ReturnOrderStatusClient({
     const tick = async () => {
       attempts += 1;
       try {
-        const response = await fetch(`/api/checkout/order?session_id=${encodeURIComponent(sessionId)}`);
-        const payload = (await response.json().catch(() => null)) as
-          | { order: SafeOrderSnapshot | null }
-          | null;
+        const response = await fetch(
+          `/api/checkout/order?session_id=${encodeURIComponent(sessionId)}`,
+        );
+        const payload = (await response.json().catch(() => null)) as {
+          order: SafeOrderSnapshot | null;
+        } | null;
 
         if (cancelled) {
           return;

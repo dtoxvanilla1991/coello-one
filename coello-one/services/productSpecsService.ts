@@ -1,5 +1,8 @@
 import { cacheLife, cacheTag, revalidateTag } from "next/cache";
-import { PRODUCT_DATA, PRODUCT_NAME_SLUG } from "@/[locale]/(infrastructure)/(products)/one-sleeve-classic/constants";
+import {
+  PRODUCT_DATA,
+  PRODUCT_NAME_SLUG,
+} from "@/[locale]/(infrastructure)/(products)/one-sleeve-classic/constants";
 import type { ProductData } from "@/[locale]/(infrastructure)/(products)/one-sleeve-classic/types";
 
 export type ProductSpecs = {

@@ -39,9 +39,7 @@ describe("EmbeddedCheckoutExperience", () => {
     render(<EmbeddedCheckoutExperience />);
 
     await waitFor(() =>
-      expect(
-        screen.getByText(/unable to load the secure checkout experience/i),
-      ).toBeTruthy(),
+      expect(screen.getByText(/unable to load the secure checkout experience/i)).toBeTruthy(),
     );
     await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1));
     expect(screen.getByRole("button", { name: /retry checkout/i })).toBeTruthy();

@@ -57,11 +57,7 @@ function ensureUsage(map: Map<string, NamespaceUsage>, namespace: string): Names
   return next;
 }
 
-function recordPath(
-  usage: NamespaceUsage,
-  parts: string[],
-  options?: { keepAll?: boolean },
-) {
+function recordPath(usage: NamespaceUsage, parts: string[], options?: { keepAll?: boolean }) {
   if (parts.length === 0) {
     return;
   }
@@ -104,15 +100,21 @@ function bindDestructure(
         continue;
       }
 
-      bindDestructure(element.name, {
-        namespace: source.namespace,
-        prefix: [...source.prefix, propertyKey],
-      }, bindings);
+      bindDestructure(
+        element.name,
+        {
+          namespace: source.namespace,
+          prefix: [...source.prefix, propertyKey],
+        },
+        bindings,
+      );
     }
   }
 }
 
-function extractNamespaceOrRootAndPath(node: ts.Expression):
+function extractNamespaceOrRootAndPath(
+  node: ts.Expression,
+):
   | { kind: "root"; root: string; parts: string[]; keepAll: boolean }
   | { kind: "namespace"; namespace: string; parts: string[]; keepAll: boolean }
   | null {
@@ -376,10 +378,16 @@ async function main() {
           // Track aliasing a translation sub-tree:
           //   const calculatorCopy = helpDeliveryCopy.calculator;
           //   const pageCopy = getNamespaceCopy(locale, "pages").about;
-          if (ts.isIdentifier(node.name) && (ts.isPropertyAccessExpression(init) || ts.isElementAccessExpression(init))) {
+          if (
+            ts.isIdentifier(node.name) &&
+            (ts.isPropertyAccessExpression(init) || ts.isElementAccessExpression(init))
+          ) {
             const extracted = extractNamespaceOrRootAndPath(init as ts.Expression);
             if (extracted?.kind === "namespace") {
-              bindings.set(node.name.text, { namespace: extracted.namespace, prefix: [...extracted.parts] });
+              bindings.set(node.name.text, {
+                namespace: extracted.namespace,
+                prefix: [...extracted.parts],
+              });
             }
 
             if (extracted?.kind === "root") {
@@ -429,15 +437,19 @@ async function main() {
     }
   }
 
-  const dictionarySource = await Bun.file(join(PROJECT_ROOT, "app", "localization", "dictionary.ts")).text();
-  const { locales, namespaces, filePathByLocaleNamespace } = parseDictionaryMapping(dictionarySource);
+  const dictionarySource = await Bun.file(
+    join(PROJECT_ROOT, "app", "localization", "dictionary.ts"),
+  ).text();
+  const { locales, namespaces, filePathByLocaleNamespace } =
+    parseDictionaryMapping(dictionarySource);
   if (locales.length === 0 || namespaces.length === 0) {
     throw new Error("No translation namespaces discovered from app/localization/dictionary.ts");
   }
   console.log(`\nFound locales: ${locales.join(", ")}`);
   console.log(`Found namespaces: ${namespaces.join(", ")}`);
 
-  const prunedCounts: Array<{ locale: string; namespace: string; before: number; after: number }> = [];
+  const prunedCounts: Array<{ locale: string; namespace: string; before: number; after: number }> =
+    [];
 
   for (const namespace of namespaces) {
     const usage = usages.get(namespace);

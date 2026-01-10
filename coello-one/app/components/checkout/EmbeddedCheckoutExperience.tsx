@@ -67,13 +67,7 @@ export function EmbeddedCheckoutExperience() {
 
       <Card className="w-full rounded-2xl! border border-gray-200! bg-white! shadow-sm">
         {isLoading && (
-          <Flex
-            vertical
-            gap={16}
-            align="center"
-            justify="center"
-            className="min-h-105 w-full"
-          >
+          <Flex vertical gap={16} align="center" justify="center" className="min-h-105 w-full">
             <Spin size="large" />
             <Text className="text-sm text-gray-500">{embedded.loading}</Text>
           </Flex>
@@ -82,7 +76,11 @@ export function EmbeddedCheckoutExperience() {
         {!isLoading && errorMessage && (
           <Flex vertical gap={16} align="center" className="w-full py-10">
             <Alert type="error" showIcon title={errorMessage} className="w-full max-w-lg" />
-            <Button icon={<ReloadOutlined />} size="large" onClick={() => void requestClientSecret()}>
+            <Button
+              icon={<ReloadOutlined />}
+              size="large"
+              onClick={() => void requestClientSecret()}
+            >
               {embedded.retry}
             </Button>
           </Flex>

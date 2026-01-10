@@ -34,11 +34,7 @@
         "name": "The Essentialist",
         "tagline": "Dosis mínima. Señal máxima.",
         "description": "Diseñado para la persona creativa sin tiempo. Golpea únicamente los tres grandes para asentar el sistema nervioso sin agotarlo.",
-        "focus": [
-          "Impulso neural",
-          "Eficiencia en compuestos",
-          "Recuperación"
-        ],
+        "focus": ["Impulso neural", "Eficiencia en compuestos", "Recuperación"],
         "split": [
           {
             "label": "Cuerpo completo A (Sentadilla)"
@@ -68,11 +64,7 @@
         "name": "The Architect",
         "tagline": "Simetría y estructura.",
         "description": "El estándar dorado de la estética. Equilibra cargas pesadas con la recuperación que requiere tu sistema nervioso central.",
-        "focus": [
-          "Simetría",
-          "Hipertrofia",
-          "Fundamento"
-        ],
+        "focus": ["Simetría", "Hipertrofia", "Fundamento"],
         "split": [
           {
             "label": "Potencia tren superior"
@@ -102,11 +94,7 @@
         "name": "The Craftsman",
         "tagline": "Detalle y obsesión.",
         "description": "Alto volumen para quien trata su cuerpo como el proyecto principal. Incluye trabajo de aislamiento para honrar la manga Coello.",
-        "focus": [
-          "Trabajo de detalle",
-          "Volumen",
-          "Puntos débiles"
-        ],
+        "focus": ["Trabajo de detalle", "Volumen", "Puntos débiles"],
         "split": [
           {
             "label": "Empuje (Pecho / Hombros)"

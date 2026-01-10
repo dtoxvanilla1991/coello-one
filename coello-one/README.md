@@ -67,7 +67,7 @@ To test Stripe webhooks locally, forward events from Stripe to the Next.js webho
    - Add it to `coello-one/.env.local`:
      - `STRIPE_WEBHOOK_SECRET=whsec_...`
 
-4. **Formatting hooks:** staged TS/TSX files auto-format with Prettier; staged Python files auto-format with Black. Resolve hook output before committing.
+5. **Formatting hooks:** staged TS/TSX files auto-format with Prettier; staged Python files auto-format with Black. Resolve hook output before committing.
 
 ---
 

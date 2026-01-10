@@ -34,11 +34,7 @@
         "name": "The Essentialist",
         "tagline": "Minimum Dose. Maximum Signal.",
         "description": "Designed for the busy creative. Focus purely on the Big 3 lifts to ground the nervous system without exhaustion.",
-        "focus": [
-          "Neural Drive",
-          "Compound Efficiency",
-          "Recovery"
-        ],
+        "focus": ["Neural Drive", "Compound Efficiency", "Recovery"],
         "split": [
           {
             "label": "Full Body A (Squat)"
@@ -68,11 +64,7 @@
         "name": "The Architect",
         "tagline": "Symmetry and Structure.",
         "description": "The gold standard for aesthetics. Balances heavy loading with adequate central nervous system recovery.",
-        "focus": [
-          "Symmetry",
-          "Hypertrophy",
-          "Foundation"
-        ],
+        "focus": ["Symmetry", "Hypertrophy", "Foundation"],
         "split": [
           {
             "label": "Upper Power"
@@ -102,11 +94,7 @@
         "name": "The Craftsman",
         "tagline": "Detail and Obsession.",
         "description": "High volume for those who treat their body as the primary project. Includes isolation work for the Coello sleeve arm.",
-        "focus": [
-          "Detail Work",
-          "Volume",
-          "Weak Point Training"
-        ],
+        "focus": ["Detail Work", "Volume", "Weak Point Training"],
         "split": [
           {
             "label": "Push"

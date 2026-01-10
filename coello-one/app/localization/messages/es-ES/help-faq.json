@@ -13,10 +13,7 @@
             "Las confirmaciones con checkout como invitado incluyen un enlace de seguimiento; usa la opción de búsqueda por email si lo perdiste.",
             "Para preorders te avisamos por email en cuanto tu esencial de una sola manga esté listo para envío."
           ],
-          "tags": [
-            "seguimiento",
-            "cuenta"
-          ]
+          "tags": ["seguimiento", "cuenta"]
         },
         {
           "id": "payment-methods",
@@ -26,10 +23,7 @@
             "Las opciones buy now pay later se validan al instante, sin formularios adicionales.",
             "Todas las transacciones usan 3-D Secure y protocolos regionales de cumplimiento para la máxima protección."
           ],
-          "tags": [
-            "pagos",
-            "klarna"
-          ]
+          "tags": ["pagos", "klarna"]
         },
         {
           "id": "order-changes",
@@ -39,10 +33,7 @@
             "Si se cierra la ventana, contacta con soporte con tu número de pedido: intentaremos interceptar el paquete cuando sea posible.",
             "Las piezas a medida entran en producción de inmediato y no se pueden modificar una vez confirmadas."
           ],
-          "tags": [
-            "cambios",
-            "soporte"
-          ]
+          "tags": ["cambios", "soporte"]
         }
       ]
     },
@@ -59,10 +50,7 @@
             "El servicio Express prioriza la salida por la mañana con entrega garantizada al atardecer en áreas metropolitanas.",
             "Las zonas rurales pueden necesitar un día adicional; el seguimiento se actualiza en cada traspaso de depósito."
           ],
-          "tags": [
-            "envío",
-            "tiempos"
-          ]
+          "tags": ["envío", "tiempos"]
         },
         {
           "id": "same-day",
@@ -72,10 +60,7 @@
             "Selecciona Same Day al pagar para ver los huecos; el mensajero envía confirmación por SMS en 15 minutos.",
             "Estamos ampliando el programa: súmate al boletín para avisos de lanzamiento en Manchester y Birmingham."
           ],
-          "tags": [
-            "mismo día",
-            "mensajería"
-          ]
+          "tags": ["mismo día", "mensajería"]
         },
         {
           "id": "delivery-security",
@@ -85,10 +70,7 @@
             "Puedes redirigirlo a un locker InPost o punto DPD directamente desde el portal de seguimiento.",
             "La entrega sin firma es opcional: actívala en Mis pedidos si prefieres drop-off sin contacto."
           ],
-          "tags": [
-            "seguridad",
-            "punto de recogida"
-          ]
+          "tags": ["seguridad", "punto de recogida"]
         }
       ]
     },
@@ -105,10 +87,7 @@
             "Las prendas deben estar sin usar e incluir el precinto desmontable y la tarjeta de autenticidad.",
             "Las promos en pack pueden devolverse parcialmente; el crédito se ajusta automáticamente."
           ],
-          "tags": [
-            "devoluciones",
-            "política"
-          ]
+          "tags": ["devoluciones", "política"]
         },
         {
           "id": "exchange-sizes",
@@ -118,10 +97,7 @@
             "Reservamos la prenda de reemplazo durante siete días mientras recibimos la original.",
             "Si la talla se agota, emitimos reembolso completo o crédito instantáneo según prefieras."
           ],
-          "tags": [
-            "cambio",
-            "tallas"
-          ]
+          "tags": ["cambio", "tallas"]
         },
         {
           "id": "processing-times",
@@ -131,10 +107,7 @@
             "El crédito se emite al instante y llega por email en minutos.",
             "Los pagos Klarna se actualizan automáticamente; no necesitas hacer nada más."
           ],
-          "tags": [
-            "reembolsos",
-            "tiempo"
-          ]
+          "tags": ["reembolsos", "tiempo"]
         }
       ]
     },
@@ -151,10 +124,7 @@
             "El checkout en un clic guarda tokens de pago seguros con vaulting compatible PCI-DSS.",
             "Puedes exportar todos tus datos desde Ajustes de cuenta cumpliendo con GDPR."
           ],
-          "tags": [
-            "cuenta",
-            "privacidad"
-          ]
+          "tags": ["cuenta", "privacidad"]
         },
         {
           "id": "notifications",
@@ -164,10 +134,7 @@
             "Las alertas SMS son del transportista y puedes pausarlas sin afectar los emails.",
             "Las invitaciones al programa embajador son por orden de llegada: responde en 48h para asegurar plaza."
           ],
-          "tags": [
-            "notificaciones",
-            "embajador"
-          ]
+          "tags": ["notificaciones", "embajador"]
         },
         {
           "id": "concierge",
@@ -177,10 +144,7 @@
             "Los miembros obtienen planes de entrenamiento personalizados junto a nuestros atletas socios.",
             "Actívalo en Ajustes de cuenta > Membresía; el primer mes es gratuito para nuevos miembros."
           ],
-          "tags": [
-            "concierge",
-            "membresía"
-          ]
+          "tags": ["concierge", "membresía"]
         }
       ]
     }

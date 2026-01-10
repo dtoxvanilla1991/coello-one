@@ -73,7 +73,7 @@ export function NavbarSiderComponent() {
     <Sider
       aria-label={siderCopy.ariaLabel ?? "Navigation Sidebar"}
       role="navigation"
-      className={`/* fill viewport below navbar */ /* making sure user can scroll within sidebar */ fixed! top-0 right-0 left-0 bottom-0 z-50! h-screen overflow-y-auto bg-white transition-transform! duration-300 ease-in-out ${collapsed ? "-translate-x-full!" : "translate-x-0!"}`}
+      className={`/* fill viewport below navbar */ /* making sure user can scroll within sidebar */ fixed! top-0 right-0 bottom-0 left-0 z-50! h-screen overflow-y-auto bg-white transition-transform! duration-300 ease-in-out ${collapsed ? "-translate-x-full!" : "translate-x-0!"}`}
       style={{ paddingTop: "calc(var(--navbar-height, 56px) + 1rem)" }}
       theme="light"
       width={"100%"}
