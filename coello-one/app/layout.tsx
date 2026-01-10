@@ -52,24 +52,24 @@ async function LocaleAwareRootLayout({ children }: { children: React.ReactNode }
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <LocaleProvider value={locale}>
-          <ConfigProvider
-            locale={antdLocale}
-            theme={{
-              token: {
-                colorPrimary: "#000000",
-                borderRadius: 2,
-                controlItemBgActive: "#f5f5f5",
-                colorBgBase: "#ffffff",
-                colorBgContainer: "#ffffff",
-                colorBgLayout: "#ffffff",
-                colorLink: "#000000",
-              },
-            }}
-          >
-            <Suspense fallback={null}>
-              <AntdRegistry layer>{children}</AntdRegistry>
-            </Suspense>
-          </ConfigProvider>
+          <AntdRegistry layer>
+            <ConfigProvider
+              locale={antdLocale}
+              theme={{
+                token: {
+                  colorPrimary: "#000000",
+                  borderRadius: 2,
+                  controlItemBgActive: "#f5f5f5",
+                  colorBgBase: "#ffffff",
+                  colorBgContainer: "#ffffff",
+                  colorBgLayout: "#ffffff",
+                  colorLink: "#000000",
+                },
+              }}
+            >
+              {children}
+            </ConfigProvider>
+          </AntdRegistry>
         </LocaleProvider>
       </body>
     </html>
