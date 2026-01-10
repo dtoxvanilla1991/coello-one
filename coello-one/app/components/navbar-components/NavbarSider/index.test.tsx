@@ -1,9 +1,24 @@
-import { beforeEach, describe, expect, it } from "bun:test";
+import { beforeEach, describe, expect, it, mock } from "bun:test";
 import { act, render, screen } from "@testing-library/react";
 import { Provider, createStore } from "jotai";
 import { siderCollapsedAtom } from "@/store/siderStore";
 import { LocaleProvider } from "@/localization/LocaleProvider";
 import { resetNavigationMocks } from "@test-utils/navigation";
+
+mock.module("./TabsComponent", () => ({
+  __esModule: true,
+  TabsComponent: () => <div data-testid="sider-tabs" />,
+}));
+
+mock.module("./SideMenu", () => ({
+  __esModule: true,
+  default: () => <div data-testid="sider-menu" />,
+}));
+
+mock.module("./SiderFooter", () => ({
+  __esModule: true,
+  default: () => <div data-testid="sider-footer" />,
+}));
 
 const { NavbarSiderComponent } = await import("./index");
 
