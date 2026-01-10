@@ -6,7 +6,6 @@ import enGB from "antd/locale/en_GB";
 import esES from "antd/locale/es_ES";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { Geist, Geist_Mono } from "./fonts";
-import { AntdCompatibilityGate } from "@/components/providers/AntdCompatibilityGate";
 import { LocaleProvider } from "@/localization/LocaleProvider";
 import { getRequestLocale } from "@/localization/getRequestLocale";
 import type { SupportedLocale } from "@config/i18n";
@@ -67,11 +66,9 @@ async function LocaleAwareRootLayout({ children }: { children: React.ReactNode }
               },
             }}
           >
-            <AntdCompatibilityGate>
-              <Suspense fallback={null}>
-                <AntdRegistry layer>{children}</AntdRegistry>
-              </Suspense>
-            </AntdCompatibilityGate>
+            <Suspense fallback={null}>
+              <AntdRegistry layer>{children}</AntdRegistry>
+            </Suspense>
           </ConfigProvider>
         </LocaleProvider>
       </body>
