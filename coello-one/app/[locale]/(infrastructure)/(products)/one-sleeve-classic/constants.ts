@@ -10,7 +10,7 @@ export const PRODUCT_DATA: ProductData = {
   price: "£45.00",
   sizes: ["S", "M", "L"],
   images: [
-    "/athletes/vertical/main-secondary-1.png",
+    "/athletes/vertical/coello_one_classic_gray_front.png",
     "/athletes/vertical/main-secondary-2.jpg",
     "/athletes/vertical/main-secondary-3.jpg",
   ],
