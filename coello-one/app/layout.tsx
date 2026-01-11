@@ -10,6 +10,7 @@ import { LocaleProvider } from "@/localization/LocaleProvider";
 import { getRequestLocale } from "@/localization/getRequestLocale";
 import type { SupportedLocale } from "@config/i18n";
 import { LANGUAGE_ALTERNATES } from "@config/i18n";
+import { COELLO_ANTD_THEME } from "@config/antdTheme";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
@@ -53,20 +54,7 @@ async function LocaleAwareRootLayout({ children }: { children: React.ReactNode }
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <LocaleProvider value={locale}>
           <AntdRegistry layer>
-            <ConfigProvider
-              locale={antdLocale}
-              theme={{
-                token: {
-                  colorPrimary: "#000000",
-                  borderRadius: 2,
-                  controlItemBgActive: "#f5f5f5",
-                  colorBgBase: "#ffffff",
-                  colorBgContainer: "#ffffff",
-                  colorBgLayout: "#ffffff",
-                  colorLink: "#000000",
-                },
-              }}
-            >
+            <ConfigProvider locale={antdLocale} theme={COELLO_ANTD_THEME}>
               {children}
             </ConfigProvider>
           </AntdRegistry>

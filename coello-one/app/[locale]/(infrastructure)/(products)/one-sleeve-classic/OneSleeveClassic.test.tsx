@@ -30,7 +30,7 @@ describe("OneSleeveClassic", () => {
     const secondThumbnail = screen.getByAltText("One Sleeve Classic thumbnail 2");
     fireEvent.click(secondThumbnail);
     const mainImage = screen.getByAltText("One Sleeve Classic") as HTMLImageElement;
-    expect(mainImage.getAttribute("src") || "").toContain("main-secondary-2.jpg");
+    expect(mainImage.getAttribute("src") || "").toContain("coello_one_classic_gray_back.png");
   });
 
   it("updates the selected color when a color radio button is clicked", () => {
@@ -40,6 +40,37 @@ describe("OneSleeveClassic", () => {
     });
     fireEvent.click(seaBlueButton);
     expect(screen.getByText(/COLOR:/).textContent).toMatch(/Sea Blue/);
+
+    const mainImage = screen.getByAltText("One Sleeve Classic") as HTMLImageElement;
+    expect(mainImage.getAttribute("src") || "").toContain("coello_one_classic_blue_front.png");
+
+    const thumb1 = screen.getByAltText("One Sleeve Classic thumbnail 1") as HTMLImageElement;
+    const thumb2 = screen.getByAltText("One Sleeve Classic thumbnail 2") as HTMLImageElement;
+    const thumb3 = screen.getByAltText("One Sleeve Classic thumbnail 3") as HTMLImageElement;
+
+    expect(thumb1.getAttribute("src") || "").toContain("coello_one_classic_blue_front.png");
+    expect(thumb2.getAttribute("src") || "").toContain("coello_one_classic_blue_back.png");
+    expect(thumb3.getAttribute("src") || "").toContain("coello_one_classic_blue_side.png");
+  });
+
+  it("updates the image gallery when Mild Red is selected", () => {
+    render(<OneSleeveClassic />);
+    const mildRedButton = screen.getByRole("radio", {
+      name: "Color Mild Red",
+    });
+    fireEvent.click(mildRedButton);
+    expect(screen.getByText(/COLOR:/).textContent).toMatch(/Mild Red/);
+
+    const mainImage = screen.getByAltText("One Sleeve Classic") as HTMLImageElement;
+    expect(mainImage.getAttribute("src") || "").toContain("coello_one_classic_red_front.png");
+
+    const thumb1 = screen.getByAltText("One Sleeve Classic thumbnail 1") as HTMLImageElement;
+    const thumb2 = screen.getByAltText("One Sleeve Classic thumbnail 2") as HTMLImageElement;
+    const thumb3 = screen.getByAltText("One Sleeve Classic thumbnail 3") as HTMLImageElement;
+
+    expect(thumb1.getAttribute("src") || "").toContain("coello_one_classic_red_front.png");
+    expect(thumb2.getAttribute("src") || "").toContain("coello_one_classic_red_back.png");
+    expect(thumb3.getAttribute("src") || "").toContain("coello_one_classic_red_side.png");
   });
 
   it("updates the selected size when a size radio button is clicked", () => {

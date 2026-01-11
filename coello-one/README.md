@@ -42,6 +42,7 @@ Match these versions when referencing documentation or adding integrations.
    - `bun run build` – production build
    - `bun run lint` – ESLint with zero-warning policy
    - `bun run test` – Bun tests (auto-preloads `test-setup.ts`)
+   - `bun scripts/testFile.ts <name>` – run a single test file by name/substr (avoids zsh globbing on paths like `app/[locale]/(infrastructure)/…`)
    - `bun run format` / `bun run format:fix` – Prettier + Tailwind sorting
    - `bun run verify:locales` – ensure namespace parity across locales
 

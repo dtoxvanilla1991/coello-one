@@ -92,7 +92,7 @@ const PRODUCT_SEEDS: ProductSeed[] = [
         sortOrder: 0,
       },
       {
-        imageUrl: "/athletes/vertical/main-secondary-2.jpg",
+        imageUrl: "/athletes/vertical/coello_one_classic_gray_back.png",
         altText: "One Sleeve Classic angle 2",
         sortOrder: 1,
       },
@@ -119,7 +119,7 @@ const PRODUCT_SEEDS: ProductSeed[] = [
             colorName: "Stone Gray",
             swatchClass: "bg-gray-400",
             ringClass: "ring-gray-400",
-            imageUrl: "/athletes/vertical/main-secondary-2.jpg",
+            imageUrl: "/athletes/vertical/coello_one_classic_gray_back.png",
             isPopularPick: true,
             popularRank: 1,
           },

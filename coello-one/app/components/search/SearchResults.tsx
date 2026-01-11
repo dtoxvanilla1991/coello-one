@@ -57,7 +57,7 @@ export const searchCatalog: SearchCatalogItem[] = [
     description: "Tailored silhouette supporting studio and strength work alike.",
     genderLabel: "Women's fit",
     price: 45,
-    image: "/athletes/vertical/main-secondary-2.jpg",
+    image: "/athletes/vertical/coello_one_classic_gray_back.png",
     slug: "one-sleeve-classic",
     query: { gender: "female" },
     tags: ["women", "female", "classic", "one sleeve", "training", "gray", "sea blue"],

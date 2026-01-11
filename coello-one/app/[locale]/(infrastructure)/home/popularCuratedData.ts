@@ -19,7 +19,11 @@ type PopularVariantDefinition = {
 
 const ONE_SLEEVE_POPULAR_VARIANTS: Record<Gender, PopularVariantDefinition[]> = {
   male: [
-    { id: 6101, color: "Stone Gray", imageUrl: "/athletes/vertical/main-secondary-2.jpg" },
+    {
+      id: 6101,
+      color: "Stone Gray",
+      imageUrl: "/athletes/vertical/coello_one_classic_gray_back.png",
+    },
     { id: 6102, color: "Sea Blue", imageUrl: "/athletes/vertical/main-secondary-3.jpg" },
     { id: 6103, color: "Mild Red", imageUrl: "/athletes/vertical/main-secondary-4.jpg" },
   ],
