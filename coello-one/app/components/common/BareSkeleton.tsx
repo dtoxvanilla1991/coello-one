@@ -16,6 +16,9 @@ export function SkeletonBlock({
   return (
     <Flex
       aria-hidden
+      // STYLE-WAIVER: Skeleton dimensions are dynamic runtime values (numbers/strings).
+      // Tailwind arbitrary value classes must be statically analyzable/safelisted; using
+      // inline styles here keeps the skeleton reusable without expanding Tailwind config.
       style={{
         width,
         height,

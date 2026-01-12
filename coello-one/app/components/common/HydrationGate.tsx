@@ -37,12 +37,8 @@ export type HydrationGateProps = {
 
 function DefaultHydrationFallback() {
   return (
-    <Flex
-      vertical
-      className="min-h-[60vh] w-full bg-white px-4 py-6"
-      style={{ display: "flex", flexDirection: "column", gap: 12 }}
-    >
-      <Flex align="center" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+    <Flex vertical className="flex min-h-[60vh] w-full flex-col gap-3 bg-white px-4 py-6">
+      <Flex align="center" className="flex items-center gap-3">
         <SkeletonCircle size={28} />
         <SkeletonLine width={180} />
       </Flex>

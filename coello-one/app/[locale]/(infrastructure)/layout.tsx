@@ -12,33 +12,16 @@ export default function InfrastructureLayout({
 }>) {
   const navbarFallback = (
     <Flex
-      style={{
-        minHeight: "var(--navbar-height, 56px)",
-        background: "#fff",
-        position: "relative",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-      }}
       align="center"
       justify="space-between"
       gap={12}
-      className="w-full px-4!"
+      className="relative flex min-h-[var(--navbar-height,56px)] w-full items-center justify-between bg-white px-4!"
     >
       <SkeletonCircle size={24} />
-      <Flex
-        aria-hidden
-        style={{
-          position: "absolute",
-          left: "50%",
-          transform: "translateX(-50%)",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
+      <Flex aria-hidden className="absolute left-1/2 flex -translate-x-1/2 justify-center">
         <SkeletonLine width={220} height={20} />
       </Flex>
-      <Flex gap={12} align="center" style={{ display: "flex", gap: 12, alignItems: "center" }}>
+      <Flex gap={12} align="center" className="flex items-center gap-3">
         <SkeletonCircle size={24} />
         <SkeletonCircle size={24} />
       </Flex>
