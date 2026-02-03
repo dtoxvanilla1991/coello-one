@@ -2,7 +2,7 @@ import { GlobalRegistrator } from "@happy-dom/global-registrator";
 import { cleanup } from "@testing-library/react";
 import * as matchers from "@testing-library/jest-dom/matchers";
 import type { AnchorHTMLAttributes, ImgHTMLAttributes, ReactNode } from "react";
-import { expect, afterEach, afterAll, mock } from "bun:test";
+import { expect, afterEach, mock } from "bun:test";
 import {
   getNavigationState,
   resetNavigationMocks,
@@ -79,10 +79,6 @@ afterEach(() => {
   resetNavigationMocks();
 });
 
-afterAll(() => {
-  GlobalRegistrator.unregister();
-});
-
 // Next.js-specific props used by next/image that aren't valid on a plain img element
 const NEXT_IMAGE_PROPS = [
   "fill",
@@ -91,6 +87,7 @@ const NEXT_IMAGE_PROPS = [
   "blurDataURL",
   "loader",
   "quality",
+  "unoptimized",
 ] as const;
 
 // Globally mock next/image to a plain img to avoid URL parsing and layout issues in tests

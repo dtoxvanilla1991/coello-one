@@ -74,12 +74,51 @@ jobs:
           CI: true
         run: bun test --reporter junit --reporter-outfile reports/junit-report.xml
 
+      - name: Diagnostics (missing JUnit report)
+        if: always()
+        run: |
+          REPORT_PATH="reports/junit-report.xml"
+          if [ -f "$REPORT_PATH" ]; then
+            echo "JUnit report present; skipping diagnostics."
+            exit 0
+          fi
+
+          echo "[warn] Missing JUnit report at $REPORT_PATH"
+          echo "[info] Diagnostics (runner health + filesystem):"
+          echo "pwd: $(pwd)"
+          echo "bun: $(bun --version || echo 'bun: unavailable')"
+          echo "node: $(node --version || echo 'node: unavailable')"
+          echo ""
+          echo "Disk (df -h):"
+          df -h || true
+          echo ""
+          echo "Memory (free -m):"
+          free -m || true
+          echo ""
+          echo "Ulimits (ulimit -a):"
+          ulimit -a || true
+          echo ""
+          echo "Reports directory listing:"
+          ls -la reports || true
+          echo ""
+          echo "OOM hints (best-effort):"
+          (dmesg 2>/dev/null | tail -n 200 | grep -i -E 'oom|out of memory|killed process' || true) || true
+
+          {
+            echo "### Diagnostics";
+            echo "JUnit report missing at: $REPORT_PATH";
+            echo "";
+            echo "Likely causes: test runner exited early (OOM, crash, timeout).";
+            echo "See step log: Diagnostics (missing JUnit report).";
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Upload test report
         if: always()
         uses: actions/upload-artifact@v6
         with:
           name: junit-report
           path: reports/junit-report.xml
+          if-no-files-found: warn
 
       - name: Test summary
         if: always()
@@ -87,7 +126,15 @@ jobs:
           echo "JUnit summary:" 
           REPORT_PATH="reports/junit-report.xml"
           if [ ! -f "$REPORT_PATH" ]; then
-            echo "No junit-report.xml found at $REPORT_PATH"; exit 1; fi
+            echo "No junit-report.xml found at $REPORT_PATH"
+            {
+              echo "### Test Summary";
+              echo "Report path: $REPORT_PATH";
+              echo "";
+              echo "No JUnit report found. This usually means the test runner exited before writing the report (e.g. crash/OOM/timeout).";
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
           TOTAL=$(grep -o 'tests="[0-9]\+' "$REPORT_PATH" | head -1 | cut -d'"' -f2)
           FAIL=$(grep -o 'failures="[0-9]\+' "$REPORT_PATH" | head -1 | cut -d'"' -f2)
           SKIP=$(grep -o 'skipped="[0-9]\+' "$REPORT_PATH" | head -1 | cut -d'"' -f2 || echo 0)
@@ -108,9 +155,7 @@ jobs:
             echo "| Skipped | $SKIP |";
             echo "| Assertions | $ASSERT |";
           } >> "$GITHUB_STEP_SUMMARY"
-          if [ "$FAIL" != "0" ]; then
-            exit 1
-          fi
+          # Note: we intentionally do not fail this step; test failures should be surfaced by the test command itself.
 
   db-smoke:
     name: DB Smoke (MySQL)

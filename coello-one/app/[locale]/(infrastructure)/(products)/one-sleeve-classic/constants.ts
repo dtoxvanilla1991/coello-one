@@ -5,15 +5,54 @@ export const DEFAULT_COLOR_NAME = "Gray";
 export const DEFAULT_SIZE = "M";
 export const PRODUCT_NAME_SLUG = "one-sleeve-classic";
 
+export const PRODUCT_IMAGES_BY_COLOR_NAME: Record<string, string[]> = {
+  "Stone Gray": [
+    "/athletes/vertical/coello_one_classic_gray_front.png",
+    "/athletes/vertical/coello_one_classic_gray_back.png",
+    "/athletes/vertical/coello_one_classic_gray_back.png",
+  ],
+  "Sea Blue": [
+    "/athletes/vertical/coello_one_classic_blue_front.png",
+    "/athletes/vertical/coello_one_classic_blue_back.png",
+    "/athletes/vertical/coello_one_classic_blue_side.png",
+  ],
+  "Mild Red": [
+    "/athletes/vertical/coello_one_classic_red_front.png",
+    "/athletes/vertical/coello_one_classic_red_back.png",
+    "/athletes/vertical/coello_one_classic_red_side.png",
+  ],
+};
+
+export function getImagesForColor(colorName: string, fallbackImages: string[]) {
+  return PRODUCT_IMAGES_BY_COLOR_NAME[colorName] ?? fallbackImages;
+}
+
+const preloadedImageUrls = new Set<string>();
+
+export function preloadImages(urls: string[]) {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  for (const url of urls) {
+    if (!url || preloadedImageUrls.has(url)) {
+      continue;
+    }
+
+    preloadedImageUrls.add(url);
+
+    const image = new Image();
+    image.decoding = "async";
+    image.src = url;
+    void image.decode?.().catch(() => undefined);
+  }
+}
+
 export const PRODUCT_DATA: ProductData = {
   name: "One Sleeve Classic",
   price: "£45.00",
   sizes: ["S", "M", "L"],
-  images: [
-    "/athletes/vertical/main-secondary-1.png",
-    "/athletes/vertical/main-secondary-2.jpg",
-    "/athletes/vertical/main-secondary-3.jpg",
-  ],
+  images: PRODUCT_IMAGES_BY_COLOR_NAME["Stone Gray"],
   variants: {
     male: {
       colors: [

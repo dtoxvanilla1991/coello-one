@@ -79,7 +79,7 @@ const PRODUCT_SEEDS: ProductSeed[] = [
         "Signature asymmetrical top cut for artists in motion. Breathable panels, bonded seams, and sweat-wicking mesh keep sessions calm under spotlight heat.",
       priceMinor: 4500,
       currencyCode: GBP,
-      heroImage: "/athletes/vertical/main-secondary-1.png",
+      heroImage: "/athletes/vertical/coello_one_classic_gray_front.png",
       defaultGender: "male",
       defaultSize: "M",
       defaultColor: "Stone Gray",
@@ -87,12 +87,12 @@ const PRODUCT_SEEDS: ProductSeed[] = [
     },
     media: [
       {
-        imageUrl: "/athletes/vertical/main-secondary-1.png",
+        imageUrl: "/athletes/vertical/coello_one_classic_gray_front.png",
         altText: "One Sleeve Classic primary visual",
         sortOrder: 0,
       },
       {
-        imageUrl: "/athletes/vertical/main-secondary-2.jpg",
+        imageUrl: "/athletes/vertical/coello_one_classic_gray_back.png",
         altText: "One Sleeve Classic angle 2",
         sortOrder: 1,
       },
@@ -119,7 +119,7 @@ const PRODUCT_SEEDS: ProductSeed[] = [
             colorName: "Stone Gray",
             swatchClass: "bg-gray-400",
             ringClass: "ring-gray-400",
-            imageUrl: "/athletes/vertical/main-secondary-2.jpg",
+            imageUrl: "/athletes/vertical/coello_one_classic_gray_back.png",
             isPopularPick: true,
             popularRank: 1,
           },

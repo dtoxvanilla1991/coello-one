@@ -6,11 +6,11 @@ import enGB from "antd/locale/en_GB";
 import esES from "antd/locale/es_ES";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { Geist, Geist_Mono } from "./fonts";
-import { AntdCompatibilityGate } from "@/components/providers/AntdCompatibilityGate";
 import { LocaleProvider } from "@/localization/LocaleProvider";
 import { getRequestLocale } from "@/localization/getRequestLocale";
 import type { SupportedLocale } from "@config/i18n";
 import { LANGUAGE_ALTERNATES } from "@config/i18n";
+import { COELLO_ANTD_THEME } from "@config/antdTheme";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
@@ -53,26 +53,11 @@ async function LocaleAwareRootLayout({ children }: { children: React.ReactNode }
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <LocaleProvider value={locale}>
-          <ConfigProvider
-            locale={antdLocale}
-            theme={{
-              token: {
-                colorPrimary: "#000000",
-                borderRadius: 2,
-                controlItemBgActive: "#f5f5f5",
-                colorBgBase: "#ffffff",
-                colorBgContainer: "#ffffff",
-                colorBgLayout: "#ffffff",
-                colorLink: "#000000",
-              },
-            }}
-          >
-            <AntdCompatibilityGate>
-              <Suspense fallback={null}>
-                <AntdRegistry layer>{children}</AntdRegistry>
-              </Suspense>
-            </AntdCompatibilityGate>
-          </ConfigProvider>
+          <AntdRegistry layer>
+            <ConfigProvider locale={antdLocale} theme={COELLO_ANTD_THEME}>
+              {children}
+            </ConfigProvider>
+          </AntdRegistry>
         </LocaleProvider>
       </body>
     </html>

@@ -27,7 +27,7 @@ export function MainBanner() {
       <Row>
         <Col className="grid h-[44em] w-full items-end">
           <Image
-            src="/athletes/main image.jpg"
+            src="/athletes/main_image.png"
             alt="Coello One banner"
             sizes="(max-width: 640px) 100vw, 640px"
             fill

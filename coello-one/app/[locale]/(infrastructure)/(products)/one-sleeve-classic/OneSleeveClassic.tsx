@@ -22,8 +22,11 @@ import {
   DEFAULT_COLOR_NAME,
   DEFAULT_GENDER,
   DEFAULT_SIZE,
+  PRODUCT_IMAGES_BY_COLOR_NAME,
   PRODUCT_DATA,
   PRODUCT_NAME_SLUG,
+  getImagesForColor,
+  preloadImages,
 } from "./constants";
 
 const { Title, Text } = Typography;
@@ -118,6 +121,14 @@ const OneSleeveClassic: React.FC<OneSleeveClassicProps> = ({ productData }) => {
 
   const currentVariant = product.variants[selectedGender];
 
+  const activeImages = useMemo(() => {
+    return getImagesForColor(selectedColor.name, product.images);
+  }, [product.images, selectedColor.name]);
+
+  useEffect(() => {
+    preloadImages(Object.values(PRODUCT_IMAGES_BY_COLOR_NAME).flat());
+  }, []);
+
   useEffect(() => {
     let isActive = true;
 
@@ -184,11 +195,11 @@ const OneSleeveClassic: React.FC<OneSleeveClassicProps> = ({ productData }) => {
         selectedGender: genderFromQuery,
         selectedColor: colorFromQuery,
         selectedSize: sizeFromQuery,
-        mainImage: product.images[0],
+        mainImage: getImagesForColor(colorFromQuery.name, product.images)[0],
       },
     });
     hasHydratedFromQuery.current = true;
-  }, [searchParams, product]);
+  }, [searchParams, product, productData]);
 
   useEffect(() => {
     if (!hasHydratedFromQuery.current) {
@@ -228,12 +239,14 @@ const OneSleeveClassic: React.FC<OneSleeveClassicProps> = ({ productData }) => {
       variant.colors.find((color) => color.name === defaultColorName) ??
       variant.colors[0];
 
+    const nextImages = getImagesForColor(fallbackColor.name, product.images);
+
     dispatch({
       type: "SET_GENDER",
       payload: {
         gender,
         color: fallbackColor,
-        mainImage: product.images[0],
+        mainImage: nextImages[0],
       },
     });
   };
@@ -343,8 +356,10 @@ const OneSleeveClassic: React.FC<OneSleeveClassicProps> = ({ productData }) => {
   const handleColorChange = (value: string) => {
     const nextColor = currentVariant.colors.find((color) => color.name === value);
     if (nextColor) {
+      const nextImages = getImagesForColor(nextColor.name, product.images);
+
       dispatch({ type: "SET_COLOR", payload: nextColor });
-      dispatch({ type: "SET_IMAGE", payload: product.images[0] });
+      dispatch({ type: "SET_IMAGE", payload: nextImages[0] });
     }
   };
 
@@ -368,10 +383,11 @@ const OneSleeveClassic: React.FC<OneSleeveClassicProps> = ({ productData }) => {
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="rounded-md object-cover"
                 priority
+                unoptimized
               />
             </Flex>
             <Row gutter={8}>
-              {product.images.map((img, index) => (
+              {activeImages.map((img, index) => (
                 <Col span={8} key={index}>
                   <Flex
                     className={`relative aspect-square w-full cursor-pointer overflow-hidden rounded-md border-2 transition-colors hover:border-black ${
@@ -394,6 +410,7 @@ const OneSleeveClassic: React.FC<OneSleeveClassicProps> = ({ productData }) => {
                       fill
                       sizes="33vw"
                       className="object-cover"
+                      unoptimized
                     />
                   </Flex>
                 </Col>
@@ -432,6 +449,7 @@ const OneSleeveClassic: React.FC<OneSleeveClassicProps> = ({ productData }) => {
                   <Space size="middle">
                     {currentVariant.colors.map((color) => {
                       const isSelected = selectedColor.name === color.name;
+                      const colorImages = getImagesForColor(color.name, product.images);
 
                       return (
                         <Radio.Button
@@ -440,6 +458,8 @@ const OneSleeveClassic: React.FC<OneSleeveClassicProps> = ({ productData }) => {
                           aria-label={`Color ${color.name}`}
                           aria-checked={isSelected}
                           className="border-0! bg-transparent! p-0! shadow-none! focus-visible:ring-0 focus-visible:outline-none"
+                          onMouseEnter={() => preloadImages(colorImages)}
+                          onFocus={() => preloadImages(colorImages)}
                         >
                           <span
                             aria-hidden="true"

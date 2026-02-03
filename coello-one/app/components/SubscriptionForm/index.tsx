@@ -4,9 +4,11 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Input, Button, Alert, Spin, Typography } from "antd";
+import { Alert, Button, Card, Flex, Input, Spin, Typography } from "antd";
 import { ExclamationCircleOutlined, LoadingOutlined, MailOutlined } from "@ant-design/icons";
 import { subscribeUser } from "./actions";
+
+const { Title, Paragraph } = Typography;
 
 const subscribeSchema = z.object({
   email: z
@@ -58,80 +60,90 @@ const SubscriptionForm = () => {
   // Success state
   if (isSuccess) {
     return (
-      <div className="mx-auto max-w-[480px] p-4">
-        <Alert
-          title="Subscription Activated!"
-          description={
-            <>
-              Thank you for subscribing! Please check your email for a confirmation link.
-              We&rsquo;re excited to keep you updated with our latest news.
-            </>
-          }
-          type="success"
-          showIcon
-          icon={<MailOutlined className="text-green-500" />}
-        />
-        <div className="mt-4 text-center">
-          <Button type="link" onClick={() => setIsSuccess(false)}>
-            Subscribe another email
-          </Button>
-        </div>
-      </div>
+      <Flex justify="center" className="p-4">
+        <Card className="w-full max-w-120 border-gray-200">
+          <Flex vertical gap={16}>
+            <Alert
+              title="Subscription Activated!"
+              description={
+                <>
+                  Thank you for subscribing! Please check your email for a confirmation link.
+                  We&rsquo;re excited to keep you updated with our latest news.
+                </>
+              }
+              type="success"
+              showIcon
+              icon={<MailOutlined className="text-green-500" />}
+            />
+            <Flex justify="center">
+              <Button type="link" onClick={() => setIsSuccess(false)}>
+                Subscribe another email
+              </Button>
+            </Flex>
+          </Flex>
+        </Card>
+      </Flex>
     );
   }
 
   return (
-    <div className="mx-auto max-w-[480px] p-4">
-      <Typography.Title level={2} className="text-center">
-        Subscribe to Our Newsletter
-      </Typography.Title>
-      <Typography.Paragraph className="mb-6 text-center">
-        Get the latest updates delivered to your inbox
-      </Typography.Paragraph>
+    <Flex justify="center" className="p-4">
+      <Card className="w-full max-w-120 border-gray-200">
+        <Flex vertical gap={16}>
+          <Flex vertical gap={4}>
+            <Title level={2} className="text-center">
+              Subscribe to Our Newsletter
+            </Title>
+            <Paragraph className="mb-0! text-center">
+              Get the latest updates delivered to your inbox
+            </Paragraph>
+          </Flex>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {/* Email Field */}
-        <div className="mb-4">
-          <Input
-            {...register("email")}
-            placeholder="you@email.com"
-            disabled={isSubmitting}
-            status={errors.email ? "error" : ""}
-            suffix={
-              isSubmitting ? (
-                <Spin indicator={<LoadingOutlined className="text-base" spin />} />
-              ) : undefined
-            }
-          />
+          <Flex vertical gap={8}>
+            <Input
+              {...register("email")}
+              placeholder="you@email.com"
+              disabled={isSubmitting}
+              status={errors.email ? "error" : ""}
+              onPressEnter={() => void handleSubmit(onSubmit)()}
+              suffix={
+                isSubmitting ? (
+                  <Spin indicator={<LoadingOutlined className="text-base" spin />} />
+                ) : undefined
+              }
+            />
 
-          {/* Inline Error Messages */}
-          {errors.email && (
-            <div className="mt-2 flex items-center text-red-500">
-              <ExclamationCircleOutlined className="mr-1" />
-              <span>{errors.email.message}</span>
-            </div>
-          )}
+            {errors.email?.message ? (
+              <Alert
+                type="error"
+                showIcon
+                icon={<ExclamationCircleOutlined />}
+                title={errors.email.message}
+              />
+            ) : null}
 
-          {serverError && (
-            <div className="mt-2 flex items-center text-red-500">
-              <ExclamationCircleOutlined className="mr-1" />
-              <span>{serverError}</span>
-            </div>
-          )}
-        </div>
+            {serverError ? (
+              <Alert
+                type="error"
+                showIcon
+                icon={<ExclamationCircleOutlined />}
+                title={serverError}
+              />
+            ) : null}
 
-        {/* Submit Button */}
-        <Button
-          type="primary"
-          htmlType="submit"
-          block
-          disabled={isSubmitting}
-          loading={isSubmitting}
-        >
-          {isSubmitting ? "Subscribing..." : "Subscribe"}
-        </Button>
-      </form>
-    </div>
+            <Button
+              type="primary"
+              block
+              disabled={isSubmitting}
+              loading={isSubmitting}
+              onClick={() => void handleSubmit(onSubmit)()}
+            >
+              {isSubmitting ? "Subscribing..." : "Subscribe"}
+            </Button>
+          </Flex>
+        </Flex>
+      </Card>
+    </Flex>
   );
 };
 

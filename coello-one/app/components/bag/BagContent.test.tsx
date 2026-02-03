@@ -42,7 +42,7 @@ describe("BagContent", () => {
       {
         id: "osc-men-gray-m",
         name: "One Sleeve Classic",
-        image: "/athletes/vertical/main-secondary-1.png",
+        image: "/athletes/vertical/coello_one_classic_gray_front.png",
         price: 45,
         quantity: 2,
         size: "M",
@@ -52,7 +52,7 @@ describe("BagContent", () => {
       {
         id: "osc-women-sea-l",
         name: "One Sleeve Classic",
-        image: "/athletes/vertical/main-secondary-2.jpg",
+        image: "/athletes/vertical/coello_one_classic_gray_back.png",
         price: 45,
         quantity: 1,
         size: "L",
@@ -94,7 +94,7 @@ describe("BagContent", () => {
       {
         id: "osc-men-gray-m",
         name: "One Sleeve Classic",
-        image: "/athletes/vertical/main-secondary-1.png",
+        image: "/athletes/vertical/coello_one_classic_gray_front.png",
         price: 45,
         quantity: 2,
         size: "M",
