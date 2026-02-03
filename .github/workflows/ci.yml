@@ -142,7 +142,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Cache Bun toolchain
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: $HOME/.bun
           key: ${{ runner.os }}-bun-${{ env.BUN_VERSION }}
