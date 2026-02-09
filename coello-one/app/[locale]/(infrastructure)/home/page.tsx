@@ -1,6 +1,6 @@
 import { metaObject } from "config/site.config";
 import { cacheLife } from "next/cache";
-import HydrationGate from "@/components/common/HydrationGate";
+import HydrationOverlay from "@/components/common/HydrationOverlay";
 import HomeHydrationSkeleton from "./HomeHydrationSkeleton";
 import { MainBanner } from "./MainBanner";
 import { Featured } from "./Featured";
@@ -23,7 +23,7 @@ export default async function Home() {
   cacheLife({ stale: 300, revalidate: 300, expire: 3600 });
 
   return (
-    <HydrationGate fallback={<HomeHydrationSkeleton />}>
+    <HydrationOverlay overlay={<HomeHydrationSkeleton />} className="min-h-screen">
       <>
         <MainBanner />
         <Featured />
@@ -37,6 +37,6 @@ export default async function Home() {
         <BottomMoreAboutSection />
         <LegalLinks />
       </>
-    </HydrationGate>
+    </HydrationOverlay>
   );
 }

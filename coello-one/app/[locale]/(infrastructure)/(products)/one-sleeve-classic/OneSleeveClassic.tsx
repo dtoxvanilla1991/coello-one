@@ -22,7 +22,6 @@ import {
   DEFAULT_COLOR_NAME,
   DEFAULT_GENDER,
   DEFAULT_SIZE,
-  PRODUCT_IMAGES_BY_COLOR_NAME,
   PRODUCT_DATA,
   PRODUCT_NAME_SLUG,
   getImagesForColor,
@@ -126,8 +125,8 @@ const OneSleeveClassic: React.FC<OneSleeveClassicProps> = ({ productData }) => {
   }, [product.images, selectedColor.name]);
 
   useEffect(() => {
-    preloadImages(Object.values(PRODUCT_IMAGES_BY_COLOR_NAME).flat());
-  }, []);
+    preloadImages(activeImages);
+  }, [activeImages]);
 
   useEffect(() => {
     let isActive = true;
@@ -383,7 +382,6 @@ const OneSleeveClassic: React.FC<OneSleeveClassicProps> = ({ productData }) => {
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="rounded-md object-cover"
                 priority
-                unoptimized
               />
             </Flex>
             <Row gutter={8}>
@@ -410,7 +408,6 @@ const OneSleeveClassic: React.FC<OneSleeveClassicProps> = ({ productData }) => {
                       fill
                       sizes="33vw"
                       className="object-cover"
-                      unoptimized
                     />
                   </Flex>
                 </Col>

@@ -23,7 +23,7 @@ export function Featured() {
             <Flex className="relative aspect-square w-full">
               <Image
                 src={`/athletes/vertical/main-secondary-${i + 2}.jpg`}
-                alt={`Coello One athlete ${i + 1}`}
+                alt={`Coello One athlete ${i + 2}`}
                 sizes="(max-width: 640px) 100vw, 640px"
                 fill
                 priority={i === 0}

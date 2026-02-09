@@ -1,5 +1,5 @@
 import Footer from "@/components/Footer";
-import HydrationGate from "@/components/common/HydrationGate";
+import HydrationOverlay from "@/components/common/HydrationOverlay";
 import { SkeletonCircle, SkeletonLine } from "@/components/common/BareSkeleton";
 import { Navbar } from "@/components/navbar-components/Navbar";
 import { NavbarSiderComponent } from "@/components/navbar-components/NavbarSider";
@@ -32,9 +32,9 @@ export default function InfrastructureLayout({
     <Layout hasSider>
       <NavbarSiderComponent />
       <Layout>
-        <HydrationGate fallback={navbarFallback}>
+        <HydrationOverlay overlay={navbarFallback} className="min-h-(--navbar-height,56px)">
           <Navbar />
-        </HydrationGate>
+        </HydrationOverlay>
         <Flex vertical role="main" className="min-h-screen">
           {children}
         </Flex>

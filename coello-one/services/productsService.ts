@@ -12,7 +12,9 @@ import {
 import { trackEvent } from "@/utils/trackEvent";
 import { createPopularFallbackProducts } from "@/[locale]/(infrastructure)/home/popularCuratedData";
 
-const CACHE_DB_PATH = Bun.env.PRODUCT_CACHE_DB_PATH ?? ":memory:";
+const IS_DEV = Bun.env.NODE_ENV === "development";
+// Prevent dev HMR loops from disk cache writes by using in-memory storage.
+const CACHE_DB_PATH = IS_DEV ? ":memory:" : (Bun.env.PRODUCT_CACHE_DB_PATH ?? ":memory:");
 const CACHE_TTL_MS = Number(Bun.env.PRODUCT_CACHE_TTL_MS ?? 5 * 60 * 1000);
 const IS_NEXT_RUNTIME = typeof process !== "undefined" && Boolean(process.env.NEXT_RUNTIME);
 const CACHE_LIFE_SECONDS = Math.max(5, Math.floor(CACHE_TTL_MS / 1000));
