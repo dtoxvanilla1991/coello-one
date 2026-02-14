@@ -10,6 +10,9 @@ mock.module("@utils/stripe", () => ({
       constructEvent: constructEventSpy,
     },
   }),
+  __stripeTestMocks: {
+    constructEventSpy,
+  },
 }));
 
 mock.module("@config/db", () => ({
