@@ -2,7 +2,7 @@ import "server-only";
 
 import Stripe from "stripe";
 
-const API_VERSION: Stripe.StripeConfig["apiVersion"] = "2025-12-15.clover";
+const API_VERSION: Stripe.StripeConfig["apiVersion"] = "2026-01-28.clover";
 
 let cachedClient: Stripe | null = null;
 

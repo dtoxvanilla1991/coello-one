@@ -1,4 +1,4 @@
 -r requirements.in
-black
+black==26.1.0
 pip-tools==7.5.2
-ruff
+ruff==0.15.0

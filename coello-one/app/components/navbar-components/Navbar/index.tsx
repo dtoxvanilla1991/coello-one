@@ -63,8 +63,8 @@ export function Navbar() {
         <Link href={homeHref} className="ml-2 block pt-1">
           <Image
             src="/coelloLogo.png"
-            width={150}
-            height={50}
+            width={135}
+            height={45}
             alt={navbarCopy.logoAlt}
             className="w-auto"
             priority
