@@ -1,5 +1,7 @@
 import { metaObject } from "config/site.config";
 import { cacheLife } from "next/cache";
+import HydrationOverlay from "@/components/common/HydrationOverlay";
+import HomeHydrationSkeleton from "./HomeHydrationSkeleton";
 import { MainBanner } from "./MainBanner";
 import { Featured } from "./Featured";
 import SalesBlock from "./SalesBlock";
@@ -21,18 +23,20 @@ export default async function Home() {
   cacheLife({ stale: 300, revalidate: 300, expire: 3600 });
 
   return (
-    <>
-      <MainBanner />
-      <Featured />
-      <SalesBlock />
-      <Training />
-      <PopularSection />
-      <BrandListings />
-      <Divider className="m-0! bg-gray-200 pb-1!" />
-      <StoryBlock />
-      <BottomMenu />
-      <BottomMoreAboutSection />
-      <LegalLinks />
-    </>
+    <HydrationOverlay overlay={<HomeHydrationSkeleton />} className="min-h-screen">
+      <>
+        <MainBanner />
+        <Featured />
+        <SalesBlock />
+        <Training />
+        <PopularSection />
+        <BrandListings />
+        <Divider className="m-0! bg-gray-200 pb-1!" />
+        <StoryBlock />
+        <BottomMenu />
+        <BottomMoreAboutSection />
+        <LegalLinks />
+      </>
+    </HydrationOverlay>
   );
 }

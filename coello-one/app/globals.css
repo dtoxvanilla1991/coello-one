@@ -1,7 +1,8 @@
 /* Layer order: Tailwind's theme/base → antd → Tailwind's components/utilities */
-@layer theme, base, antd, components, utilities;
+@layer theme, base, reset, antd, components, utilities;
 
 @import "tailwindcss";
+@import "antd/dist/reset.css" layer(reset);
 
 :root {
   --background: #ffffff;

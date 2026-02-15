@@ -1,12 +1,15 @@
 import { afterEach, beforeEach, describe, expect, it, mock } from "bun:test";
-import { trackEvent } from "@/utils/trackEvent";
-import { setAnalyticsAdapter } from "@/utils/analyticsAdapter";
-import type { AnalyticsDetail } from "@/utils/analyticsAdapter";
+import type { AnalyticsDetail } from "../analyticsAdapter";
+
+let trackEvent: typeof import("../trackEvent").trackEvent;
+let setAnalyticsAdapter: typeof import("../analyticsAdapter").setAnalyticsAdapter;
 
 describe("trackEvent", () => {
   const originalPostMessage = globalThis.window?.postMessage;
 
-  beforeEach(() => {
+  beforeEach(async () => {
+    ({ trackEvent } = await import("../trackEvent"));
+    ({ setAnalyticsAdapter } = await import("../analyticsAdapter"));
     setAnalyticsAdapter(null);
     if (originalPostMessage) {
       globalThis.window.postMessage = originalPostMessage;
