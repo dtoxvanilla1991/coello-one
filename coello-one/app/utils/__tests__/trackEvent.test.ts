@@ -8,7 +8,6 @@ describe("trackEvent", () => {
   const originalPostMessage = globalThis.window?.postMessage;
 
   beforeEach(async () => {
-    mock.restore();
     ({ trackEvent } = await import("../trackEvent"));
     ({ setAnalyticsAdapter } = await import("../analyticsAdapter"));
     setAnalyticsAdapter(null);
